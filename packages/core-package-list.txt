@@ -1,0 +1,8 @@
+flameshot
+firefox
+spotify
+typora
+code
+skypeforlinux
+synergy
+zsh
