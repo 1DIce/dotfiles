@@ -7,8 +7,8 @@ fi
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=5000
+SAVEHIST=5000
 setopt autocd extendedglob
 bindkey -e
 # End of lines configured by zsh-newuser-install
@@ -36,7 +36,8 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # aliases
-alias l="ls -la"       # List in long format, include dotfiles
+alias l="ls -l"       # List in long format, exclude dotfiles
+alias la="ls -la"      # List in long format, include dotfiles
 alias ld="ls -ld */"   # List in long format, only directories
 alias ..="cd .."
 alias ...="cd ../.."
@@ -46,3 +47,21 @@ alias ....="cd ../../.."
 set completion-ignore-case on 
 # List all matches in case multiple possible completions are possible
 set show-all-if-ambiguous on
+
+# Set PATH
+export PATH=~/bin:$PATH
+
+
+# Default editor   
+export EDITOR=nvim
+
+# Go Lang installation
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:~/go/bin
+
+# Syntax highlight for less (the pages). "sudo apt install source-highlight" to use it
+export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
+export LESS=' -R'
+
+# FZF terminal history search. trigger it with CRTL+r 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

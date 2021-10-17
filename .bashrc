@@ -147,3 +147,4 @@ unset __conda_setup
 
 # Scripte zur BA auswertung
 export PATH=$PATH:/home/lars/Documents/bachelorarbeit/git/lade3942-semantic-mapping/src/mapAnalysis/dist
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
