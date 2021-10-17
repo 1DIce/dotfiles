@@ -1,0 +1,5 @@
+config/nvim/nvim/session
+config/nvim/plugin/packer_compiled.lua
+config/nvim/plugin/packer_compiled.vim
+config/nvim/.netrwhist
+.zshrc.swp
