@@ -13,7 +13,7 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-telescope/telescope.nvim', {
-            config = function() require 'lt.plugins.telescope' end
+            config = function() require 'ld.plugins.telescope' end
             }
 
     " Telescope extensions
@@ -51,16 +51,16 @@ call plug#begin(stdpath('data') . 'vimplug')
     Plug 'tomtom/tcomment_vim'
 
           Plug 'kevinhwang91/nvim-bqf',  {  
-            config = function() require('lt.plugins.nvim-bqf') end
+            config = function() require('ld.plugins.nvim-bqf') end
             }
 
             Plug 'justinmk/vim-sneak', {
-            config = function() require 'lt.plugins.sneak' end
+            config = function() require 'ld.plugins.sneak' end
         }
 
 
         Plug 'kyazdani42/nvim-tree.lua',  { 
-            config = function() require 'lt.plugins.nvim-tree' end
+            config = function() require 'ld.plugins.nvim-tree' end
         }
         
     
@@ -160,18 +160,18 @@ nnoremap <silent> gs    <cmd>Lspsaga signature_help<CR>
 lua <<EOF
 
 
-require 'lt.plugins'
+require 'ld.plugins'
 
-require 'lt.utils'
+require 'ld.utils'
 
-require 'lt.theme'
+require 'ld.theme'
 
-require 'lt.defaults'
+require 'ld.defaults'
 
-require 'lt.window.remaps'
-require 'lt.buffer.remaps'
+require 'ld.window.remaps'
+require 'ld.buffer.remaps'
 
-require 'lt.lsp'
+require 'ld.lsp'
 -- require("lsp")
 -- require("treesitter")
 -- require("statusbar")

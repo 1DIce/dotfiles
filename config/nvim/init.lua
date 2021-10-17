@@ -1,12 +1,12 @@
-require 'lt.plugins'
+require 'ld.plugins'
 
-require 'lt.utils'
+require 'ld.utils'
 
-require 'lt.theme'
+require 'ld.theme'
 
-require 'lt.defaults'
+require 'ld.defaults'
 
-require 'lt.window.remaps'
-require 'lt.buffer.remaps'
+require 'ld.window.remaps'
+require 'ld.buffer.remaps'
 
-require 'lt.lsp'
+require 'ld.lsp'
