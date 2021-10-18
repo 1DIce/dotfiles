@@ -1,0 +1,14 @@
+- defaults:
+    link:
+      relink: true
+
+        #- clean: ['~']
+
+- link:
+    ~/.config/efm-langserver/: config/efm-langserver
+    ~/.zshrc: .zshrc
+    ~/.p10k.zsh: .p10k.zsh
+    ~/.config/nvim: config/nvim 
+
+- create:
+    - ~/Downloads
