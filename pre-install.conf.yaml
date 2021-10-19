@@ -1,0 +1,14 @@
+- defaults:
+    link:
+      relink: true
+
+- create:
+    - ~/Downloads
+    - ~/bin
+
+- apt-get:
+   - fzf
+  
+- shell:
+    - wget -O ~/bin/nvim https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
+    - chmod +x ~/bin/nvim 

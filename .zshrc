@@ -50,18 +50,25 @@ set show-all-if-ambiguous on
 
 # Set PATH
 export PATH=~/bin:$PATH
-
+export PATH=~/.local/bin:$PATH
 
 # Default editor   
 export EDITOR=nvim
 
 # Go Lang installation
 export PATH=$PATH:/usr/local/go/bin
+
 export PATH=$PATH:~/go/bin
 
 # Syntax highlight for less (the pages). "sudo apt install source-highlight" to use it
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 export LESS=' -R'
+
+# xserver if running on wsl2
+if grep -q WSL2 /proc/version; then
+  export DISPLAY=$(route.exe print | grep 0.0.0.0 | head -1 | awk '{print $4}'):0.0
+  export LIBGL_ALWAYS_INDIRECT=1
+fi
 
 # FZF terminal history search. trigger it with CRTL+r 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

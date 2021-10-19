@@ -2,13 +2,14 @@
     link:
       relink: true
 
-        #- clean: ['~']
+- clean: ['~']
 
 - link:
-    ~/.config/efm-langserver/: config/efm-langserver
+    ~/.config/efm-langserver: config/efm-langserver
     ~/.zshrc: .zshrc
     ~/.p10k.zsh: .p10k.zsh
+    ~/powerlevel10k: libs/powerlevel10k
     ~/.config/nvim: config/nvim 
-
-- create:
-    - ~/Downloads
+    ~/.fzf: libs/fzf
+    ~/.fzf.zsh: .fzf.zsh
+    ~/.fzf.bash: .fzf.bash

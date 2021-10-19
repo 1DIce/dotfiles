@@ -1,5 +1,20 @@
 [submodule "libs/dotbot"]
 	path = libs/dotbot
 	url = https://github.com/anishathalye/dotbot
-[submodule "dotbot"]
 	ignore = dirty
+  shallow = true
+[submodule "libs/powerlevel10k"]
+	path = libs/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k.git
+	ignore = dirty
+  shallow = true
+[submodule "libs/dotbot-apt-get"]
+	path = libs/dotbot-apt-get
+	url = https://github.com/rubenvereecken/dotbot-apt-get
+	ignore = dirty
+  shallow = true
+[submodule "libs/fzf"]
+	path = libs/fzf
+	url = https://github.com/junegunn/fzf.git
+	ignore = dirty
+  shallow = true
