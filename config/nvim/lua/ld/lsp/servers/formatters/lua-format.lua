@@ -1,6 +1,3 @@
-local luaformat  = {
-  formatCommand = 'lua-format -i --double-quote-to-single-quote',
-  formatStdin = true
-}
+local luaformat = {formatCommand = 'lua-format -i', formatStdin = true}
 
 return luaformat

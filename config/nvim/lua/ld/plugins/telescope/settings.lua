@@ -2,12 +2,12 @@ local telescope = require 'telescope'
 local functions = require 'ld.utils.functions'
 
 telescope.setup {
-    defaults = {
-        layout_config = {
-          prompt_position = 'top',
-        },
-
-   mappings = {
+  defaults = {
+    layout_config = {prompt_position = 'top'},
+    path_display = {
+"smart"
+    },
+    mappings = {
       i = {
         -- mappings are used while telescope prompt is open
         ["<C-h>"] = "which_key", -- actions.which_key shows the mappings for your picker,
@@ -15,21 +15,32 @@ telescope.setup {
         ["<C-k>"] = "move_selection_previous"
       }
     },
-        sorting_strategy = "ascending",
-        timeoutlen = 2000,
-        prompt_prefix = '>',
-        file_ignore_patterns = {
-            '.backup', '.swap', '.langservers', '.session', '.undo', '*.git',
-            'node_modules', 'vendor', '.cache', '.vscode-server', '.Desktop',
-            '.Documents', 'classes'
-        },
-        borderchars = {'─', '│', '─', '│', '╭', '╮', '╯', '╰'},
-        color_devicons = true,
-        set_env = {['COLORTERM'] = 'truecolor'}, -- default = nil,
+    sorting_strategy = "ascending",
+    timeoutlen = 2000,
+    prompt_prefix = '>',
+    file_ignore_patterns = {
+      '.backup', '.swap', '.langservers', '.session', '.undo', '*.git', 'node_modules', 'vendor', '.cache',
+      '.vscode-server', '.Desktop', '.Documents', 'classes'
     },
-    pickers = {
+    borderchars = {'─', '│', '─', '│', '╭', '╮', '╯', '╰'},
+    color_devicons = true,
+    set_env = {['COLORTERM'] = 'truecolor'} -- default = nil,
+  },
+  extensions = {
+    fzf = {
+      fuzzy = true, -- false will only do exact matching
+      override_generic_sorter = true, -- override the generic sorter
+      override_file_sorter = true, -- override the file sorter
+      case_mode = "smart_case" -- or "ignore_case" or "respect_case" the default case_mode is "smart_case"
+     --  ,tiebreak = {}
+    }
+  },
+  pickers = {
+    buffers = {
+      sort_mru = true
     } 
   }
+}
 
 functions.link_highlight('TelescopeBorder', 'GruvboxBg2', true)
 functions.link_highlight('TelescopePromptBorder', 'GruvboxBg2', true)

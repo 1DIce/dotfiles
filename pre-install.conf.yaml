@@ -10,5 +10,5 @@
    - fzf
   
 - shell:
-    - wget -O ~/bin/nvim https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
-    - chmod +x ~/bin/nvim 
+    - wget -O ~/bin/nvim https://github.com/neovim/neovim/releases/download/stable/nvim.appimage && chmod +x ~/bin/nvim
+    - sudo apt install luarocks && luarocks install luaformatter 
