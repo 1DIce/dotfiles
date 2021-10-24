@@ -68,7 +68,14 @@ export LESS=' -R'
 if grep -q WSL2 /proc/version; then
   export DISPLAY=$(route.exe print | grep 0.0.0.0 | head -1 | awk '{print $4}'):0.0
   export LIBGL_ALWAYS_INDIRECT=1
+
+  alias docker="sudo podman"
+  alias docker-compose="sudo podman-compose"
 fi
 
+# ripgrep for fzf if available
+if type rg &> /dev/null; then 
+  export FZF_DEFAULT_COMMAND='rg --files'
+fi
 # FZF terminal history search. trigger it with CRTL+r 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

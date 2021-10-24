@@ -1,13 +1,17 @@
-local present, packer = pcall(require, 'ld.packer_init')
+-- local present, packer = pcall(require, 'ld.packer_init')
 
-if not present then return false end
+-- if not present then return false end
 
-return packer.startup {
-    function(use)
+local fn = vim.fn
+local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+if fn.empty(fn.glob(install_path)) > 0 then
+	packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+end
+
+return require('packer').startup(function(use)
         use({'wbthomason/packer.nvim', event = 'VimEnter'})
 
         use 'MunifTanjim/nui.nvim' -- ui library
-
 
     use 'tomasiser/vim-code-dark'
 
@@ -45,6 +49,11 @@ return packer.startup {
         }
         use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
 
+use {'ibhagwan/fzf-lua',
+  requires = {
+        'kyazdani42/nvim-web-devicons', -- optional for icons
+            'vijaymarupudi/nvim-fzf' }
+          }
         use 'gennaro-tedesco/nvim-peekup' -- shows register preview
 
         use {
@@ -119,5 +128,10 @@ return packer.startup {
             requires = 'SmiteshP/nvim-gps',
             config = function() require 'ld.plugins.galaxyline' end
         }
-    end
-}
+	
+	-- Automatically set up you configuration after cloning packer.nvim
+	-- Put this at the end after all plugins
+	if packer_bootstrap then
+		require('packer').sync()
+	end
+    end)

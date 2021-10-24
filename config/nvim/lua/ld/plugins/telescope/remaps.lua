@@ -1,6 +1,9 @@
 nnoremap('<leader>fp', "<cmd>Telescope projects<CR>", 'telescope', 'telescope_projects', 'Projects')
-nnoremap('<leader>fl', "<cmd>lua require('telescope.builtin').live_grep()<CR>", 'telescope', 'telescope_live_grep', 'Live grep')
-nnoremap('<leader>ff', "<cmd>lua require('telescope.builtin').find_files()<CR>", 'telescope', 'telescope_files', 'Find files')
+--nnoremap('<leader>fl', "<cmd>lua require('telescope.builtin').live_grep()<CR>", 'telescope', 'telescope_live_grep', 'Live grep')
+nnoremap('<leader>fl', "<cmd>lua require('fzf-lua').live_grep()<CR>", 'telescope', 'telescope_live_grep', 'Live grep')
+-- nnoremap('<leader>ff', "<cmd>lua require('telescope.builtin').find_files()<CR>", 'telescope', 'telescope_files', 'Find files')
+nnoremap('<leader>ff', "<cmd>lua require('fzf-lua').files()<CR>", 'telescope', 'telescope_files', 'Find files')
+vnoremap('<leader>fv', "<cmd>lua require('fzf-lua').grep_visual()<CR>", 'fzf_lua', 'fzf_lua_grep_visuals', 'Find visual selection')
 nnoremap('<leader>pg', "<cmd>lua require('telescope.builtin').git_files()<CR>", 'telescope', 'telescope_git_files', 'Find git files')
 nnoremap('<leader>fc', "<cmd>lua require('ld.plugins.telescope.functions').search_config()<CR>", 'telescope', 'telescope_search_config', 'Search neovim config')
 
