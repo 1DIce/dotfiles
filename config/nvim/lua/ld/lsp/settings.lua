@@ -81,9 +81,7 @@ local servers = {
   cssls = {},
   sumneko_lua = sumenko_config(on_attach),
   dockerls = {},
-  omnisharp = {},
-  vuels = {},
-  graphql = {}
+  eslint = {}
 }
 
 --[[ lsp_installer.on_server_ready(function(server)

@@ -24,7 +24,6 @@ local languages = {
   ['typescript.tsx'] = {formatter, linter},
   javascriptreact = {formatter, linter},
   ['javascript.jsx'] = {formatter, linter},
-  vue = {formatter, linter},
   yaml = {formatter},
   less = {formatter},
   json = {formatter},

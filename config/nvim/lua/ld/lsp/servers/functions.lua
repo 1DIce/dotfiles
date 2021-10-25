@@ -7,17 +7,15 @@ M.lsp_install_servers = function()
     end
 
     installLanguageServer('tsserver')
-    installLanguageServer('vuels')
     installLanguageServer('sumneko_lua')
     installLanguageServer('bashls')
     installLanguageServer('jsonls')
     installLanguageServer('yamlls')
     installLanguageServer('html')
     installLanguageServer('cssls')
-    installLanguageServer('omnisharp')
     installLanguageServer('dockerls')
-    installLanguageServer('graphql')
     installLanguageServer('efm')
+    installLanguageServer('eslint')
 end
 
 return M
