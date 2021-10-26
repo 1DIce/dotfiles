@@ -42,6 +42,7 @@ return require('packer').startup(function(use)
       'kyazdani42/nvim-web-devicons', -- optional for icons
       'vijaymarupudi/nvim-fzf'
     }
+    , config = function() require("ld.plugins.fzf") end
   }
 
   use 'gennaro-tedesco/nvim-peekup' -- shows register preview
