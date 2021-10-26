@@ -1,4 +1,4 @@
-local whichKey = require("lua.which-key")
+local whichKey = require("which-key")
 
 whichKey.setup(
 {
