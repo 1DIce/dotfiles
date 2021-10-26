@@ -18,3 +18,8 @@
 	url = https://github.com/junegunn/fzf.git
 	ignore = dirty
   shallow = true
+[submodule "libs/nvm"]
+	path = libs/nvm
+	url = https://github.com/nvm-sh/nvm.git
+	ignore = dirty
+  shallow = true

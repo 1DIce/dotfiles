@@ -42,6 +42,7 @@ alias ld="ls -ld */"   # List in long format, only directories
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
+alias fd="fdfind"
 
 # Make Tab autocomplete regardless of filename case
 set completion-ignore-case on 
@@ -79,3 +80,7 @@ if type rg &> /dev/null; then
 fi
 # FZF terminal history search. trigger it with CRTL+r 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
