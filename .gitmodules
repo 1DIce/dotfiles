@@ -23,3 +23,8 @@
 	url = https://github.com/nvm-sh/nvm.git
 	ignore = dirty
   shallow = true
+[submodule "libs/zplug"]
+  path = libs/zplug
+	url = https://github.com/zplug/zplug
+  shallow = true
+  ignore = dirty

@@ -14,3 +14,4 @@
     ~/.fzf.zsh: .fzf.zsh
     ~/.fzf.bash: .fzf.bash
     ~/.nvm: libs/nvm
+    ~/.zplug: libs/zplug
