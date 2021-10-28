@@ -2,11 +2,11 @@ local lsp = require('lspconfig')
 local functions = require "ld.utils.functions"
 
 local luaformat = require "ld.lsp.servers.formatters.lua-format"
--- local prettier = require "ld.lsp.servers.formatters.prettier"
-local prettier_d = require "ld.lsp.servers.formatters.prettier_d"
+ local prettier = require "ld.lsp.servers.formatters.prettier"
+ -- local prettier_d = require "ld.lsp.servers.formatters.prettier_d"
 local eslint_d = require "ld.lsp.servers.linters.eslint_d"
 
-local formatter = prettier_d
+local formatter = prettier
 local linter = eslint_d
 
 local cSpell = {
