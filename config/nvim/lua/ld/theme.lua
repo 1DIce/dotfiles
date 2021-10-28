@@ -1,11 +1,12 @@
 vim.cmd('syntax on')
 
-vim.cmd('colorscheme codedark')
+-- vim.cmd('colorscheme codedark')
+vim.cmd('colorscheme gruvbox')
 
 vim.o.termguicolors = true
 vim.o.background = 'dark'
 
-vim.g.gruvbox_contrast_dark = 'medium'
+vim.g.gruvbox_contrast_dark = 'hard'
 vim.g.gruvbox_sign_column = 'dark0_hard'
 vim.g.gruvbox_invert_selection = 0
 vim.g.gruvbox_number_column = 'dark0_hard'

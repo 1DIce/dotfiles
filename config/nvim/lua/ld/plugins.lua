@@ -13,7 +13,10 @@ return require('packer').startup(function(use)
 
   use 'MunifTanjim/nui.nvim' -- ui library
 
-  use 'tomasiser/vim-code-dark'
+  use 'editorconfig/editorconfig-vim'
+  -- color theme
+  use 'morhetz/gruvbox'
+  -- use 'tomasiser/vim-code-dark'
 
   use 'nikvdp/neomux'
   -- icons
