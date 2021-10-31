@@ -7,3 +7,9 @@ if filetype == 'rust' then
   vim.cmd([[autocmd BufEnter,BufWritePost <buffer> :lua require('lsp_extensions.inlay_hints').request { ]] ..
               [[aligned = true, prefix = " » " ]] .. [[} ]])
 end
+
+-- Organize typescript imports on save
+vim.cmd([[autocmd BufWritePre *.ts :TSLspOrganizeSync ]])
+-- Format file on save 
+
+vim.cmd([[autocmd BufWritePre *.ts,*.html,*.js,*.less,*.json,*.lua,*.scss :lua vim.lsp.buf.formatting_sync() ]])
