@@ -16,3 +16,6 @@
     ~/.nvm: libs/nvm
     ~/.zplug: libs/zplug
     ~/.tmux.conf: tmux/.tmux.conf
+    ~/wsl-start-vpn-kit.sh: wsl2/wsl-start-vpnkit.sh
+    ~/wsl2-ubuntu-map-win-localhost.sh: wsl2/wsl2-ubuntu-map-win-localhost.sh
+    
