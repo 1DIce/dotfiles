@@ -15,6 +15,8 @@ function M.set_default(client, bufnr)
                    'Preview definition')
     buf_set_keymap('n', '<leader>lw', '<cmd>lua require(\'telescope.builtin\').lsp_workspace_symbols()<CR>', 'lsp',
                    'lsp_workspace_symbols', 'Workspace symbols')
+    buf_set_keymap('n', '<leader>bs', "<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>", 'lsp',
+                  'telescope_lsp_document_symbols', 'Search document symbols')
   end
   -- if cap.declarationProvider then
   -- map('n', 'gd', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
