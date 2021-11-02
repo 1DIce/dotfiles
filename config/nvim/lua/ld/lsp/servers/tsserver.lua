@@ -9,6 +9,8 @@ return function(on_attach)
 
       -- tsserver, stop messing with prettier da fuck!
       client.resolved_capabilities.document_formatting = false
-    end
+    end,
+    initOptions = {preferences = {quotePreference = "double", mportModuleSpecifierPreference = "non-relative"}}
+
   }
 end

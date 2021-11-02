@@ -37,8 +37,9 @@ fi
 
 # aliases
 alias l="ls -l"       # List in long format, exclude dotfiles
-alias la="ls -la"      # List in long format, include dotfiles
-alias ld="ls -ld */"   # List in long format, only directories
+alias la="ls -lhA"      # List in long format, include dotfiles
+alias ld="ls -lhd */"   # List in long format, only directories
+alias ll="ls -lhF"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."

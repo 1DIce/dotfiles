@@ -13,10 +13,6 @@ function M.set_default(client, bufnr)
                    'lsp_preview_definition_saga', 'Preview definition')
     buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', 'lsp', 'lsp_preview_definition',
                    'Preview definition')
-    buf_set_keymap('n', '<leader>lw', '<cmd>lua require(\'telescope.builtin\').lsp_workspace_symbols()<CR>', 'lsp',
-                   'lsp_workspace_symbols', 'Workspace symbols')
-    buf_set_keymap('n', '<leader>bs', "<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>", 'lsp',
-                  'telescope_lsp_document_symbols', 'Search document symbols')
   end
   -- if cap.declarationProvider then
   -- map('n', 'gd', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
@@ -36,9 +32,23 @@ function M.set_default(client, bufnr)
                  'lsp_hover_docs', 'Hover documentation')
 
   if cap.documentSymbolProvider then
-    -- buf_set_keymap('n','<leader>to', '<cmd>lua vim.lsp.buf.document_symbol()<CR>', opts)
-    buf_set_keymap('n', '<leader>ls', '<cmd>lua require(\'telescope.builtin\').lsp_document_symbols()<CR>', 'lsp',
-                   'lsp_document_symbols', 'Document symbols')
+    -- search for all kinds of workspace symbols
+    buf_set_keymap('n', '<leader>lt',
+                   '<cmd>lua require(\'telescope.builtin\').lsp_dynamic_workspace_symbols({symbols={"class","interface"}, file_ignore_patterns={"%.spec.ts","node_modules"}})<CR>',
+                   'lsp', 'lsp_workspace_type_definitions', 'Workspace type defintions')
+    buf_set_keymap('n', '<leader>lc',
+                   '<cmd>lua require(\'telescope.builtin\').lsp_dynamic_workspace_symbols({symbols={"constant"}, file_ignore_patterns={"%.spec.ts","^e2e/","node_modules"}})<CR>',
+                   'lsp', 'lsp_workspace_constants_definitions', 'Workspace constant defintions')
+    buf_set_keymap('n', '<leader>lf',
+                   '<cmd>lua require(\'telescope.builtin\').lsp_dynamic_workspace_symbols({symbols={"function"}, file_ignore_patterns={"%.spec.ts","^e2e/","node_modules"}})<CR>',
+                   'lsp', 'lsp_workspace_function definitions', 'Workspace function defintions')
+    buf_set_keymap('n', '<leader>lp',
+                   '<cmd>lua require(\'telescope.builtin\').lsp_dynamic_workspace_symbols({symbols={"property"}, file_ignore_patterns={"%.spec.ts","^e2e/","node_modules"}})<CR>',
+                   'lsp', 'lsp_workspace_property_definitions', 'Workspace property defintions')
+
+    -- search for symbols in current buffer
+    buf_set_keymap('n', '<leader>bs', "<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>", 'lsp',
+                   'telescope_lsp_document_symbols', 'Search document symbols')
   end
 
   buf_set_keymap('n', '<leader>lv', '<cmd>lua require(\'lspsaga.signaturehelp\').signature_help()<CR>', 'lsp',

@@ -21,6 +21,10 @@ nnoremap('N', 'Nzzzv', 'remap', 'remap_go_previous_serach', 'When going to previ
 nnoremap(']q', ':cnext<CR>', 'remap', 'remap_next_quickfix', 'Navigate to next quickfix')
 nnoremap('[q', ':cprev<CR>', 'remap', 'remap_previous_quickfix', 'Navigate to previous quickfix')
 
+-- navigate command mode autocomplete
+cnoremap('<C-j>', '<C-n>', 'remap', 'remap_next_cmd_suggestion', 'Select next command mode suggestion')
+cnoremap('<C-k>', '<C-p>', 'remap', 'remap_previous_cmd_suggestion', 'Select previous command mode suggestion')
+
 -- maps c-n / c-t to navigate while searching with /
 vim.api.nvim_exec(
 [[
@@ -28,9 +32,11 @@ cnoremap <expr> <c-n> getcmdtype() =~ '[\/?]' ? '<c-g>' : '<c-n>'
 cnoremap <expr> <c-p> getcmdtype() =~ '[\/?]' ? '<c-t>' : '<c-p>'
 ]], false)
 
+-- save buffer
+nnoremap('<leader><leader>', '<cmd>write<CR>', 'remap', 'remap_save_current_buffer', 'save current buffer')
 
 -- editing remaps
-nnoremap('<leader>ej', 'gJ', 'remap', 'remap_join_lines', 'join 2 lines')
+nnoremap('<leader>ej', '<cmd>join<CR>', 'remap', 'remap_join_lines', 'join 2 lines')
 
 -- Undo break points
 inoremap(',', ',<C-g>u', 'remap', 'remap_comma_undo_break_point', 'add undo break point after ,')
@@ -46,5 +52,5 @@ nnoremap('<A-j>', ':m .+1<CR>==', 'remap', 'remap_move_line_down_normal_mode', '
 nnoremap('<A-k>', ':m .-2<CR>==', 'remap', 'remap_move_line_up_normal_mode', 'Move current line up')
 vnoremap('<A-j>', ":m '>+1<CR>gv=gv", 'remap', 'remap_move_selection_down', 'Move current selection down')
 vnoremap('<A-k>', ":m '<-2<CR>gv=gv", 'remap', 'remap_move_selection_up', 'Move current selection up')
-inoremap('<A-j>', '<esc>:m .+1<CR>==', 'remap', 'remap_move_line_down_insert_mode', 'Move current line down (Insert mode)')
-inoremap('<A-k>', '<esc>:m .-2<CR>==', 'remap', 'remap_move_line_up_insert_mode', 'Move current line up (Insert mode)')
+-- inoremap('<A-j>', '<esc>:m .+1<CR>==', 'remap', 'remap_move_line_down_insert_mode', 'Move current line down (Insert mode)')
+-- inoremap('<A-k>', '<esc>:m .-2<CR>==', 'remap', 'remap_move_line_up_insert_mode', 'Move current line up (Insert mode)')
