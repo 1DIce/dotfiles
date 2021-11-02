@@ -1,5 +1,4 @@
--- Use s instead of <C-w> to handle windows
-nnoremap('s', '<C-w>', 'remap', 'remap_s', 'Remaps s to handle windows')
+nnoremap('<leader>wm', '<cmd>MaximizerToggle<CR>', "window", "window_toggle_maximize")
 
 nnoremap('<leader>wh', '<cmd>wincmd h<CR>', 'window', 'window_move_left',
          'Move window left')
