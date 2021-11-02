@@ -6,3 +6,4 @@ code
 skypeforlinux
 synergy
 zsh
+trash-cli:
