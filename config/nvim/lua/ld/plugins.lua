@@ -8,6 +8,8 @@ if fn.empty(fn.glob(install_path)) > 0 then
   })
 end
 
+local useBuiltInLsp = false
+
 return require('packer').startup(function(use)
   use({'wbthomason/packer.nvim', event = 'VimEnter'})
 
@@ -72,33 +74,40 @@ return require('packer').startup(function(use)
   use {'lazytanuki/nvim-mapper', config = function() require 'ld.plugins.nvim-mapper' end, before = 'telescope.nvim'}
 
   -- Autocomplete & Linters
-  use 'neovim/nvim-lspconfig'
-  use 'nvim-lua/lsp-status.nvim'
-  use 'tjdevries/lsp_extensions.nvim'
-  use 'glepnir/lspsaga.nvim'
-  use 'onsails/lspkind-nvim'
-  use 'ray-x/lsp_signature.nvim'
-  use 'jose-elias-alvarez/nvim-lsp-ts-utils'
-  use 'williamboman/nvim-lsp-installer'
+  if useBuiltInLsp then
+    use 'neovim/nvim-lspconfig'
+    use 'nvim-lua/lsp-status.nvim'
+    use 'tjdevries/lsp_extensions.nvim'
+    use 'glepnir/lspsaga.nvim'
+    use 'onsails/lspkind-nvim'
+    use 'ray-x/lsp_signature.nvim'
+    use 'jose-elias-alvarez/nvim-lsp-ts-utils'
+    use 'williamboman/nvim-lsp-installer'
 
-  use {'hrsh7th/nvim-cmp', config = function() require 'ld.plugins.nvim-cmp' end, event = 'InsertEnter'}
+    use {'hrsh7th/nvim-cmp', config = function() require 'ld.plugins.nvim-cmp' end, event = 'InsertEnter'}
 
-  use 'L3MON4D3/LuaSnip'
+    use 'L3MON4D3/LuaSnip'
 
-  use({'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp'})
+    use({'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp'})
 
-  use({'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp'})
+    use({'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp'})
 
-  use({'hrsh7th/cmp-buffer', after = 'nvim-cmp'})
+    use({'hrsh7th/cmp-buffer', after = 'nvim-cmp'})
 
-  use({'hrsh7th/cmp-path', after = 'nvim-cmp'})
+    use({'hrsh7th/cmp-path', after = 'nvim-cmp'})
 
-  use({'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp'})
+    use({'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp'})
 
-  use({'windwp/nvim-autopairs', after = 'nvim-cmp', config = function() require('ld.plugins.nvim-autopairs') end})
+    use({'windwp/nvim-autopairs', after = 'nvim-cmp', config = function() require('ld.plugins.nvim-autopairs') end})
 
+  else
+    -- using CoC
+    use {"neoclide/coc.nvim", branch = "release", config = function() require("ld.plugins.coc") end}
+
+  end
   -- Language packs
 
+  use {"softoika/ngswitcher.vim", config = function() require("ld.plugins.ngswitcher") end}
   use {
     'nvim-treesitter/nvim-treesitter',
     config = function() require 'ld.plugins.treesitter' end,
@@ -119,11 +128,11 @@ return require('packer').startup(function(use)
     config = function() require 'ld.plugins.treesitter-textobjects' end
   }
 
-  use {
-    "ThePrimeagen/refactoring.nvim",
-    config = function() require("ld.plugins.refactoring") end,
-    requires = {{"nvim-lua/plenary.nvim"}, {"nvim-treesitter/nvim-treesitter"}}
-  }
+  -- use {
+  --   "ThePrimeagen/refactoring.nvim",
+  --   config = function() require("ld.plugins.refactoring") end,
+  --   requires = {{"nvim-lua/plenary.nvim"}, {"nvim-treesitter/nvim-treesitter"}}
+  -- }
 
   -- status line
   use {

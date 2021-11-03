@@ -4,9 +4,7 @@ local functions = require 'ld.utils.functions'
 telescope.setup {
   defaults = {
     layout_config = {prompt_position = 'top'},
-    path_display = {
-"smart"
-    },
+    path_display = {"smart"},
     mappings = {
       i = {
         -- mappings are used while telescope prompt is open
@@ -32,14 +30,10 @@ telescope.setup {
       override_generic_sorter = true, -- override the generic sorter
       override_file_sorter = true, -- override the file sorter
       case_mode = "smart_case" -- or "ignore_case" or "respect_case" the default case_mode is "smart_case"
-     --  ,tiebreak = {}
+      --  ,tiebreak = {}
     }
   },
-  pickers = {
-    buffers = {
-      sort_mru = true
-    } 
-  }
+  pickers = {buffers = {sort_mru = true}, lsp_dynamic_workspace_symbols = {debounce = 300}}
 }
 
 functions.link_highlight('TelescopeBorder', 'GruvboxBg2', true)

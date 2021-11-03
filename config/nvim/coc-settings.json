@@ -1,0 +1,13 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "typescript",
+    "less",
+    "scss",
+    "html",
+    "json"
+  ],
+  "typescript.preferences.quoteStyle": "double",
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "angular.experimental-ivy": true
+}
