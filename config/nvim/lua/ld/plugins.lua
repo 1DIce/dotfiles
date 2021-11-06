@@ -27,11 +27,8 @@ return require('packer').startup(function(use)
   use {'puremourning/vimspector', config = function() require 'ld.plugins.vimspector' end}
 
   -- color theme
-  use 'marko-cerovac/material.nvim'
-  -- use 'Mofiqul/vscode.nvim'
-  -- use 'christianchiarulli/nvcode-color-schemes.vim'
+  use 'martinsione/darkplus.nvim'
   -- use 'morhetz/gruvbox'
-  -- use 'tomasiser/vim-code-dark'
 
   use 'szw/vim-maximizer'
 

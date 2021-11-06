@@ -1,26 +1,7 @@
 vim.cmd('syntax on')
 
--- vim.cmd('colorscheme codedark')
 -- vim.cmd('colorscheme gruvbox')
--- vim.cmd('colorscheme vscode')
--- vim.cmd('colorscheme nvcode')
-vim.cmd('colorscheme material')
-
-require("material").setup({
-  text_contrast = {darker = true},
-  custom_highlights = {
-    TSType = {fg = "#34EBCF"},
-    TSConstructor = {fg = "#34EBCF"},
-    Type = {fg = "#34EBCF"},
-    TSFunction = {fg = "#EB34E5"},
-    TSMethod = {fg = "#EB34E5"},
-    TSProperty = {fg = "#3DA0D1"}
-  }
-})
-
-vim.g.material_style = "darker"
-vim.g.nvcode_termcolors = 256
-vim.g.vscode_style = "dark"
+vim.cmd('colorscheme darkplus')
 
 vim.o.termguicolors = true
 vim.o.background = 'dark'
