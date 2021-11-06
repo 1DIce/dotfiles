@@ -81,9 +81,9 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> <leader>lu <Plug>(coc-references)
+" peek definition
+nnoremap <silent><nowait> gD :call CocAction('jumpDefinition', v:false)<CR>
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -102,13 +102,17 @@ endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
-nmap <leader>lr <Plug>(coc-rename)
+nmap <leader>lr  <Plug>(coc-rename)
 
 " Formatting selected code.
 xmap <leader>ofs  <Plug>(coc-format-selected)
 nmap <leader>ofs  <Plug>(coc-format-selected)
 
+
+
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
+
 
 augroup mygroup
   autocmd!
@@ -125,8 +129,9 @@ nmap <leader>la  <Plug>(coc-codeaction-selected)
 
 " Remap keys for applying codeAction to the current buffer.
 nmap <leader>bc  <Plug>(coc-codeaction)
-" Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
+
+
+nmap <leader>lq  <Plug>(coc-codeaction-cursor)
 
 " Map function and class text objects
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.

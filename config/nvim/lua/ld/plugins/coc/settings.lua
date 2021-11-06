@@ -1,4 +1,9 @@
 vim.g.coc_global_extensions = {"coc-json"}
+
+
+-- Organize typescript imports on save
+vim.cmd([[autocmd BufWritePre *.ts :silent call CocAction("runCommand", "editor.action.organizeImport")]])
+
 -- executing vimscript
 vim.api.nvim_exec([[
 

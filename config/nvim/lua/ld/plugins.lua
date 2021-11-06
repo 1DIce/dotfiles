@@ -103,6 +103,10 @@ return require('packer').startup(function(use)
   else
     -- using CoC
     use {"neoclide/coc.nvim", branch = "release", config = function() require("ld.plugins.coc") end}
+    use "rafcamlet/coc-nvim-lua"
+    
+    use { "fannheyward/telescope-coc.nvim"}
+
 
   end
   -- Language packs
