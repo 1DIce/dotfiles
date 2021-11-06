@@ -15,7 +15,10 @@ vim.o.smartindent = true
 vim.o.smarttab = true
 vim.o.wrap = false
 
+-- relative line number + absolute current line number
 vim.o.relativenumber = true
+vim.o.number = true
+
 vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.swapfile = false
