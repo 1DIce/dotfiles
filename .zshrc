@@ -66,10 +66,13 @@ export PATH=$PATH:~/go/bin
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 export LESS=' -R'
 
-# xserver if running on wsl2
+# special WSL2 settings
 if grep -q WSL2 /proc/version; then
+  # xserver if running on wsl2
   export DISPLAY=$(route.exe print | grep 0.0.0.0 | head -1 | awk '{print $4}'):0.0
   export LIBGL_ALWAYS_INDIRECT=1
+
+  export CHROME_BIN=/mnt/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe
 
   alias docker="sudo podman"
   alias docker-compose="sudo podman-compose"
