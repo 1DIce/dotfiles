@@ -18,3 +18,6 @@
     - npm i -g vscode-langservers-extracted
     - npm i -g typescript-language-server
     - npm i -g yaml-language-server
+      # install starship prompt
+    - sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+
