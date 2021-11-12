@@ -1,8 +1,14 @@
 -- disable netrw
-vim.g.loaded_netrw       = 1
+vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-vim.o.showmatch = true
+-- Let's save undo info!
+local cachePath = vim.env.HOME .. "/.cache/nvim"
+if (vim.fn.isdirectory(cachePath) == false) then vim.fn.mkdir(cachePath, "", 0770) end
+if vim.fn.isdirectory(cachePath .. "/undo-dir") == false then vim.fn.mkdir(cachePath .. "/undo-dir", "", 0700) end
+vim.o.undodir = cachePath .. "/undo-dir"
+vim.o.undofile = true
+-- vim.o.showmatch = true
 -- vim.o.nohlsearch
 vim.o.hidden = true
 vim.o.errorbells = false
