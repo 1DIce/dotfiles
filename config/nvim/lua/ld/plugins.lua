@@ -44,7 +44,7 @@ return require('packer').startup(function(use)
 
   use 'tpope/vim-repeat' -- extends . repeat, for example for make it work with vim-sneak
   use 'tpope/vim-surround' -- Change surrounding arks
-  use {'bkad/CamelCaseMotion', config = function() require 'ld.plugins.camelcasemotion' end} -- allows to move by camelCase with w e
+  use 'wellle/targets.vim'
 
   use {
     'nvim-telescope/telescope.nvim',
