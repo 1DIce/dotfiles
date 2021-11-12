@@ -79,5 +79,6 @@ vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 
 -- shows spaces
-vim.o.list = true
-vim.o.listchars= 'eol:¬,tab:>·,trail:~,extends:>,precedes:<'
+vim.o.list = false
+
+vim.o.listchars = 'eol:¬,tab:>·,trail:~,extends:>,precedes:<'
