@@ -2,28 +2,29 @@ local lsp = require('lspconfig')
 local functions = require "ld.utils.functions"
 
 local luaformat = require "ld.lsp.servers.formatters.lua-format"
- local prettier = require "ld.lsp.servers.formatters.prettier"
- -- local prettier_d = require "ld.lsp.servers.formatters.prettier_d"
-local eslint_d = require "ld.lsp.servers.linters.eslint_d"
+local prettier = require "ld.lsp.servers.formatters.prettier"
+-- local prettier_d = require "ld.lsp.servers.formatters.prettier_d"
+-- local eslint_d = require "ld.lsp.servers.linters.eslint_d"
 
 local formatter = prettier
-local linter = eslint_d
+-- local linter = eslint_d
 
 local cSpell = {
-  lintCommand = "cspell --no-summary --no-progress stdin",
+  -- npm install -g cspell
+  lintCommand = "cspell lint --config .vscode/cspell.json --show-suggestions --no-summary --no-progress stdin",
 
-  lintStdin = true
-  ,lintFormats = {"%f:%l:%c - %m"}
+  lintStdin = true,
+  lintFormats = {"%f:%l:%c - %m"}
 }
 
 local languages = {
   lua = {luaformat},
-  typescript = {formatter, linter, cSpell},
-  javascript = {formatter, linter},
-  typescriptreact = {formatter, linter},
-  ['typescript.tsx'] = {formatter, linter},
-  javascriptreact = {formatter, linter},
-  ['javascript.jsx'] = {formatter, linter},
+  typescript = {formatter},
+  javascript = {formatter},
+  typescriptreact = {formatter},
+  ['typescript.tsx'] = {formatter},
+  javascriptreact = {formatter},
+  ['javascript.jsx'] = {formatter},
   yaml = {formatter},
   less = {formatter},
   json = {formatter},
