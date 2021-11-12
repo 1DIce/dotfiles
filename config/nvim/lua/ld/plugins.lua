@@ -8,7 +8,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
   })
 end
 
-local useBuiltInLsp = false
+local useBuiltInLsp = true
 
 return require('packer').startup(function(use)
   use({'wbthomason/packer.nvim', event = 'VimEnter'})
@@ -101,9 +101,8 @@ return require('packer').startup(function(use)
     -- using CoC
     use {"neoclide/coc.nvim", branch = "release", config = function() require("ld.plugins.coc") end}
     use "rafcamlet/coc-nvim-lua"
-    
-    use { "fannheyward/telescope-coc.nvim"}
 
+    use {"fannheyward/telescope-coc.nvim"}
 
   end
   -- Language packs
