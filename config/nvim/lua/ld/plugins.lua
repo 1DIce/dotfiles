@@ -114,8 +114,9 @@ return require('packer').startup(function(use)
     run = function() vim.cmd [[TSUpdate]] end
   }
 
-  use{  "nvim-treesitter/nvim-treesitter-angular" , after = "nvim-treesitter"}
-  use {"nvim-treesitter/nvim-treesitter-refactor" , after = "nvim-treesitter"}
+  use {"nvim-treesitter/nvim-treesitter-angular", after = "nvim-treesitter"}
+  use {"nvim-treesitter/nvim-treesitter-refactor", after = "nvim-treesitter"}
+  use {"p00f/nvim-ts-rainbow", after = "nvim-treesitter"}
 
   use {
     'SmiteshP/nvim-gps',
