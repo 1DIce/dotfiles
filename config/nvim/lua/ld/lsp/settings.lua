@@ -38,6 +38,7 @@ capabilities = vim.tbl_extend('keep', capabilities, lsp_status.capabilities)
 if presentCmpNvimLsp then
   capabilities = vim.tbl_extend('keep', capabilities,
                                 cmpNvimLsp.update_capabilities(vim.lsp.protocol.make_client_capabilities()))
+  capabilities.textDocument.completion.completionItem.snippetSupport = true
 end
 
 local default_lsp_config = {on_attach = on_attach, capabilities}
@@ -61,7 +62,8 @@ local sumenko_config = function(on_attach)
         },
         workspace = {
           -- Make the server aware of Neovim runtime files
-          library = vim.api.nvim_get_runtime_file('', true)
+          library = vim.api.nvim_get_runtime_file('', true),
+          checkThirdParty = false
         },
         -- Do not send telemetry data containing a randomized but unique identifier
         telemetry = {enable = false}
@@ -75,10 +77,13 @@ local servers = {
   efm = require('ld.lsp.servers.efm')(),
   bashls = {},
   yamlls = {},
-  jsonls = {},
+  jsonls = {init_options = {provideFormatter = false, format = {enable = false}}},
   tsserver = require('ld.lsp.servers.tsserver')(on_attach),
   html = {},
-  cssls = {},
+  cssls = {
+    capabilities = vim.tbl_deep_extend("keep", capabilities,
+                                       {textDocument = {completion = {completionItem = {snippetSupport = true}}}})
+  },
   sumneko_lua = sumenko_config(on_attach),
   dockerls = {},
   eslint = {},
