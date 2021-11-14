@@ -10,3 +10,4 @@ git config -f .gitmodules submodule.path/to/submodule.ignore dirty
 
 ``````
 modify the install.conf.yml accordingly
+

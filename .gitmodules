@@ -28,3 +28,8 @@
 	url = https://github.com/zplug/zplug
   shallow = true
   ignore = dirty
+[submodule "libs/dotbot-crossplatform"]
+	path = libs/dotbot-crossplatform
+	url = https://github.com/msdrigg/dotbot-crossplatform.git
+  shallow = true
+  ignore = dirty
