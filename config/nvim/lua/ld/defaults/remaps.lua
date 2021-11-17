@@ -1,6 +1,9 @@
 -- reload
 nnoremap('<leader><CR>', '<cmd>lua reload()<CR>', 'editor', 'reload', 'Reloads configuration')
 
+-- toggle spellcapcheck
+nnoremap('<leader>vt', '<cmd>setlocal spell! spelllang=en_us<CR>', "editor", 'toggle_spell_check', 'Toggle spell check')
+
 -- move up/down faster 
 nnoremap('J', '5j', 'remap', 'remap_move_down_fast_normal_mode', 'Move down faster')
 nnoremap('K', '5k', 'remap', 'remap_move_up_fast_normal_mode', 'Move up faster')
@@ -8,7 +11,7 @@ vnoremap('J', '5j', 'remap', 'remap_move_down_fast_visual_mode', 'Move down fast
 vnoremap('K', '5k', 'remap', 'remap_move_up_fast_visual_mode', 'Move up faster visual mode')
 
 -- Y should yank until end of line similar to D and C
-nnoremap('Y','y$', 'remap', 'remap_yank_to_end_of_line', 'Yank to end of line')
+nnoremap('Y', 'y$', 'remap', 'remap_yank_to_end_of_line', 'Yank to end of line')
 
 -- deletes in visual
 vnoremap('X', '"_d', 'remap', 'remap_deletes_on_visual', 'Deletes on visual')
@@ -26,8 +29,7 @@ cnoremap('<C-j>', '<C-n>', 'remap', 'remap_next_cmd_suggestion', 'Select next co
 cnoremap('<C-k>', '<C-p>', 'remap', 'remap_previous_cmd_suggestion', 'Select previous command mode suggestion')
 
 -- maps c-n / c-t to navigate while searching with /
-vim.api.nvim_exec(
-[[
+vim.api.nvim_exec([[
 cnoremap <expr> <c-n> getcmdtype() =~ '[\/?]' ? '<c-g>' : '<c-n>'
 cnoremap <expr> <c-p> getcmdtype() =~ '[\/?]' ? '<c-t>' : '<c-p>'
 ]], false)
