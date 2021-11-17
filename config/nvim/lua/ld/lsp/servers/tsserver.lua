@@ -7,6 +7,7 @@ local initOptions = {
     typescript = {format = {indentSize = 2}}
   }
 }
+
 return function(on_attach)
   return {
     on_attach = function(client, bufnr)
@@ -14,8 +15,8 @@ return function(on_attach)
 
       remaps.set_typescript(client, bufnr)
 
-      -- tsserver, stop messing with prettier da fuck!
-      client.resolved_capabilities.document_formatting = false
+      client.resolved_capabilities.document_rename = false -- renaming is done by angularls
+      client.resolved_capabilities.document_formatting = false -- tsserver, stop messing with prettier da fuck!
     end,
     init_options = initOptions
   }
