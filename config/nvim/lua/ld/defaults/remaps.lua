@@ -2,9 +2,10 @@
 nnoremap('<leader><CR>', '<cmd>lua reload()<CR>', 'editor', 'reload', 'Reloads configuration')
 
 -- toggle spellcapcheck
-nnoremap('<leader>vt', '<cmd>setlocal spell! spelllang=en_us<CR>', "editor", 'toggle_spell_check', 'Toggle spell check')
+nnoremap('<leader>vt', '<cmd>setlocal spell! spelllang=en_us spelloptions=camel<CR>', "editor", 'toggle_spell_check',
+         'Toggle spell check')
 
--- move up/down faster 
+-- move up/down faster
 nnoremap('J', '5j', 'remap', 'remap_move_down_fast_normal_mode', 'Move down faster')
 nnoremap('K', '5k', 'remap', 'remap_move_up_fast_normal_mode', 'Move up faster')
 vnoremap('J', '5j', 'remap', 'remap_move_down_fast_visual_mode', 'Move down faster visual mode')
