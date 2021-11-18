@@ -63,6 +63,8 @@ return require('packer').startup(function(use)
     config = function() require("ld.plugins.fzf") end
   }
 
+  use {'liuchengxu/vim-clap', run = ':Clap install-binary!'}
+
   use 'gennaro-tedesco/nvim-peekup' -- shows register preview
 
   use {"folke/which-key.nvim", config = function() require("ld.plugins.which-key") end}
@@ -117,6 +119,7 @@ return require('packer').startup(function(use)
 
   use {"nvim-treesitter/nvim-treesitter-angular", after = "nvim-treesitter"}
   use {"nvim-treesitter/nvim-treesitter-refactor", after = "nvim-treesitter"}
+  use {"windwp/nvim-ts-autotag", after = "nvim-treesitter"}
   use {"p00f/nvim-ts-rainbow", after = "nvim-treesitter"}
 
   use {
@@ -127,7 +130,8 @@ return require('packer').startup(function(use)
 
   use {
     'nvim-treesitter/nvim-treesitter-textobjects',
-    config = function() require 'ld.plugins.treesitter-textobjects' end
+    config = function() require 'ld.plugins.treesitter-textobjects' end,
+    after = "nvim-treesitter"
   }
 
   -- use {
