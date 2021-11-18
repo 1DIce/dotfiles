@@ -78,7 +78,7 @@ local servers = {
   bashls = {},
   yamlls = {},
   jsonls = {init_options = {provideFormatter = false, format = {enable = false}}},
-  tsserver = require('ld.lsp.servers.tsserver')(on_attach),
+  tsserver = require('ld.lsp.servers.tsserver')(on_attach, capabilities),
   html = {},
   cssls = {
     capabilities = vim.tbl_deep_extend("keep", capabilities,
