@@ -32,6 +32,7 @@ return require('packer').startup(function(use)
 
   use 'szw/vim-maximizer'
 
+  use 'kassio/neoterm'
   use 'nikvdp/neomux'
   -- icons
   use 'kyazdani42/nvim-web-devicons'
