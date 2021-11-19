@@ -9,6 +9,8 @@
     ~/.config/starship.toml: config/starship.toml
     ~/.zshrc: .zshrc
     ~/.bashrc: .bashrc
+    ~/.gitconfig: git/gitconfig
+    ~/.gitconfig-work: git/gitconfig-work
     ~/.config/nvim: config/nvim 
     ~/.fzf: libs/fzf
     ~/.fzf.zsh: .fzf.zsh

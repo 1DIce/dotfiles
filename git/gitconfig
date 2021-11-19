@@ -1,0 +1,16 @@
+[user]
+	name = 1Dice
+	email = 23101388+1DIce@users.noreply.github.com
+[credential]
+	helper = store
+
+[alias]
+  st = "status -s -b"
+
+  # Short hash, relative date and message.
+  logd = "log --pretty='%C(yellow)%h %C(cyan)%ar %Creset%s'"
+
+  lg = "log --graph --decorate --oneline"
+
+[includeIf "gitdir:~/work/"]
+  path = ~/.gitconfig-work
