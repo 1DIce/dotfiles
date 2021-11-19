@@ -9,8 +9,6 @@
     ~/.config/starship.toml: config/starship.toml
     ~/.zshrc: .zshrc
     ~/.bashrc: .bashrc
-    ~/.p10k.zsh: .p10k.zsh
-    ~/powerlevel10k: libs/powerlevel10k
     ~/.config/nvim: config/nvim 
     ~/.fzf: libs/fzf
     ~/.fzf.zsh: .fzf.zsh
