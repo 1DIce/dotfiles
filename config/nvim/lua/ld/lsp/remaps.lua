@@ -23,7 +23,8 @@ function M.set_default(client, bufnr)
   end
   if cap.referencesProvider then
     -- buf_set_keymap('n','<leader>tr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    buf_set_keymap('n', '<leader>lu', '<cmd>lua require(\'telescope.builtin\').lsp_references()<CR>', 'lsp',
+    buf_set_keymap('n', '<leader>lu',
+                   '<cmd>lua require(\'ld.plugins.telescope.functions\').lsp_unique_references({})<CR>', 'lsp',
                    'lsp_references', 'Show references')
   end
 
