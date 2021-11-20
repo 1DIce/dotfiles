@@ -1,6 +1,7 @@
 nnoremap('<leader>fp', "<cmd>Telescope projects<CR>", 'telescope', 'telescope_projects', 'Projects')
 -- nnoremap('<leader>fl', "<cmd>lua require('telescope.builtin').live_grep()<CR>", 'telescope', 'telescope_live_grep', 'Live grep')
-nnoremap('<leader>fl', "<cmd>lua require('fzf-lua').live_grep()<CR>", 'telescope', 'telescope_live_grep', 'Live grep')
+nnoremap('<leader>fl', "<cmd>lua require('fzf-lua').live_grep_native()<CR>", 'telescope', 'telescope_live_grep',
+         'Live grep')
 -- nnoremap('<leader>ff', "<cmd>lua require('telescope.builtin').find_files()<CR>", 'telescope', 'telescope_files', 'Find files')
 nnoremap('<leader>ff', "<cmd>lua require('fzf-lua').files()<CR>", 'telescope', 'telescope_files', 'Find files')
 vnoremap('<leader>fv', "<cmd>lua require('fzf-lua').grep_visual()<CR>", 'fzf_lua', 'fzf_lua_grep_visuals',
@@ -20,7 +21,6 @@ nnoremap('<leader>vr', "<cmd>lua require('telescope.builtin').registers()<CR>", 
          'Search registers')
 nnoremap('<leader>vk', "<cmd>lua require('telescope.builtin').keymaps()<CR>", 'telescope', 'telescope_keymaps',
          'Search keymaps')
-
 
 nnoremap('<leader>bf', "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>", 'telescope',
 
