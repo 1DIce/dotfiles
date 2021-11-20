@@ -34,6 +34,7 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias fd="fdfind"
+alias bat="batcat"
 
 # Make Tab autocomplete regardless of filename case
 set completion-ignore-case on 
