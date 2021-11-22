@@ -1,0 +1,6 @@
+- link: 
+    ~/.config/starship.toml: starship/starship.toml
+
+- shell:
+      # install starship prompt
+    - sh -c "$(curl -fsSL https://starship.rs/install.sh)"

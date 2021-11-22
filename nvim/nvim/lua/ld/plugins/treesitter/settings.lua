@@ -11,7 +11,7 @@ parser_configs.css.used_by = "less"
 local treesitter = require 'nvim-treesitter.configs'
 
 treesitter.setup {
-  ensure_installed = {"typescript", "angular", "lua", "json", "css", "javascript", "html", "bash", "toml"},
+  ensure_installed = {"typescript", "angular", "lua", "json", "css", "javascript", "html", "bash", "toml", "yaml"},
   highlight = {enable = true, additional_vim_regex_highlighting = false},
   rainbow = {enable = true, extended_mode = false, max_file_lines = nil},
   matchup = {enable = true},

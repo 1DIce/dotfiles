@@ -1,16 +1,9 @@
-- defaults:
-    link:
-      relink: true
+- link:
+    ~/.config/nvim: nvim/nvim 
+    ~/.config/efm-langserver: nvim/efm-langserver
 
-- create:
-    - ~/Downloads
-    - ~/bin
-
-- apt-get:
-   - fzf
-  
 - shell:
-    # - wget -O ~/bin/nvim https://github.com/neovim/neovim/releases/download/stable/nvim.appimage && chmod +x ~/bin/nvim
+    - wget -O ~/bin/nvim https://github.com/neovim/neovim/releases/download/stable/nvim.appimage && chmod +x ~/bin/nvim
     # - sudo apt install luarocks && luarocks install luaformatter 
     # - npm i -g bash-language-server
     # - npm i -g docker-language-server-nodejs
@@ -18,6 +11,3 @@
     # - npm i -g vscode-langservers-extracted
     # - npm i -g typescript-language-server
     # - npm i -g yaml-language-server
-      # install starship prompt
-    # - sh -c "$(curl -fsSL https://starship.rs/install.sh)"
-

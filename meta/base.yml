@@ -1,0 +1,10 @@
+- defaults:
+    link:
+      relink: true
+      create: true
+
+- clean: ['~']
+
+- create:
+    - ~/Downloads
+    - ~/bin
