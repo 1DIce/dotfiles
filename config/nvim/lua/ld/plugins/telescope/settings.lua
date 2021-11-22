@@ -1,4 +1,5 @@
 local telescope = require 'telescope'
+local action_layout = require('telescope.actions.layout')
 local functions = require 'ld.utils.functions'
 
 telescope.setup {
@@ -10,8 +11,10 @@ telescope.setup {
         -- mappings are used while telescope prompt is open
         ["<C-h>"] = "which_key", -- actions.which_key shows the mappings for your picker,
         ["<C-j>"] = "move_selection_next",
-        ["<C-k>"] = "move_selection_previous"
-      }
+        ["<C-k>"] = "move_selection_previous",
+        ['<F4>'] = action_layout.toggle_preview
+      },
+      n = {['<F4>'] = action_layout.toggle_preview}
     },
     sorting_strategy = "ascending",
     timeoutlen = 2000,
