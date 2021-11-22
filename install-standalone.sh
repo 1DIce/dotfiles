@@ -18,16 +18,37 @@ BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "${BASE_DIR}"
 git submodule update --init --recursive --remote
 
-for config in ${@}; do
+# Parsing addtional arguments
+PARSED_ARGUMENTS=$(getopt -o o: --long only:,except: -- "$@")
+VALID_ARGUMENTS=$?
+if [ "$VALID_ARGUMENTS" != "0" ]; then
+  usage
+fi
 
-  echo "${config}"
+echo "PARSED_ARGUMENTS is $PARSED_ARGUMENTS"
+eval set -- "$PARSED_ARGUMENTS"
+
+DOTBOT_OPTIONS=""
+while :
+do
+  case "$1" in
+    -o | --only) DOTBOT_OPTIONS="${DOTBOT_OPTIONS} $1 $2"  ; shift 2 ;;
+    --except) DOTBOT_OPTIONS="${DOTBOT_OPTIONS} $1 $2"  ; shift 2 ;;
+    # -- means the end of the arguments; drop this, and break out of the while loop
+    --) shift; break ;;
+  esac
+done
+
+echo "$DOTBOT_OPTIONS"
+
+for config in ${@}; do
 
   # create temporary file
   configFile="$(mktemp)"
   suffix="-sudo"
   echo -e "$(<"${BASE_DIR}/${META_DIR}/${BASE_CONFIG}${CONFIG_SUFFIX}")\n$(<"${BASE_DIR}/${META_DIR}/${CONFIG_DIR}/${config%"$suffix"}${CONFIG_SUFFIX}")" > "$configFile"
 
-  cmd=("${BASE_DIR}/${META_DIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASE_DIR}" --plugin-dir ${META_DIR}/dotbot-apt-get --plugin-dir ${META_DIR}/dotbot-crossplatform -c "$configFile")
+  cmd=("${BASE_DIR}/${META_DIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" ${DOTBOT_OPTIONS} -d "${BASE_DIR}" --plugin-dir ${META_DIR}/dotbot-apt-get --plugin-dir ${META_DIR}/dotbot-crossplatform -c "$configFile")
 
   if [[ $config == *"sudo"* ]]; then
     cmd=(sudo "${cmd[@]}")
