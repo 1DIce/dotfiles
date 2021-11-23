@@ -1,6 +1,6 @@
-config/nvim/nvim/session
-config/nvim/plugin/packer_compiled.lua
-config/nvim/plugin/packer_compiled.vim
-config/nvim/.netrwhist
+nvim/nvim/nvim/session
+nvim/nvim/plugin/packer_compiled.lua
+nvim/nvim/plugin/packer_compiled.vim
+nvim/nvim/.netrwhist
 .zshrc.swp
 tmux-client-*.log
