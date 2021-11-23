@@ -29,7 +29,8 @@
   shallow = true
   ignore = dirty
 [submodule "libs/dotbot-crossplatform"]
-	path = meta/dotbot-corssplatform
+	path = meta/dotbot-crossplatform
 	url = https://github.com/msdrigg/dotbot-crossplatform.git
+        branch = main
   shallow = true
   ignore = dirty
