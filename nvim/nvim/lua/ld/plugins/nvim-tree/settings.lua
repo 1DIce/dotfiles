@@ -15,7 +15,8 @@ local list = {
   {key = 'p', cb = tree_cb('paste')}, {key = 'y', cb = tree_cb('copy_name')}, {key = 'Y', cb = tree_cb('copy_path')},
   {key = 'gy', cb = tree_cb('copy_absolute_path')}, {key = '[c', cb = tree_cb('prev_git_item')},
   {key = ']c', cb = tree_cb('next_git_item')}, {key = 's', cb = tree_cb('system_open')},
-  {key = '-', cb = tree_cb('close')}, {key = 'q', cb = tree_cb('close')}, {key = 'g?', cb = tree_cb('toggle_help')}
+  {key = '-', cb = tree_cb('close')}, {key = 'q', cb = tree_cb('close')}, {key = 'g?', cb = tree_cb('toggle_help')},
+  {key = 'c', cb = ":lua require('ld.plugins.nvim-tree.functions').executeShellCommandOnTreeNode()<CR>"}
 }
 
 vim.g.nvim_tree_show_icons = {git = 0, folders = 1, files = 1}
@@ -42,7 +43,7 @@ require'nvim-tree'.setup {
     mappings = {
       -- custom only false will merge the list with the default mappings
       -- if true, it will only use your list to set the mappings
-      custom_only = false,
+      custom_only = true,
       list = list
     }
   },
