@@ -23,6 +23,8 @@ return require('packer').startup(function(use)
   -- git client
   use "tpope/vim-fugitive"
 
+  use "dbeniamine/cheat.sh-vim"
+
   -- Debugging
   use {'puremourning/vimspector', config = function() require 'ld.plugins.vimspector' end}
 

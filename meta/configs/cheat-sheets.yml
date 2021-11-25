@@ -1,0 +1,4 @@
+- shell:
+  - npm install -g tldr
+  - curl https://cht.sh/:cht.sh > ~/bin/cht.sh && chmod +x ~/bin/cht.sh
+  - bash <(curl -sL https://raw.githubusercontent.com/denisidoro/navi/master/scripts/install)

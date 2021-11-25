@@ -35,6 +35,7 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias fd="fdfind"
 alias bat="batcat"
+alias cheat="cht.sh"
 
 # Make Tab autocomplete regardless of filename case
 set completion-ignore-case on 
@@ -44,6 +45,7 @@ set show-all-if-ambiguous on
 # Set PATH
 export PATH=~/bin:$PATH
 export PATH=~/.local/bin:$PATH
+export PATH=~/.cargo/bin:$PATH
 
 # Default editor   
 export EDITOR=nvim
@@ -98,3 +100,7 @@ zplug load --verbose
 
 # Install starship promp
 eval "$(starship init zsh)"
+# Install navi shell widget use ctrl+g to use it
+eval "$(navi widget zsh)"
+
+  export PATH="${PATH}:/home/lars/.cargo/bin/navi"
