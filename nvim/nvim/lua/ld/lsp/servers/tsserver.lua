@@ -16,6 +16,7 @@ return function(on_attach, capabilities)
     on_attach = function(client, bufnr)
       on_attach(client, bufnr)
 
+      client.resolved_capabilities.rename = false
       client.resolved_capabilities.document_rename = false -- renaming is done by angularls
       client.resolved_capabilities.document_formatting = false -- tsserver, stop messing with prettier da fuck!
       remaps.set_typescript(client, bufnr)
