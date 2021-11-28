@@ -1,16 +1,41 @@
 [user]
 	name = 1Dice
 	email = 23101388+1DIce@users.noreply.github.com
-[credential]
-	helper = store
+
+[core]
+	longpaths = true
+	filemode = false
+	autocrlf = false
+	pager = less -E -X
+  excludesFile = ~/.gitignore
+
+[push]
+	default = simple
+
+[color]
+	ui = auto
 
 [alias]
-  st = "status -s -b"
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative -n 20
+	st = status -sb
 
-  # Short hash, relative date and message.
-  logd = "log --pretty='%C(yellow)%h %C(cyan)%ar %Creset%s'"
+[merge]
+	tool = kdiff3
 
-  lg = "log --graph --decorate --oneline"
+[diff]
+  guitool = kdiff3
+
+[mergetool "fugitive"]
+  cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
+
+[mergetool "kdiff3"]
+  path = /mnt/c/Program Files/KDiff3/kdiff3.exe
+	keepBackup = false
+
+[include]
+  path = ~/.gitconfig-credential
 
 [includeIf "gitdir:~/work/"]
+  path = ~/.gitconfig-work
+[includeIf "gitdir:~/projects/merlin*/**"]
   path = ~/.gitconfig-work
