@@ -9,7 +9,7 @@ if filetype == 'rust' then
 end
 
 -- Organize typescript imports on save
-vim.cmd([[autocmd BufWritePre *.ts :TSLspOrganizeSync ]])
+vim.cmd([[autocmd BufWritePre *.ts :lua require('ld.lsp.functions').format_organize_typescript() ]])
 -- Format file on save 
 
-vim.cmd([[autocmd BufWritePre *.ts,*.html,*.js,*.less,*.json,*.lua,*.scss :lua vim.lsp.buf.formatting_sync() ]])
+vim.cmd([[autocmd BufWritePre *.html,*.js,*.less,*.json,*.lua,*.scss :lua vim.lsp.buf.formatting_sync() ]])
