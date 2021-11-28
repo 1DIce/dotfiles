@@ -24,6 +24,7 @@ return require('packer').startup(function(use)
   use "tpope/vim-fugitive"
 
   use "dbeniamine/cheat.sh-vim"
+  use {"MattesGroeger/vim-bookmarks", config = function() require('ld.plugins.vim-bookmarks') end}
 
   -- Debugging
   use {'puremourning/vimspector', config = function() require 'ld.plugins.vimspector' end}
