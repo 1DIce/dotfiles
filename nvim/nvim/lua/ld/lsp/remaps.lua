@@ -61,27 +61,34 @@ function M.set_default(client, bufnr)
 
   if cap.codeActionProvider then
     -- buf_set_keymap('n','<leader>fa', '<cmd>lua vim.lsp.buf.code_action()<CR>', 'lsp', 'lsp_', '')
-    -- buf_set_keymap('v', '<leader>fa', "<cmd>'<,'>lua vim.lsp.buf.range_code_action()<cr>", 'lsp', 'lsp_', '')
+    buf_set_keymap('v', '<leader>la', "<cmd>'<,'>lua vim.lsp.buf.range_code_action()<cr>", 'lsp', 'lsp_', '')
     buf_set_keymap('n', '<leader>la',
                    '<cmd>lua require(\'telescope.builtin\').lsp_code_actions({ timeout = 1000 })<CR>', 'lsp',
                    'lsp_code_actions', 'Code actions')
-    buf_set_keymap('v', '<leader>la',
-                   '<cmd>lua require(\'telescope.builtin\').lsp_range_code_actions({ timeout = 1000 })<CR>', 'lsp',
-                   'lsp_code_actions_in_visual', 'Code actions (visual)')
+    -- buf_set_keymap('v', '<leader>la',
+    --                "<cmd>'<,>'lua require(\'telescope.builtin\').lsp_range_code_actions({ timeout = 1000 })<CR>", 'lsp',
+    --                'lsp_code_actions_in_visual', 'Code actions (visual)')
+    -- buf_set_keymap('v', '<leader>la', "<cmd><C-U>lua require('lspsaga.codeaction').range_code_action()<CR>", 'lsp',
+    --                'lsp_code_actions_in_visual', 'Code actions (visual)')
     --[[ buf_set_keymap('n', '<leader>fa', "<cmd>lua require('lspsaga.codeaction').code_action()<CR>", opts)
     buf_set_keymap('v', '<leader>fa', "<cmd>'<,'>lua require('lspsaga.codeaction').range_code_action()<CR>", opts) ]]
   end
 
   -- buf_set_keymap('n','<leader>fe', '<cmd>lua vim.diagnostic.set_loclist()<CR>', opts)
   -- buf_set_keymap('n','<leader>fe', '<cmd>:LspDiagnostics 0<CR>', opts)
-  buf_set_keymap('n', '<leader>fe', '<cmd>lua require(\'ld.lsp.functions\').show_diagnostics()<CR>', 'lsp',
-                 'lsp_show_diagnostics', 'Show diagnostics')
+  -- buf_set_keymap('n', '<leader>fe', '<cmd>lua require(\'ld.lsp.functions\').show_diagnostics()<CR>', 'lsp',
+  --                'lsp_show_diagnostics', 'Show diagnostics')
+  buf_set_keymap('n', '<leader>lew', '<cmd>lua require(\'telescope.builtin\').lsp_workspace_diagnostics()<CR>', 'lsp',
+                 'lsp_show_workspace_diagnostics', 'Show workspace diagnostics')
+  buf_set_keymap('n', '<leader>leb', '<cmd>lua require(\'telescope.builtin\').lsp_document_diagnostics()<CR>', 'lsp',
+                 'lsp_show_buffer_diagnostics', 'Show buffer diagnostics')
   -- buf_set_keymap('n','<leader>fE', '<cmd>lua vim.diagnostic.show_line_diagnostics()<CR>', opts)
-  buf_set_keymap('n', '<leader>fE', '<cmd>lua require\'lspsaga.diagnostic\'.show_line_diagnostics()<CR>', 'lsp',
+  buf_set_keymap('n', '<leader>lel', '<cmd>lua require\'lspsaga.diagnostic\'.show_line_diagnostics()<CR>', 'lsp',
                  'lsp_show_line_diagnostics', 'Show line diagnostics')
-  buf_set_keymap('n', '[e', '<cmd>lua vim.diagnostic.goto_prev()<CR>', 'lsp', 'lsp_previous_diagnostic',
+  buf_set_keymap('n', '<leader>len', '<cmd>lua vim.diagnostic.goto_prev()<CR>', 'lsp', 'lsp_previous_diagnostic',
                  'Previous diagnostic')
-  buf_set_keymap('n', ']e', '<cmd>lua vim.diagnostic.goto_next()<CR>', 'lsp', 'lsp_next_diagnostic', 'next diagnostic')
+  buf_set_keymap('n', '<leader>lep', '<cmd>lua vim.diagnostic.goto_next()<CR>', 'lsp', 'lsp_next_diagnostic',
+                 'next diagnostic')
   --[[ buf_set_keymap('n', '[e', "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>", 'lsp', 'lsp_previous_diagnostic', 'Previous diagnostic')
   buf_set_keymap('n', ']e', "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>", 'lsp', 'lsp_next_diagnostic', 'Next diagnostic'); ]]
 
