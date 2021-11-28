@@ -38,7 +38,6 @@ capabilities = vim.tbl_extend('keep', capabilities, lsp_status.capabilities)
 if presentCmpNvimLsp then
   capabilities = vim.tbl_extend('keep', capabilities,
                                 cmpNvimLsp.update_capabilities(vim.lsp.protocol.make_client_capabilities()))
-  capabilities.textDocument.completion.completionItem.snippetSupport = true
 end
 
 local default_lsp_config = {on_attach = on_attach, capabilities}
@@ -73,6 +72,12 @@ local sumenko_config = function(on_attach)
 
 end
 
+local css_config = function()
+  local cloned_capabilities = vim.deepcopy(capabilities)
+  cloned_capabilities.textDocument.completion.completionItem.snippetSupport = true
+  return {on_attach, capabilities = cloned_capabilities}
+end
+
 local servers = {
   efm = require('ld.lsp.servers.efm')(),
   bashls = {},
@@ -80,10 +85,7 @@ local servers = {
   jsonls = {init_options = {provideFormatter = false, format = {enable = false}}},
   tsserver = require('ld.lsp.servers.tsserver')(on_attach, capabilities),
   html = {},
-  cssls = {
-    capabilities = vim.tbl_deep_extend("keep", capabilities,
-                                       {textDocument = {completion = {completionItem = {snippetSupport = true}}}})
-  },
+  cssls = css_config(),
   sumneko_lua = sumenko_config(on_attach),
   dockerls = {},
   eslint = {},
