@@ -2,3 +2,5 @@
     ~/.fzf: libs/fzf
     ~/.fzf.zsh: fzf/fzf.zsh
     ~/.fzf.bash: fzf/fzf.bash
+- shell:
+  - ~/.fzf/install
