@@ -14,6 +14,9 @@ vnoremap('K', '5k', 'remap', 'remap_move_up_fast_visual_mode', 'Move up faster v
 -- Y should yank until end of line similar to D and C
 nnoremap('Y', 'y$', 'remap', 'remap_yank_to_end_of_line', 'Yank to end of line')
 
+-- do not replace register content when pasting in visual mode
+vnoremap('p', 'pgvy', 'remap', 'remap_paste_in_visual_mode', 'Paste does not replace register content')
+
 -- deletes in visual
 vnoremap('X', '"_d', 'remap', 'remap_deletes_on_visual', 'Deletes on visual')
 
