@@ -3,4 +3,4 @@
 
 - shell:
       # install starship prompt
-    - sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+    - sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --yes
