@@ -32,8 +32,11 @@ return require('packer').startup(function(use)
   -- color theme
   use 'martinsione/darkplus.nvim'
   use 'folke/tokyonight.nvim'
+  use 'Mofiqul/dracula.nvim'
   use 'EdenEast/nightfox.nvim'
-  -- use 'morhetz/gruvbox'
+  use 'sainnhe/gruvbox-material'
+
+  use 'martinda/Jenkinsfile-vim-syntax'
 
   use 'szw/vim-maximizer'
 
