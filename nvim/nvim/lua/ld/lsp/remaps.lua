@@ -85,9 +85,9 @@ function M.set_default(client, bufnr)
   -- buf_set_keymap('n','<leader>fE', '<cmd>lua vim.diagnostic.show_line_diagnostics()<CR>', opts)
   buf_set_keymap('n', '<leader>lel', '<cmd>lua require\'lspsaga.diagnostic\'.show_line_diagnostics()<CR>', 'lsp',
                  'lsp_show_line_diagnostics', 'Show line diagnostics')
-  buf_set_keymap('n', '<leader>len', '<cmd>lua vim.diagnostic.goto_prev()<CR>', 'lsp', 'lsp_previous_diagnostic',
+  buf_set_keymap('n', '<leader>lep', '<cmd>lua vim.diagnostic.goto_prev()<CR>', 'lsp', 'lsp_previous_diagnostic',
                  'Previous diagnostic')
-  buf_set_keymap('n', '<leader>lep', '<cmd>lua vim.diagnostic.goto_next()<CR>', 'lsp', 'lsp_next_diagnostic',
+  buf_set_keymap('n', '<leader>len', '<cmd>lua vim.diagnostic.goto_next()<CR>', 'lsp', 'lsp_next_diagnostic',
                  'next diagnostic')
   --[[ buf_set_keymap('n', '[e', "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>", 'lsp', 'lsp_previous_diagnostic', 'Previous diagnostic')
   buf_set_keymap('n', ']e', "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>", 'lsp', 'lsp_next_diagnostic', 'Next diagnostic'); ]]
@@ -101,6 +101,8 @@ function M.set_default(client, bufnr)
   if cap.renameProvider then
     -- buf_set_keymap('n','<leader>rr','<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     buf_set_keymap('n', '<leader>lr', '<cmd>lua require(\'lspsaga.rename\').rename()<CR>', 'lsp', 'lsp_rename', 'Rename')
+    -- buf_set_keymap('n', '<leader>lr', '<cmd>lua require(\'renamer\').rename()<cr>', 'lsp', 'lsp_rename', 'Rename')
+
   end
 
   -- buf_set_keymap('n','<leader>fll', ":lua vim.cmd('e'..vim.lsp.get_log_path())<CR>", opts)
