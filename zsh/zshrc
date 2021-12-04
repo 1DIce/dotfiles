@@ -50,6 +50,9 @@ export PATH=~/.cargo/bin:$PATH
 # Default editor   
 export EDITOR=nvim
 
+# bat as pager for man
+export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
+
 # Go Lang installation
 export PATH=$PATH:/usr/local/go/bin
 
