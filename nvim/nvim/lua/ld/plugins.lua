@@ -76,9 +76,14 @@ return require('packer').startup(function(use)
 
   use {"folke/which-key.nvim", config = function() require("ld.plugins.which-key") end}
 
-  use {'kyazdani42/nvim-tree.lua', config = function() require 'ld.plugins.nvim-tree' end}
+  use {'kyazdani42/nvim-tree.lua', tag = "1.6.7", config = function() require 'ld.plugins.nvim-tree' end}
 
   use {'lazytanuki/nvim-mapper', config = function() require 'ld.plugins.nvim-mapper' end, before = 'telescope.nvim'}
+
+  -- use {
+  --   'ray-x/navigator.lua',
+  --   requires = {'ray-x/guihua.lua', run = 'cd lua/fzy && make'},
+  -- }
 
   -- Autocomplete & Linters
   if useBuiltInLsp then
