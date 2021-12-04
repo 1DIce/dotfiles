@@ -75,7 +75,34 @@ end
 local css_config = function()
   local cloned_capabilities = vim.deepcopy(capabilities)
   cloned_capabilities.textDocument.completion.completionItem.snippetSupport = true
-  return {on_attach, capabilities = cloned_capabilities}
+  return {capabilities = cloned_capabilities}
+end
+
+local html_config = function()
+  local cloned_capabilities = vim.deepcopy(capabilities)
+  cloned_capabilities.textDocument.completion.completionItem.snippetSupport = true
+  return {capabilities = cloned_capabilities}
+end
+
+local function get_node_modules(root_dir)
+  -- util.find_node_modules_ancestor()
+  local root_node = root_dir .. "/node_modules"
+  local stats = vim.loop.fs_stat(root_node)
+  if stats == nil then
+    return nil
+  else
+    return root_node
+  end
+end
+
+local default_node_modules = get_node_modules(vim.fn.getcwd())
+
+local angular_config = function()
+  local ngls_cmd = {
+    "ngserver", "--stdio", "--tsProbeLocations", default_node_modules, "--ngProbeLocations", default_node_modules,
+    "--experimental-ivy"
+  }
+  return {cmd = ngls_cmd, on_new_config = function(new_config) new_config.cmd = ngls_cmd end}
 end
 
 local servers = {
@@ -84,12 +111,12 @@ local servers = {
   yamlls = {},
   jsonls = {init_options = {provideFormatter = false, format = {enable = false}}},
   tsserver = require('ld.lsp.servers.tsserver')(on_attach, capabilities),
-  html = {},
+  html = html_config(),
   cssls = css_config(),
   sumneko_lua = sumenko_config(on_attach),
   dockerls = {},
   eslint = {},
-  angularls = {}
+  angularls = angular_config()
 }
 
 --[[ lsp_installer.on_server_ready(function(server)
