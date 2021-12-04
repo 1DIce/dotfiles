@@ -1,0 +1,29 @@
+- link:
+    ~/.config/kitty: kitty
+
+- crossplatform-shell:
+  - command: curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin launch=n
+    platform: linux 
+    environment: "!WSL_DISTRO_NAME"
+      # add kitty to path and add an icon
+  - command: cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications/ && sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty.desktop
+    platform: linux 
+    environment: "!WSL_DISTRO_NAME"
+
+- crossplatform-link:
+  # - ~/.config/kitty/kitty.conf: 
+  #     path: kitty/kitty.conf
+  #     platform: linux 
+  #     environment: "!WSL_DISTRO_NAME"
+  # - ~/.config/kitty/diff.conf: 
+  #     path: kitty/diff.conf
+  #     platform: linux 
+  #     environment: "!WSL_DISTRO_NAME"
+  # - ~/.config/kitty/dracula.conf: 
+  #     path: kitty/dracula.conf
+  #     platform: linux 
+  #     environment: "!WSL_DISTRO_NAME"
+  - ~/.local/bin/kitty: 
+      platform: linux 
+      environment: "!WSL_DISTRO_NAME"
+      path: ~/.local/kitty.app/bin/kitty
