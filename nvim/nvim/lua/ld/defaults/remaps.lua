@@ -25,8 +25,10 @@ nnoremap('n', 'nzzzv', 'remap', 'remap_go_next_search', 'When going to next sear
 nnoremap('N', 'Nzzzv', 'remap', 'remap_go_previous_serach', 'When going to previous search, we center screen')
 
 -- navigate quick fix
-nnoremap(']q', ':cnext<CR>', 'remap', 'remap_next_quickfix', 'Navigate to next quickfix')
-nnoremap('[q', ':cprev<CR>', 'remap', 'remap_previous_quickfix', 'Navigate to previous quickfix')
+nnoremap('<leader>qo', ':copen<CR>', 'remap', 'remap_open_quickfix', 'Open quickfix list')
+nnoremap('<leader>qc', ':cclose<CR>', 'remap', 'remap_close_quickfix', 'Close quickfix list')
+nnoremap('<leader>qn', ':cnext<CR>', 'remap', 'remap_next_quickfix', 'Navigate to next quickfix')
+nnoremap('<leader>qp', ':cprev<CR>', 'remap', 'remap_previous_quickfix', 'Navigate to previous quickfix')
 
 -- navigate command mode autocomplete
 cnoremap('<C-j>', '<C-n>', 'remap', 'remap_next_cmd_suggestion', 'Select next command mode suggestion')
@@ -60,3 +62,12 @@ vnoremap('<A-j>', ":m '>+1<CR>gv=gv", 'remap', 'remap_move_selection_down', 'Mov
 vnoremap('<A-k>', ":m '<-2<CR>gv=gv", 'remap', 'remap_move_selection_up', 'Move current selection up')
 -- inoremap('<A-j>', '<esc>:m .+1<CR>==', 'remap', 'remap_move_line_down_insert_mode', 'Move current line down (Insert mode)')
 -- inoremap('<A-k>', '<esc>:m .-2<CR>==', 'remap', 'remap_move_line_up_insert_mode', 'Move current line up (Insert mode)')
+
+-- terminal binginds
+-- go to normal mode
+tnoremap('<C-s>', "<C-\\><C-n>", 'remap', 'remap_terimal_enter_normal_mode', 'Enter terminal normal mode')
+
+tnoremap('<C-w>h', "<C-\\><C-n><C-w>h", 'remap', 'remap_terimal_switch_pane_h', 'Terminal switch pane left')
+tnoremap('<C-w>l', "<C-\\><C-n><C-w>l", 'remap', 'remap_terimal_switch_pane_l', 'Terminal switch pane right')
+tnoremap('<C-w>j', "<C-\\><C-n><C-w>j", 'remap', 'remap_terimal_switch_pane_j', 'Terminal switch pane down')
+tnoremap('<C-w>k', "<C-\\><C-n><C-w>k", 'remap', 'remap_terimal_switch_pane_k', 'Terminal switch pane up')
