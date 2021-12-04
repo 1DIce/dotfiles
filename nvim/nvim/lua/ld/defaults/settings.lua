@@ -81,4 +81,6 @@ vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 -- shows spaces
 vim.o.list = false
 
+vim.o.fixendofline = false
+
 vim.o.listchars = 'eol:¬,tab:>·,trail:~,extends:>,precedes:<'
