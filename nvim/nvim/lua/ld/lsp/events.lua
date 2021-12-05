@@ -3,9 +3,9 @@ local filetype = vim.api.nvim_buf_get_option(0, 'filetype')
 addEventListener('show diagnostic popup on cursor hold', {'CursorHold <buffer>'},
                  function() vim.lsp.diagnostic.show_line_diagnostics({show_header = false}) end)
 
-vim.api.nvim_command [[autocmd CursorHold  * :lua vim.lsp.buf.document_highlight()]]
-vim.api.nvim_command [[autocmd CursorHoldI * :lua vim.lsp.buf.document_highlight()]]
-vim.api.nvim_command [[autocmd CursorMoved * :lua vim.lsp.buf.clear_references()]]
+vim.api.nvim_command [[autocmd CursorHold  *.ts,*.html,*.lua :lua vim.lsp.buf.document_highlight()]]
+vim.api.nvim_command [[autocmd CursorHoldI *.ts,*.html,*.lua :lua vim.lsp.buf.document_highlight()]]
+vim.api.nvim_command [[autocmd CursorMoved *.ts,*.html,*.lua :lua vim.lsp.buf.clear_references()]]
 
 if filetype == 'rust' then
   vim.cmd([[autocmd BufEnter,BufWritePost <buffer> :lua require('lsp_extensions.inlay_hints').request { ]] ..
