@@ -44,8 +44,6 @@ return require('packer').startup(function(use)
   -- icons
   use 'kyazdani42/nvim-web-devicons'
 
-  use {'ahmedkhalf/project.nvim', config = function() require 'ld.plugins.project' end}
-
   use {'kevinhwang91/nvim-bqf', config = function() require 'ld.plugins.nvim-bqf' end}
 
   use {'justinmk/vim-sneak', config = function() require 'ld.plugins.sneak' end}
