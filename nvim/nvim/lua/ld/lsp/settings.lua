@@ -116,7 +116,8 @@ local servers = {
   sumneko_lua = sumenko_config(on_attach),
   dockerls = {},
   eslint = {},
-  angularls = angular_config()
+  angularls = angular_config(),
+  pylsp = {}
 }
 
 --[[ lsp_installer.on_server_ready(function(server)
