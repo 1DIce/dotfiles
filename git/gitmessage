@@ -1,0 +1,11 @@
+# Title: Summary, imperative, start upper case, don't end with a period.
+# Include task ID (Jira issue).
+
+# Remember blank line between title and body.
+
+# Body: Explain *what* and *why* (not *how*). 
+# What is not different than before?
+# What is the reason for the change?
+# Is there anything to watch out for / anything
+# particularly remarkable?
+# Wrap at 80 chars. ########################################### which is here: #
