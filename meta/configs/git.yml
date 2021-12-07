@@ -2,6 +2,7 @@
     ~/.gitconfig: git/gitconfig
     ~/.gitconfig-work: git/gitconfig-work
     ~/.gitignore: git/global-gitignore
+    ~/.gitmessage: git/gitmessage
 
 - crossplatform-link:
   - ~/.gitconfig-credential: 

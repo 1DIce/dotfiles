@@ -2,6 +2,9 @@
 	name = 1Dice
 	email = 23101388+1DIce@users.noreply.github.com
 
+[commit]
+	template = ~/.gitmessage
+
 [core]
 	longpaths = true
 	filemode = false
