@@ -18,7 +18,7 @@ return require('packer').startup(function(use)
   use 'editorconfig/editorconfig-vim'
 
   -- allow commenting blocks with gcc
-  use 'tpope/vim-commentary'
+  use {'numToStr/Comment.nvim', config = function() require('Comment').setup() end}
 
   -- git client
   use "tpope/vim-fugitive"
