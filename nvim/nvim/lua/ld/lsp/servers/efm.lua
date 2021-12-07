@@ -17,6 +17,8 @@ local cSpell = {
   lintFormats = {"%f:%l:%c - %m"}
 }
 
+local pythonBlack = {formatCommand = "black --quiet -", formatStdin = true}
+
 local languages = {
   lua = {luaformat},
   typescript = {formatter},
@@ -31,7 +33,8 @@ local languages = {
   html = {formatter},
   scss = {formatter},
   css = {formatter},
-  markdown = {formatter}
+  markdown = {formatter},
+  python = {pythonBlack}
 }
 
 --[[ local efm_config = os.getenv('HOME') ..

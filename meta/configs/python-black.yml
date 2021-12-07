@@ -1,0 +1,2 @@
+- shell:
+  - pip install black
