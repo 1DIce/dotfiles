@@ -2,8 +2,9 @@ nnoremap('<leader>fp', "<cmd>Telescope projects<CR>", 'telescope', 'telescope_pr
 -- nnoremap('<leader>fl', "<cmd>lua require('telescope.builtin').live_grep()<CR>", 'telescope', 'telescope_live_grep', 'Live grep')
 nnoremap('<leader>fl', "<cmd>lua require('fzf-lua').live_grep_native()<CR>", 'telescope', 'telescope_live_grep',
          'Live grep')
--- nnoremap('<leader>ff', "<cmd>lua require('telescope.builtin').find_files()<CR>", 'telescope', 'telescope_files', 'Find files')
-nnoremap('<leader>ff', "<cmd>lua require('fzf-lua').files()<CR>", 'telescope', 'telescope_files', 'Find files')
+nnoremap('<leader>ff', "<cmd>lua require('telescope.builtin').find_files()<CR>", 'telescope', 'telescope_files',
+         'Find files')
+nnoremap('<C-p>', "<cmd>lua require('fzf-lua').files()<CR>", 'telescope', 'fzf_files', 'Find files')
 vnoremap('<leader>fv', "<cmd>lua require('fzf-lua').grep_visual()<CR>", 'fzf_lua', 'fzf_lua_grep_visuals',
          'Find visual selection')
 nnoremap('<leader>fg', "<cmd>lua require('telescope.builtin').git_files()<CR>", 'telescope', 'telescope_git_files',
@@ -23,13 +24,10 @@ nnoremap('<leader>vk', "<cmd>lua require('telescope.builtin').keymaps()<CR>", 't
          'Search keymaps')
 
 nnoremap('<leader>bf', "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>", 'telescope',
-
          'telescope_current_buffer_fuzzy_find', 'Search current buffer')
 
 nnoremap('<leader>bc', "<cmd>lua require('telescope.builtin').git_bcommits()<CR>", 'telescope',
-
          'telescope_git_bcommits', 'Search buffer git commits')
 
 nnoremap('<leader>bl', "<cmd>lua require('telescope.builtin').buffers()<CR>", 'telescope', 'telescope_buffers',
-
          'List open buffers')
