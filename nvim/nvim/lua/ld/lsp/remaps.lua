@@ -123,7 +123,7 @@ function M.set_typescript(client, bufnr)
   local ts_utils = require('nvim-lsp-ts-utils')
 
   -- defaults
-  ts_utils.setup {update_imports_on_move = true}
+  ts_utils.setup {update_imports_on_move = false}
 
   -- required to fix code action ranges and filter diagnostics
   ts_utils.setup_client(client)
