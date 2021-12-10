@@ -61,10 +61,12 @@ function M.set_default(client, bufnr)
 
   if cap.codeActionProvider then
     -- buf_set_keymap('n','<leader>fa', '<cmd>lua vim.lsp.buf.code_action()<CR>', 'lsp', 'lsp_', '')
-    buf_set_keymap('v', '<leader>la', "<cmd>'<,'>lua vim.lsp.buf.range_code_action()<cr>", 'lsp', 'lsp_', '')
+    buf_set_keymap('v', '<leader>la',
+                   "<cmd>'<,'>lua vim.lsp.buf.range_code_action(require(\'telescope.themes\').get_cursor())<cr>", 'lsp',
+                   'lsp_', '')
     buf_set_keymap('n', '<leader>la',
-                   '<cmd>lua require(\'telescope.builtin\').lsp_code_actions({ timeout = 1000 })<CR>', 'lsp',
-                   'lsp_code_actions', 'Code actions')
+                   '<cmd>lua require(\'telescope.builtin\').lsp_code_actions(require(\'telescope.themes\').get_cursor())<CR>',
+                   'lsp', 'lsp_code_actions', 'Code actions')
     -- buf_set_keymap('v', '<leader>la',
     --                "<cmd>'<,>'lua require(\'telescope.builtin\').lsp_range_code_actions({ timeout = 1000 })<CR>", 'lsp',
     --                'lsp_code_actions_in_visual', 'Code actions (visual)')
