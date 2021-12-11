@@ -23,6 +23,13 @@ return require('packer').startup(function(use)
   -- git client
   use "tpope/vim-fugitive"
 
+  use {
+    -- Adds commands :DiffviewFileHistory and :DiffviewOpen [git ref]
+    'sindrets/diffview.nvim',
+    requires = 'nvim-lua/plenary.nvim',
+    config = function() require('diffview').setup({}) end
+  }
+
   use "dbeniamine/cheat.sh-vim"
   use {"MattesGroeger/vim-bookmarks", config = function() require('ld.plugins.vim-bookmarks') end}
   use {"vimwiki/vimwiki", config = function() require('ld.plugins.vim-wiki') end}
