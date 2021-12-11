@@ -4,3 +4,4 @@ nvim/nvim/plugin/packer_compiled.vim
 nvim/nvim/.netrwhist
 .zshrc.swp
 tmux-client-*.log
+/kitty/kitty.conf.bak
