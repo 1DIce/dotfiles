@@ -1,0 +1,4 @@
+- crossplatform-shell:
+    - command: ln -sf "$(wslpath "$(wslvar USERPROFILE)")/Documents/notes" ~/notes                                                                                                                                 
+      environment: WSL_DISTRO_NAME
+
