@@ -9,7 +9,8 @@ end
 
 M.format_organize_typescript = function()
   ts_utils.organize_imports_sync()
-  vim.lsp.buf.formatting_sync()
+  vim.cmd([[ :Prettier ]])
+  -- vim.lsp.buf.formatting_sync()
 end
 
 return M

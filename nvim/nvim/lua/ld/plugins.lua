@@ -42,6 +42,7 @@ return require('packer').startup(function(use)
   use 'szw/vim-maximizer'
 
   use 'kassio/neoterm'
+
   -- icons
   use 'kyazdani42/nvim-web-devicons'
 
@@ -86,6 +87,8 @@ return require('packer').startup(function(use)
 
   -- Autocomplete & Linters
   if useBuiltInLsp then
+
+    use 'prettier/vim-prettier'
     use 'neovim/nvim-lspconfig'
     use 'nvim-lua/lsp-status.nvim'
     use 'tjdevries/lsp_extensions.nvim'
