@@ -25,6 +25,7 @@ return require('packer').startup(function(use)
 
   use "dbeniamine/cheat.sh-vim"
   use {"MattesGroeger/vim-bookmarks", config = function() require('ld.plugins.vim-bookmarks') end}
+  use {"vimwiki/vimwiki", config = function() require('ld.plugins.vim-wiki') end}
 
   -- Debugging
   use {'puremourning/vimspector', config = function() require 'ld.plugins.vimspector' end}
