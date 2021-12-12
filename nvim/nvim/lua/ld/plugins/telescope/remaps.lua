@@ -9,7 +9,7 @@ vnoremap('<leader>fv', "<cmd>lua require('fzf-lua').grep_visual()<CR>", 'fzf_lua
          'Find visual selection')
 nnoremap('<leader>fg', "<cmd>lua require('telescope.builtin').git_files()<CR>", 'telescope', 'telescope_git_files',
          'Find git files')
-nnoremap('<leader>fc', "<cmd>lua require('telescope.builtin').git_status()<CR>", 'telescope', 'telescope_git_files',
+nnoremap('<leader>fc', "<cmd>lua require('telescope.builtin').git_status()<CR>", 'telescope', 'telescope_git_status',
          'Find git files')
 
 nnoremap('<leader>vs', "<cmd>lua require('ld.plugins.telescope.functions').search_config()<CR>", 'telescope',
@@ -31,3 +31,7 @@ nnoremap('<leader>bc', "<cmd>lua require('telescope.builtin').git_bcommits()<CR>
 
 nnoremap('<leader>bl', "<cmd>lua require('telescope.builtin').buffers()<CR>", 'telescope', 'telescope_buffers',
          'List open buffers')
+
+nnoremap('<leader>fo', "<cmd>lua require('telescope.builtin').file_browser({cwd = '~', depth = 1, hidden = true})<CR>",
+         'telescope', 'telescope_file_browser_home', 'Open file browser in $HOME')
+
