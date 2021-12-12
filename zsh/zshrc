@@ -36,6 +36,8 @@ alias ....="cd ../../.."
 alias fd="fdfind"
 alias bat="batcat"
 alias cheat="cht.sh"
+alias v="nvim"
+alias g="git"
 
 # Make Tab autocomplete regardless of filename case
 set completion-ignore-case on 
