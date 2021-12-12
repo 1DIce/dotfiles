@@ -10,31 +10,30 @@ local formatter = prettier
 -- local linter = eslint_d
 
 local cSpell = {
-  -- npm install -g cspell
-  lintCommand = "cspell lint --config .vscode/cspell.json --show-suggestions --no-summary --no-progress stdin",
-
-  lintStdin = true,
-  lintFormats = {"%f:%l:%c - %m"}
+    -- npm install -g cspell
+    lintCommand = "cspell lint --config .vscode/cspell.json --show-suggestions --no-summary --no-progress stdin",
+    lintStdin = true,
+    lintFormats = {"%f:%l:%c - %m"}
 }
 
 local pythonBlack = {formatCommand = "black --quiet -", formatStdin = true}
 
 local languages = {
-  lua = {luaformat},
-  typescript = {formatter},
-  javascript = {formatter},
-  typescriptreact = {formatter},
-  ['typescript.tsx'] = {formatter},
-  javascriptreact = {formatter},
-  ['javascript.jsx'] = {formatter},
-  yaml = {formatter},
-  less = {formatter},
-  json = {formatter},
-  html = {formatter},
-  scss = {formatter},
-  css = {formatter},
-  markdown = {formatter},
-  python = {pythonBlack}
+    lua = {luaformat},
+    typescript = {formatter},
+    javascript = {formatter},
+    typescriptreact = {formatter},
+    ['typescript.tsx'] = {formatter},
+    javascriptreact = {formatter},
+    ['javascript.jsx'] = {formatter},
+    yaml = {formatter},
+    less = {formatter},
+    json = {formatter},
+    html = {formatter},
+    scss = {formatter},
+    css = {formatter},
+    markdown = {formatter},
+    python = {pythonBlack}
 }
 
 --[[ local efm_config = os.getenv('HOME') ..
@@ -81,24 +80,33 @@ local languages = {
 end ]]
 
 return function()
-  return {
-    root_dir = function(fname)
-      --[[ if not eslint_config_exists() then
+    return {
+        root_dir = function(fname)
+            --[[ if not eslint_config_exists() then
             print 'eslint configuration not found'
             return nil
           end]]
-      -- check if eslint_d installed globally!
-      -- return lsp.util.root_pattern("package.json", ".git", vim.fn.getcwd())
-      -- return getcwd()
-      if functions.ends_with(fname, ".lua") then return lsp.util.path.dirname(fname) end
-      local cwd = lsp.util.root_pattern("tsconfig.json")(fname) or
-                      lsp.util.root_pattern(".eslintrc.json", ".git")(fname) or
-                      lsp.util.root_pattern("package.json", ".git/", ".zshrc")(fname) or lsp.util.path.dirname(fname);
-      return cwd
-    end,
-    filetypes = vim.tbl_keys(languages),
-    init_options = {documentFormatting = true},
-    settings = {rootMarkers = {"package.json", ".git"}, lintDebounce = 500, languages = languages}
-  }
+            -- check if eslint_d installed globally!
+            -- return lsp.util.root_pattern("package.json", ".git", vim.fn.getcwd())
+            -- return getcwd()
+            if functions.ends_with(fname, ".lua") then
+                return lsp.util.path.dirname(fname)
+            end
+            local cwd = lsp.util.root_pattern("tsconfig.json")(fname) or
+                            lsp.util
+                                .root_pattern(".eslintrc.json", ".git")(fname) or
+                            lsp.util
+                                .root_pattern("package.json", ".git/", ".zshrc")(
+                                fname) or lsp.util.path.dirname(fname);
+            return cwd
+        end,
+        filetypes = vim.tbl_keys(languages),
+        init_options = {documentFormatting = true},
+        settings = {
+            rootMarkers = {"package.json", ".git"},
+            lintDebounce = 500,
+            languages = languages
+        }
+    }
 
 end

@@ -106,6 +106,11 @@ return require('packer').startup(function(use)
     use 'ray-x/lsp_signature.nvim'
     use 'jose-elias-alvarez/nvim-lsp-ts-utils'
     use 'williamboman/nvim-lsp-installer'
+    use({
+      "jose-elias-alvarez/null-ls.nvim",
+      config = function() require('ld.lsp.servers.null-ls') end,
+      requires = {"nvim-lua/plenary.nvim", "neovim/nvim-lspconfig"}
+    })
 
     use {'hrsh7th/nvim-cmp', config = function() require 'ld.plugins.nvim-cmp' end, event = 'InsertEnter'}
 

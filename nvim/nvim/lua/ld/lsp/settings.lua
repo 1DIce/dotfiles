@@ -106,7 +106,7 @@ local angular_config = function()
 end
 
 local servers = {
-  efm = require('ld.lsp.servers.efm')(),
+  -- efm = require('ld.lsp.servers.efm')(),
   bashls = {},
   yamlls = {},
   jsonls = {init_options = {provideFormatter = false, format = {enable = false}}},
