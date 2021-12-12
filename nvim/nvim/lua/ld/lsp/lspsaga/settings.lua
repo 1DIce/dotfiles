@@ -5,7 +5,6 @@ saga.init_lsp_saga {
   finder_definition_icon = ' ',
   finder_reference_icon = ' ',
   rename_prompt_prefix = '',
-  code_action_prompt = {
-    enable = false,
-  },
+  rename_prompt_populate = true,
+  code_action_prompt = {enable = false}
 }

@@ -101,7 +101,7 @@ return require('packer').startup(function(use)
     use 'neovim/nvim-lspconfig'
     use 'nvim-lua/lsp-status.nvim'
     use 'tjdevries/lsp_extensions.nvim'
-    use 'glepnir/lspsaga.nvim'
+    use 'tami5/lspsaga.nvim'
     use 'onsails/lspkind-nvim'
     use 'ray-x/lsp_signature.nvim'
     use 'jose-elias-alvarez/nvim-lsp-ts-utils'
