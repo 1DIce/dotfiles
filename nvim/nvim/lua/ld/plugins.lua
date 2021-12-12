@@ -61,6 +61,8 @@ return require('packer').startup(function(use)
   use 'tpope/vim-surround' -- Change surrounding arks
   use 'wellle/targets.vim'
 
+  use {'rmagatti/auto-session', config = function() require('ld.plugins.auto-session') end}
+
   use {
     'nvim-telescope/telescope.nvim',
     requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
