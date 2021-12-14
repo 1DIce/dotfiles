@@ -1,3 +1,4 @@
 - shell:
   - sudo apt install build-essential ripgrep fd-find rename bat trash-cli -y
+  - brew install lsd
 
