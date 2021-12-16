@@ -14,6 +14,8 @@ nnoremap('<leader>fc', "<cmd>lua require('telescope.builtin').git_status()<CR>",
 
 nnoremap('<leader>vs', "<cmd>lua require('ld.plugins.telescope.functions').search_config()<CR>", 'telescope',
          'telescope_search_config', 'Search neovim config')
+nnoremap('<leader>vh', "<cmd>lua require('telescope.builtin').help_tags()<CR>", 'telescope', 'telescope_help_tags',
+         'Search vim help tags')
 nnoremap('<leader>vch', "<cmd>lua require('telescope.builtin').command_history()<CR>", 'telescope',
          'telescope_command_history', 'Search command history')
 nnoremap('<leader>vcl', "<cmd>lua require('telescope.builtin').commands()<CR>", 'telescope', 'telescope_commands',
