@@ -42,35 +42,35 @@ end
 
 local default_lsp_config = {on_attach = on_attach, capabilities}
 
-local sumenko_config = function(on_attach)
-  return {
-    -- cmd = { sumneko_binary, '-E', sumneko_root_path .. '/main.lua' },
-    on_attach = on_attach,
-    capabilities = capabilities,
-    settings = {
-      Lua = {
-        runtime = {
-          -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-          version = 'LuaJIT'
-          -- Setup your lua path
-          --        path = runtime_path,
-        },
-        diagnostics = {
-          -- Get the language server to recognize the `vim` global
-          globals = {'vim'}
-        },
-        workspace = {
-          -- Make the server aware of Neovim runtime files
-          library = vim.api.nvim_get_runtime_file('', true),
-          checkThirdParty = false
-        },
-        -- Do not send telemetry data containing a randomized but unique identifier
-        telemetry = {enable = false}
-      }
+local runtime_path = vim.split(package.path, ';')
+table.insert(runtime_path, "lua/ld/init.lua")
+require('lspconfig').sumneko_lua.setup { 
+  cmd = { "lua-language-server" },
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    Lua = {
+      runtime = {
+        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+        version = 'LuaJIT',
+        -- Setup your lua path
+        path = runtime_path
+      },
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = {'vim'}
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = vim.api.nvim_get_runtime_file('', true),
+        checkThirdParty = false
+      },
+      -- Do not send telemetry data containing a randomized but unique identifier
+      telemetry = {enable = false}
     }
   }
+}
 
-end
 
 local css_config = function()
   local cloned_capabilities = vim.deepcopy(capabilities)
@@ -113,7 +113,6 @@ local servers = {
   tsserver = require('ld.lsp.servers.tsserver')(on_attach, capabilities),
   html = html_config(),
   cssls = css_config(),
-  sumneko_lua = sumenko_config(on_attach),
   dockerls = {},
   eslint = {},
   angularls = angular_config(),

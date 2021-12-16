@@ -10,6 +10,7 @@ fzf
 tmux
 scripts
 nvim
+lua-tools
 cmd_tools
 kitty
 vimwiki
