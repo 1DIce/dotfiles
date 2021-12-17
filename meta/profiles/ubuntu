@@ -1,3 +1,4 @@
+cmd_tools
 starship
 nvm
 cheat-sheets
@@ -11,7 +12,6 @@ tmux
 scripts
 nvim
 lua-tools
-cmd_tools
 kitty
 vimwiki
 
