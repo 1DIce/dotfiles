@@ -4,8 +4,12 @@ vim.g.loaded_netrwPlugin = 1
 
 -- Let's save undo info!
 local cachePath = vim.env.HOME .. "/.cache/nvim"
-if (vim.fn.isdirectory(cachePath) == false) then vim.fn.mkdir(cachePath, "", 0770) end
-if vim.fn.isdirectory(cachePath .. "/undo-dir") == false then vim.fn.mkdir(cachePath .. "/undo-dir", "", 0700) end
+if (vim.fn.isdirectory(cachePath) == false) then
+    vim.fn.mkdir(cachePath, "", 0770)
+end
+if vim.fn.isdirectory(cachePath .. "/undo-dir") == false then
+    vim.fn.mkdir(cachePath .. "/undo-dir", "", 0700)
+end
 vim.o.undodir = cachePath .. "/undo-dir"
 vim.o.undofile = true
 -- vim.o.showmatch = true
@@ -77,6 +81,9 @@ vim.o.foldlevelstart = 99 -- start file with all folds opened
 -- using treesitter for folding
 vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+
+vim.o.sessionoptions =
+    "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
 
 -- shows spaces
 vim.o.list = false
