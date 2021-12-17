@@ -1,7 +1,7 @@
 local null_ls = require("null-ls")
 local lsp = require('lspconfig')
 
-null_ls.config({
+null_ls.setup({
     sources = {
         null_ls.builtins.formatting.black,
         null_ls.builtins.diagnostics.cspell.with({
@@ -11,6 +11,7 @@ null_ls.config({
                 if (lsp.util.root_pattern(".vscode/cspell.json")(params.bufname)) then
                     return params.options and
                                {"--config", ".vscode/cspell.json"}
+
                 end
                 return params.options
             end,
@@ -31,5 +32,5 @@ null_ls.config({
     },
     debounce = 600
 })
-require("lspconfig")["null-ls"].setup({})
+
 
