@@ -56,6 +56,10 @@ return require('packer').startup(function(use)
     use 'Mofiqul/dracula.nvim'
     use 'EdenEast/nightfox.nvim'
     use 'sainnhe/gruvbox-material'
+    use 'joshdick/onedark.vim'
+    use({"catppuccin/nvim", as = "catppuccin"})
+    use {'rose-pine/neovim', as = 'rose-pine'}
+    use {'ray-x/aurora'}
 
     use 'martinda/Jenkinsfile-vim-syntax'
 
