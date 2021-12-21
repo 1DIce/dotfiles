@@ -20,12 +20,21 @@ vim.g.tokyonight_colors = {
 -- require('nightfox').load("nightfox")
 -- vim.cmd('colorscheme darkplus')
 -- vim.cmd('colorscheme tokyonight')
-vim.cmd('colorscheme gruvbox-material')
+-- vim.cmd('colorscheme gruvbox-material')
 -- vim.cmd('colorscheme dracula')
 -- vim.cmd('colorscheme rose-pine')
 -- vim.cmd('colorscheme catppuccin')
 -- vim.cmd('colorscheme aurora')
+local palette = require('monokai').classic
+require('monokai').setup {
+    palette = palette,
+    custom_hlgroups = {
+        LspReferenceWrite = {bg = palette.base5},
+        LspReferenceRead = {bg = palette.base5}
+        -- LspReferenceText = {bg = palette.grey, fg = palette.diff_add}
+    }
 
+}
 -- vim.cmd('highlight ColorColumn ctermbg=0 guibg=lightgrey')
 -- vim.cmd('highlight SignColumn guibg=#282828')
 

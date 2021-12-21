@@ -61,8 +61,13 @@ return require('packer').startup(function(use)
     use({"catppuccin/nvim", as = "catppuccin"})
     use {'rose-pine/neovim', as = 'rose-pine'}
     use {'ray-x/aurora'}
+    use 'tanvirtin/monokai.nvim'
 
     use 'martinda/Jenkinsfile-vim-syntax'
+    use {
+        'norcalli/nvim-colorizer.lua',
+        config = function() require'colorizer'.setup() end
+    }
 
     use 'szw/vim-maximizer'
 
