@@ -13,6 +13,7 @@ local useBuiltInLsp = true
 
 return require('packer').startup(function(use)
     use({'wbthomason/packer.nvim', event = 'VimEnter'})
+    use "lewis6991/impatient.nvim"
 
     use 'MunifTanjim/nui.nvim' -- ui library
 

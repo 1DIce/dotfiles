@@ -1,3 +1,4 @@
+pcall(require, "impatient")
 require 'ld.plugins'
 
 require 'ld.utils'
