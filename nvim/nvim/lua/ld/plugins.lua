@@ -153,6 +153,7 @@ return require('packer').startup(function(use)
         use 'onsails/lspkind-nvim'
         use 'ray-x/lsp_signature.nvim'
         use 'jose-elias-alvarez/nvim-lsp-ts-utils'
+        use 'b0o/SchemaStore.nvim'
         use 'williamboman/nvim-lsp-installer'
         use({
             "jose-elias-alvarez/null-ls.nvim",
