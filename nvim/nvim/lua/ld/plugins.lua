@@ -216,12 +216,6 @@ return require('packer').startup(function(use)
     use {"nvim-treesitter/nvim-treesitter-angular", after = "nvim-treesitter"}
 
     use {
-        'SmiteshP/nvim-gps',
-        requires = 'nvim-treesitter/nvim-treesitter',
-        config = function() require 'ld.plugins.nvim-gps' end
-    }
-
-    use {
         'nvim-treesitter/nvim-treesitter-textobjects',
         config = function() require 'ld.plugins.treesitter-textobjects' end,
         after = "nvim-treesitter"
@@ -233,14 +227,14 @@ return require('packer').startup(function(use)
     --   requires = {{"nvim-lua/plenary.nvim"}, {"nvim-treesitter/nvim-treesitter"}}
     -- }
 
-    -- status line
     use {
-        'NTBBloodbath/galaxyline.nvim',
-        requires = 'SmiteshP/nvim-gps',
-        config = function() require 'ld.plugins.galaxyline' end
+        'nvim-lualine/lualine.nvim',
+        requires = {'kyazdani42/nvim-web-devicons', opt = true},
+        config = function() require('ld.plugins.lualine-config') end
     }
 
     -- Automatically set up you configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if packer_bootstrap then require('packer').sync() end
 end)
+
