@@ -62,6 +62,7 @@ return require('packer').startup(function(use)
     use {'rose-pine/neovim', as = 'rose-pine'}
     use {'ray-x/aurora'}
     use 'tanvirtin/monokai.nvim'
+    use "rebelot/kanagawa.nvim"
 
     use 'martinda/Jenkinsfile-vim-syntax'
     use {
