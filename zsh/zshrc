@@ -38,7 +38,9 @@ alias bat="batcat"
 alias cheat="cht.sh"
 alias v="nvim"
 alias g="git"
+alias marktext="marktext.AppImage"
 alias notes="nvim  '+let g:auto_session_enabled = v:false' -c VimwikiIndex"
+
 
 # Make Tab autocomplete regardless of filename case
 set completion-ignore-case on 
