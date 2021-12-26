@@ -1,0 +1,8 @@
+- link:
+    ~/.config/vifm/colors: vifm/colors
+    ~/.config/vifm/scripts: vifm/scripts
+    ~/.config/vifm/vifmrc : vifm/vifmrc 
+
+- shell:
+  - sudo apt install vifm -y
+
