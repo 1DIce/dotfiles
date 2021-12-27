@@ -37,6 +37,10 @@ return require('packer').startup(function(use)
 
     use "dbeniamine/cheat.sh-vim"
     use {
+        "tyru/open-browser.vim",
+        config = function() require("ld.plugins.open-browser") end
+    }
+    use {
         "MattesGroeger/vim-bookmarks",
         config = function() require('ld.plugins.vim-bookmarks') end
     }
