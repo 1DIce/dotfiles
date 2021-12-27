@@ -116,8 +116,6 @@ return require('packer').startup(function(use)
         config = function() require("ld.plugins.fzf") end
     }
 
-    use {'liuchengxu/vim-clap', run = ':Clap install-binary!'}
-
     use 'gennaro-tedesco/nvim-peekup' -- shows register preview
 
     use {
