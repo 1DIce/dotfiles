@@ -1,0 +1,4 @@
+- link:
+       ~/.config/fyodor/fyodor.toml: fyodor/fyodor.toml
+- shell:
+    - sudo gem install fyodor

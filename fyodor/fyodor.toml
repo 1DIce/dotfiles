@@ -1,0 +1,15 @@
+# fyodor sample config file
+
+# Set the translations you get on your clippings file
+[parser]
+highlight = "Ihre Markierung"
+note = "Ihre Notiz"
+bookmark = "Ihr Lesezeichen"
+clip = "Clip This Article"
+loc = "Position"
+page = "Seite"
+time = "Hinzugefügt am"
+
+[output]
+# Whether we should print each entry time next to them
+time = false
