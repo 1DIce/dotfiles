@@ -51,4 +51,5 @@ functions.link_highlight('TelescopePreviewBorder', 'GruvboxBg2', true)
 if functions.is_linux() then telescope.load_extension('fzf') end
 telescope.load_extension('mapper')
 telescope.load_extension('harpoon')
+telescope.load_extension('neoclip')
 

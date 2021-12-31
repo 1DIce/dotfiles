@@ -108,6 +108,17 @@ return require('packer').startup(function(use)
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
 
     use {
+        "AckslD/nvim-neoclip.lua",
+        requires = {
+            {'tami5/sqlite.lua', module = 'sqlite'},
+            {'nvim-telescope/telescope.nvim'}
+        },
+        config = function()
+            require('neoclip').setup({enable_persistant_history = true})
+        end
+    }
+
+    use {
         'ibhagwan/fzf-lua',
         requires = {
             'kyazdani42/nvim-web-devicons', -- optional for icons
@@ -121,6 +132,13 @@ return require('packer').startup(function(use)
     use {
         "folke/which-key.nvim",
         config = function() require("ld.plugins.which-key") end
+    }
+
+    use 'vifm/vifm.vim'
+
+    use {
+        'goolord/alpha-nvim',
+        config = function() require('ld.plugins.alpha') end
     }
 
     use {
