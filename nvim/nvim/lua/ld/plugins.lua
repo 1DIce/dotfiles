@@ -222,6 +222,7 @@ return require('packer').startup(function(use)
     end
     -- Language packs
 
+    use 'mattn/emmet-vim'
     use {
         "softoika/ngswitcher.vim",
         config = function() require("ld.plugins.ngswitcher") end
