@@ -3,3 +3,5 @@
     ~/wsl2-ubuntu-map-win-localhost.sh: scripts/wsl2/wsl2-ubuntu-map-win-localhost.sh
     ~/bin/prettier-changes: scripts/prettier-changes.sh
     ~/bin/jenkinslint: scripts/jenkinslint.sh
+    ~/bin/weather: scripts/weather.sh
+    ~/bin/rain: scripts/rain.sh
