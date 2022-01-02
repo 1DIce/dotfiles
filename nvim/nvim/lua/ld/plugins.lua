@@ -44,6 +44,7 @@ return require('packer').startup(function(use)
         "MattesGroeger/vim-bookmarks",
         config = function() require('ld.plugins.vim-bookmarks') end
     }
+
     use {
         "vimwiki/vimwiki",
         config = function() require('ld.plugins.vim-wiki') end
@@ -57,6 +58,7 @@ return require('packer').startup(function(use)
 
     -- color theme
     use 'martinsione/darkplus.nvim'
+    use 'Mofiqul/vscode.nvim'
     use 'folke/tokyonight.nvim'
     use 'Mofiqul/dracula.nvim'
     use 'EdenEast/nightfox.nvim'
@@ -67,6 +69,9 @@ return require('packer').startup(function(use)
     use {'ray-x/aurora'}
     use 'tanvirtin/monokai.nvim'
     use "rebelot/kanagawa.nvim"
+    use 'yashguptaz/calvera-dark.nvim'
+    use "projekt0n/github-nvim-theme"
+    use 'olimorris/onedarkpro.nvim'
 
     use 'martinda/Jenkinsfile-vim-syntax'
     use {
