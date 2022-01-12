@@ -91,10 +91,11 @@ return require('packer').startup(function(use)
         config = function() require 'ld.plugins.nvim-bqf' end
     }
 
-    use {
-        'justinmk/vim-sneak',
-        config = function() require 'ld.plugins.sneak' end
-    }
+    -- use {
+    --     'justinmk/vim-sneak',
+    --     config = function() require 'ld.plugins.sneak' end
+    -- }
+    use 'ggandor/lightspeed.nvim'
 
     use 'tpope/vim-repeat' -- extends . repeat, for example for make it work with vim-sneak
     use 'tpope/vim-surround' -- Change surrounding arks
