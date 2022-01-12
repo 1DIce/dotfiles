@@ -13,6 +13,8 @@ nnoremap('<leader>fg', "<cmd>lua require('telescope.builtin').git_files()<CR>",
          'telescope', 'telescope_git_files', 'Find git files')
 nnoremap('<leader>fc', "<cmd>lua require('telescope.builtin').git_status()<CR>",
          'telescope', 'telescope_git_status', 'Find git files')
+nnoremap('<leader>fs', "<cmd>Telescope grep_string<CR>", 'telescope',
+         'telescope_grep_string', 'Find string under cursor')
 
 nnoremap('<leader>vs',
          "<cmd>lua require('ld.plugins.telescope.functions').search_config()<CR>",
