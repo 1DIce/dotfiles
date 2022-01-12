@@ -1,16 +1,16 @@
 local filetype = vim.api.nvim_buf_get_option(0, 'filetype')
 
-addEventListener('show diagnostic popup on cursor hold',
-                 {'CursorHold <buffer>'}, function()
-    vim.lsp.diagnostic.show_line_diagnostics({show_header = false})
-end)
+-- addEventListener('show diagnostic popup on cursor hold',
+--                  {'CursorHold <buffer>'}, function()
+--     vim.diagnostic.open_float({show_header = false})
+-- end)
 
 vim.api
     .nvim_command [[autocmd CursorHold  *.ts,*.lua :lua vim.lsp.buf.document_highlight()]]
+-- vim.api
+--     .nvim_command [[autocmd CursorHoldI *.ts,*.lua :lua vim.lsp.buf.document_highlight()]]
 vim.api
-    .nvim_command [[autocmd CursorHoldI *.ts,*.lua :lua vim.lsp.buf.document_highlight()]]
-vim.api
-    .nvim_command [[autocmd CursorMoved *.ts,*.lua :lua vim.lsp.buf.clear_references()]]
+    .nvim_command [[autocmd CursorMoved,InsertEnter *.ts,*.lua :lua vim.lsp.buf.clear_references()]]
 
 if filetype == 'rust' then
     vim.cmd(
@@ -25,3 +25,5 @@ vim.cmd(
 
 vim.cmd([[autocmd BufWritePre *.html,*.js,*.less,*.json,*.scss :Prettier ]])
 vim.cmd([[autocmd BufWritePre *.lua :lua vim.lsp.buf.formatting_sync() ]])
+
+
