@@ -61,19 +61,24 @@ cmp.setup({
     },
     sources = {
         {name = 'nvim_lsp', max_item_count = 10},
-        {name = 'luasnip', max_item_count = 10}, {name = 'nvim_lua'},
-        {name = 'path'},
+        {name = 'luasnip', max_item_count = 10},
+        {name = 'nvim_lua', max_item_count = 20},
+        {name = 'path', max_item_count = 10},
         {name = 'buffer', max_item_count = 5, keyword_length = 4}
     }
 })
 
 -- `/` cmdline setup.
-cmp.setup.cmdline('/', {sources = {{name = 'buffer'}}})
+cmp.setup.cmdline('/', {sources = {{name = 'buffer', max_item_count = 15}}})
 
 -- `:` cmdline setup.
 cmp.setup.cmdline(':', {
-    sources = cmp.config.sources({{name = 'path'}}, {
-        {name = 'cmdline', keyword_pattern = [=[[^[:blank:]\!]*]=]}
+    sources = cmp.config.sources({{name = 'path', max_item_count = 15}}, {
+        {
+            name = 'cmdline',
+            max_item_count = 30,
+            keyword_pattern = [=[[^[:blank:]\!]*]=]
+        }
     })
 })
 
