@@ -81,6 +81,12 @@ if grep -q WSL2 /proc/version; then
   alias docker-compose="sudo podman-compose"
 fi
 
+
+# load bashmarks
+source ~/.local/bin/bashmarks.sh
+alias blist="bls"
+alias bfind='bls --no-color | fzf | cut -f1 -d "=" | xargs bcd'
+
 # ripgrep for fzf if available
 if type rg &> /dev/null; then 
   export FZF_DEFAULT_COMMAND='rg --files'

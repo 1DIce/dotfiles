@@ -34,3 +34,8 @@
         branch = main
   shallow = true
   ignore = dirty
+[submodule "libs/bashmarks"]
+	path = libs/bashmarks
+	url = https://github.com/1DIce/bashmarks.git
+  shallow = true
+  ignore = dirty
