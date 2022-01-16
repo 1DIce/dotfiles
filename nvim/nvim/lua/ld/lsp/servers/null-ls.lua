@@ -29,7 +29,8 @@ null_ls.setup({
                 return cwd
             end
 
-        }), null_ls.builtins.formatting.lua_format
+        }), null_ls.builtins.formatting.lua_format,
+        null_ls.builtins.formatting.shfmt
     },
     debounce = 600
 })
