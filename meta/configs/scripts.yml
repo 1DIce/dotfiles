@@ -5,3 +5,4 @@
     ~/bin/jenkinslint: scripts/jenkinslint.sh
     ~/bin/weather: scripts/weather.sh
     ~/bin/rain: scripts/rain.sh
+    ~/bin/tmux-sessionizer: scripts/tmux-sessionizer.sh
