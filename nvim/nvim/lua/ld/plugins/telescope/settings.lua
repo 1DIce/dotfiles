@@ -22,7 +22,7 @@ telescope.setup {
         file_ignore_patterns = {
             '.backup', '.swap', '.langservers', '.session', '.undo', '*.git',
             'node_modules', 'vendor', '.cache', '.vscode-server', '.Desktop',
-            '.Documents', 'classes'
+            '.Documents', 'classes', 'package-lock.json'
         },
         borderchars = {'─', '│', '─', '│', '╭', '╮', '╯', '╰'},
         color_devicons = true,
@@ -52,4 +52,3 @@ if functions.is_linux() then telescope.load_extension('fzf') end
 telescope.load_extension('mapper')
 telescope.load_extension('harpoon')
 telescope.load_extension('neoclip')
-
