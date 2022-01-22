@@ -9,7 +9,8 @@
 	longpaths = true
 	filemode = false
 	autocrlf = false
-	pager = less -E -X
+#	pager = less -E -X
+  pager = delta
   excludesFile = ~/.gitignore
 
 [push]
@@ -34,6 +35,24 @@
 [mergetool "kdiff3"]
   path = /mnt/c/Program Files/KDiff3/kdiff3.exe
 	keepBackup = false
+
+# Delta config
+[interactive]
+  diffFilter = delta --color-only --features=interactive
+[delta]
+  features = decorations
+  side-by-side = true
+[delta "interactive"]
+  keep-plus-minus-markers = false
+[delta "decorations"]
+  commit-decoration-style = blue ol
+  commit-style = raw
+  file-style = omit
+  hunk-header-decoration-style = blue box
+  hunk-header-file-style = red
+  hunk-header-line-number-style = "#067a00"
+  hunk-header-style = file line-number syntax
+
 
 [include]
   path = ~/.gitconfig-credential
