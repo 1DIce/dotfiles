@@ -6,3 +6,4 @@
     ~/bin/weather: scripts/weather.sh
     ~/bin/rain: scripts/rain.sh
     ~/bin/tmux-sessionizer: scripts/tmux-sessionizer.sh
+    ~/bin/git-review-diff: scripts/git-review-diff.sh
