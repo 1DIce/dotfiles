@@ -5,7 +5,6 @@ local presentCmpNvimLsp, cmpNvimLsp = pcall(require, 'cmp_nvim_lsp')
 
 -- for debugging lsp
 -- Levels by name: 'trace', 'debug', 'info', 'warn', 'error'
-
 vim.lsp.set_log_level('error')
 
 local function on_attach(client, bufnr)
@@ -23,9 +22,10 @@ local function on_attach(client, bufnr)
     })
 end
 
+vim.diagnostic.config({virtual_text = false, underline = true})
 vim.lsp.handlers['textDocument/publishDiagnostics'] =
     vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = {spacing = 0, prefix = '■'},
+        -- virtual_text = {spacing = 0, prefix = '■'},
 
         -- see: ":help vim.lsp.diagnostic.set_signs()"
         signs = true,
@@ -155,3 +155,5 @@ for serverName, config in pairs(servers) do
     server:setup(vim.tbl_deep_extend('force', default_lsp_config, config))
     vim.cmd [[ do User LspAttachBuffers ]]
 end
+
+
