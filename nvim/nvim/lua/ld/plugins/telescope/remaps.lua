@@ -1,8 +1,9 @@
 nnoremap('<leader>fp', "<cmd>Telescope projects<CR>", 'telescope',
          'telescope_projects', 'Projects')
--- nnoremap('<leader>fl', "<cmd>lua require('telescope.builtin').live_grep()<CR>", 'telescope', 'telescope_live_grep', 'Live grep')
-nnoremap('<leader>fl', "<cmd>lua require('fzf-lua').live_grep_native()<CR>",
+nnoremap('<leader>fl', "<cmd>lua require('telescope.builtin').live_grep()<CR>",
          'telescope', 'telescope_live_grep', 'Live grep')
+-- nnoremap('<leader>fl', "<cmd>lua require('fzf-lua').live_grep_native()<CR>",
+--          'telescope', 'telescope_live_grep', 'Live grep')
 nnoremap('<leader>ff', "<cmd>lua require('telescope.builtin').find_files()<CR>",
          'telescope', 'telescope_files', 'Find files')
 nnoremap('<C-p>', "<cmd>lua require('fzf-lua').files()<CR>", 'telescope',
@@ -49,4 +50,5 @@ nnoremap('<leader>fo',
          "<cmd>lua require('telescope.builtin').file_browser({cwd = '~', depth = 1, hidden = true})<CR>",
          'telescope', 'telescope_file_browser_home',
          'Open file browser in $HOME')
+
 
