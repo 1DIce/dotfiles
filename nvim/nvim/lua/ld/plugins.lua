@@ -76,7 +76,9 @@ return require('packer').startup(function(use)
     use 'martinda/Jenkinsfile-vim-syntax'
     use {
         'norcalli/nvim-colorizer.lua',
-        config = function() require'colorizer'.setup() end
+        config = function()
+            require'colorizer'.setup({"less", "css", "scss"})
+        end
     }
 
     use 'szw/vim-maximizer'
