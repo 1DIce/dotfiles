@@ -1,8 +1,10 @@
 vim.fn.sign_define("DiagnosticSignError",
-    {text = "", texthl = "GruvboxRed"})
+                   {text = "", texthl = "DiagnosticError"})
 vim.fn.sign_define("DiagnosticSignWarning",
-    {text = "", texthl = "GruvboxYellow"})
+                   {text = "", texthl = "DiagnosticWarn"})
 vim.fn.sign_define("DiagnosticSignInformation",
-    {text = "", texthl = "GruvboxBlue"})
+                   {text = "", texthl = "DiagnosticInfo"})
 vim.fn.sign_define("DiagnosticSignHint",
-    {text = "", texthl = "GruvboxAqua"})
+                   {text = "", texthl = "DiagnosticHint"})
+
+
