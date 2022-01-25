@@ -28,6 +28,10 @@
 
 [diff]
   guitool = kdiff3
+  tool = vscode
+
+[difftool "vscode"]
+  cmd = code --wait --diff $LOCAL $REMOTE
 
 [mergetool "fugitive"]
   cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
