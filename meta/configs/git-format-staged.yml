@@ -1,0 +1,2 @@
+- shell:
+  - npm install --global git-format-staged

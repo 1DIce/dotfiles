@@ -7,3 +7,4 @@
     ~/bin/rain: scripts/rain.sh
     ~/bin/tmux-sessionizer: scripts/tmux-sessionizer.sh
     ~/bin/git-review-diff: scripts/git-review-diff.sh
+    ~/bin/prettier-format-staged: scripts/prettier-format-staged.sh
