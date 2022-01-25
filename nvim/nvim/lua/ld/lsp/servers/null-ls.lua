@@ -7,7 +7,7 @@ null_ls.setup({
         null_ls.builtins.diagnostics.cspell.with({
             filetypes = {},
             severity = 3,
-            disabled_filetypes = {"lua"},
+            disabled_filetypes = {"lua", "gitconfig"},
             extra_args = function(params)
                 if (lsp.util.root_pattern(".vscode/cspell.json")(params.bufname)) then
                     return params.options and
