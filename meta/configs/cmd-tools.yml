@@ -1,5 +1,5 @@
 - shell:
-  - sudo apt update && sudo apt install build-essential cmake ripgrep fd-find rename bat trash-cli sqlite3 libsqlite3-dev -y
+  - sudo apt update && sudo apt install build-essential cmake ripgrep fd-find rename bat trash-cli sqlite3 libsqlite3-dev python-is-python3  -y
   - brew install lsd
   - brew install git-delta
 
