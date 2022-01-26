@@ -6,7 +6,10 @@ local make_entry = require('telescope.make_entry')
 local M = {}
 
 M.search_config = function()
-  require("telescope.builtin").find_files({prompt_title = "< VimConfig >", cwd = "$HOME/.config/nvim"})
+  require("telescope.builtin").find_files({
+    prompt_title = "< VimConfig >",
+    cwd = "$HOME/.config/nvim"
+  })
 end
 
 local lsp_location_result_to_key = function(lsp_result)
@@ -14,7 +17,9 @@ local lsp_location_result_to_key = function(lsp_result)
   local rangeStart = lsp_result.range.start
   local rangeEnd = lsp_result.range["end"]
 
-  local ranges = {rangeStart.character, rangeStart.line, rangeEnd.character, rangeEnd.line}
+  local ranges = {
+    rangeStart.character, rangeStart.line, rangeEnd.character, rangeEnd.line
+  }
   local key = uri .. ":" .. table.concat(ranges, ":")
   return key
 
@@ -24,7 +29,10 @@ M.lsp_unique_references = function(opts)
   local params = vim.lsp.util.make_position_params()
   params.context = {includeDeclaration = true}
 
-  local results_lsp, err = vim.lsp.buf_request_sync(0, "textDocument/references", params, opts.timeout or 10000)
+  local results_lsp, err = vim.lsp.buf_request_sync(0,
+                                                    "textDocument/references",
+                                                    params,
+                                                    opts.timeout or 10000)
   if err then
     vim.api.nvim_err_writeln("Error when finding references: " .. err)
     return
@@ -49,7 +57,8 @@ M.lsp_unique_references = function(opts)
         end
       end
 
-      vim.list_extend(locations, vim.lsp.util.locations_to_items(filtered_results) or {})
+      vim.list_extend(locations,
+                      vim.lsp.util.locations_to_items(filtered_results) or {})
 
     end
   end
@@ -66,6 +75,16 @@ M.lsp_unique_references = function(opts)
     sorter = conf.generic_sorter(opts)
   }):find()
 end
+
+M.file_browser_home = function()
+  require('telescope.builtin').file_browser({
+    cwd = '~',
+    depth = 1,
+    hidden = true
+  })
+end
+
+M.buffers = function() require("telescope.builtin").buffers({}) end
 
 return M
 

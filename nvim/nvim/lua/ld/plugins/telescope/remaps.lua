@@ -43,12 +43,12 @@ nnoremap('<leader>bc',
          "<cmd>lua require('telescope.builtin').git_bcommits()<CR>",
          'telescope', 'telescope_git_bcommits', 'Search buffer git commits')
 
-nnoremap('<leader>bl', "<cmd>lua require('telescope.builtin').buffers()<CR>",
+nnoremap('<leader>bl',
+         "<cmd>lua require('ld.plugins.telescope.functions').buffers()<CR>",
          'telescope', 'telescope_buffers', 'List open buffers')
 
 nnoremap('<leader>fo',
-         "<cmd>lua require('telescope.builtin').file_browser({cwd = '~', depth = 1, hidden = true})<CR>",
+         "<cmd>lua require('ld.plugins.telescope.functions').file_browser_home()<CR>",
          'telescope', 'telescope_file_browser_home',
          'Open file browser in $HOME')
-
 
