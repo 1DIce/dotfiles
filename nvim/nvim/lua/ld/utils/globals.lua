@@ -17,3 +17,9 @@ _G.reload = function()
     print('Reloaded ' .. counter .. ' modules!')
 end
 
+-- Works like "require", but reloads the package before returning it.
+RELOAD = function(package_name)
+    package.loaded[package_name] = nil
+    return require(package_name)
+end
+
