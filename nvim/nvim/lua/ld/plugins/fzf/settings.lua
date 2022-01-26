@@ -1,7 +1,7 @@
 local actions = require "fzf-lua.actions"
 require'fzf-lua'.setup {
   winopts = {
-    -- split         = "belowright new",-- open in a split instead?
+    split = "botright new", -- open in a split instead?
     -- "belowright new"  : split below
     -- "aboveleft new"   : split above
     -- "belowright vnew" : split right
@@ -260,7 +260,10 @@ require'fzf-lua'.setup {
   colorschemes = {
     prompt = 'Colorschemes❯ ',
     live_preview = true, -- apply the colorscheme on preview?
-    actions = {["default"] = actions.colorscheme, ["ctrl-y"] = function(selected) print(selected[1]) end},
+    actions = {
+      ["default"] = actions.colorscheme,
+      ["ctrl-y"] = function(selected) print(selected[1]) end
+    },
     winopts = {height = 0.55, width = 0.30},
     post_reset_cb = function()
       -- reset statusline highlights after
