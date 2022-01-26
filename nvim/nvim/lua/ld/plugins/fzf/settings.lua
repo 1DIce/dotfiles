@@ -1,7 +1,7 @@
 local actions = require "fzf-lua.actions"
 require'fzf-lua'.setup {
   winopts = {
-    split = "botright new", -- open in a split instead?
+    -- split = "botright new", -- open in a split instead?
     -- "belowright new"  : split below
     -- "aboveleft new"   : split above
     -- "belowright vnew" : split right
@@ -16,7 +16,8 @@ require'fzf-lua'.setup {
     -- to manually draw the border characters around the preview
     -- window, can be set to 'false' to remove all borders or to
     -- 'none', 'single', 'double' or 'rounded' (default)
-    border = {'╭', '─', '╮', '│', '╯', '─', '╰', '│'},
+    -- border = {'╭', '─', '╮', '│', '╯', '─', '╰', '│'},
+    border = 'single',
     fullscreen = false, -- start fullscreen?
     hl = {
       normal = 'Normal', -- window normal color (fg+bg)
@@ -311,3 +312,5 @@ require'fzf-lua'.setup {
   file_icon_padding = '',
   file_icon_colors = {["lua"] = "blue"}
 }
+
+
