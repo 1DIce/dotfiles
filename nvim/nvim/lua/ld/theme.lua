@@ -20,6 +20,7 @@ local vscode_dark = function()
   vim.cmd [[colorscheme vscode]]
   require('lualine').setup {options = {theme = 'vscode'}}
   vim.cmd("highlight TSVariableBuiltin guifg=#569cd6")
+  vim.cmd("highlight TSKeywordReturn guifg=#C586C0")
 end
 
 local nightfox = function() require("nightfox").load("nightfox") end
