@@ -16,9 +16,12 @@ local vscode_dark = function()
     vim.g.vscode_style = "dark"
     -- Enable transparent background.
     vim.g.vscode_transparent = 0
+    vim.o.background = "dark"
     vim.cmd [[colorscheme vscode]]
     require('lualine').setup {options = {theme = 'vscode'}}
 end
+
+local nightfox = function() require("nightfox").load("nightfox") end
 
 local monokai = function()
     local palette = require('monokai').classic
@@ -87,10 +90,17 @@ end
 local onedarkpro = function()
     local onedarkpro = require('onedarkpro')
     onedarkpro.setup({
+        hlgroups = {
+            TSParameter = {fg = "${white}"},
+            TSProperty = {fg = "${white}"},
+            TSVariable = {fg = "${white}"}
+        },
         options = {
             transparency = false,
             terminal_colors = true,
-            window_unfocussed_color = false
+            window_unfocussed_color = false,
+            bold = true,
+            italic = true
         }
     })
     onedarkpro.load()
@@ -99,3 +109,4 @@ end
 vscode_dark()
 -- github_dark()
 -- onedarkpro()
+-- gruvbox()
