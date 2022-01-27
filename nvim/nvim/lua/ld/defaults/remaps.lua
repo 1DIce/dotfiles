@@ -55,7 +55,7 @@ cnoremap <expr> <c-p> getcmdtype() =~ '[\/?]' ? '<c-t>' : '<c-p>'
 ]], false)
 
 -- save buffer
-nnoremap('<leader><leader>', '<cmd>write<CR>', 'remap',
+nnoremap('<leader><leader>s', '<cmd>write<CR>', 'remap',
          'remap_save_current_buffer', 'save current buffer')
 
 -- editing remaps
