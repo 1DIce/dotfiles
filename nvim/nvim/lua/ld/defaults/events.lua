@@ -5,4 +5,3 @@ vim.cmd([[au BufRead,BufNewFile *.jenkins   setfiletype Jenkinsfile]])
 vim.cmd([[au BufRead,BufNewFile gitconfig*   setfiletype gitconfig]])
 
 
-

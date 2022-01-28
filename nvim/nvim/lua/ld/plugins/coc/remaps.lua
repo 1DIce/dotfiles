@@ -1,33 +1,31 @@
+nnoremap('<leader>lt',
+         '<cmd>lua require(\'telescope\').extensions.coc.workspace_symbols({default_text="\'class | \'interface ", file_ignore_patterns={"%.spec.ts","node_modules"}})<CR>',
+         'lsp', 'lsp_workspace_type_definitions', 'Workspace type defintions')
 
-    nnoremap( '<leader>lt',
-                   '<cmd>lua require(\'telescope\').extensions.coc.workspace_symbols({default_text="\'class | \'interface ", file_ignore_patterns={"%.spec.ts","node_modules"}})<CR>',
-                   'lsp', 'lsp_workspace_type_definitions', 'Workspace type defintions')
+nnoremap('<leader>lc',
+         '<cmd>lua require(\'telescope\').extensions.coc.workspace_symbols({default_text="\'variable ", file_ignore_patterns={"%.spec.ts","^e2e/","node_modules"}})<CR>',
+         'lsp', 'lsp_workspace_constants_definitions',
+         'Workspace constant defintions')
+nnoremap('<leader>lf',
+         '<cmd>lua require(\'telescope\').extensions.coc.workspace_symbols({default_text="\'function ", file_ignore_patterns={"%.spec.ts","^e2e/","node_modules"}})<CR>',
+         'lsp', 'lsp_workspace_function definitions',
+         'Workspace function defintions')
+nnoremap('<leader>lp',
+         '<cmd>lua require(\'telescope.builtin\').lsp_dynamic_workspace_symbols({symbols={"property"}, file_ignore_patterns={"%.spec.ts","^e2e/","node_modules"}})<CR>',
+         'lsp', 'lsp_workspace_property_definitions',
+         'Workspace property defintions')
 
-    nnoremap( '<leader>lc',
-                   '<cmd>lua require(\'telescope\').extensions.coc.workspace_symbols({default_text="\'variable ", file_ignore_patterns={"%.spec.ts","^e2e/","node_modules"}})<CR>',
-                   'lsp', 'lsp_workspace_constants_definitions', 'Workspace constant defintions')
-    nnoremap( '<leader>lf',
-                   '<cmd>lua require(\'telescope\').extensions.coc.workspace_symbols({default_text="\'function ", file_ignore_patterns={"%.spec.ts","^e2e/","node_modules"}})<CR>',
-                   'lsp', 'lsp_workspace_function definitions', 'Workspace function defintions')
-    nnoremap( '<leader>lp',
-                   '<cmd>lua require(\'telescope.builtin\').lsp_dynamic_workspace_symbols({symbols={"property"}, file_ignore_patterns={"%.spec.ts","^e2e/","node_modules"}})<CR>',
-                   'lsp', 'lsp_workspace_property_definitions', 'Workspace property defintions')
-
-    -- search for symbols in current buffer
-    nnoremap( '<leader>bs', "<cmd>lua require(\'telescope\').extensions.coc.document_symbols({})<CR>", 'lsp',
-                   'telescope_lsp_document_symbols', 'Search document symbols')
-
+-- search for symbols in current buffer
+nnoremap('<leader>bs',
+         "<cmd>lua require(\'telescope\').extensions.coc.document_symbols({})<CR>",
+         'lsp', 'telescope_lsp_document_symbols', 'Search document symbols')
 
 -- find references
-  nnoremap( '<leader>lu', '<cmd>lua require(\'telescope\').extensions.coc.references({})<CR>', 'lsp',
-                 'lsp_references', 'Show references')
-
-
+nnoremap('<leader>lu',
+         '<cmd>lua require(\'telescope\').extensions.coc.references({})<CR>',
+         'lsp', 'lsp_references', 'Show references')
 
 -- go to definition
-
-
-
 
 -- Use tab for trigger completion with characters ahead and navigate.
 -- NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by

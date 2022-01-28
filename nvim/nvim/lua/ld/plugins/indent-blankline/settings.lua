@@ -1,3 +1,1 @@
-require("indent_blankline").setup {
-  filetype_exclude = {"alpha"}
-}
+require("indent_blankline").setup {filetype_exclude = {"alpha"}}

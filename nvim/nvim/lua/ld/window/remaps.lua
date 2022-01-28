@@ -1,4 +1,5 @@
-nnoremap('<leader>wm', '<cmd>MaximizerToggle<CR>', "window", "window_toggle_maximize")
+nnoremap('<leader>wm', '<cmd>MaximizerToggle<CR>', "window",
+         "window_toggle_maximize")
 
 nnoremap('<leader>wh', '<cmd>wincmd h<CR>', 'window', 'window_move_left',
          'Move window left')
