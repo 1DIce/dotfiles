@@ -1,4 +1,5 @@
 local remaps = require 'ld.lsp.remaps'
+local events = require 'ld.lsp.events'
 
 local initOptions = {
   preferences = {
@@ -21,9 +22,11 @@ return function(on_attach, capabilities)
       client.resolved_capabilities.document_formatting = false -- tsserver, stop messing with prettier da fuck!
       remaps.set_typescript(client, bufnr)
 
+      events.document_highlight_under_cursor()
     end,
     init_options = initOptions,
     capabilities = modfiedCapabilities
 
   }
 end
+
