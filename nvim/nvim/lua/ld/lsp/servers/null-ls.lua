@@ -2,6 +2,9 @@ local null_ls = require("null-ls")
 local lsp = require('lspconfig')
 
 null_ls.setup({
+  on_attach = function(client, bufnr)
+    require("ld.lsp.remaps").set_default(client, bufnr)
+  end,
   sources = {
     null_ls.builtins.formatting.black,
     null_ls.builtins.diagnostics.cspell.with({
@@ -30,7 +33,9 @@ null_ls.setup({
       extra_args = function(params)
         return params.options and {"--indent-width", "2"}
       end
-    }), null_ls.builtins.formatting.shfmt
+    }), null_ls.builtins.formatting.shfmt,
+    null_ls.builtins.diagnostics.shellcheck,
+    null_ls.builtins.code_actions.shellcheck
   },
   debounce = 600
 })

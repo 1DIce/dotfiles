@@ -51,9 +51,9 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/ld/init.lua")
 require('lspconfig').sumneko_lua.setup {
   cmd = {"lua-language-server"},
-  on_attach = function()
+  on_attach = function(client, bufnr)
     require('ld.lsp.events').document_highlight_under_cursor()
-    on_attach()
+    on_attach(client, bufnr)
   end,
   capabilities = capabilities,
   settings = {
