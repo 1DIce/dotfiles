@@ -1,4 +1,5 @@
 - link: 
     ~/.zshrc: zsh/zshrc
+    ~/.zshenv: zsh/zshenv
     ~/.zplug: libs/zplug
     ~/.local/bin/bashmarks.sh: libs/bashmarks/bashmarks.sh

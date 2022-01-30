@@ -82,8 +82,7 @@ if grep -q WSL2 /proc/version; then
 fi
 
 
-# load bashmarks
-source ~/.local/bin/bashmarks.sh
+# Bashmarks aliases. Bashmarks is source in .zshenv
 alias blist="bls"
 alias bfind='bls --no-color | fzf | cut -f1 -d "=" | xargs bcd'
 
@@ -112,7 +111,7 @@ if ! zplug check --verbose; then
     fi
 fi
 # Then, source plugins and add commands to $PATH
-zplug load --verbose
+zplug load
 
 # Install starship promp
 eval "$(starship init zsh)"
