@@ -1,13 +1,26 @@
-#!/usr/bin/env bash
+#!/usr/bin/zsh
 
 if [[ $# -eq 1 ]]; then
 	selected=$1
 else
-	selected=$(find ~/work/merlin ~/personal -mindepth 1 -maxdepth 1 -type d | fzf)
+  # tr -s ' ' squeezes the whitespace
+  local bookmarks=$(bls | tr -s ' ' | cut -f3 -d ' ')
+  local commonDirectories=$(find ~/work/configurator ~/personal ~/open-source -mindepth 1 -maxdepth 1 -type d 2> /dev/null
+)
+
+  selected=$({echo "$bookmarks"; echo "$commonDirectories"; } | fzf)
+  
 fi
 
 if [[ -z $selected ]]; then
 	exit 0
+fi
+
+
+if [[ $selected = '.' ]]; then
+  selected=$(pwd)
+elif [[ $selected = '..' ]]; then
+  selected=$(dirname $(pwd))
 fi
 
 session_name=$(basename "$selected" | tr . _)
