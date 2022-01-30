@@ -1,3 +1,5 @@
 - link: 
-
     ~/.tmux.conf: tmux/tmux.conf
+
+- shell: 
+  - sudo apt remove tmux -y && brew install tmux

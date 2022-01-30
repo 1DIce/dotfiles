@@ -6,7 +6,6 @@ brew
 zsh
 bash
 git
-tmux
 fzf
 tmux
 scripts
