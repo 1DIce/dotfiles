@@ -85,6 +85,10 @@ return require('packer').startup(function(use)
   use 'szw/vim-maximizer'
 
   use 'kassio/neoterm'
+  use {
+    "akinsho/toggleterm.nvim",
+    config = function() require("ld.plugins.toggleterm") end
+  }
 
   -- icons
   use 'kyazdani42/nvim-web-devicons'
