@@ -27,7 +27,10 @@ return require('packer').startup(function(use)
 
   -- git client
   use "tpope/vim-fugitive"
-
+  use {
+    "samoshkin/vim-mergetool",
+    config = function() require("ld.plugins.vim-mergetool") end
+  }
   use {
     -- Adds commands :DiffviewFileHistory and :DiffviewOpen [git ref]
     'sindrets/diffview.nvim',
@@ -266,4 +269,3 @@ return require('packer').startup(function(use)
   -- Put this at the end after all plugins
   if packer_bootstrap then require('packer').sync() end
 end)
-

@@ -27,7 +27,9 @@
 	st = status -sb
 
 [merge]
-	tool = kdiff3
+  guitool = kdiff3
+	tool = vim_mergetool
+  conflictstyle = diff3
 
 [diff]
   guitool = kdiff3
@@ -38,6 +40,10 @@
 
 [mergetool "fugitive"]
   cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
+
+[mergetool "vim_mergetool"]
+  cmd = nvim  -c "MergetoolStart" "$MERGED" "$BASE" "$LOCAL" "$REMOTE"
+  trustExitCode = true
 
 [mergetool "kdiff3"]
   path = /mnt/c/Program Files/KDiff3/kdiff3.exe
