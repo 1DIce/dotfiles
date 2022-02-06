@@ -1,3 +1,0 @@
-prettier
-cspell
-vscode-langservers-extracted
