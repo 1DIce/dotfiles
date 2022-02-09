@@ -50,6 +50,10 @@ if ! session_exists; then
 	tmux new-session -ds $session_name -c $selected
 fi
 
-tmux switch-client -t $session_name
+if not_in_tmux; then
+  tmux attach-session -t $session_name
+else
+  tmux switch-client -t $session_name
+fi
 
 
