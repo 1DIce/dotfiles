@@ -10,3 +10,4 @@
     ~/bin/build-merlin-libs: scripts/build-merlin-libs.sh
     ~/bin/prettier-format-staged: scripts/prettier-format-staged.sh
     ~/bin/find_up.sh: scripts/find_up.sh
+    ~/bin/clean-node-modules: scripts/clean-node-modules.sh
