@@ -1,0 +1,5 @@
+- shell:
+  - command:  test ! -f "~/dotfiles/local/commonrc.local" &&  cp ~/dotfiles/local/commonrc.local.example ~/dotfiles/local/commonrc.local
+
+- link:
+    ~/.commonrc.local: local/commonrc.local

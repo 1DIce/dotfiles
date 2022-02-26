@@ -1,0 +1,5 @@
+# Create a copy of this file without the .example ending
+# Replace placeholders with correct data
+# Symlink the file 
+export JENKINS_USERNAME="<user.name>"
+export JENKINS_BASE_URL="https://<jenkins-base-url>"

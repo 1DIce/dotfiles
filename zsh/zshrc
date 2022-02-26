@@ -1,4 +1,6 @@
 
+source ~/.commonrc.local
+
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=5000
@@ -53,6 +55,9 @@ export PATH="$PATH:$BREW_HOME"
 export PATH=~/bin:$PATH
 export PATH=~/.local/bin:$PATH
 export PATH=~/.cargo/bin:$PATH
+# Go Lang installation
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:~/go/bin
 
 # Default editor   
 export EDITOR=nvim
@@ -60,10 +65,6 @@ export EDITOR=nvim
 # bat as pager for man
 export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
 
-# Go Lang installation
-export PATH=$PATH:/usr/local/go/bin
-
-export PATH=$PATH:~/go/bin
 
 # Syntax highlight for less (the pages). "sudo apt install source-highlight" to use it
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
