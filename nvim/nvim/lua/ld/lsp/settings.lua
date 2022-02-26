@@ -1,3 +1,4 @@
+local lsp = require('lspconfig')
 local lsp_status = require('lsp-status')
 local lsp_installer_servers = require 'nvim-lsp-installer.servers'
 local remaps = require('ld.lsp.remaps')
@@ -115,6 +116,11 @@ local function get_node_modules(root_dir)
   end
 end
 
+local isDenoWorkspace = function()
+  local cwd = vim.fn.getcwd()
+  return vim.loop.fs_stat(cwd .. "/deno.json") ~= nil
+end
+
 local default_node_modules = get_node_modules(vim.fn.getcwd())
 
 local angular_config = function()
@@ -128,22 +134,30 @@ local angular_config = function()
   }
 end
 
+local deno_config = function()
+  return {
+    root_dir = lsp.util.root_pattern("deno.json"),
+    init_options = {lint = true}
+  }
+end
+
 local servers = {
   -- efm = require('ld.lsp.servers.efm')(),
   bashls = {},
   yamlls = {},
   jsonls = json_config(),
-  tsserver = require('ld.lsp.servers.tsserver')(on_attach, capabilities),
   html = html_config(),
   cssls = css_config(),
   dockerls = {},
   eslint = {},
-  angularls = angular_config(),
   pylsp = {}
 }
-
---[[ lsp_installer.on_server_ready(function(server)
-end) ]]
+if isDenoWorkspace() then
+  servers.denols = deno_config()
+else
+  servers.tsserver = require('ld.lsp.servers.tsserver')(on_attach, capabilities)
+  servers.angularls = angular_config()
+end
 
 for serverName, config in pairs(servers) do
   local ok, server = lsp_installer_servers.get_server(serverName)
@@ -157,4 +171,3 @@ for serverName, config in pairs(servers) do
   server:setup(vim.tbl_deep_extend('force', default_lsp_config, config))
   vim.cmd [[ do User LspAttachBuffers ]]
 end
-

@@ -3,4 +3,5 @@
   - sudo apt install shellcheck -y
   - brew install lsd
   - brew install git-delta
+  - brew install deno
 
