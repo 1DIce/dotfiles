@@ -1,6 +1,6 @@
 local parser_configs = require('nvim-treesitter.parsers').get_parser_configs()
 -- end neorgtreesitter
-parser_configs.css.used_by = "less"
+parser_configs.css.filetype_to_parsername = "less"
 
 local treesitter = require 'nvim-treesitter.configs'
 
@@ -31,4 +31,3 @@ treesitter.setup {
     lint_events = {"BufWrite", "CursorHold"}
   }
 }
-
