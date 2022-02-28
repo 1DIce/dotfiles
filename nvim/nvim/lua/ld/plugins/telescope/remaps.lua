@@ -17,6 +17,11 @@ nnoremap('<leader>fc', "<cmd>lua require('telescope.builtin').git_status()<CR>",
 nnoremap('<leader>fs', "<cmd>Telescope grep_string<CR>", 'telescope',
          'telescope_grep_string', 'Find string under cursor')
 
+nnoremap('<leader>fm',
+         "<cmd>lua require('ld.plugins.telescope.functions').find_files_angular_material()<CR>",
+         'telescope', 'telescope_search_angular_material',
+         'Search angular material source code')
+
 nnoremap('<leader>vs',
          "<cmd>lua require('ld.plugins.telescope.functions').search_config()<CR>",
          'telescope', 'telescope_search_config', 'Search neovim config')
@@ -51,4 +56,5 @@ nnoremap('<leader>fo',
          "<cmd>lua require('ld.plugins.telescope.functions').file_browser_home()<CR>",
          'telescope', 'telescope_file_browser_home',
          'Open file browser in $HOME')
+
 

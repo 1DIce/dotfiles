@@ -2,6 +2,8 @@ local pickers = require("telescope.pickers")
 local finders = require("telescope.finders")
 local conf = require("telescope.config").values
 local make_entry = require('telescope.make_entry')
+local builtins = require('telescope.builtin')
+local themes = require('telescope.themes')
 
 local M = {}
 
@@ -86,5 +88,20 @@ end
 
 M.buffers = function() require("telescope.builtin").buffers({}) end
 
+M.find_files_angular_material = function()
+  builtins.find_files(themes.get_ivy({
+    prompt_title = "< Angular Material/CDK >",
+    cwd = "$HOME/open-source/angular-cdk/",
+    hidden = true,
+    file_ignore_patterns = {
+      '.backup', '.swap', '.langservers', '.session', '.undo', '*.git',
+      'node_modules', 'vendor', '.cache', '.vscode-server', '.Desktop',
+      '.Documents', 'classes', 'package-lock.json', '.spec.ts'
+    }
+
+  }))
+end
+
 return M
+
 
