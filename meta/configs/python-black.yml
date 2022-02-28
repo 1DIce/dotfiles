@@ -1,2 +1,2 @@
 - shell:
-  - pip install black
+  - pipx install black
