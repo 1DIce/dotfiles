@@ -1,10 +1,10 @@
 local
-cmd-tools
+zsh
+cmd-tools-apt
 starship
 nvm
 cheat-sheets
 brew
-zsh
 bash
 git
 fzf
@@ -12,8 +12,13 @@ tmux
 scripts
 nvim
 lua-tools
+cmd-tools-brew
 kitty
 vimwiki
 vifm
 gui-tools
+pipx
+fydor
+git-format-staged
+python-black
 shfmt

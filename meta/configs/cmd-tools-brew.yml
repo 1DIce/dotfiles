@@ -1,0 +1,6 @@
+
+- shell:
+  - brew install lsd
+  - brew install git-delta
+  - brew install deno
+

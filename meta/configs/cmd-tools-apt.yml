@@ -1,7 +1,3 @@
 - shell:
   - sudo apt update && sudo apt install build-essential cmake ripgrep fd-find rename bat trash-cli sqlite3 libsqlite3-dev python-is-python3  -y
   - sudo apt install shellcheck -y
-  - brew install lsd
-  - brew install git-delta
-  - brew install deno
-

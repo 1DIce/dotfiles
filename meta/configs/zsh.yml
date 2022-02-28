@@ -3,3 +3,5 @@
     ~/.zshenv: zsh/zshenv
     ~/.zplug: libs/zplug
     ~/.local/bin/bashmarks.sh: libs/bashmarks/bashmarks.sh
+    # install zsh manually
+    # sudo apt update && sudo apt install zsh -y && chsh -s /usr/bin/zsh
