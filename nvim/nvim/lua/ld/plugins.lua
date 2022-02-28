@@ -25,6 +25,15 @@ return require('packer').startup(function(use)
     config = function() require('Comment').setup() end
   }
 
+  use {
+    'heavenshell/vim-jsdoc',
+    run = 'make',
+    config = function()
+      vim.g.jsdoc_formatter = 'tsdoc'
+      vim.cmd([[nmap <silent> <leader>ld <Plug>(jsdoc)]])
+    end
+  }
+
   -- git client
   use "tpope/vim-fugitive"
   use {
@@ -184,7 +193,7 @@ return require('packer').startup(function(use)
     use 'tjdevries/lsp_extensions.nvim'
     use 'tami5/lspsaga.nvim'
     use 'onsails/lspkind-nvim'
-    use 'ray-x/lsp_signature.nvim'
+    use {'ray-x/lsp_signature.nvim', tag = "v0.1.1"}
     use 'jose-elias-alvarez/nvim-lsp-ts-utils'
     use 'b0o/SchemaStore.nvim'
     use 'williamboman/nvim-lsp-installer'
