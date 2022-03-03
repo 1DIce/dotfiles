@@ -66,8 +66,8 @@ export EDITOR=nvim
 export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
 
 
-# Syntax highlight for less (the pages). "sudo apt install source-highlight" to use it
-export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
+# Syntax highl
+export LESSOPEN='|~/.config/less/lessfilter.sh %s'
 export LESS=' -R'
 
 # special WSL2 settings
@@ -103,6 +103,7 @@ export NVM_DIR="$HOME/.nvm"
 source ~/.zplug/init.zsh
 
 zplug "chitoku-k/fzf-zsh-completions"
+zplug "Aloxaf/fzf-tab"
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -114,9 +115,19 @@ fi
 # Then, source plugins and add commands to $PATH
 zplug load
 
+#fzf-tab
+#disable sort when completing `git checkout`
+zstyle ':completion:*:git-checkout:*' sort false
+# set descriptions format to enable group support
+zstyle ':completion:*:descriptions' format '[%d]'
+# set list-colors to enable filename colorizing
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# configure preview 
+zstyle ':fzf-tab:complete:*:*' fzf-preview 'less ${(Q)realpath}'
+
 # Install starship promp
 eval "$(starship init zsh)"
 # Install navi shell widget use ctrl+g to use it
 eval "$(navi widget zsh)"
 
-  export PATH="${PATH}:/home/lars/.cargo/bin/navi"
+export PATH="${PATH}:/home/lars/.cargo/bin/navi"

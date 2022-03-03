@@ -1,5 +1,6 @@
 local
 zsh
+less
 cmd-tools-apt
 starship
 nvm
