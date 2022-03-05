@@ -18,4 +18,12 @@ end
 
 function M.is_linux() return vim.loop.os_uname().sysname == 'Linux' end
 
+function M.get_visual_text()
+  local current_line = vim.api.nvim_get_current_line()
+  local start_pos = vim.api.nvim_buf_get_mark(0, "<")
+  local end_pos = vim.api.nvim_buf_get_mark(0, ">")
+
+  return string.sub(current_line, start_pos[2], end_pos[2] + 1)
+end
+
 return M;

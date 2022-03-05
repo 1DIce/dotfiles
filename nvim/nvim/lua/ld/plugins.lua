@@ -128,6 +128,7 @@ return require('packer').startup(function(use)
     config = function() require 'ld.plugins.telescope' end
   }
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
+  use {'nvim-telescope/telescope-rg.nvim'}
 
   use {
     "AckslD/nvim-neoclip.lua",

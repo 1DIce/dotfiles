@@ -1,7 +1,14 @@
 nnoremap('<leader>fp', "<cmd>Telescope projects<CR>", 'telescope',
          'telescope_projects', 'Projects')
-nnoremap('<leader>fl', "<cmd>lua require('telescope.builtin').live_grep()<CR>",
+
+nnoremap('<leader>fl',
+         "<cmd>lua require('ld.plugins.telescope.functions').live_grep_raw()<CR>",
          'telescope', 'telescope_live_grep', 'Live grep')
+vnoremap('<leader>fl',
+         "<cmd>lua require('ld.plugins.telescope.functions').live_grep_raw({},'v')<CR>",
+         'telescope', 'telescope_live_grep_visual', 'Live grep visual')
+-- nnoremap('<leader>fl', "<cmd>lua require('telescope.builtin').live_grep()<CR>",
+--          'telescope', 'telescope_live_grep', 'Live grep')
 -- nnoremap('<leader>fl', "<cmd>lua require('fzf-lua').live_grep_native()<CR>",
 --          'telescope', 'telescope_live_grep', 'Live grep')
 nnoremap('<leader>ff', "<cmd>lua require('telescope.builtin').find_files()<CR>",
@@ -14,8 +21,11 @@ nnoremap('<leader>fg', "<cmd>lua require('telescope.builtin').git_files()<CR>",
          'telescope', 'telescope_git_files', 'Find git files')
 nnoremap('<leader>fc', "<cmd>lua require('telescope.builtin').git_status()<CR>",
          'telescope', 'telescope_git_status', 'Find git files')
-nnoremap('<leader>fs', "<cmd>Telescope grep_string<CR>", 'telescope',
-         'telescope_grep_string', 'Find string under cursor')
+-- nnoremap('<leader>fs', "<cmd>Telescope grep_string<CR>", 'telescope',
+--          'telescope_grep_string', 'Find string under cursor')
+nnoremap('<leader>fs',
+         "<cmd>lua require('ld.plugins.telescope.functions').live_grep_raw({default_text = vim.fn.expand('<cword>')})<CR>",
+         'telescope', 'telescope_grep_string', 'Find string under cursor')
 
 nnoremap('<leader>fm',
          "<cmd>lua require('ld.plugins.telescope.functions').find_files_angular_material()<CR>",
@@ -56,5 +66,3 @@ nnoremap('<leader>fo',
          "<cmd>lua require('ld.plugins.telescope.functions').file_browser_home()<CR>",
          'telescope', 'telescope_file_browser_home',
          'Open file browser in $HOME')
-
-

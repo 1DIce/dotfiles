@@ -4,6 +4,7 @@ local conf = require("telescope.config").values
 local make_entry = require('telescope.make_entry')
 local builtins = require('telescope.builtin')
 local themes = require('telescope.themes')
+local utils = require('ld.utils.functions')
 
 local M = {}
 
@@ -102,6 +103,35 @@ M.find_files_angular_material = function()
   }))
 end
 
+local escape_rg_text = function(text)
+  text = text:gsub('%(', '\\%(')
+  text = text:gsub('%)', '\\%)')
+  text = text:gsub('%[', '\\%[')
+  text = text:gsub('%]', '\\%]')
+  text = text:gsub('"', '\\"')
+
+  return text
+end
+
+M.live_grep_raw = function(opts, mode)
+  local defaults = {
+    vimgrep_arguments = {
+      "rg", "--color=never", "--no-heading", "--with-filename", "--line-number",
+      "--column", "--smart-case"
+    }
+  }
+  opts = vim.tbl_extend("force", defaults, opts or {})
+  opts.prompt_title =
+      'Live Grep Raw (-t[ty] include, -T exclude -g"[!] [glob])"'
+  if not opts.default_text then
+    if mode == 'v' then
+      opts.default_text = '"' .. escape_rg_text(utils.get_visual_text()) .. '"'
+    else
+      opts.default_text = '"'
+    end
+  end
+
+  require('telescope').extensions.live_grep_raw.live_grep_raw(opts)
+end
+
 return M
-
-
