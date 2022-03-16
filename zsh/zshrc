@@ -40,6 +40,7 @@ alias bat="batcat"
 alias cheat="cht.sh"
 alias v="nvim"
 alias g="git"
+alias fm="vicd ./"
 alias marktext="marktext.AppImage"
 alias notes="nvim  '+let g:auto_session_enabled = v:false' -c VimwikiIndex"
 
@@ -61,6 +62,17 @@ export PATH=$PATH:~/go/bin
 
 # Default editor   
 export EDITOR=nvim
+
+# Vifm
+function vicd
+{
+  local dst="$(command vifm --choose-dir - "$@")"
+  if [ -z "$dst" ]; then
+    echo 'Directory picking cancelled/failed'
+    return 1
+  fi
+  cd "$dst"
+}
 
 # bat as pager for man
 export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
