@@ -2,6 +2,7 @@ local lsp = require('lspconfig')
 local lsp_status = require('lsp-status')
 local lsp_installer_servers = require 'nvim-lsp-installer.servers'
 local remaps = require('ld.lsp.remaps')
+local functions = require('ld.lsp.functions')
 local presentCmpNvimLsp, cmpNvimLsp = pcall(require, 'cmp_nvim_lsp')
 
 -- for debugging lsp
@@ -116,11 +117,6 @@ local function get_node_modules(root_dir)
   end
 end
 
-local isDenoWorkspace = function()
-  local cwd = vim.fn.getcwd()
-  return vim.loop.fs_stat(cwd .. "/deno.json") ~= nil
-end
-
 local default_node_modules = get_node_modules(vim.fn.getcwd())
 
 local angular_config = function()
@@ -152,7 +148,7 @@ local servers = {
   eslint = {},
   pylsp = {}
 }
-if isDenoWorkspace() then
+if functions.is_deno_workspace() then
   servers.denols = deno_config()
 else
   servers.tsserver = require('ld.lsp.servers.tsserver')(on_attach, capabilities)

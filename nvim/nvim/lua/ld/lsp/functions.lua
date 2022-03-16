@@ -7,10 +7,18 @@ M.show_diagnostics = function(opts)
   require'telescope.builtin'.loclist(opts)
 end
 
+M.is_deno_workspace = function()
+  local cwd = vim.fn.getcwd()
+  return vim.loop.fs_stat(cwd .. "/deno.json") ~= nil
+end
+
 M.format_organize_typescript = function()
-  ts_utils.organize_imports_sync()
-  vim.cmd([[ :Prettier ]])
-  -- vim.lsp.buf.formatting_sync()
+  if (M.is_deno_workspace()) then
+    vim.lsp.buf.formatting_sync()
+  else
+    ts_utils.organize_imports_sync()
+    vim.cmd([[ :Prettier ]])
+  end
 end
 
 return M
