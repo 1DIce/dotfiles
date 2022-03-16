@@ -3,3 +3,4 @@
 # Symlink the file 
 export JENKINS_USERNAME="<user.name>"
 export JENKINS_BASE_URL="https://<jenkins-base-url>"
+export GITLAB_API_TOKEN="access-token"

@@ -53,6 +53,7 @@ set show-all-if-ambiguous on
 # Set PATH
 export BREW_HOME="/home/linuxbrew/.linuxbrew/bin"
 export PATH="$PATH:$BREW_HOME"
+export PATH=~/.deno/bin:$PATH
 export PATH=~/bin:$PATH
 export PATH=~/.local/bin:$PATH
 export PATH=~/.cargo/bin:$PATH

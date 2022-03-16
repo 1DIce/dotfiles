@@ -21,5 +21,6 @@ gui-tools
 pipx
 fydor
 git-format-staged
+gitlab-cli
 python-black
 shfmt
