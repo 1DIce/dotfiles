@@ -75,6 +75,7 @@ return require('packer').startup(function(use)
   use 'Mofiqul/dracula.nvim'
   use 'EdenEast/nightfox.nvim'
   use 'sainnhe/gruvbox-material'
+  -- alternative onedark for nvim ful1e5/onedark.nvim
   use 'joshdick/onedark.vim'
   use({"catppuccin/nvim", as = "catppuccin"})
   use {'rose-pine/neovim', as = 'rose-pine'}
