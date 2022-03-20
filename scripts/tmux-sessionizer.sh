@@ -1,15 +1,20 @@
 #!/usr/bin/zsh
 
+tmux_running=$(pgrep tmux)
+
 if [[ $# -eq 1 ]]; then
 	selected=$1
 else
   # tr -s ' ' squeezes the whitespace
   local bookmarks=$(bls | tr -s ' ' | cut -f3 -d ' ')
-  local commonDirectories=$(find ~/work/configurator ~/personal ~/open-source -mindepth 1 -maxdepth 1 -type d 2> /dev/null
-)
-
-  selected=$({echo "$bookmarks"; echo "$commonDirectories"; } | fzf)
-  
+  local commonDirectories=$(find ~/work/configurator ~/personal ~/open-source -mindepth 1 -maxdepth 1 -type d 2> /dev/null)
+  local runningSessionNames=""
+  if [[ ! -z $tmux_running ]]; then
+    # get CWD's of all currently running sesseions
+    runningSessionNames=$(tmux list-sessions -F "#{session_path}")
+  fi
+  # make sure duplicate paths are filtered out
+  selected=$({echo "$bookmarks"; echo "$commonDirectories"; echo "$runningSessionNames"; } | sort -u | fzf)
 fi
 
 if [[ -z $selected ]]; then
@@ -26,7 +31,7 @@ fi
 session_name=$(basename "$selected" | tr . _)
 
 not_in_tmux() {
-	[ -z "$TMUX"]
+	[[ -z "$TMUX" ]]
 }
 
 tmux_not_running() {
@@ -38,7 +43,6 @@ session_exists() {
 	tmux has-session -t "=$session_name" 2>/dev/null
 }
 
-tmux_running=$(pgrep tmux)
 
 if not_in_tmux && tmux_not_running; then
 	tmux new-session -s $session_name -c $selected
