@@ -13,3 +13,4 @@
     ~/bin/find_up.sh: scripts/find_up.sh
     ~/bin/clean-node-modules: scripts/clean-node-modules.sh
     ~/bin/live-grep: scripts/live-grep.sh
+    ~/bin/tmux-vifm-sessionizer: scripts/tmux-vifm-sessionizer.sh
