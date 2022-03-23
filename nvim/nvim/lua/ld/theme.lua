@@ -23,6 +23,8 @@ local vscode_dark = function()
   vim.cmd("highlight TSKeywordReturn guifg=#C586C0")
 end
 
+local darkplus = function() vim.cmd('colorscheme darkplus') end
+
 local nightfox = function() require("nightfox").load("nightfox") end
 
 local monokai = function()
@@ -51,6 +53,14 @@ local tokyonight = function()
   --             }
   --
   vim.cmd('colorscheme tokyonight')
+end
+
+local tokyodark = function()
+  vim.g.tokyodark_transparent_background = false
+  vim.g.tokyodark_enable_italic_comment = true
+  vim.g.tokyodark_enable_italic = true
+  vim.g.tokyodark_color_gamma = "1.0"
+  vim.cmd("colorscheme tokyodark")
 end
 
 local gruvbox = function()
@@ -109,9 +119,9 @@ local onedarkpro = function()
 end
 
 vscode_dark()
+-- darkplus()
+-- tokyodark()
 -- github_dark()
 -- onedarkpro()
 -- monokai()
 -- gruvbox()
-
-
