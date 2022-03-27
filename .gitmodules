@@ -39,3 +39,6 @@
 	url = https://github.com/1DIce/bashmarks.git
   shallow = true
   ignore = dirty
+[submodule "libs/git-madge"]
+	path = libs/git-madge
+	url = https://github.com/1Dice/git-madge.git
