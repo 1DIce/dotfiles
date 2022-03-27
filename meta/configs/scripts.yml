@@ -8,6 +8,7 @@
     ~/bin/tmux-sessionizer: scripts/tmux-sessionizer.sh
     ~/bin/git-review-diff: scripts/git-review-diff.sh
     ~/bin/worktree-create: scripts/git-create-worktree.sh
+    ~/bin/git-stat: scripts/git-stat.sh
     ~/bin/build-merlin-libs: scripts/build-merlin-libs.sh
     ~/bin/prettier-format-staged: scripts/prettier-format-staged.sh
     ~/bin/find_up.sh: scripts/find_up.sh
