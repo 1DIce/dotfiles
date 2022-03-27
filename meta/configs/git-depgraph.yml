@@ -1,0 +1,6 @@
+- shell:
+  - sudo apt update && sudo apt install jq graphviz -y
+  - npm install --global madge
+- link:
+    ~/bin/git-madge: libs/git-madge/git-madge
+    ~/bin/git-depgraph: scripts/git-depgraph.sh
