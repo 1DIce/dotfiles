@@ -144,3 +144,6 @@ eval "$(starship init zsh)"
 eval "$(navi widget zsh)"
 
 export PATH="${PATH}:/home/lars/.cargo/bin/navi"
+
+# source command  for syntax highlighting must be at the end of .zshrc
+source "${XDG_CONFIG_HOME}/zsh/zsh-syntax-highlighting.zsh"

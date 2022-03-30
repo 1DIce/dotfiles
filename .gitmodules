@@ -42,3 +42,8 @@
 [submodule "libs/git-madge"]
 	path = libs/git-madge
 	url = https://github.com/1Dice/git-madge.git
+[submodule "libs/zsh-syntax-highlighting"]
+	path = libs/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+  shallow = true
+  ignore = dirty

@@ -4,6 +4,7 @@
 # variables. .zshenv should not contain commands that produce output
 # or assume the shell is attached to a tty.
 
+export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:=${HOME}/.config}
 
 # load bashmarks
 source ~/.local/bin/bashmarks.sh
