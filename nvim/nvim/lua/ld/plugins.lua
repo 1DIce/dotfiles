@@ -263,6 +263,7 @@ return require('packer').startup(function(use)
   use {"p00f/nvim-ts-rainbow", after = "nvim-treesitter"}
   use {"nvim-treesitter/nvim-treesitter-angular", after = "nvim-treesitter"}
   use {'nvim-treesitter/playground', after = "nvim-treesitter"}
+  use {"andymass/vim-matchup", after = "nvim-treesitter"}
 
   use {
     'nvim-treesitter/nvim-treesitter-textobjects',
