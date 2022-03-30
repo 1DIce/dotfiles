@@ -1,3 +1,4 @@
 - shell:
   - brew install pipx 
   - pipx ensurepath
+  - pipx install thefuck
