@@ -1,0 +1,21 @@
+{
+  "commands": [
+    {
+      "cmd": "tmux source-file ~/.tmux.conf",
+      "description": "tmux reload config"
+    },
+    {
+      "cmd": "tmux-vifm-sessionizer",
+      "description": "tmux create session with vifm"
+    },
+    {
+      "cmd": "gitui",
+      "description": "gitui open"
+    },
+    {
+      "cmd": "tmux ls",
+      "description": "tmux list sessions"
+      ,"keepPopupOpen": true
+    }
+  ]
+}
