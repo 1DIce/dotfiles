@@ -7,15 +7,6 @@ nnoremap('<leader>vt',
          '<cmd>setlocal spell! spelllang=en_us spelloptions=camel<CR>',
          "editor", 'toggle_spell_check', 'Toggle spell check')
 
--- move up/down faster
-nnoremap('J', '5j', 'remap', 'remap_move_down_fast_normal_mode',
-         'Move down faster')
-nnoremap('K', '5k', 'remap', 'remap_move_up_fast_normal_mode', 'Move up faster')
-vnoremap('J', '5j', 'remap', 'remap_move_down_fast_visual_mode',
-         'Move down faster visual mode')
-vnoremap('K', '5k', 'remap', 'remap_move_up_fast_visual_mode',
-         'Move up faster visual mode')
-
 -- Y should yank until end of line similar to D and C
 nnoremap('Y', 'y$', 'remap', 'remap_yank_to_end_of_line', 'Yank to end of line')
 
