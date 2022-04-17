@@ -99,6 +99,7 @@ return require('packer').startup(function(use)
   use 'kassio/neoterm'
   use {
     "akinsho/toggleterm.nvim",
+    branch = "main",
     config = function() require("ld.plugins.toggleterm") end
   }
 
