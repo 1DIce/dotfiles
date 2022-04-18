@@ -49,37 +49,44 @@ end
 
 local default_lsp_config = {on_attach = on_attach, capabilities}
 
-local runtime_path = vim.split(package.path, ';')
-table.insert(runtime_path, "lua/ld/init.lua")
-require('lspconfig').sumneko_lua.setup {
-  cmd = {"lua-language-server"},
-  on_attach = function(client, bufnr)
-    require('ld.lsp.events').document_highlight_under_cursor()
-    on_attach(client, bufnr)
-  end,
-  capabilities = capabilities,
-  settings = {
-    Lua = {
-      runtime = {
-        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-        version = 'LuaJIT',
-        -- Setup your lua path
-        path = runtime_path
-      },
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = {'vim'}
-      },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file('', true),
-        checkThirdParty = false
-      },
-      -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = {enable = false}
+local sumneko_lua_config = function()
+  local runtime_path = vim.split(package.path, ';')
+  table.insert(runtime_path, "lua/ld/init.lua")
+
+  return {
+    cmd = {"lua-language-server"},
+    on_attach = function(client, bufnr)
+      require('ld.lsp.events').document_highlight_under_cursor()
+      client.resolved_capabilities.document_formatting = false -- null-ls handles the formatting
+      on_attach(client, bufnr)
+    end,
+    capabilities = capabilities,
+    settings = {
+      Lua = {
+        format = {enable = false},
+        runtime = {
+          -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+          version = 'LuaJIT',
+          -- Setup your lua path
+          path = runtime_path
+        },
+        diagnostics = {
+          -- Get the language server to recognize the `vim` global
+          globals = {'vim'}
+        },
+        workspace = {
+          -- Make the server aware of Neovim runtime files
+          library = vim.api.nvim_get_runtime_file('', true),
+          checkThirdParty = false
+        },
+        -- Do not send telemetry data containing a randomized but unique identifier
+        telemetry = {enable = false}
+      }
     }
   }
-}
+end
+
+require('lspconfig').sumneko_lua.setup(sumneko_lua_config())
 
 local css_config = function()
   local cloned_capabilities = vim.deepcopy(capabilities)
