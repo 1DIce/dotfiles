@@ -214,7 +214,10 @@ return require('packer').startup(function(use)
       event = 'InsertEnter'
     }
 
-    use 'L3MON4D3/LuaSnip'
+    use {
+      'L3MON4D3/LuaSnip',
+      config = function() require "ld.plugins.snippets" end
+    }
 
     use({'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp'})
 
