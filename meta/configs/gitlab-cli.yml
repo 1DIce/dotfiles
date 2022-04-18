@@ -1,5 +1,0 @@
-- link:
-    ~/.config/gitlab-cli/gitlab-cli.json: gitlab-cli/gitlab-cli.json
-- shell:
-    - deno install --allow-run --allow-env --allow-net --allow-read --unstable --no-check -f https://raw.githubusercontent.com/1DIce/gitlab-cli/main/gitlab-cli.ts
-
