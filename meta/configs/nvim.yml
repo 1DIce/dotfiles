@@ -3,7 +3,7 @@
     ~/.config/efm-langserver: nvim/efm-langserver
 
 - shell:
-    - wget -O ~/bin/nvim https://github.com/neovim/neovim/releases/download/stable/nvim.appimage && chmod +x ~/bin/nvim
+    - rm -f ~/bin/nvim && wget -O ~/bin/nvim https://github.com/neovim/neovim/releases/download/stable/nvim.appimage && chmod +x ~/bin/nvim
     # - npm i -g bash-language-server
     # - npm i -g docker-language-server-nodejs
     # - go intall github.com/mattn/efm-langserver@latest
