@@ -9,5 +9,5 @@ vim.keymap.set({"i", "s"}, "<c-m>", function()
 end, {silent = true})
 
 vim.keymap.set({"i"}, "<c-l>", function()
-  if ls.choise_active() then ls.change_choice(1) end
+  if ls.choice_active() then ls.change_choice(1) end
 end, {silent = true})
