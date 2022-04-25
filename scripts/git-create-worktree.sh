@@ -12,7 +12,7 @@ WORKTREE_DIR_NAME=$1
 
 # if [ -z "$baseBranch"] && echo "ERROR: No base branch provided" && exit 0
 
-BRANCH_NAME="lars/$1"
+BRANCH_NAME="feature/lars/$1"
 
 WORKTREE_ROOT_DIR=$(find_up.sh . -type f -iname ".worktree.root" -execdir pwd \; | head -n 1)
 
