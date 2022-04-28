@@ -27,4 +27,3 @@ dashboard.section.buttons.val = {
 
 -- Send config to alpha
 alpha.setup(dashboard.opts)
-
