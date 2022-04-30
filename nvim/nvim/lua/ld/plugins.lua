@@ -9,8 +9,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
   })
 end
 
-local useBuiltInLsp = true
-
 return require('packer').startup(function(use)
   use({'wbthomason/packer.nvim', event = 'VimEnter'})
   use "lewis6991/impatient.nvim"
@@ -182,67 +180,52 @@ return require('packer').startup(function(use)
   }
 
   -- Autocomplete & Linters
-  if useBuiltInLsp then
+  use 'prettier/vim-prettier'
+  use 'neovim/nvim-lspconfig'
+  use 'nvim-lua/lsp-status.nvim'
+  use 'tjdevries/lsp_extensions.nvim'
+  use 'tami5/lspsaga.nvim'
+  use 'onsails/lspkind-nvim'
+  use {'ray-x/lsp_signature.nvim', tag = "v0.1.1"}
+  use 'jose-elias-alvarez/nvim-lsp-ts-utils'
+  use 'b0o/SchemaStore.nvim'
+  use 'williamboman/nvim-lsp-installer'
+  use({
+    "jose-elias-alvarez/null-ls.nvim",
+    config = function() require('ld.lsp.servers.null-ls') end,
+    requires = {"nvim-lua/plenary.nvim", "neovim/nvim-lspconfig"}
+  })
 
-    use 'prettier/vim-prettier'
-    use 'neovim/nvim-lspconfig'
-    use 'nvim-lua/lsp-status.nvim'
-    use 'tjdevries/lsp_extensions.nvim'
-    use 'tami5/lspsaga.nvim'
-    use 'onsails/lspkind-nvim'
-    use {'ray-x/lsp_signature.nvim', tag = "v0.1.1"}
-    use 'jose-elias-alvarez/nvim-lsp-ts-utils'
-    use 'b0o/SchemaStore.nvim'
-    use 'williamboman/nvim-lsp-installer'
-    use({
-      "jose-elias-alvarez/null-ls.nvim",
-      config = function() require('ld.lsp.servers.null-ls') end,
-      requires = {"nvim-lua/plenary.nvim", "neovim/nvim-lspconfig"}
-    })
+  use {
+    'hrsh7th/nvim-cmp',
+    config = function() require 'ld.plugins.nvim-cmp' end,
+    event = 'InsertEnter'
+  }
 
-    use {
-      'hrsh7th/nvim-cmp',
-      config = function() require 'ld.plugins.nvim-cmp' end,
-      event = 'InsertEnter'
-    }
+  use {
+    'L3MON4D3/LuaSnip',
+    config = function() require "ld.plugins.snippets" end
+  }
 
-    use {
-      'L3MON4D3/LuaSnip',
-      config = function() require "ld.plugins.snippets" end
-    }
+  use({'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp'})
 
-    use({'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp'})
+  use({'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp'})
 
-    use({'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp'})
+  use({'hrsh7th/cmp-buffer', after = 'nvim-cmp'})
 
-    use({'hrsh7th/cmp-buffer', after = 'nvim-cmp'})
+  use({'hrsh7th/cmp-path', after = 'nvim-cmp'})
 
-    use({'hrsh7th/cmp-path', after = 'nvim-cmp'})
+  use({'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp'})
 
-    use({'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp'})
+  use({'hrsh7th/cmp-cmdline', after = 'nvim-cmp'})
 
-    use({'hrsh7th/cmp-cmdline', after = 'nvim-cmp'})
+  use({
+    'windwp/nvim-autopairs',
+    after = 'nvim-cmp',
+    config = function() require('ld.plugins.nvim-autopairs') end
+  })
 
-    use({
-      'windwp/nvim-autopairs',
-      after = 'nvim-cmp',
-      config = function() require('ld.plugins.nvim-autopairs') end
-    })
-
-  else
-    -- using CoC
-    use {
-      "neoclide/coc.nvim",
-      branch = "release",
-      config = function() require("ld.plugins.coc") end
-    }
-    use "rafcamlet/coc-nvim-lua"
-
-    use {"fannheyward/telescope-coc.nvim"}
-
-  end
   -- Language packs
-
   use 'mattn/emmet-vim'
   use {
     "softoika/ngswitcher.vim",
