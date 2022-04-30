@@ -1,6 +1,5 @@
 - link:
     ~/.config/nvim: nvim/nvim 
-    ~/.config/efm-langserver: nvim/efm-langserver
 
 - shell:
     - rm -f ~/bin/nvim && wget -O ~/bin/nvim https://github.com/neovim/neovim/releases/download/stable/nvim.appimage && chmod +x ~/bin/nvim
