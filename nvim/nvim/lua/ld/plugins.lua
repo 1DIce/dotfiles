@@ -180,10 +180,6 @@ return require('packer').startup(function(use)
     config = function() require 'ld.plugins.harpoon' end,
     requires = {"nvim-lua/plenary.nvim"}
   }
-  -- use {
-  --   'ray-x/navigator.lua',
-  --   requires = {'ray-x/guihua.lua', run = 'cd lua/fzy && make'},
-  -- }
 
   -- Autocomplete & Linters
   if useBuiltInLsp then
