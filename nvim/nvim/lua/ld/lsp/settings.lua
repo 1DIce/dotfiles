@@ -145,7 +145,6 @@ local deno_config = function()
 end
 
 local servers = {
-  -- efm = require('ld.lsp.servers.efm')(),
   bashls = {},
   yamlls = {},
   jsonls = json_config(),
