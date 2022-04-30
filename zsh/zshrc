@@ -96,6 +96,13 @@ if grep -q WSL2 /proc/version; then
 fi
 
 
+# Special settings while i tmux
+if [[ -n "$TMUX" ]]; then
+  # making sure that colors are correct in tmux
+  export TERM="tmux-256color"
+fi
+
+
 # Bashmarks aliases. Bashmarks is source in .zshenv
 alias blist="bls"
 alias bfind='bls --no-color | fzf | cut -f1 -d "=" | xargs bcd'
