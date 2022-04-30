@@ -94,3 +94,35 @@ tnoremap('<C-w>j', "<C-\\><C-n><C-w>j", 'remap', 'remap_terimal_switch_pane_j',
          'Terminal switch pane down')
 tnoremap('<C-w>k', "<C-\\><C-n><C-w>k", 'remap', 'remap_terimal_switch_pane_k',
          'Terminal switch pane up')
+
+-- buffer
+nnoremap('<leader>bd', '<cmd>bd<CR>', 'buffer', 'buffer_delete',
+         'Deletes buffer')
+nnoremap('<leader>bD', '<cmd>bd!<CR>', 'buffer', 'buffer_delete_force',
+         'Force delete buffer')
+nnoremap('<leader>bo', '<cmd>BufOnly<CR>', 'buffer', 'buffer_delete_others',
+         'Deletes all other buffers except yours')
+nnoremap('<leader>bad', '<cmd>%bd<CR>', 'buffer', 'buffer_delete_all',
+         'Deletes all buffers')
+nnoremap('<leader>bw', '<cmd>update<CR>', 'buffer', 'buffer_update',
+         'Saves/writes/updates buffer')
+nnoremap('<leader>bW', '<cmd>update!<CR>', 'buffer', 'buffer_update_force',
+         'Force save/write/update buffer')
+
+-- window
+nnoremap('<leader>wm', '<cmd>MaximizerToggle<CR>', "window",
+         "window_toggle_maximize")
+
+nnoremap('<leader>wh', '<cmd>wincmd h<CR>', 'window', 'window_move_left',
+         'Move window left')
+nnoremap('<leader>wj', '<cmd>wincmd j<CR>', 'window', 'window_move_down',
+         'Move window down')
+nnoremap('<leader>wk', '<cmd>wincmd k<CR>', 'window', 'window_move_up',
+         'Move window up')
+nnoremap('<leader>wl', '<cmd>wincmd l<CR>', 'window', 'window_move_right',
+         'Move window right')
+
+nnoremap('<leader>w+', '<cmd>vertical resize +5<CR>', 'window',
+         'window_increase_size', 'Increase window size')
+nnoremap('<leader>w-', '<cmd>vertical resize -5<CR>', 'window',
+         'window_decrease_size', 'Decrease window size')
