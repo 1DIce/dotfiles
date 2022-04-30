@@ -1,3 +1,2 @@
-require 'ld.utils.events'
 require 'ld.utils.remaps'
 require 'ld.utils.globals'
