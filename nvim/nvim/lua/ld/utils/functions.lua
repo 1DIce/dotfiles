@@ -7,6 +7,15 @@ function M.ends_with(str, str_end)
              true or false
 end
 
+-- converts the first charcter of the string to uppercase
+function M.firstToUpper(str) return (str:gsub("^%l", string.upper)) end
+
+function M.map(tbl, f)
+  local t = {}
+  for k, v in pairs(tbl) do t[k] = f(v) end
+  return t
+end
+
 function M.tprint(table) print(vim.inspect(table)) end
 
 function M.link_highlight(from, to, override)
