@@ -14,6 +14,10 @@ return require('packer').startup(function(use)
   use "lewis6991/impatient.nvim"
 
   use 'MunifTanjim/nui.nvim' -- ui library
+  use {
+    'stevearc/dressing.nvim',
+    config = function() require("ld.plugins.dressing") end
+  }
 
   use 'editorconfig/editorconfig-vim'
 
