@@ -12,5 +12,4 @@ local getDiffviewOriginalFilePath = function()
 end
 
 vim.api.nvim_create_user_command("DiffviewMrChange",
-                                 function() getDiffviewOriginalFilePath() end,
-                                 {})
+    function() getDiffviewOriginalFilePath() end, {})

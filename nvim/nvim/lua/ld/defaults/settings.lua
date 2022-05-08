@@ -38,7 +38,7 @@ vim.o.termguicolors = true
 vim.o.scrolloff = 8
 
 -- live preview of substitutions
-vim.o.inccommand = 'split'
+vim.o.inccommand = "split"
 
 -- Give more space for displaying messages.
 vim.o.cmdheight = 1
@@ -52,11 +52,11 @@ vim.o.updatetime = 50
 -- menuone: popup even when there's only one match
 -- noinsert: Do not insert text until a selection is made
 -- noselect: Do not select, force user to select one from the menu
-vim.o.completeopt = 'menu,menuone,noselect'
+vim.o.completeopt = "menu,menuone,noselect"
 
 -- use ripgrep as the grep command
 vim.o.grepprg = "rg --vimgrep --no-heading --smart-case"
-vim.o.grepformat = '%f:%l:%c:%m'
+vim.o.grepformat = "%f:%l:%c:%m"
 
 -- Don't show the dumb matching stuff.
 vim.cmd [[set shortmess+=c]]
@@ -64,11 +64,11 @@ vim.cmd [[set shortmess+=c]]
 -- vim.o.colorcolumn=80
 
 -- lsp column & git column
-vim.o.signcolumn = 'yes:2'
+vim.o.signcolumn = "yes:2"
 -- vim.o.signcolumn = 'number'
 
 vim.g.loaded_matchparen = 1
-vim.g.mapleader = ' '
+vim.g.mapleader = " "
 
 vim.g.wildignorecase = true
 
@@ -79,12 +79,12 @@ vim.o.cursorcolumn = false
 vim.o.showmode = false
 
 -- fold
-vim.wo.foldcolumn = '0' -- defines 1 col at window left, to indicate folding
+vim.wo.foldcolumn = "0" -- defines 1 col at window left, to indicate folding
 vim.o.foldlevelstart = 99 -- start file with all folds opened
 
 -- using treesitter for folding
-vim.wo.foldmethod = 'expr'
-vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.wo.foldmethod = "expr"
+vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
 
 vim.o.sessionoptions =
     "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
@@ -94,4 +94,4 @@ vim.o.list = false
 
 vim.o.fixendofline = false
 
-vim.o.listchars = 'eol:¬,tab:>·,trail:~,extends:>,precedes:<'
+vim.o.listchars = "eol:¬,tab:>·,trail:~,extends:>,precedes:<"

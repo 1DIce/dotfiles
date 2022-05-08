@@ -1,5 +1,5 @@
-require('bqf').setup({
-  auto_enable = true
+require("bqf").setup({
+  auto_enable = true,
   --[[ preview = {
         win_height = 12,
         win_vheight = 12,

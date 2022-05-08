@@ -1,17 +1,17 @@
 local pickers = require("telescope.pickers")
 local finders = require("telescope.finders")
 local conf = require("telescope.config").values
-local make_entry = require('telescope.make_entry')
-local builtins = require('telescope.builtin')
-local themes = require('telescope.themes')
-local utils = require('ld.utils.functions')
+local make_entry = require("telescope.make_entry")
+local builtins = require("telescope.builtin")
+local themes = require("telescope.themes")
+local utils = require("ld.utils.functions")
 
 local M = {}
 
 M.search_config = function()
   require("telescope.builtin").find_files({
     prompt_title = "< VimConfig >",
-    cwd = "$HOME/.config/nvim"
+    cwd = "$HOME/.config/nvim",
   })
 end
 
@@ -21,7 +21,7 @@ local lsp_location_result_to_key = function(lsp_result)
   local rangeEnd = lsp_result.range["end"]
 
   local ranges = {
-    rangeStart.character, rangeStart.line, rangeEnd.character, rangeEnd.line
+    rangeStart.character, rangeStart.line, rangeEnd.character, rangeEnd.line,
   }
   local key = uri .. ":" .. table.concat(ranges, ":")
   return key
@@ -33,9 +33,7 @@ M.lsp_unique_references = function(opts)
   params.context = {includeDeclaration = true}
 
   local results_lsp, err = vim.lsp.buf_request_sync(0,
-                                                    "textDocument/references",
-                                                    params,
-                                                    opts.timeout or 10000)
+      "textDocument/references", params, opts.timeout or 10000)
   if err then
     vim.api.nvim_err_writeln("Error when finding references: " .. err)
     return
@@ -61,29 +59,31 @@ M.lsp_unique_references = function(opts)
       end
 
       vim.list_extend(locations,
-                      vim.lsp.util.locations_to_items(filtered_results) or {})
+          vim.lsp.util.locations_to_items(filtered_results) or {})
 
     end
   end
 
-  if vim.tbl_isempty(locations) then return end
+  if vim.tbl_isempty(locations) then
+    return
+  end
 
   pickers.new(opts, {
     prompt_title = "LSP Unique References",
     finder = finders.new_table {
       results = locations,
-      entry_maker = opts.entry_maker or make_entry.gen_from_quickfix(opts)
+      entry_maker = opts.entry_maker or make_entry.gen_from_quickfix(opts),
     },
     previewer = conf.qflist_previewer(opts),
-    sorter = conf.generic_sorter(opts)
+    sorter = conf.generic_sorter(opts),
   }):find()
 end
 
 M.file_browser_home = function()
-  require('telescope.builtin').file_browser({
-    cwd = '~',
+  require("telescope.builtin").file_browser({
+    cwd = "~",
     depth = 1,
-    hidden = true
+    hidden = true,
   })
 end
 
@@ -95,20 +95,20 @@ M.find_files_angular_material = function()
     cwd = "$HOME/open-source/angular-cdk/",
     hidden = true,
     file_ignore_patterns = {
-      '.backup', '.swap', '.langservers', '.session', '.undo', '*.git',
-      'node_modules', 'vendor', '.cache', '.vscode-server', '.Desktop',
-      '.Documents', 'classes', 'package-lock.json', '.spec.ts'
-    }
+      ".backup", ".swap", ".langservers", ".session", ".undo", "*.git",
+      "node_modules", "vendor", ".cache", ".vscode-server", ".Desktop",
+      ".Documents", "classes", "package-lock.json", ".spec.ts",
+    },
 
   }))
 end
 
 local escape_rg_text = function(text)
-  text = text:gsub('%(', '\\%(')
-  text = text:gsub('%)', '\\%)')
-  text = text:gsub('%[', '\\%[')
-  text = text:gsub('%]', '\\%]')
-  text = text:gsub('"', '\\"')
+  text = text:gsub("%(", "\\%(")
+  text = text:gsub("%)", "\\%)")
+  text = text:gsub("%[", "\\%[")
+  text = text:gsub("%]", "\\%]")
+  text = text:gsub("\"", "\\\"")
 
   return text
 end
@@ -117,21 +117,22 @@ M.live_grep_raw = function(opts, mode)
   local defaults = {
     vimgrep_arguments = {
       "rg", "--color=never", "--no-heading", "--with-filename", "--line-number",
-      "--column", "--smart-case"
-    }
+      "--column", "--smart-case",
+    },
   }
   opts = vim.tbl_extend("force", defaults, opts or {})
   opts.prompt_title =
-      'Live Grep Raw (-t[ty] include, -T exclude -g"[!] [glob])"'
+      "Live Grep Raw (-t[ty] include, -T exclude -g\"[!] [glob])\""
   if not opts.default_text then
-    if mode == 'v' then
-      opts.default_text = '"' .. escape_rg_text(utils.get_visual_text()) .. '"'
+    if mode == "v" then
+      opts.default_text = "\"" .. escape_rg_text(utils.get_visual_text()) ..
+                              "\""
     else
-      opts.default_text = '"'
+      opts.default_text = "\""
     end
   end
 
-  require('telescope').extensions.live_grep_raw.live_grep_raw(opts)
+  require("telescope").extensions.live_grep_raw.live_grep_raw(opts)
 end
 
 return M

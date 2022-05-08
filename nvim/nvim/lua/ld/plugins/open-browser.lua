@@ -4,4 +4,3 @@ vim.cmd([[
   vmap gx <Plug>(openbrowser-smart-search)
 ]])
 
-

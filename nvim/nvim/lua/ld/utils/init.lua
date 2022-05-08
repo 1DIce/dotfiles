@@ -1,2 +1,2 @@
-require 'ld.utils.remaps'
-require 'ld.utils.globals'
+require "ld.utils.remaps"
+require "ld.utils.globals"

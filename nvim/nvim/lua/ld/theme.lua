@@ -1,4 +1,4 @@
-vim.cmd('syntax on')
+vim.cmd("syntax on")
 
 vim.o.termguicolors = true
 
@@ -18,30 +18,30 @@ local vscode_dark = function()
   vim.g.vscode_transparent = 0
   vim.o.background = "dark"
   vim.cmd [[colorscheme vscode]]
-  require('lualine').setup {options = {theme = 'vscode'}}
+  require("lualine").setup {options = {theme = "vscode"}}
   vim.cmd("highlight TSVariableBuiltin guifg=#569cd6")
   vim.cmd("highlight TSKeywordReturn guifg=#C586C0")
 end
 
-local darkplus = function() vim.cmd('colorscheme darkplus') end
+local darkplus = function() vim.cmd("colorscheme darkplus") end
 
 local nightfox = function() require("nightfox").load("nightfox") end
 
 local monokai = function()
-  local palette = require('monokai').classic
-  require('monokai').setup {
+  local palette = require("monokai").classic
+  require("monokai").setup {
     palette = palette,
     custom_hlgroups = {
       LspReferenceWrite = {bg = palette.base5},
-      LspReferenceRead = {bg = palette.base5}
+      LspReferenceRead = {bg = palette.base5},
       -- LspReferenceText = {bg = palette.grey, fg = palette.diff_add}
-    }
+    },
 
   }
 end
 
 local tokyonight = function()
-  vim.o.background = 'dark'
+  vim.o.background = "dark"
   vim.g.tokyonight_style = "night"
   vim.g.tokyonight_italic_functions = true
   -- vim.g.tokyonight_sidebars = {"qf", "vista_kind", "terminal", "packer"}
@@ -52,7 +52,7 @@ local tokyonight = function()
   --             bg_sidebar = 'black'
   --             }
   --
-  vim.cmd('colorscheme tokyonight')
+  vim.cmd("colorscheme tokyonight")
 end
 
 local tokyodark = function()
@@ -64,12 +64,12 @@ local tokyodark = function()
 end
 
 local gruvbox = function()
-  vim.o.background = 'dark'
+  vim.o.background = "dark"
 
-  vim.g.gruvbox_material_background = 'medium'
+  vim.g.gruvbox_material_background = "medium"
   vim.g.gruvbox_material_palette = "original"
 
-  vim.cmd('colorscheme gruvbox-material')
+  vim.cmd("colorscheme gruvbox-material")
 
 end
 
@@ -80,8 +80,8 @@ local calvera = function()
   vim.g.calvera_custom_colors = {}
 
   -- Required Setting
-  require('calvera').set()
-  require('lualine').setup {options = {theme = 'calvera-nvim'}}
+  require("calvera").set()
+  require("lualine").setup {options = {theme = "calvera-nvim"}}
 
 end
 
@@ -94,26 +94,26 @@ local github_dark = function()
     sidebars = {"qf", "vista_kind", "terminal", "packer"},
 
     -- Change the "hint" color to the "orange" color, and make the "error" color bright red
-    colors = {hint = "orange", error = "#ff0000"}
+    colors = {hint = "orange", error = "#ff0000"},
   })
 
 end
 
 local onedarkpro = function()
-  local onedarkpro = require('onedarkpro')
+  local onedarkpro = require("onedarkpro")
   onedarkpro.setup({
     hlgroups = {
       TSParameter = {fg = "${white}"},
       TSProperty = {fg = "${white}"},
-      TSVariable = {fg = "${white}"}
+      TSVariable = {fg = "${white}"},
     },
     options = {
       transparency = false,
       terminal_colors = true,
       window_unfocussed_color = false,
       bold = true,
-      italic = true
-    }
+      italic = true,
+    },
   })
   onedarkpro.load()
 end

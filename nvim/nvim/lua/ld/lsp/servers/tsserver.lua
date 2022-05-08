@@ -1,12 +1,12 @@
-local remaps = require 'ld.lsp.remaps'
-local events = require 'ld.lsp.events'
+local remaps = require "ld.lsp.remaps"
+local events = require "ld.lsp.events"
 
 local initOptions = {
   preferences = {
     quotePreference = "double",
     importModuleSpecifierPreference = "non-relative",
-    typescript = {format = {indentSize = 2}}
-  }
+    typescript = {format = {indentSize = 2}},
+  },
 }
 
 return function(on_attach, capabilities)
@@ -25,7 +25,7 @@ return function(on_attach, capabilities)
       events.document_highlight_under_cursor()
     end,
     init_options = initOptions,
-    capabilities = modfiedCapabilities
+    capabilities = modfiedCapabilities,
 
   }
 end

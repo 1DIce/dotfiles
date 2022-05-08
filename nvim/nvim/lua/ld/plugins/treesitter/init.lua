@@ -1,1 +1,1 @@
-require 'ld.plugins.treesitter.settings'
+require "ld.plugins.treesitter.settings"

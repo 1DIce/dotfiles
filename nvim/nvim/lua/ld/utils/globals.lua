@@ -1,10 +1,10 @@
-local functions = require 'ld.utils.functions'
+local functions = require "ld.utils.functions"
 
 _G.reload = function()
   local counter = 0
 
   for moduleName in pairs(package.loaded) do
-    if functions.starts_with(moduleName, 'ld.') then
+    if functions.starts_with(moduleName, "ld.") then
       package.loaded[moduleName] = nil
       require(moduleName)
       counter = counter + 1
@@ -14,7 +14,7 @@ _G.reload = function()
   -- clear nvim-mapper keys
   vim.g.mapper_records = nil
 
-  print('Reloaded ' .. counter .. ' modules!')
+  print("Reloaded " .. counter .. " modules!")
 end
 
 -- Works like "require", but reloads the package before returning it.
