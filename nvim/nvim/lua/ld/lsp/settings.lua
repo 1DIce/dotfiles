@@ -11,7 +11,6 @@ M = {}
 vim.lsp.set_log_level("error")
 
 local function on_attach(client, bufnr)
-  -- print(client.name)
   remaps.set_default(client, bufnr)
   lsp_status.on_attach(client, bufnr)
 
@@ -20,11 +19,14 @@ local function on_attach(client, bufnr)
     floating_window = false,
     timer_interval = 500,
   })
+  vim.diagnostic.config({
+    virtual_text = {severity = vim.diagnostic.severity.ERROR},
+    underline = true,
+  })
 end
 
 M.on_attach = on_attach
 
-vim.diagnostic.config({virtual_text = false, underline = true})
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
     vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
       -- virtual_text = {spacing = 0, prefix = '■'},
@@ -87,8 +89,6 @@ local sumneko_lua_config = function()
   }
 end
 
-require("lspconfig").sumneko_lua.setup(sumneko_lua_config())
-
 local css_config = function()
   local cloned_capabilities = vim.deepcopy(capabilities)
   cloned_capabilities.textDocument.completion.completionItem.snippetSupport =
@@ -145,6 +145,7 @@ local deno_config = function()
   }
 end
 
+require("lspconfig").sumneko_lua.setup(sumneko_lua_config())
 local servers = {
   bashls = {},
   yamlls = {},

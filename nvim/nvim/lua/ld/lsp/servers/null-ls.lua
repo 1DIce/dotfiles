@@ -9,7 +9,7 @@ null_ls.setup({
     null_ls.builtins.formatting.black,
     null_ls.builtins.diagnostics.cspell.with({
       filetypes = {},
-      severity = 3,
+      severity = vim.diagnostic.severity.INFO,
       disabled_filetypes = {"lua", "vim", "gitconfig", "vimwiki"},
       extra_args = function(params)
         if (lsp.util.root_pattern(".vscode/cspell.json")(params.bufname)) then
