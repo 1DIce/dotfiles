@@ -154,7 +154,8 @@ local servers = {
   cssls = css_config(),
   dockerls = {},
   eslint = {},
-  pylsp = {}
+  pylsp = {},
+  gopls = {}
 }
 if functions.is_deno_workspace() then
   servers.denols = deno_config()

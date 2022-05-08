@@ -16,6 +16,7 @@ vim.cmd(
 -- Format file on save 
 vim.cmd(
     [[autocmd BufWritePre *.html,*.js,*.less,*.json,*.scss,*.css :Prettier ]])
-vim.cmd([[autocmd BufWritePre *.lua,*.sh :lua vim.lsp.buf.formatting_sync() ]])
+vim.cmd(
+    [[autocmd BufWritePre *.lua,*.sh,*.go :lua vim.lsp.buf.formatting_sync() ]])
 
 return M

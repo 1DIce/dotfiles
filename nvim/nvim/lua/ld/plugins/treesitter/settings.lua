@@ -6,7 +6,7 @@ local treesitter = require 'nvim-treesitter.configs'
 
 treesitter.setup {
   ensure_installed = {
-    "typescript", "markdown", "lua", "json", "css", "javascript", "html",
+    "typescript", "markdown", "lua", "json", "css", "javascript", "html", "go",
     "bash", "toml", "yaml", "query", "java", "vim"
   },
   highlight = {
@@ -14,7 +14,7 @@ treesitter.setup {
     additional_vim_regex_highlighting = false
     -- custom_captures = {
     --   -- Highlight the @TypescriptThis capture group with the "Identifier" highlight group.
-    --   ["TypescriptThis"] = "TypescriptThi"
+    --   ["TypescriptThis"] = "TypescriptThis"
     -- }
   },
   rainbow = {enable = true, extended_mode = false, max_file_lines = nil},
