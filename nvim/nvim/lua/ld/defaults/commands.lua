@@ -1,10 +1,9 @@
-vim.cmd(
-    [[:command NgTestCur :Tkill | :T npm run test -- --include $(realpath --relative-to . %:p)]])
+vim.api.nvim_create_user_command("NgTestCur", function()
+  vim.cmd(
+      [[:Tkill | :T npm run test -- --include $(realpath --relative-to . %:p) ]])
+end, {})
 
-vim.cmd(
-    [[:command DiffviewMrChange :lua require("ld.defaults.command).getDiffviewOriginalFilePath()]])
-local M = {}
-M.getDiffviewOriginalFilePath = function()
+local getDiffviewOriginalFilePath = function()
   local absolutePath = require("diffview.lib"):get_current_view()
                            :infer_cur_file().absolute_path
   if absolutePath then
@@ -12,4 +11,6 @@ M.getDiffviewOriginalFilePath = function()
   end
 end
 
-return M
+vim.api.nvim_create_user_command("DiffviewMrChange",
+                                 function() getDiffviewOriginalFilePath() end,
+                                 {})
