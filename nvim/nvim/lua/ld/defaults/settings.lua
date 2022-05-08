@@ -54,6 +54,10 @@ vim.o.updatetime = 50
 -- noselect: Do not select, force user to select one from the menu
 vim.o.completeopt = 'menu,menuone,noselect'
 
+-- use ripgrep as the grep command
+vim.o.grepprg = "rg --vimgrep --no-heading --smart-case"
+vim.o.grepformat = '%f:%l:%c:%m'
+
 -- Don't show the dumb matching stuff.
 vim.cmd [[set shortmess+=c]]
 
