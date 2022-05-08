@@ -5,6 +5,7 @@ local remaps = require('ld.lsp.remaps')
 local functions = require('ld.lsp.functions')
 local presentCmpNvimLsp, cmpNvimLsp = pcall(require, 'cmp_nvim_lsp')
 
+M = {}
 -- for debugging lsp
 -- Levels by name: 'trace', 'debug', 'info', 'warn', 'error'
 vim.lsp.set_log_level('error')
@@ -14,15 +15,14 @@ local function on_attach(client, bufnr)
   remaps.set_default(client, bufnr)
   lsp_status.on_attach(client, bufnr)
 
-  -- adds beatiful icon to completion
-  require'lspkind'.init()
-
   -- add signature autocompletion while typing
   require'lsp_signature'.on_attach({
     floating_window = false,
     timer_interval = 500
   })
 end
+
+M.on_attach = on_attach
 
 vim.diagnostic.config({virtual_text = false, underline = true})
 vim.lsp.handlers['textDocument/publishDiagnostics'] =
@@ -46,6 +46,8 @@ if presentCmpNvimLsp then
                                 cmpNvimLsp.update_capabilities(
                                     vim.lsp.protocol.make_client_capabilities()))
 end
+
+M.capabilities = capabilities
 
 local default_lsp_config = {on_attach = on_attach, capabilities}
 
@@ -173,3 +175,5 @@ for serverName, config in pairs(servers) do
   server:setup(vim.tbl_deep_extend('force', default_lsp_config, config))
   vim.cmd [[ do User LspAttachBuffers ]]
 end
+
+return M

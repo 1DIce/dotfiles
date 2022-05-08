@@ -199,6 +199,10 @@ return require('packer').startup(function(use)
     config = function() require('ld.lsp.servers.null-ls') end,
     requires = {"nvim-lua/plenary.nvim", "neovim/nvim-lspconfig"}
   })
+  use({
+    'mfussenegger/nvim-jdtls',
+    config = function() require 'ld.lsp.servers.jdtls' end
+  })
 
   use {
     'hrsh7th/nvim-cmp',
