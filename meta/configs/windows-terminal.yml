@@ -1,0 +1,4 @@
+- crossplatform-link:
+  - ~/AppData/Local/packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json: 
+      platform: win32
+      path: windows-terminal/settings.json

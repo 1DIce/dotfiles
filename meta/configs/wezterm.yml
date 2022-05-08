@@ -1,0 +1,5 @@
+- crossplatform-link:
+  - ~/.config/wezterm/wezterm.lua: 
+      platform: win32
+      path: wezterm/wezterm.lua
+

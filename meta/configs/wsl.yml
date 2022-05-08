@@ -1,0 +1,6 @@
+- crossplatform-link:
+  - ~/.wslconfig: 
+      platform: win32
+      force: true
+      path: wsl/wslconfig
+

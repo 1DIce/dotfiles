@@ -1,0 +1,4 @@
+- crossplatform-link:
+  - ~/.vrapperrc: 
+      platform: win32
+      path: vrapper/vrapperrc
