@@ -48,6 +48,11 @@ return require('packer').startup(function(use)
     requires = 'nvim-lua/plenary.nvim',
     config = function() require('diffview').setup({}) end
   }
+  use {
+    'lewis6991/gitsigns.nvim',
+    tag = "release",
+    config = function() require('gitsigns').setup() end
+  }
 
   use "dbeniamine/cheat.sh-vim"
   use {
