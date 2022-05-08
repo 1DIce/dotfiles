@@ -173,7 +173,7 @@ return require('packer').startup(function(use)
 
   use {
     'lazytanuki/nvim-mapper',
-    config = function() require 'ld.plugins.nvim-mapper' end,
+    config = function() require('nvim-mapper').setup({}) end,
     before = 'telescope.nvim'
   }
 
