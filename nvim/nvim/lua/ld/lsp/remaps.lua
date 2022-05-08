@@ -69,20 +69,11 @@ function M.set_default(client, bufnr)
   -- end
 
   if cap.codeActionProvider then
-    -- buf_set_keymap('n','<leader>fa', '<cmd>lua vim.lsp.buf.code_action()<CR>', 'lsp', 'lsp_', '')
-    buf_set_keymap('v', '<leader>la',
-                   "<cmd>'<,'>lua vim.lsp.buf.range_code_action(require(\'telescope.themes\').get_cursor())<cr>",
+    buf_set_keymap('n', '<leader>la', '<cmd>lua vim.lsp.buf.code_action()<CR>',
                    'lsp', 'lsp_', '')
-    buf_set_keymap('n', '<leader>la',
-                   '<cmd>lua require(\'telescope.builtin\').lsp_code_actions(require(\'telescope.themes\').get_cursor())<CR>',
-                   'lsp', 'lsp_code_actions', 'Code actions')
-    -- buf_set_keymap('v', '<leader>la',
-    --                "<cmd>'<,>'lua require(\'telescope.builtin\').lsp_range_code_actions({ timeout = 1000 })<CR>", 'lsp',
-    --                'lsp_code_actions_in_visual', 'Code actions (visual)')
-    -- buf_set_keymap('v', '<leader>la', "<cmd><C-U>lua require('lspsaga.codeaction').range_code_action()<CR>", 'lsp',
-    --                'lsp_code_actions_in_visual', 'Code actions (visual)')
-    --[[ buf_set_keymap('n', '<leader>fa', "<cmd>lua require('lspsaga.codeaction').code_action()<CR>", opts)
-    buf_set_keymap('v', '<leader>fa', "<cmd>'<,'>lua require('lspsaga.codeaction').range_code_action()<CR>", opts) ]]
+    buf_set_keymap('v', '<leader>la',
+                   '<cmd>lua vim.lsp.buf.range_code_action()<CR>', 'lsp',
+                   'lsp_', '')
   end
 
   -- buf_set_keymap('n','<leader>fe', '<cmd>lua vim.diagnostic.set_loclist()<CR>', opts)
@@ -90,7 +81,7 @@ function M.set_default(client, bufnr)
   -- buf_set_keymap('n', '<leader>fe', '<cmd>lua require(\'ld.lsp.functions\').show_diagnostics()<CR>', 'lsp',
   --                'lsp_show_diagnostics', 'Show diagnostics')
   buf_set_keymap('n', '<leader>lew',
-                 '<cmd>lua require(\'telescope.builtin\').lsp_workspace_diagnostics()<CR>',
+                 '<cmd>lua require(\'telescope.builtin\').diagnostics()<CR>',
                  'lsp', 'lsp_show_workspace_diagnostics',
                  'Show workspace diagnostics')
   buf_set_keymap('n', '<leader>leb',
