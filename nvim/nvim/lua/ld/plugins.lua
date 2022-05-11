@@ -102,6 +102,7 @@ return require("packer").startup(function(use)
   }
 
   use "szw/vim-maximizer"
+  use "mbbill/undotree"
 
   use "kassio/neoterm"
   use {
