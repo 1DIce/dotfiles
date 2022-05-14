@@ -1,9 +1,4 @@
 pcall(require, "impatient")
-
-if require "ld.first-load"() then
-  return
-end
-
 require "ld.plugins"
 
 require "ld.utils"
