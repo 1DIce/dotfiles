@@ -1,9 +1,23 @@
 local jdtls = require("jdtls")
+local utils = require("ld.utils.functions")
 local root_markers = {".git"}
 local root_dir = require("jdtls.setup").find_root(root_markers)
 local home = os.getenv("HOME")
 local workspace_folder = home .. "/.local/share/java/eclipse/" ..
                              vim.fn.fnamemodify(root_dir, ":p:h:t")
+local java_bin = function() if utils.is_windows() then  return os.getenv("JAVA_HOME") .. "/bin/java" else return  home .. "/.local/share/java/17/bin/java" end end;
+local configuration_path = function() if utils.is_windows() then return home .. "/.local/share/java/jdtls/config_win" else return home .. "/.local/share/java/jdtls/config_linux"end end
+
+local get_runtimes = function() if utils.is_windows() then return {
+        {name = "JavaSE-17", path = os.getenv("JAVA_HOME")},
+}
+else 
+  return {
+        {name = "JavaSE-11", path = home .. "/.local/share/java/11/"},
+        {name = "JavaSE-17", path = home .. "/.local/share/java/17/"},
+      }
+end 
+end
 M = {}
 
 config = {
@@ -40,15 +54,12 @@ config.settings = {
       useBlocks = true,
     },
     configuration = {
-      runtimes = {
-        {name = "JavaSE-11", path = home .. "/.local/share/java/11/"},
-        {name = "JavaSE-17", path = home .. "/.local/share/java/17/"},
-      },
+      runtimes = get_runtimes()
     },
   },
 }
 config.cmd = {
-  home .. "/.local/share/java/17/bin/java",
+ java_bin(),
   "-Declipse.application=org.eclipse.jdt.ls.core.id1",
   "-Dosgi.bundles.defaultStartLevel=4",
   "-Declipse.product=org.eclipse.jdt.ls.core.product", "-Dlog.protocol=true",
@@ -56,7 +67,7 @@ config.cmd = {
   "java.base/java.util=ALL-UNNAMED", "--add-opens",
   "java.base/java.lang=ALL-UNNAMED", "-jar", vim.fn.glob(home ..
                                                              "/.local/share/java/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
-  "-configuration", home .. "/.local/share/java/jdtls/config_linux", "-data",
+  "-configuration",configuration_path(), "-data",
   workspace_folder,
 }
 config.on_attach = function(client, bufnr)
@@ -123,7 +134,6 @@ config.init_options = {
 }
 
 M.jdtls_start_or_attach = function()
-  print("hello jdtls");
   jdtls.start_or_attach(config)
 end
 

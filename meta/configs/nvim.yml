@@ -1,8 +1,16 @@
-- link:
-    ~/.config/nvim: nvim/nvim 
+- crossplatform-link:
+    - ~/.config/nvim: 
+        platform: linux
+        path: nvim/nvim 
+    - ~/AppData/Local/nvim: 
+        platform: win32
+        path: nvim/nvim 
 
-- shell:
-    - rm -f ~/bin/nvim && wget -O ~/bin/nvim https://github.com/neovim/neovim/releases/download/stable/nvim.appimage && chmod +x ~/bin/nvim
+- crossplatform-shell:
+    - command: rm -f ~/bin/nvim && wget -O ~/bin/nvim https://github.com/neovim/neovim/releases/download/stable/nvim.appimage && chmod +x ~/bin/nvim
+      platform: linux
+    - command: scoop install neovim
+      platform: win32
     # - npm i -g bash-language-server
     # - npm i -g docker-language-server-nodejs
     # - go intall github.com/mattn/efm-langserver@latest

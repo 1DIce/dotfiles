@@ -1,5 +1,8 @@
 # Dotfiles
 
+## Requirements for installing windows tools
+- [scoop](scoop.sh) is installed
+
 ## installing a profile
 `./install-profile <profile> [<configs...>]`
 

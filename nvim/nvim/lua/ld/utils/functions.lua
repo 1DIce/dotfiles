@@ -29,6 +29,8 @@ end
 
 function M.is_linux() return vim.loop.os_uname().sysname == "Linux" end
 
+function M.is_windows() return vim.loop.os_uname().sysname == "Windows_NT" end
+
 function M.get_visual_text()
   local current_line = vim.api.nvim_get_current_line()
   local start_pos = vim.api.nvim_buf_get_mark(0, "<")
