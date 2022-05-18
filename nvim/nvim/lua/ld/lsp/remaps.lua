@@ -68,9 +68,10 @@ function M.set_default(client, bufnr)
 
   if cap.codeActionProvider then
     buf_set_keymap("n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<CR>",
-        "lsp", "lsp_", "")
+        "lsp", "lsp_code_action", "")
     buf_set_keymap("v", "<leader>la",
-        "<cmd>lua vim.lsp.buf.range_code_action()<CR>", "lsp", "lsp_", "")
+        "<cmd>lua vim.lsp.buf.range_code_action()<CR>", "lsp",
+        "lsp_range_code_actions", "")
   end
 
   -- buf_set_keymap('n','<leader>fe', '<cmd>lua vim.diagnostic.set_loclist()<CR>', opts)
