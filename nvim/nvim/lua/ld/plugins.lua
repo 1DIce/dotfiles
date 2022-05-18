@@ -1,17 +1,13 @@
--- local present, packer = pcall(require, 'ld.packer_init')
--- if not present then return false end
-local fn = vim.fn
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({
-    "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim",
-    install_path,
-  })
-end
+vim.cmd [[packadd packer.nvim]]
 
 return require("packer").startup(function(use)
   use({"wbthomason/packer.nvim", event = "VimEnter"})
   use "lewis6991/impatient.nvim"
+
+  use {
+    "lazytanuki/nvim-mapper",
+    config = function() require("nvim-mapper").setup({}) end,
+  }
 
   use "MunifTanjim/nui.nvim" -- ui library
   use {
@@ -141,7 +137,7 @@ return require("packer").startup(function(use)
   use {
     "AckslD/nvim-neoclip.lua",
     requires = {
-      {"tami5/sqlite.lua", module = "sqlite"},
+      {"tami5/sqlite.lua"},
       {"nvim-telescope/telescope.nvim"},
     },
     config = function()
@@ -178,11 +174,6 @@ return require("packer").startup(function(use)
     config = function() require "ld.plugins.nvim-tree" end,
   }
 
-  use {
-    "lazytanuki/nvim-mapper",
-    config = function() require("nvim-mapper").setup({}) end,
-    before = "telescope.nvim",
-  }
 
   use {
     "ThePrimeagen/harpoon",
