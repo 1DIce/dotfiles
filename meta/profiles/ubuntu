@@ -1,4 +1,5 @@
 local
+locale
 zsh
 less
 cmd-tools-apt
