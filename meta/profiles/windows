@@ -1,3 +1,5 @@
+local
+bash
 cmd-tools-scoop
 nvim
 wsl

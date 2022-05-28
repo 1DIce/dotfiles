@@ -1,2 +1,7 @@
-- link: 
-    ~/.bashrc: bash/bashrc
+- crossplatform-link: 
+    ~/.bashrc:
+      platform: linux
+      path: bash/bashrc
+    ~/.bashrc:
+      platform: win32
+      path: bash/win_bashrc
