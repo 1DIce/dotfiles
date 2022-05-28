@@ -1,2 +1,2 @@
 - crossplatform-shell:
-    - scoop install ripgrep fd sqlite
+    - scoop install ripgrep fd sqlite deno
