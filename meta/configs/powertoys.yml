@@ -1,0 +1,10 @@
+- crossplatform-link:
+    ~/AppData/Local/Microsoft/PowerToys/settings.json:
+      platform: win32
+      path: powertoys/settings.json
+    "~/AppData/Local/Microsoft/PowerToys/Keyboard\ Manager/settings.json":
+      platform: win32
+      path: powertoys/Keyboard_Manager/settings.json
+    "~/AppData/Local/Microsoft/PowerToys/Keyboard\ Manager/default.json":
+      platform: win32
+      path: powertoys/Keyboard_Manager/default.json
