@@ -1,4 +1,4 @@
-#/usr/bin/env bash
+#!/usr/bin/env bash
 
 JDTLS_ROOT="$HOME/.local/share/java/jdtls"
 
