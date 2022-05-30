@@ -15,12 +15,12 @@ ECHO.
 goto start
 :java11
 @ECHO on
-SETX JAVA_HOME "C:\Program Files\AdoptOpenJDK\jdk-11.0.5.10-hotspot\"
+SETX JAVA_HOME "C:\Program Files\AdoptOpenJDK\jdk-11.0.5.10-hotspot"
 @ECHO off
 goto end
 :java17
 @ECHO on
-SETX JAVA_HOME "C:\Program Files\Eclipse Adoptium\jdk-17.0.2.8-hotspot\"
+SETX JAVA_HOME "C:\Program Files\Eclipse Adoptium\jdk-17.0.2.8-hotspot"
 @ECHO off
 goto end
 :end
