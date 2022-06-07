@@ -1,0 +1,7 @@
+- crossplatform-shell:
+  - command: > 
+      wget -O ~/Downloads/UbuntuMono.zip https://github.com/ryanoasis/gitui/releases/latest/download/UbuntuMono.zip
+      && unzip ~/Downloads/UbuntuMono.zip -d ~/.fonts
+      && fc-cache -fv
+      && rm -v ~/Downloads/UbuntuMono.zip
+    environment: "WSL_DISTRO_NAME"
