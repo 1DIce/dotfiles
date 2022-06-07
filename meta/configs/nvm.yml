@@ -1,4 +1,5 @@
 - link:
     ~/.nvm: libs/nvm
 - shell:
-  - nvm install --lts || true
+    - nvm install --lts || true
+    - nvm use --lts || true
