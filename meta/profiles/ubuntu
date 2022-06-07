@@ -24,6 +24,7 @@ fydor
 git-format-staged
 gitlab-cli
 python-black
+gitui
 shfmt
 git-depgraph
 zathura
