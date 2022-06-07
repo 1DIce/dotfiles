@@ -54,4 +54,4 @@ end
 telescope.load_extension("mapper")
 telescope.load_extension("harpoon")
 telescope.load_extension("neoclip")
-telescope.load_extension("live_grep_raw")
+telescope.load_extension("live_grep_args")

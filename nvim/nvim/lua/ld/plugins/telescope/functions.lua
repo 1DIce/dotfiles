@@ -11,7 +11,7 @@ local M = {}
 M.search_config = function()
   require("telescope.builtin").find_files({
     prompt_title = "< VimConfig >",
-    cwd = vim.fn.stdpath('config'),
+    cwd = vim.fn.stdpath("config"),
   })
 end
 
@@ -122,7 +122,7 @@ M.live_grep_raw = function(opts, mode)
   }
   opts = vim.tbl_extend("force", defaults, opts or {})
   opts.prompt_title =
-      "Live Grep Raw (-t[ty] include, -T exclude -g\"[!] [glob])\""
+      "Live Grep Args (-t[ty] include, -T exclude -g\"[!] [glob])\""
   if not opts.default_text then
     if mode == "v" then
       opts.default_text = "\"" .. escape_rg_text(utils.get_visual_text()) ..
@@ -132,7 +132,7 @@ M.live_grep_raw = function(opts, mode)
     end
   end
 
-  require("telescope").extensions.live_grep_raw.live_grep_raw(opts)
+  require("telescope").extensions.live_grep_args.live_grep_raw(opts)
 end
 
 return M

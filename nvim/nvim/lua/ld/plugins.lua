@@ -66,7 +66,7 @@ return require("packer").startup(function(use)
 
   use {
     "vimwiki/vimwiki",
-    config = function() require('ld.plugins.vim-wiki') end
+    config = function() require("ld.plugins.vim-wiki") end,
   }
 
   -- Debugging
@@ -136,7 +136,7 @@ return require("packer").startup(function(use)
     config = function() require "ld.plugins.telescope" end,
   }
   use {"nvim-telescope/telescope-fzf-native.nvim", run = "make"}
-  use {"nvim-telescope/telescope-rg.nvim"}
+  use {"nvim-telescope/telescope-live-grep-args.nvim"}
 
   use {
     "AckslD/nvim-neoclip.lua",
