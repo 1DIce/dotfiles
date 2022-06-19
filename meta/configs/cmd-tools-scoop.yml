@@ -1,2 +1,3 @@
 - crossplatform-shell:
-    - scoop install ripgrep fd sqlite deno
+    - scoop bucket add main
+    - scoop install ripgrep fd sqlite deno gcc make gitui win32yank 
