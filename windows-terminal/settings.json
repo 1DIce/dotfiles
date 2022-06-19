@@ -69,7 +69,7 @@
         "guid": "{00000000-0000-0000-0000-000000012345}",
         "historySize": 9001,
         "icon": "%PROGRAMFILES%\\git\\mingw64\\share\\git\\git-for-windows.ico",
-        "name": "Git Bash",
+        "name": "GitBash",
         "padding": "0, 0, 0, 0",
         "snapOnInput": true,
         "useAcrylic": false,

@@ -1,4 +1,5 @@
 local
+git
 bash
 cmd-tools-scoop
 nvim
