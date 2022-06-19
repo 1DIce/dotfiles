@@ -1,73 +1,87 @@
--- The same using nvim-mapper
-Mapper = require("nvim-mapper")
+local function keymap(mode, input, output, description, opts, bufnr)
+  if opts == nil then
+    opts = {}
+  end
 
-local function map(type, input, output, category, unique_identifier, description)
-  -- vim.api.nvim_set_keymap(type, input, output, {}, category, unique_identifier, description)
-  Mapper.map(type, input, output, {}, category, unique_identifier, description)
+  if type(output) == "function" then
+    opts = vim.tbl_extend("keep", opts, {callback = output})
+    output = nil
+  end
+
+  opts = vim.tbl_extend("force", opts, {desc = description})
+
+  if bufnr == nil then
+    vim.api.nvim_set_keymap(mode, input, output, opts)
+  else
+    vim.api.nvim_buf_set_keymap(bufnr, mode, input, output, opts)
+  end
+
 end
 
-local function noremap(type, input, output, category, unique_identifier,
-    description)
-  -- vim.api.nvim_set_keymap(type, input, output, { noremap = true })
-  Mapper.map(type, input, output, {noremap = true}, category, unique_identifier,
-      description)
+local function noremap(mode, input, output, description, opts)
+  if opts == nil then
+    opts = {}
+  end
+  opts = vim.tbl_extend("force", opts, {noremap = true})
+  keymap(mode, input, output, description, opts)
 end
 
-function bufnoremap(bufnr, type, input, output, category, unique_identifier,
-    description)
-  -- vim.api.nvim_buf_set_keymap(bufnr, type, input, output, {noremap = true, silent = true})
-  Mapper.map_buf(bufnr, type, input, output, {noremap = true, silent = true},
-      category, unique_identifier, description)
+function bufnoremap(bufnr, mode, input, output, description, opts)
+  if opts == nil then
+    opts = {}
+  end
+  opts = vim.tbl_extend("keep", opts, {noremap = true, silent = true})
+  keymap(mode, input, output, description, opts, bufnr)
 end
 
-function nnoremap(input, output, category, unique_identifier, description)
-  noremap("n", input, output, category, unique_identifier, description)
+function nnoremap(input, output, description, opts)
+  noremap("n", input, output, description, opts)
 end
 
-function inoremap(input, output, category, unique_identifier, description)
-  noremap("i", input, output, category, unique_identifier, description)
+function inoremap(input, output, description, opts)
+  noremap("i", input, output, description, opts)
 end
 
-function vnoremap(input, output, category, unique_identifier, description)
-  noremap("v", input, output, category, unique_identifier, description)
+function vnoremap(input, output, description, opts)
+  noremap("v", input, output, description, opts)
 end
 
-function xnoremap(input, output, category, unique_identifier, description)
-  noremap("x", input, output, category, unique_identifier, description)
+function xnoremap(input, output, description, opts)
+  noremap("x", input, output, description, opts)
 end
 
-function onoremap(input, output, category, unique_identifier, description)
-  noremap("o", input, output, category, unique_identifier, description)
+function onoremap(input, output, description, opts)
+  noremap("o", input, output, description)
 end
 
-function tnoremap(input, output, category, unique_identifier, description)
-  noremap("t", input, output, category, unique_identifier, description)
+function tnoremap(input, output, description, opts)
+  noremap("t", input, output, description, opts)
 end
 
-function cnoremap(input, output, category, unique_identifier, description)
-  noremap("c", input, output, category, unique_identifier, description)
+function cnoremap(input, output, description, opts)
+  noremap("c", input, output, description, opts)
 end
 
-function nmap(input, output, category, unique_identifier, description)
-  map("n", input, output, category, unique_identifier, description)
+function nmap(input, output, description, opts)
+  keymap("n", input, output, description, opts)
 end
 
-function imap(input, output, category, unique_identifier, description)
-  map("i", input, output, category, unique_identifier, description)
+function imap(input, output, description, opts)
+  keymap("i", input, output, description, opts)
 end
 
-function vmap(input, output, category, unique_identifier, description)
-  map("v", input, output, category, unique_identifier, description)
+function vmap(input, output, description, opts)
+  keymap("v", input, output, description, opts)
 end
 
-function xmap(input, output, category, unique_identifier, description)
-  map("x", input, output, category, unique_identifier, description)
+function xmap(input, output, description, opts)
+  keymap("x", input, output, description, opts)
 end
 
-function omap(input, output, category, unique_identifier, description)
-  map("o", input, output, category, unique_identifier, description)
+function omap(input, output, description, opts)
+  keymap("o", input, output, description)
 end
 
-function tmap(input, output, category, unique_identifier, description)
-  map("t", input, output, category, unique_identifier, description)
+function tmap(input, output, description, opts)
+  keymap("t", input, output, description, opts)
 end

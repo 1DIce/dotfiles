@@ -1,5 +1,3 @@
-Mapper = require("nvim-mapper")
-
 require("nvim-treesitter.configs").setup {
   textobjects = {
     select = {
@@ -52,60 +50,45 @@ require("nvim-treesitter.configs").setup {
   highlight = {enable = true},
 }
 
-Mapper.map_virtual("o", "af", "", {}, "Navigation", "treesitter_function_outer",
-    "Function outer motion")
-Mapper.map_virtual("o", "if", "", {}, "Navigation", "treesitter_function_inner",
-    "Function inner motion")
-Mapper.map_virtual("o", "ac", "", {}, "Navigation", "treesitter_class_outer",
-    "Class outer motion")
-Mapper.map_virtual("o", "ic", "", {}, "Navigation", "treesitter_class_inner",
-    "Class inner motion")
+local wk = require("which-key")
 
-Mapper.map_virtual("o", "ax", "", {}, "Navigation",
-    "treesitter_attribute_outer", "Attribute (html, xml) outer motion")
-Mapper.map_virtual("o", "ix", "", {}, "Navigation",
-    "treesitter_attribute_inner", "Attribute (html, xml) inner motion")
+wk.register({
+  a = {
+    f = {"Function outer motion"}, --
+    c = {"Class outer motion"},
+    x = {"Attribute (html, xml) outer motion"},
+    k = {"Json key outer motion"},
+    v = {"Json value outer motion"},
+  },
+  i = {
+    f = {"Function inner motion"}, --
+    c = {"Class inner motion"}, --
+    x = {"Attribute (html, xml) inner motion"},
+    k = {"Json key inner motion"},
+    v = {"Json value inner motion"},
+  },
+  [" "] = {
+    r = {
+      p = {"Swap parameter to next"}, --
+      P = {"Swap parameter to previous"},
+    },
+  },
+  ["]"] = {
+    m = {"Go to next function (start)"},
+    M = {"Go to next function (end)"},
+    ["]"] = {"Go to next class (start)"},
+    ["["] = {"Go to next class (end)"},
 
-Mapper.map_virtual("o", "ak", "", {}, "Navigation", "treesitter_key_outer",
-    "Json key outer motion")
-Mapper.map_virtual("o", "ik", "", {}, "Navigation", "treesitter_key_inner",
-    "Json key inner motion")
-
-Mapper.map_virtual("o", "av", "", {}, "Navigation", "treesitter_value_outer",
-    "Json value outer motion")
-Mapper.map_virtual("o", "iv", "", {}, "Navigation", "treesitter_value_inner",
-    "Json value inner motion")
-
-Mapper.map_virtual("o", "<leader>rp", "", {}, "Navigation",
-    "treesitter_swap_parameter_next", "Swap parameter to next")
-Mapper.map_virtual("o", "<leader>rP", "", {}, "Navigation",
-    "treesitter_swap_parameter_previous", "Swap parameter to previous")
-
-Mapper.map_virtual("o", "]m", "", {}, "Navigation",
-    "treesitter_next_function_start", "Go to next function (start)")
-Mapper.map_virtual("o", "]M", "", {}, "Navigation",
-    "treesitter_next_function_end", "Go to next function (end)")
-
-Mapper.map_virtual("o", "]]", "", {}, "Navigation",
-    "treesitter_next_class_start", "Go to next class (start)")
-Mapper.map_virtual("o", "][", "", {}, "Navigation", "treesitter_next_class_end",
-    "Go to next class (end)")
-
-Mapper.map_virtual("o", "[m", "", {}, "Navigation",
-    "treesitter_previous_function_start", "Go to previous function (start)")
-Mapper.map_virtual("o", "[M", "", {}, "Navigation",
-    "treesitter_previous_function_end", "Go to previous function (end)")
-
-Mapper.map_virtual("o", "[[", "", {}, "Navigation",
-    "treesitter_previous_class_start", "Go to previous class (start)")
-Mapper.map_virtual("o", "[]", "", {}, "Navigation",
-    "treesitter_previous_class_end", "Go to previous class (end)")
-
-Mapper.map_virtual("o", "zi", "", {}, "Navigation", "treesitter_init_selection",
-    "Init selection")
-Mapper.map_virtual("o", "zi", "", {}, "Navigation", "treesitter_increment_node",
-    "Expand node")
-Mapper.map_virtual("o", "zo", "", {}, "Navigation",
-    "treesitter_increment_scope", "Expand scope")
-Mapper.map_virtual("o", "zI", "", {}, "Navigation", "treesitter_decrement_node",
-    "Decrement scope")
+  },
+  ["["] = {
+    m = {"Go to previous function (start)"},
+    M = {"Go to previous function (end)"},
+    ["["] = {"Go to previous class (start)"},
+    ["]"] = {"Go to previous class (end)"},
+  },
+  z = {
+    i = {"Init treesitter selection"},
+    o = {"Expand scope (selection)"},
+    I = {"Decrement scope (selection)"},
+  },
+}, {mode = "o"})

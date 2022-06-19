@@ -180,12 +180,6 @@ end
   }
 
   use {
-    "lazytanuki/nvim-mapper",
-    config = function() require("nvim-mapper").setup({}) end,
-    before = "telescope.nvim",
-  }
-
-  use {
     "ThePrimeagen/harpoon",
     config = function() require "ld.plugins.harpoon" end,
     requires = {"nvim-lua/plenary.nvim"},

@@ -11,9 +11,6 @@ _G.reload = function()
     end
   end
 
-  -- clear nvim-mapper keys
-  vim.g.mapper_records = nil
-
   print("Reloaded " .. counter .. " modules!")
 end
 
@@ -22,4 +19,3 @@ RELOAD = function(package_name)
   package.loaded[package_name] = nil
   return require(package_name)
 end
-
