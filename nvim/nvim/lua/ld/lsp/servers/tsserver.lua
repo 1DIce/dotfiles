@@ -5,8 +5,12 @@ local initOptions = {
   preferences = {
     quotePreference = "double",
     importModuleSpecifierPreference = "non-relative",
-    typescript = {format = {indentSize = 2}},
   },
+}
+
+local settings = {
+  typescript = {format = {indentSize = 2}},
+  completions = {completeFunctionCalls = true},
 }
 
 return function(on_attach, capabilities)
@@ -27,6 +31,6 @@ return function(on_attach, capabilities)
     init_options = initOptions,
     capabilities = modfiedCapabilities,
 
+    settings = settings,
   }
 end
-
