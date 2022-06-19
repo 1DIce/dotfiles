@@ -31,7 +31,7 @@
 
 [merge]
   guitool = kdiff3
-	tool = vim_mergetool
+	tool = kdiff3
   conflictstyle = diff3
 
 [diff]
@@ -49,7 +49,8 @@
   trustExitCode = true
 
 [mergetool "kdiff3"]
-  path = /mnt/c/Program Files/KDiff3/kdiff3.exe
+  cmd = "~/bin/kdiff-merge.sh  \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\" "
+	trustExitCode = false
 	keepBackup = false
 
 # Delta config
@@ -76,4 +77,6 @@
 [includeIf "gitdir:~/work/"]
   path = ~/.gitconfig-work
 [includeIf "gitdir:~/projects/merlin*/**"]
+  path = ~/.gitconfig-work
+[includeIf "gitdir:~/configurator/"]
   path = ~/.gitconfig-work

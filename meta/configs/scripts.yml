@@ -17,4 +17,5 @@
     ~/bin/live-grep: scripts/live-grep.sh
     ~/bin/tmux-vifm-sessionizer: scripts/tmux-vifm-sessionizer.sh
     ~/bin/git-all-executable: scripts/git-all-executable.sh
+    ~/bin/kdiff-merge.sh: scripts/kdiff-merge.sh
     ~/.config/fzf-run/fzf-run.json: scripts/fzf-run/fzf-run.json
