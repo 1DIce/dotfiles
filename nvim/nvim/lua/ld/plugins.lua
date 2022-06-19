@@ -138,6 +138,7 @@ return require("packer").startup(function(use)
   use {"nvim-telescope/telescope-fzf-native.nvim", run = "make"}
   use {"nvim-telescope/telescope-live-grep-args.nvim"}
 
+if(  require("ld.utils.functions").is_linux()) then
   use {
     "AckslD/nvim-neoclip.lua",
     requires = {
@@ -148,6 +149,7 @@ return require("packer").startup(function(use)
       require("neoclip").setup({enable_persistent_history = true})
     end,
   }
+end
 
   use {
     "ibhagwan/fzf-lua",
