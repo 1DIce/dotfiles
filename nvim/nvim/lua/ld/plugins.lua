@@ -138,18 +138,18 @@ return require("packer").startup(function(use)
   use {"nvim-telescope/telescope-fzf-native.nvim", run = "make"}
   use {"nvim-telescope/telescope-live-grep-args.nvim"}
 
-if(  require("ld.utils.functions").is_linux()) then
-  use {
-    "AckslD/nvim-neoclip.lua",
-    requires = {
-      {"tami5/sqlite.lua", module = "sqlite"},
-      {"nvim-telescope/telescope.nvim"},
-    },
-    config = function()
-      require("neoclip").setup({enable_persistent_history = true})
-    end,
-  }
-end
+  if (require("ld.utils.functions").is_linux()) then
+    use {
+      "AckslD/nvim-neoclip.lua",
+      requires = {
+        {"tami5/sqlite.lua", module = "sqlite"},
+        {"nvim-telescope/telescope.nvim"},
+      },
+      config = function()
+        require("neoclip").setup({enable_persistent_history = true})
+      end,
+    }
+  end
 
   use {
     "ibhagwan/fzf-lua",

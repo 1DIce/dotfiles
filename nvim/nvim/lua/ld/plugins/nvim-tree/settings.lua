@@ -34,7 +34,6 @@ local list = {
   },
 }
 
-
 require"nvim-tree".setup {
   update_focused_file = {enable = true, update_cwd = false, ignore_list = {}},
   view = {
@@ -51,7 +50,6 @@ require"nvim-tree".setup {
       list = list,
     },
   },
-  git = {
-    enable = false
-  }
+  git = {enable = false},
+  actions = {open_file = {quit_on_open = true}},
 }
