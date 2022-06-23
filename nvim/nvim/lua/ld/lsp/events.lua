@@ -4,8 +4,8 @@ M.document_highlight_under_cursor = function()
   vim.cmd([[
   augroup DocumentHighlight
     autocmd! * <buffer>
-    autocmd CursorHold  <buffer> :lua vim.lsp.buf.document_highlight()
-    autocmd CursorMoved,InsertEnter <buffer> :lua vim.lsp.buf.clear_references()
+    autocmd CursorHold  <buffer> :silent! lua vim.lsp.buf.document_highlight()
+    autocmd CursorMoved,InsertEnter <buffer> :silent! lua vim.lsp.buf.clear_references()
   augroup END
   ]])
 end
