@@ -6,7 +6,7 @@ set incsearch
 set scrolloff=4
 set autoindent
 " enables to move selection in autocomplete menu with ctrl-n and ctrl-p
-set contentassistmode  
+set contentassistmode
 
 " ECLIPSE COMMANDS
 eclipseaction openType org.eclipse.jdt.ui.navigate.open.type
@@ -21,7 +21,7 @@ eclipseaction codeActions org.eclipse.jdt.ui.edit.text.java.correction.assist.pr
 eclipseuiaction showContextHelp org.eclipse.ui.edit.text.showInformation
 eclipseuiaction bufferQuickOutline org.eclipse.jdt.ui.edit.text.java.show.outline
 eclipseuiaction switchEditor org.eclipse.ui.window.openEditorDropDown
-eclipseaction saveBuffer org.eclipse.ui.edit.text.showInformation
+eclipseaction saveBuffer org.eclipse.ui.file.save
 eclipseaction moveLineDown org.eclipse.ui.edit.text.moveLineDown
 eclipseaction moveLineUp org.eclipse.ui.edit.text.moveLineUp
 
@@ -40,12 +40,15 @@ nmap <c-p> :openResources<CR>
 nmap <space>lor :refactorMenu<CR>
 nmap <space>los :sourceMenu<CR>
 nmap <space>la :codeActions<CR>
+vmap <space>la :codeActions<CR>
 nmap K :showContextHelp<CR>
 nmap <space>bs :bufferQuickOutline<CR>
 nmap <space>bl :switchEditor<CR>
 nmap <space><space>s :saveBuffer<CR>
 nmap <a-k> :moveLineUp<CR>
 nmap <a-j> :moveLineDown<CR>
+vmap <a-k> :moveLineUp<CR>
+vmap <a-j> :moveLineDown<CR>
 
 " remap content assist-mode navigation
 camap <c-k> <c-p>
