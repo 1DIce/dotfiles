@@ -135,7 +135,10 @@ return require("packer").startup(function(use)
     requires = {{"nvim-lua/popup.nvim"}, {"nvim-lua/plenary.nvim"}},
     config = function() require "ld.plugins.telescope" end,
   }
+
+  -- on windows make and gcc need to be installed via scoop
   use {"nvim-telescope/telescope-fzf-native.nvim", run = "make"}
+
   use {"nvim-telescope/telescope-live-grep-args.nvim"}
 
   if (require("ld.utils.functions").is_linux()) then

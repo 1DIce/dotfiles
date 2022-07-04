@@ -49,8 +49,8 @@ functions.link_highlight("TelescopeResultsBorder", "GruvboxBg2", true)
 functions.link_highlight("TelescopePreviewBorder", "GruvboxBg2", true)
 
 if functions.is_linux() then
-  telescope.load_extension("fzf")
   telescope.load_extension("neoclip")
 end
+telescope.load_extension("fzf")
 telescope.load_extension("harpoon")
 telescope.load_extension("live_grep_args")
