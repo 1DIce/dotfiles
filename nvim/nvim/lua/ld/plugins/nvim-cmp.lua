@@ -46,11 +46,30 @@ cmp.setup({
   },
 })
 
+local cmdlineMappings = {
+  ["<C-j>"] = {
+    c = function()
+      if cmp.visible() then
+        cmp.select_next_item()
+      end
+    end,
+  },
+  ["<C-k>"] = {
+    c = function()
+      if cmp.visible() then
+        cmp.select_prev_item()
+      end
+    end,
+  },
+  ["<C-e>"] = {c = function() cmp.close() end},
+}
+
 -- `/` cmdline setup.
 cmp.setup.cmdline("/", {sources = {{name = "buffer", max_item_count = 15}}})
 
 -- `:` cmdline setup.
 cmp.setup.cmdline(":", {
+  mapping = cmdlineMappings,
   sources = cmp.config.sources({
     {name = "path", max_item_count = 15, keyword_length = 3},
   }, {
