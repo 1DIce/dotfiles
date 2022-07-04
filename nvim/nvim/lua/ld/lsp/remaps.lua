@@ -29,7 +29,7 @@ function M.set_default(client, bufnr)
   end
 
   -- buf_set_keymap('n','<leader>th', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap("n", "<leader>lh",
+  buf_set_keymap("n", "K",
       "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>",
       "Hover documentation")
 
