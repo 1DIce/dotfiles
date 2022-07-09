@@ -162,6 +162,7 @@ return require("packer").startup(function(use)
     },
     config = function() require("ld.plugins.fzf") end,
   }
+  use { "vijaymarupudi/nvim-fzf", config = function() require("ld.plugins.fzf") end}
 
   use "gennaro-tedesco/nvim-peekup" -- shows register preview
 

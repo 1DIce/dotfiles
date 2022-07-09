@@ -1,3 +1,51 @@
+local fzf = require ("fzf").fzf
+
+local normalize_opts = function (opts)
+  if not opts then opts = {} end
+  if not opts.fzf then opts.fzf = require"fzf".fzf end
+  return opts
+end
+
+local files = function(opts)
+if (not require("ld.utils.functions").is_windows())then
+  require("fzf-lua").files(opts)
+else
+
+  opts = normalize_opts(opts)
+  local command
+  if vim.fn.executable("fd") == 1 then
+    command = "fd --color always -t f -L"
+  else
+    -- tail to get rid of current directory from the results
+    command = "find . -type f -printf '%P\n' | tail +2"
+  end
+
+  coroutine.wrap(function ()
+    local choices = opts.fzf(command,
+      "--info=inline --layout=reverse --tiebreak=end,length --ansi --expect=ctrl-s,ctrl-t,ctrl-v --multi", { height = 22, row = 46})
+
+    if not choices then return end
+
+    local vimcmd
+    if choices[1] == "ctrl-t" then
+      vimcmd = "tabnew"
+    elseif choices[1] == "ctrl-v" then
+      vimcmd = "vnew"
+    elseif choices[1] == "ctrl-s" then
+      vimcmd = "new"
+    else
+      vimcmd = "e"
+    end
+
+    for i=2,#choices do
+      vim.cmd(vimcmd .. " " .. vim.fn.fnameescape(choices[i]))
+    end
+
+  end)()
+end
+end
+
+
 local actions = require "fzf-lua.actions"
 require"fzf-lua".setup {
   winopts = {
@@ -43,7 +91,7 @@ require"fzf-lua".setup {
       -- Only valid with the builtin previewer:
       title = true, -- preview border title (file/buf)?
       scrollbar = "float", -- `false` or string:'float|border'
-      -- float:  in-window floating border 
+      -- float:  in-window floating border
       -- border: in-border chars (see below)
       scrolloff = "-2", -- float scrollbar offset from right
       -- applies only when scrollbar = 'float'
@@ -90,9 +138,6 @@ require"fzf-lua".setup {
       ["shift-up"] = "preview-page-up",
     },
   },
-  -- use skim instead of fzf?
-  -- https://github.com/lotabout/skim
-  -- fzf_bin          = 'sk',
   fzf_opts = {
     -- options are sent as `<left>=<right>`
     -- set to `false` to remove a flag
@@ -105,22 +150,6 @@ require"fzf-lua".setup {
     ["--layout"] = "reverse",
     ["--tiebreak"] = "end,length",
   },
-  -- fzf '--color=' options (optional)
-  --[[ fzf_colors = {
-      ["fg"] = { "fg", "CursorLine" },
-      ["bg"] = { "bg", "Normal" },
-      ["hl"] = { "fg", "Comment" },
-      ["fg+"] = { "fg", "Normal" },
-      ["bg+"] = { "bg", "CursorLine" },
-      ["hl+"] = { "fg", "Statement" },
-      ["info"] = { "fg", "PreProc" },
-      ["prompt"] = { "fg", "Conditional" },
-      ["pointer"] = { "fg", "Exception" },
-      ["marker"] = { "fg", "Keyword" },
-      ["spinner"] = { "fg", "Label" },
-      ["header"] = { "fg", "Comment" },
-      ["gutter"] = { "bg", "Normal" },
-  }, ]]
   previewers = {
     cat = {cmd = "cat", args = "--number"},
     bat = {
@@ -293,22 +322,10 @@ require"fzf-lua".setup {
       ["Hint"] = {icon = "", color = "magenta"}, -- hint
     },
   },
-  -- uncomment to disable the previewer
-  -- nvim = { marks    = { previewer = { _ctor = false } } },
-  -- helptags = { previewer = { _ctor = false } },
-  -- manpages = { previewer = { _ctor = false } },
-  -- uncomment to set dummy win location (help|man bar)
-  -- "topleft"  : up
-  -- "botright" : down
-  -- helptags = { previewer = { split = "topleft" } },
-  -- uncomment to use `man` command as native fzf previewer
-  -- manpages = { previewer = { _ctor = require'fzf-lua.previewer'.fzf.man_pages } },
-  -- optional override of file extension icon colors
-  -- available colors (terminal):
-  --    clear, bold, black, red, green, yellow
-  --    blue, magenta, cyan, grey, dark_grey, white
-  -- padding can help kitty term users with
-  -- double-width icon rendering
   file_icon_padding = "",
   file_icon_colors = {["lua"] = "blue"},
 }
+
+local M = {}
+M.files = files
+return M

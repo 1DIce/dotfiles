@@ -8,7 +8,7 @@ vnoremap("<leader>fl",
     "Live grep visual")
 nnoremap("<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<CR>",
     "Find files")
-nnoremap("<C-p>", "<cmd>lua require('fzf-lua').files()<CR>", "Find files")
+nnoremap("<C-p>", "<cmd>lua require('ld.plugins.fzf').files()<CR>", "Find files")
 vnoremap("<leader>fv", "<cmd>lua require('fzf-lua').grep_visual()<CR>",
     "Find visual selection")
 nnoremap("<leader>fg", "<cmd>lua require('telescope.builtin').git_files()<CR>",

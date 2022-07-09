@@ -1,3 +1,3 @@
 - crossplatform-shell:
     - scoop bucket add main
-    - scoop install ripgrep fd sqlite deno gcc make gitui delta win32yank 
+    - scoop install ripgrep fd sqlite deno gcc make gitui delta win32yank cmake fzf
