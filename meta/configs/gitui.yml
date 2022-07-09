@@ -1,9 +1,14 @@
-- crossplatfrom-link:
-    ~/.config/gitui/key_bindings.ron: gitui/key_bindings.ron
+- crossplatform-link:
+    - ~/.config/gitui/key_bindings.ron:
+        path: gitui/key_bindings.ron
+        platfrom: linux
+    - ~/AppData/Roaming/gitui/key_bindings.ron:
+        path: gitui/key_bindings.ron
+        platfrom: win32
 
 - crossplatform-shell:
     - command: |
         wget -O ~/Downloads/gitui.tar.gz https://github.com/extrawurst/gitui/releases/latest/download/gitui-linux-musl.tar.gz
         tar zxvf ~/Downloads/gitui.tar.gz -C ~/bin/
         rm -v ~/Downloads/gitui.tar.gz
-      platfrom: linux
+      platform: linux

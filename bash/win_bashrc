@@ -13,4 +13,6 @@ HISTFILESIZE=2000
 
 export PATH=~/.deno/bin:$PATH
 
+alias gitui="winpty gitui"
+
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
