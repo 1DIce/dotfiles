@@ -1,0 +1,2 @@
+- crossplatform-shell:
+  - npm i -g cspell prettier

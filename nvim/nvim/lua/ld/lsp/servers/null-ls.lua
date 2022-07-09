@@ -27,6 +27,7 @@ null_ls.setup({
       end,
     }),
     null_ls.builtins.formatting.stylua,
+    null_ls.builtins.diagnostics.yamllint,
     null_ls.builtins.formatting.shfmt,
     null_ls.builtins.diagnostics.shellcheck,
     null_ls.builtins.code_actions.shellcheck,

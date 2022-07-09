@@ -1,4 +1,7 @@
-- shell:
-  - brew install pipx 
-  - pipx ensurepath
+- crossplatform-shell:
+  - command: brew install pipx && pipx ensurepath
+    platform: linux
+  - command: python -m pip install --user pipx && python -m pipx ensurepath
+    platform: win32
   - pipx install thefuck
+  - pipx install yamllint
