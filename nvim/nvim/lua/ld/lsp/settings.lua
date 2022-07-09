@@ -145,7 +145,6 @@ local deno_config = function()
   }
 end
 
-require("lspconfig").sumneko_lua.setup(sumneko_lua_config())
 local servers = {
   bashls = {},
   yamlls = {},
@@ -156,6 +155,7 @@ local servers = {
   eslint = {},
   pylsp = {},
   gopls = {},
+  sumneko_lua = sumneko_lua_config()
 }
 if functions.is_deno_workspace() then
   servers.denols = deno_config()

@@ -1,3 +1,2 @@
 - shell:
-  - brew install lua-language-server
-  - brew install luarocks && luarocks install --server=https://luarocks.org/dev luaformatter
+  - bash -c "scripts/stylua-install.sh"
