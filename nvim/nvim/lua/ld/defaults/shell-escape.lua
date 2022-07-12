@@ -1,6 +1,6 @@
 local is_windows = require("ld.utils.functions").is_windows
 
-if(is_windows) then
+if(is_windows()) then
   vim.cmd([[
     " Unescape 'shell' option in case that the user escaped it.
     function! UnescapeShell(shell)
