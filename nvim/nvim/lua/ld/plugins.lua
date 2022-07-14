@@ -119,7 +119,12 @@ return require("packer").startup(function(use)
     config = function() require "ld.plugins.nvim-bqf" end,
   }
 
-  use "ggandor/lightspeed.nvim"
+  use({
+    "ggandor/lightspeed.nvim",
+    config = function()
+      nmap("s", "<Plug>Lightspeed_omni_s", "Use lightspeed on whole window")
+    end,
+  })
 
   use "tpope/vim-repeat" -- extends . repeat, for example for make it work with vim-sneak
   use "tpope/vim-surround" -- Change surrounding arks
