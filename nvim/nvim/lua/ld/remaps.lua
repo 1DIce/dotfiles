@@ -2,9 +2,11 @@
 nnoremap("<leader><CR>", "<cmd>lua reload()<CR>", "Reloads configuration")
 
 -- toggle spellcapcheck
-nnoremap("<leader>vt",
-    "<cmd>setlocal spell! spelllang=en_us spelloptions=camel<CR>",
-    "Toggle spell check")
+nnoremap(
+  "<leader>vt",
+  "<cmd>setlocal spell! spelllang=en_us spelloptions=camel<CR>",
+  "Toggle spell check"
+)
 
 -- Y should yank until end of line similar to D and C
 nnoremap("Y", "y$", "Yank to end of line")
@@ -13,7 +15,7 @@ nnoremap("Y", "y$", "Yank to end of line")
 vnoremap("p", "pgvy", "Paste does not replace register content")
 
 -- deletes in visual
-vnoremap("X", "\"_d", "Deletes on visual")
+vnoremap("X", '"_d', "Deletes on visual")
 
 -- when going to next search, we center screen
 nnoremap("n", "nzzzv", "When going to next search, we center screen")
@@ -30,10 +32,13 @@ cnoremap("<C-j>", "<C-n>", "Select next command mode suggestion")
 cnoremap("<C-k>", "<C-p>", "Select previous command mode suggestion")
 
 -- maps c-n / c-t to navigate while searching with /
-vim.api.nvim_exec([[
+vim.api.nvim_exec(
+  [[
 cnoremap <expr> <c-n> getcmdtype() =~ '[\/?]' ? '<c-g>' : '<c-n>'
 cnoremap <expr> <c-p> getcmdtype() =~ '[\/?]' ? '<c-t>' : '<c-p>'
-]], false)
+]],
+  false
+)
 
 -- save buffer
 nnoremap("<leader><leader>s", "<cmd>write<CR>", "save current buffer")
@@ -68,8 +73,7 @@ tnoremap("<C-w>k", "<C-\\><C-n><C-w>k", "Terminal switch pane up")
 -- buffer
 nnoremap("<leader>bd", "<cmd>bd<CR>", "Deletes buffer")
 nnoremap("<leader>bD", "<cmd>bd!<CR>", "Force delete buffer")
-nnoremap("<leader>bo", "<cmd>BufOnly<CR>",
-    "Deletes all other buffers except yours")
+nnoremap("<leader>bo", "<cmd>BufOnly<CR>", "Deletes all other buffers except yours")
 nnoremap("<leader>bad", "<cmd>%bd<CR>", "Deletes all buffers")
 nnoremap("<leader>bw", "<cmd>update<CR>", "Saves/writes/updates buffer")
 nnoremap("<leader>bW", "<cmd>update!<CR>", "Force save/write/update buffer")
