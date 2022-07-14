@@ -1,4 +1,4 @@
 - shell:
-  - sudo apt install shellcheck chafa jq imagemagick imagemagick-doc  -y
   - sudo apt update && sudo apt install build-essential cmake fd-find rename trash-cli sqlite3 libsqlite3-dev python-is-python3  -y
   - sudo apt install -o Dpkg::Options::="--force-overwrite" bat ripgrep -y
+  - sudo apt install golang-go shellcheck chafa jq imagemagick imagemagick-doc xclip git-gui -y
