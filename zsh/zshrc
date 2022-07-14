@@ -46,7 +46,7 @@ alias notes="nvim  '+let g:auto_session_enabled = v:false' -c VimwikiIndex"
 
 
 # Make Tab autocomplete regardless of filename case
-set completion-ignore-case on 
+set completion-ignore-case on
 # List all matches in case multiple possible completions are possible
 set show-all-if-ambiguous on
 
@@ -61,7 +61,7 @@ export PATH=~/.cargo/bin:$PATH
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:~/go/bin
 
-# Default editor   
+# Default editor
 export EDITOR=nvim
 
 # Vifm
@@ -86,7 +86,7 @@ export LESS=' -R'
 # special WSL2 settings
 if grep -q WSL2 /proc/version; then
   # xserver if running on wsl2
-  export DISPLAY=$(route.exe print | grep 0.0.0.0 | head -1 | awk '{print $4}'):0.0
+  export DISPLAY=$(ip route list default | awk '{print $3}'):0
   export LIBGL_ALWAYS_INDIRECT=1
 
   export CHROME_BIN=/mnt/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe
@@ -108,10 +108,10 @@ alias blist="bls"
 alias bfind='bls --no-color | fzf | cut -f1 -d "=" | xargs bcd'
 
 # ripgrep for fzf if available
-if type rg &> /dev/null; then 
+if type rg &> /dev/null; then
   export FZF_DEFAULT_COMMAND='rg --files'
 fi
-# FZF terminal history search. trigger it with CRTL+r 
+# FZF terminal history search. trigger it with CRTL+r
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export NVM_DIR="$HOME/.nvm"
@@ -142,7 +142,7 @@ zstyle ':completion:*:git-checkout:*' sort false
 zstyle ':completion:*:descriptions' format '[%d]'
 # set list-colors to enable filename colorizing
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-# configure preview 
+# configure preview
 zstyle ':fzf-tab:complete:*:*' fzf-preview 'less ${(Q)realpath}'
 
 # Install starship promp
@@ -154,3 +154,5 @@ export PATH="${PATH}:/home/lars/.cargo/bin/navi"
 
 # source command  for syntax highlighting must be at the end of .zshrc
 source "${XDG_CONFIG_HOME}/zsh/zsh-syntax-highlighting.zsh"
+
+  export PATH="${PATH}:/home/lars/.cargo/bin/navi"
