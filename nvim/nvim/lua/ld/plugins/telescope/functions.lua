@@ -119,6 +119,12 @@ M.live_grep_raw = function(opts, mode)
       "rg", "--color=never", "--no-heading", "--with-filename", "--line-number",
       "--column", "--smart-case",
     },
+    auto_quoting = false,
+    mappings ={
+      i = {
+        ["<C-k>"]= require("telescope.actions").move_selection_previous,
+      }
+    }
   }
   opts = vim.tbl_extend("force", defaults, opts or {})
   opts.prompt_title =
@@ -128,7 +134,7 @@ M.live_grep_raw = function(opts, mode)
       opts.default_text = "\"" .. escape_rg_text(utils.get_visual_text()) ..
                               "\""
     else
-      opts.default_text = "\""
+      -- opts.default_text = "\""
     end
   end
 
