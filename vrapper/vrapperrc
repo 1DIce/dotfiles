@@ -24,6 +24,7 @@ eclipseuiaction switchEditor org.eclipse.ui.window.openEditorDropDown
 eclipseaction saveBuffer org.eclipse.ui.file.save
 eclipseaction moveLineDown org.eclipse.ui.edit.text.moveLineDown
 eclipseaction moveLineUp org.eclipse.ui.edit.text.moveLineUp
+eclipseuiaction toggleMaximizeCurrentWindow org.eclipse.ui.window.maximizePart
 
 " MAPPING
 nnoremap Y y$
@@ -49,6 +50,7 @@ nmap <a-k> :moveLineUp<CR>
 nmap <a-j> :moveLineDown<CR>
 vmap <a-k> :moveLineUp<CR>
 vmap <a-j> :moveLineDown<CR>
+map <c-m> :toggleMaximizeCurrentWindow<CR>
 
 " remap content assist-mode navigation
 camap <c-k> <c-p>
