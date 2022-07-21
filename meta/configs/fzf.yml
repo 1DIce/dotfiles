@@ -1,6 +1,6 @@
-- link:
-    ~/.fzf: libs/fzf
-    ~/.fzf.zsh: fzf/fzf.zsh
-    ~/.fzf.bash: fzf/fzf.bash
-- shell:
+- crossplatform-link:
+  ~/.fzf: libs/fzf
+  ~/.fzf.zsh: fzf/fzf.zsh
+  ~/.fzf.bash: fzf/fzf.bash
+- crossplatform-shell:
   - ~/.fzf/install
