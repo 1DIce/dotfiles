@@ -13,6 +13,16 @@ HISTFILESIZE=2000
 
 export PATH=~/.deno/bin:$PATH
 
+export EDITOR=nvim
+
 alias gitui="winpty gitui"
+alias v=nvim
+alias g=git
+alias ls='ls --color=auto'
+alias ll='ls -l'
+alias la='ls -la'
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
