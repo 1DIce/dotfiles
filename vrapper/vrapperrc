@@ -7,6 +7,9 @@ set scrolloff=4
 set autoindent
 " enables to move selection in autocomplete menu with ctrl-n and ctrl-p
 set contentassistmode
+" :vim opens current file in nvim-qt
+set gvimpath=C:\Users\Lars.Debor\scoop\apps\neovim\current\bin\nvim-qt.exe
+set gvimargs={file} -- +{line}
 
 " ECLIPSE COMMANDS
 eclipseaction openType org.eclipse.jdt.ui.navigate.open.type
