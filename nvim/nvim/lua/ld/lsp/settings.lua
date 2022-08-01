@@ -1,9 +1,23 @@
 local lsp = require("lspconfig")
 local lsp_status = require("lsp-status")
-local lsp_installer_servers = require "nvim-lsp-installer.servers"
 local remaps = require("ld.lsp.remaps")
 local functions = require("ld.lsp.functions")
 local presentCmpNvimLsp, cmpNvimLsp = pcall(require, "cmp_nvim_lsp")
+
+require("mason").setup({})
+require("mason-lspconfig").setup({
+  ensure_installed = {
+    "bashls",
+    "yamlls",
+    "jsonls",
+    "html",
+    "cssls",
+    "eslint",
+    "sumneko_lua",
+    "tsserver",
+    "angularls",
+  },
+})
 
 M = {}
 -- for debugging lsp
@@ -15,12 +29,12 @@ local function on_attach(client, bufnr)
   lsp_status.on_attach(client, bufnr)
 
   -- add signature autocompletion while typing
-  require"lsp_signature".on_attach({
+  require("lsp_signature").on_attach({
     floating_window = false,
     timer_interval = 500,
   })
   vim.diagnostic.config({
-    virtual_text = {severity = vim.diagnostic.severity.ERROR},
+    virtual_text = { severity = vim.diagnostic.severity.ERROR },
     underline = true,
   })
 end
@@ -28,36 +42,39 @@ end
 M.on_attach = on_attach
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
-    vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-      -- virtual_text = {spacing = 0, prefix = '■'},
+  vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+    -- virtual_text = {spacing = 0, prefix = '■'},
 
-      -- see: ":help vim.lsp.diagnostic.set_signs()"
-      signs = true,
+    -- see: ":help vim.lsp.diagnostic.set_signs()"
+    signs = true,
 
-      update_in_insert = false,
-    })
+    update_in_insert = false,
+  })
 
 lsp_status.register_progress()
 
-local capabilities = {};
+local capabilities = {}
 
 capabilities = vim.tbl_extend("keep", capabilities, lsp_status.capabilities)
 
 if presentCmpNvimLsp then
-  capabilities = vim.tbl_extend("keep", capabilities,
-      cmpNvimLsp.update_capabilities(vim.lsp.protocol.make_client_capabilities()))
+  capabilities = vim.tbl_extend(
+    "keep",
+    capabilities,
+    cmpNvimLsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  )
 end
 
 M.capabilities = capabilities
 
-local default_lsp_config = {on_attach = on_attach, capabilities}
+local default_lsp_config = { on_attach = on_attach, capabilities }
 
 local sumneko_lua_config = function()
   local runtime_path = vim.split(package.path, ";")
   table.insert(runtime_path, "lua/ld/init.lua")
 
   return {
-    cmd = {"lua-language-server"},
+    cmd = { "lua-language-server" },
     on_attach = function(client, bufnr)
       require("ld.lsp.events").document_highlight_under_cursor()
       client.resolved_capabilities.document_formatting = false -- null-ls handles the formatting
@@ -66,7 +83,7 @@ local sumneko_lua_config = function()
     capabilities = capabilities,
     settings = {
       Lua = {
-        format = {enable = false},
+        format = { enable = false },
         runtime = {
           -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
           version = "LuaJIT",
@@ -75,7 +92,7 @@ local sumneko_lua_config = function()
         },
         diagnostics = {
           -- Get the language server to recognize the `vim` global
-          globals = {"vim"},
+          globals = { "vim" },
         },
         workspace = {
           -- Make the server aware of Neovim runtime files
@@ -83,7 +100,7 @@ local sumneko_lua_config = function()
           checkThirdParty = false,
         },
         -- Do not send telemetry data containing a randomized but unique identifier
-        telemetry = {enable = false},
+        telemetry = { enable = false },
       },
     },
   }
@@ -91,26 +108,23 @@ end
 
 local css_config = function()
   local cloned_capabilities = vim.deepcopy(capabilities)
-  cloned_capabilities.textDocument.completion.completionItem.snippetSupport =
-      true
-  return {capabilities = cloned_capabilities}
+  cloned_capabilities.textDocument.completion.completionItem.snippetSupport = true
+  return { capabilities = cloned_capabilities }
 end
 
 local html_config = function()
   local cloned_capabilities = vim.deepcopy(capabilities)
-  cloned_capabilities.textDocument.completion.completionItem.snippetSupport =
-      true
-  return {capabilities = cloned_capabilities}
+  cloned_capabilities.textDocument.completion.completionItem.snippetSupport = true
+  return { capabilities = cloned_capabilities }
 end
 
 local json_config = function()
   local cloned_capabilities = vim.deepcopy(capabilities)
-  cloned_capabilities.textDocument.completion.completionItem.snippetSupport =
-      true
+  cloned_capabilities.textDocument.completion.completionItem.snippetSupport = true
   return {
     capabilities = cloned_capabilities,
-    init_options = {provideFormatter = false, format = {enable = false}},
-    settings = {json = {schemas = require("schemastore").json.schemas()}},
+    init_options = { provideFormatter = false, format = { enable = false } },
+    settings = { json = { schemas = require("schemastore").json.schemas() } },
   }
 end
 
@@ -129,19 +143,26 @@ local default_node_modules = get_node_modules(vim.fn.getcwd())
 
 local angular_config = function()
   local ngls_cmd = {
-    "ngserver", "--stdio", "--tsProbeLocations", default_node_modules,
-    "--ngProbeLocations", default_node_modules, "--experimental-ivy",
+    "ngserver",
+    "--stdio",
+    "--tsProbeLocations",
+    default_node_modules,
+    "--ngProbeLocations",
+    default_node_modules,
+    "--experimental-ivy",
   }
   return {
     cmd = ngls_cmd,
-    on_new_config = function(new_config) new_config.cmd = ngls_cmd end,
+    on_new_config = function(new_config)
+      new_config.cmd = ngls_cmd
+    end,
   }
 end
 
 local deno_config = function()
   return {
     root_dir = lsp.util.root_pattern("deno.json"),
-    init_options = {lint = true},
+    init_options = { lint = true },
   }
 end
 
@@ -155,7 +176,7 @@ local servers = {
   eslint = {},
   pylsp = {},
   gopls = {},
-  sumneko_lua = sumneko_lua_config()
+  sumneko_lua = sumneko_lua_config(),
 }
 if functions.is_deno_workspace() then
   servers.denols = deno_config()
@@ -165,16 +186,8 @@ else
 end
 
 for serverName, config in pairs(servers) do
-  local ok, server = lsp_installer_servers.get_server(serverName)
-  if ok then
-    if not server:is_installed() then
-      print("installing " .. serverName)
-      server:install()
-    end
-  end
-
-  server:setup(vim.tbl_deep_extend("force", default_lsp_config, config))
-  vim.cmd [[ do User LspAttachBuffers ]]
+  lsp[serverName].setup(vim.tbl_deep_extend("force", default_lsp_config, config))
+  vim.cmd([[ do User LspAttachBuffers ]])
 end
 
 return M

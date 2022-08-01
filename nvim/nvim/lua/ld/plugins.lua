@@ -204,7 +204,8 @@ return require("packer").startup(function(use)
   use {"ray-x/lsp_signature.nvim", tag = "v0.1.1"}
   use "jose-elias-alvarez/nvim-lsp-ts-utils"
   use "b0o/SchemaStore.nvim"
-  use "williamboman/nvim-lsp-installer"
+  use({ "williamboman/mason.nvim" })
+  use({ "williamboman/mason-lspconfig.nvim" })
   use({
     "jose-elias-alvarez/null-ls.nvim",
     config = function() require("ld.lsp.servers.null-ls") end,
