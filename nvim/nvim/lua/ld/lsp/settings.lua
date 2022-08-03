@@ -56,6 +56,7 @@ lsp_status.register_progress()
 local capabilities = {}
 
 capabilities = vim.tbl_extend("keep", capabilities, lsp_status.capabilities)
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 if presentCmpNvimLsp then
   capabilities = vim.tbl_extend(
