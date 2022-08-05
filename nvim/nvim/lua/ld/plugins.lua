@@ -76,27 +76,28 @@ return require("packer").startup(function(use)
   }
 
   -- color theme
-  use "Mofiqul/vscode.nvim"
+  use("Mofiqul/vscode.nvim")
   -- use 'martinsione/darkplus.nvim'
-  use "LunarVim/darkplus.nvim"
-  use "tiagovla/tokyodark.nvim"
-  use "folke/tokyonight.nvim"
-  use "Mofiqul/dracula.nvim"
-  use "EdenEast/nightfox.nvim"
-  use "sainnhe/gruvbox-material"
+  use("LunarVim/darkplus.nvim")
+  use("tiagovla/tokyodark.nvim")
+  use("folke/tokyonight.nvim")
+  use("Mofiqul/dracula.nvim")
+  use("EdenEast/nightfox.nvim")
+  use("luisiacc/gruvbox-baby")
+  -- use("sainnhe/gruvbox-material")
   -- alternative onedark for nvim ful1e5/onedark.nvim
-  use "joshdick/onedark.vim"
-  use({"catppuccin/nvim", as = "catppuccin"})
-  use {"rose-pine/neovim", as = "rose-pine"}
-  use {"ray-x/aurora"}
-  use "tanvirtin/monokai.nvim"
-  use "rebelot/kanagawa.nvim"
-  use "yashguptaz/calvera-dark.nvim"
-  use "projekt0n/github-nvim-theme"
-  use "olimorris/onedarkpro.nvim"
 
-  use "martinda/Jenkinsfile-vim-syntax"
-  use {
+  use("joshdick/onedark.vim")
+  use({ "catppuccin/nvim", as = "catppuccin" })
+  use({ "rose-pine/neovim", as = "rose-pine" })
+  use({ "ray-x/aurora" })
+  use("tanvirtin/monokai.nvim")
+  use("rebelot/kanagawa.nvim")
+  use("yashguptaz/calvera-dark.nvim")
+  use("projekt0n/github-nvim-theme")
+  use("olimorris/onedarkpro.nvim")
+  use("martinda/Jenkinsfile-vim-syntax")
+  use({
     "norcalli/nvim-colorizer.lua",
     config = function() require"colorizer".setup({"less", "css", "scss"}) end,
   }

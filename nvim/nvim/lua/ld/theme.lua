@@ -17,27 +17,30 @@ local vscode_dark = function()
   -- Enable transparent background.
   vim.g.vscode_transparent = 0
   vim.o.background = "dark"
-  vim.cmd [[colorscheme vscode]]
-  require("lualine").setup {options = {theme = "vscode"}}
+  vim.cmd([[colorscheme vscode]])
+  require("lualine").setup({ options = { theme = "vscode" } })
   vim.cmd("highlight TSVariableBuiltin guifg=#569cd6")
   vim.cmd("highlight TSKeywordReturn guifg=#C586C0")
 end
 
-local darkplus = function() vim.cmd("colorscheme darkplus") end
+local darkplus = function()
+  vim.cmd("colorscheme darkplus")
+end
 
-local nightfox = function() require("nightfox").load("nightfox") end
+local nightfox = function()
+  require("nightfox").load("nightfox")
+end
 
 local monokai = function()
   local palette = require("monokai").classic
-  require("monokai").setup {
+  require("monokai").setup({
     palette = palette,
     custom_hlgroups = {
-      LspReferenceWrite = {bg = palette.base5},
-      LspReferenceRead = {bg = palette.base5},
+      LspReferenceWrite = { bg = palette.base5 },
+      LspReferenceRead = { bg = palette.base5 },
       -- LspReferenceText = {bg = palette.grey, fg = palette.diff_add}
     },
-
-  }
+  })
 end
 
 local tokyonight = function()
@@ -70,7 +73,17 @@ local gruvbox = function()
   vim.g.gruvbox_material_palette = "original"
 
   vim.cmd("colorscheme gruvbox-material")
+end
 
+local gruvbox_baby = function()
+  vim.g.gruvbox_baby_background_color = "dark"
+  vim.g.gruvbox_baby_function_style = "bold"
+  vim.g.gruvbox_baby_keyword_style = "italic"
+
+  vim.g.gruvbox_baby_telescope_theme = 0
+  vim.g.gruvbox_baby_transparent_mode = 0
+
+  vim.cmd([[colorscheme gruvbox-baby]])
 end
 
 local calvera = function()
@@ -81,8 +94,7 @@ local calvera = function()
 
   -- Required Setting
   require("calvera").set()
-  require("lualine").setup {options = {theme = "calvera-nvim"}}
-
+  require("lualine").setup({ options = { theme = "calvera-nvim" } })
 end
 
 local github_dark = function()
@@ -91,21 +103,20 @@ local github_dark = function()
     function_style = "italic",
     dark_float = true,
     dark_sidebar = true,
-    sidebars = {"qf", "vista_kind", "terminal", "packer"},
+    sidebars = { "qf", "vista_kind", "terminal", "packer" },
 
     -- Change the "hint" color to the "orange" color, and make the "error" color bright red
-    colors = {hint = "orange", error = "#ff0000"},
+    colors = { hint = "orange", error = "#ff0000" },
   })
-
 end
 
 local onedarkpro = function()
   local onedarkpro = require("onedarkpro")
   onedarkpro.setup({
     hlgroups = {
-      TSParameter = {fg = "${white}"},
-      TSProperty = {fg = "${white}"},
-      TSVariable = {fg = "${white}"},
+      TSParameter = { fg = "${white}" },
+      TSProperty = { fg = "${white}" },
+      TSVariable = { fg = "${white}" },
     },
     options = {
       transparency = false,
@@ -119,6 +130,7 @@ local onedarkpro = function()
 end
 
 vscode_dark()
+-- gruvbox_baby()
 -- darkplus()
 -- tokyodark()
 -- github_dark()
