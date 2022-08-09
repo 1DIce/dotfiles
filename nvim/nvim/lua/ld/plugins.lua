@@ -27,14 +27,14 @@ return require("packer").startup(function(use)
     config = function() require("Comment").setup() end,
   }
 
-  use {
+  use({
     "heavenshell/vim-jsdoc",
     run = "make",
     config = function()
       vim.g.jsdoc_formatter = "tsdoc"
       vim.cmd([[nmap <silent> <leader>ld <Plug>(jsdoc)]])
     end,
-  }
+  })
 
   -- git client
   use "tpope/vim-fugitive"
@@ -99,8 +99,10 @@ return require("packer").startup(function(use)
   use("martinda/Jenkinsfile-vim-syntax")
   use({
     "norcalli/nvim-colorizer.lua",
-    config = function() require"colorizer".setup({"less", "css", "scss"}) end,
-  }
+    config = function()
+      require("colorizer").setup({ "less", "css", "scss" })
+    end,
+  })
 
   use "szw/vim-maximizer"
   use "mbbill/undotree"
