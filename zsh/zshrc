@@ -100,7 +100,7 @@ if grep -q WSL2 /proc/version; then
   export DISPLAY=$(ip route list default | awk '{print $3}'):0
   export LIBGL_ALWAYS_INDIRECT=1
 
-  export CHROME_BIN=/mnt/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe
+  export CHROME_BIN=/mnt/c/Program\ Files/Google/Chrome/Application/chrome.exe
 
   alias docker="sudo podman"
   alias docker-compose="sudo podman-compose"
