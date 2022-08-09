@@ -49,6 +49,8 @@
         platform: linux
     - ~/bin/git-all-executable:
         path: scripts/git-all-executable.sh
+    - ~/bin/fzf-dir:
+        path: scripts/fzf-dir.sh
     - ~/bin/eclipse-open:
         path: scripts/eclipse-open.sh
         platform: win32

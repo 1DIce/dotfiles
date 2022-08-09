@@ -66,6 +66,15 @@ export PATH=$PATH:~/go/bin
 # Default editor
 export EDITOR=nvim
 
+function cdf {
+  local dst="$(fzf-dir "$@")"
+  if [ -z "$dst" ]; then
+    echo 'Directory picking cancelled/failed'
+    return 1
+  fi
+  cd "$dst"
+}
+
 # Vifm
 function vicd
 {
