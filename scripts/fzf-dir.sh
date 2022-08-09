@@ -11,5 +11,5 @@ if [ -z "$START_DIR" ]; then
   START_DIR=$(pwd)
 fi
 
-$FD_COMMAND --base-directory "$START_DIR" --type 'd' --no-ignore --follow --exclude '.git' |
-  fzf --preview 'ls -a -d */ {1}'
+$FD_COMMAND --search-path "$START_DIR" --type 'd' --no-ignore --follow --exclude '.git' |
+  fzf --preview-window 'right:30%' --preview  'ls -a -d */ {1}'
