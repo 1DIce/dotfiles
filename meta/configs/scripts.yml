@@ -5,8 +5,8 @@
     - ~/wsl2-ubuntu-map-win-localhost.sh:
         path: scripts/wsl2/wsl2-ubuntu-map-win-localhost.sh
         platform: linux
-    - ~/wsl-forward-windows-ports.sh:
-        path: scripts/wsl2/wsl-forward-windows-ports.sh
+    - ~/wsl-forward-windows-port.sh:
+        path: scripts/wsl2/wsl-forward-windows-port.sh
         platform: linux
     - ~/bin/prettier-changes:
         path: scripts/prettier-changes.sh
