@@ -1,7 +1,7 @@
 local M = {}
 
 M.document_highlight_under_cursor = function()
-	vim.cmd([[
+  vim.cmd([[
   augroup DocumentHighlight
     autocmd! * <buffer>
     autocmd CursorHold  <buffer> :silent! lua vim.lsp.buf.document_highlight()
