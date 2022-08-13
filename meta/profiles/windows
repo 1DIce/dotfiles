@@ -3,7 +3,9 @@ git
 bash
 cmd-tools-scoop
 nvim
+fzf
 lua-tools
+gitui
 wsl
 wezterm
 windows-terminal
