@@ -60,3 +60,6 @@
     - ~/.config/fzf-run/fzf-run.json:
         path: scripts/fzf-run/fzf-run.json
         platform: linux
+    - ~/bin/mmodel-clear-cache:
+        path: scripts/mmodel-clear-cache.sh
+        platform: win32
