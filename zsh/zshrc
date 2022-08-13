@@ -131,36 +131,38 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 
-# zplug
-source ~/.zplug/init.zsh
+if [[ -o interactive ]]; then
+  # zplug
+  source ~/.zplug/init.zsh
 
-zplug "chitoku-k/fzf-zsh-completions"
-zplug "Aloxaf/fzf-tab"
+  zplug "chitoku-k/fzf-zsh-completions"
+  zplug "Aloxaf/fzf-tab"
 
-# Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
+  # Install plugins if there are plugins that have not been installed
+  if ! zplug check --verbose; then
+      printf "Install? [y/N]: "
+      if read -q; then
+          echo; zplug install
+      fi
+  fi
+  # Then, source plugins and add commands to $PATH
+  zplug load
+
+  #fzf-tab
+  #disable sort when completing `git checkout`
+  zstyle ':completion:*:git-checkout:*' sort false
+  # set descriptions format to enable group support
+  zstyle ':completion:*:descriptions' format '[%d]'
+  # set list-colors to enable filename colorizing
+  zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+  # configure preview
+  zstyle ':fzf-tab:complete:*:*' fzf-preview 'less ${(Q)realpath}'
+
+  # Install starship promp
+  eval "$(starship init zsh)"
+  # Install navi shell widget use ctrl+g to use it
+  eval "$(navi widget zsh)"
+  export PATH="${PATH}:/home/lars/.cargo/bin/navi"
+
 fi
-# Then, source plugins and add commands to $PATH
-zplug load
-
-#fzf-tab
-#disable sort when completing `git checkout`
-zstyle ':completion:*:git-checkout:*' sort false
-# set descriptions format to enable group support
-zstyle ':completion:*:descriptions' format '[%d]'
-# set list-colors to enable filename colorizing
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-# configure preview
-zstyle ':fzf-tab:complete:*:*' fzf-preview 'less ${(Q)realpath}'
-
-# Install starship promp
-eval "$(starship init zsh)"
-# Install navi shell widget use ctrl+g to use it
-eval "$(navi widget zsh)"
-
-export PATH="${PATH}:/home/lars/.cargo/bin/navi"
 
