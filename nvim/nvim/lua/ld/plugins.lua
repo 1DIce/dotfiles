@@ -70,10 +70,10 @@ return require("packer").startup(function(use)
   }
 
   -- Debugging
-  use {
-    "puremourning/vimspector",
-    config = function() require "ld.plugins.vimspector" end,
-  }
+  -- use {
+  --   "puremourning/vimspector",
+  --   config = function() require "ld.plugins.vimspector" end,
+  -- }
 
   -- color theme
   use("Mofiqul/vscode.nvim")
