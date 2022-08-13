@@ -58,7 +58,7 @@
 [interactive]
   diffFilter = delta --color-only --features=interactive
 [delta]
-  features = decorations
+  features = decorations navigate
   side-by-side = true
 [delta "interactive"]
   keep-plus-minus-markers = false
