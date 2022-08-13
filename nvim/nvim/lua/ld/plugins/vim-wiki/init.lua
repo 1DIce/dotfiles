@@ -1,1 +1,1 @@
-require "ld.plugins.vim-wiki.settings"
+require("ld.plugins.vim-wiki.settings")

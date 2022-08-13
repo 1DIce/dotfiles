@@ -2,11 +2,7 @@
 nnoremap("<leader><CR>", "<cmd>lua reload()<CR>", "Reloads configuration")
 
 -- toggle spellcapcheck
-nnoremap(
-  "<leader>vt",
-  "<cmd>setlocal spell! spelllang=en_us spelloptions=camel<CR>",
-  "Toggle spell check"
-)
+nnoremap("<leader>vt", "<cmd>setlocal spell! spelllang=en_us spelloptions=camel<CR>", "Toggle spell check")
 
 -- Y should yank until end of line similar to D and C
 nnoremap("Y", "y$", "Yank to end of line")
@@ -33,11 +29,11 @@ cnoremap("<C-k>", "<C-p>", "Select previous command mode suggestion")
 
 -- maps c-n / c-t to navigate while searching with /
 vim.api.nvim_exec(
-  [[
+	[[
 cnoremap <expr> <c-n> getcmdtype() =~ '[\/?]' ? '<c-g>' : '<c-n>'
 cnoremap <expr> <c-p> getcmdtype() =~ '[\/?]' ? '<c-t>' : '<c-p>'
 ]],
-  false
+	false
 )
 
 -- save buffer

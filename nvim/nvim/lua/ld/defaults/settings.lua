@@ -4,11 +4,11 @@ vim.g.loaded_netrwPlugin = 1
 
 -- Let's save undo info!
 local cachePath = vim.env.HOME .. "/.cache/nvim"
-if (vim.fn.isdirectory(cachePath) == false) then
-  vim.fn.mkdir(cachePath, "", 0770)
+if vim.fn.isdirectory(cachePath) == false then
+	vim.fn.mkdir(cachePath, "", 0770)
 end
 if vim.fn.isdirectory(cachePath .. "/undo-dir") == false then
-  vim.fn.mkdir(cachePath .. "/undo-dir", "", 0700)
+	vim.fn.mkdir(cachePath .. "/undo-dir", "", 0700)
 end
 vim.o.undodir = cachePath .. "/undo-dir"
 vim.o.undofile = true
@@ -59,7 +59,7 @@ vim.o.grepprg = "rg --vimgrep --no-heading --smart-case"
 vim.o.grepformat = "%f:%l:%c:%m"
 
 -- Don't show the dumb matching stuff.
-vim.cmd [[set shortmess+=c]]
+vim.cmd([[set shortmess+=c]])
 
 -- vim.o.colorcolumn=80
 
@@ -86,8 +86,7 @@ vim.o.foldlevelstart = 99 -- start file with all folds opened
 vim.wo.foldmethod = "expr"
 vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
 
-vim.o.sessionoptions =
-    "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
 
 -- shows spaces
 vim.o.list = false

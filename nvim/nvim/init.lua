@@ -1,11 +1,11 @@
 pcall(require, "impatient")
-require "ld.plugins"
+require("ld.plugins")
 
-require "ld.utils"
+require("ld.utils")
 
-require "ld.theme"
+require("ld.theme")
 
-require "ld.defaults"
+require("ld.defaults")
 
-require "ld.lsp"
-require "ld.remaps"
+require("ld.lsp")
+require("ld.remaps")

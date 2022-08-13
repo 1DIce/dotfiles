@@ -1,1 +1,1 @@
-require "ld.plugins.fugitive.remaps"
+require("ld.plugins.fugitive.remaps")

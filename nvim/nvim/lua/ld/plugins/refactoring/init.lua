@@ -1,2 +1,2 @@
-require "ld.plugins.refactoring.settings"
-require "ld.plugins.refactoring.remaps"
+require("ld.plugins.refactoring.settings")
+require("ld.plugins.refactoring.remaps")

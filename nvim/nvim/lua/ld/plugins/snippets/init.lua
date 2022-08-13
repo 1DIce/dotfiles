@@ -1,2 +1,2 @@
-require "ld.plugins.snippets.settings"
-require "ld.plugins.snippets.remaps"
+require("ld.plugins.snippets.settings")
+require("ld.plugins.snippets.remaps")

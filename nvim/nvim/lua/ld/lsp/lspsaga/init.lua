@@ -1,1 +1,1 @@
-require "ld.lsp.lspsaga.settings"
+require("ld.lsp.lspsaga.settings")
