@@ -5,6 +5,7 @@ cmd-tools-scoop
 nvim
 fzf
 lua-tools
+cmd-tools-npm
 gitui
 wsl
 wezterm

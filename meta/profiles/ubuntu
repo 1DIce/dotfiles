@@ -5,6 +5,7 @@ less
 cmd-tools-apt
 starship
 nvm
+cmd-tools-npm
 fonts
 cheat-sheets
 brew
