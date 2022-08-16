@@ -11,6 +11,7 @@ treesitter.setup({
     "lua",
     "json",
     "css",
+    "scss",
     "javascript",
     "html",
     "go",
