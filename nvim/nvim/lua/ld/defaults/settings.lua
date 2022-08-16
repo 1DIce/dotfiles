@@ -55,7 +55,7 @@ vim.o.updatetime = 50
 vim.o.completeopt = "menu,menuone,noselect"
 
 -- use ripgrep as the grep command
-vim.o.grepprg = "rg --vimgrep --no-heading --smart-case"
+vim.o.grepprg = "rg --vimgrep --no-heading --smart-case --hidden"
 vim.o.grepformat = "%f:%l:%c:%m"
 
 -- Don't show the dumb matching stuff.
