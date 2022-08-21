@@ -1,10 +1,14 @@
 local remaps = require("ld.lsp.remaps")
 local events = require("ld.lsp.events")
+local vscodeSettings = require("ld.lsp.vscode-settings")
 
 local initOptions = {
   preferences = {
     quotePreference = "double",
-    importModuleSpecifierPreference = "non-relative",
+    importModuleSpecifierPreference = vscodeSettings.getValueOr(
+      "typescript.preferences.importModuleSpecifier",
+      "non-relative"
+    ),
   },
 }
 
