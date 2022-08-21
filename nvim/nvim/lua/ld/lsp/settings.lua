@@ -75,6 +75,7 @@ local sumneko_lua_config = function()
   table.insert(runtime_path, "lua/ld/init.lua")
 
   return {
+    autostart = false,
     cmd = { "lua-language-server" },
     on_attach = function(client, bufnr)
       require("ld.lsp.events").document_highlight_under_cursor()
