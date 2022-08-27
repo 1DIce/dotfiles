@@ -117,6 +117,7 @@ require("fzf-lua").setup({
     -- delete or modify is sufficient
     builtin = {
       -- neovim `:tmap` mappings for the fzf win
+      ["<F1>"] = "toggle-help",
       ["<F2>"] = "toggle-fullscreen",
       -- Only valid with the 'builtin' previewer
       ["<F3>"] = "toggle-preview-wrap",
@@ -190,7 +191,7 @@ require("fzf-lua").setup({
       ["ctrl-s"] = actions.file_split,
       ["ctrl-v"] = actions.file_vsplit,
       ["ctrl-t"] = actions.file_tabedit,
-      ["alt-q"] = actions.file_sel_to_qf,
+      ["ctrl-q"] = actions.file_sel_to_qf,
       -- custom actions are available too
       ["ctrl-y"] = function(selected)
         print(selected[1])
@@ -204,6 +205,7 @@ require("fzf-lua").setup({
       git_icons = true, -- show git icons?
       file_icons = true, -- show file icons?
       color_icons = true, -- colorize file|git icons
+      winopts = { height = 0.95 },
     },
     status = {
       prompt = "GitStatus❯ ",

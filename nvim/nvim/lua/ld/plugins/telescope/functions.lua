@@ -159,4 +159,12 @@ M.live_grep_raw = function(opts, mode)
   require("telescope").extensions.live_grep_args.live_grep_raw(opts)
 end
 
+M.git_files = function()
+  if utils.is_windows() then
+    builtins.git_files()
+  else
+    require("fzf-lua").git_files()
+  end
+end
+
 return M

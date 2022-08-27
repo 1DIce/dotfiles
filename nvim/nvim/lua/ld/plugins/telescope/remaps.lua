@@ -13,7 +13,16 @@ vnoremap(
 nnoremap("<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<CR>", "Find files")
 nnoremap("<C-p>", "<cmd>lua require('ld.plugins.fzf').files()<CR>", "Find files")
 vnoremap("<leader>fv", "<cmd>lua require('fzf-lua').grep_visual()<CR>", "Find visual selection")
-nnoremap("<leader>fg", "<cmd>lua require('telescope.builtin').git_files()<CR>", "Find git files")
+nnoremap(
+  "<leader>fg",
+  "<cmd>lua require('ld.plugins.telescope.functions').git_files()<CR>",
+  "Find git files"
+)
+vnoremap(
+  "<leader>fg",
+  "<cmd>lua require('ld.plugins.telescope.functions').git_files()<CR>",
+  "Find git files"
+)
 nnoremap("<leader>fc", "<cmd>lua require('telescope.builtin').git_status()<CR>", "Find git files")
 
 nnoremap(
