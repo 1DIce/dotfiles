@@ -14,6 +14,8 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 return require("packer").startup(function(use)
+  local utils = require("ld.utils.functions")
+
   use({ "wbthomason/packer.nvim", event = "VimEnter" })
   use("lewis6991/impatient.nvim")
 
@@ -177,7 +179,7 @@ return require("packer").startup(function(use)
 
   use({ "nvim-telescope/telescope-live-grep-args.nvim" })
 
-  if require("ld.utils.functions").is_linux() then
+  if utils.is_linux() then
     use({
       "AckslD/nvim-neoclip.lua",
       requires = {
@@ -325,7 +327,13 @@ return require("packer").startup(function(use)
   use({ "nvim-treesitter/nvim-treesitter-angular", after = "nvim-treesitter" })
   use({ "nvim-treesitter/playground", after = "nvim-treesitter" })
   use({ "andymass/vim-matchup", after = "nvim-treesitter" })
-
+  use({
+    "nvim-treesitter/nvim-treesitter-context",
+    after = "nvim-treesitter",
+    config = function()
+      require("ld.plugins.treesitter-context")
+    end,
+  })
   use({
     "nvim-treesitter/nvim-treesitter-textobjects",
     config = function()

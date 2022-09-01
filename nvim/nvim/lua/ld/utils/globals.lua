@@ -19,3 +19,7 @@ RELOAD = function(package_name)
   package.loaded[package_name] = nil
   return require(package_name)
 end
+
+P = function(val)
+  print(vim.inspect(val))
+end
