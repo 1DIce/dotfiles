@@ -11,6 +11,13 @@ nnoremap(
 -- Y should yank until end of line similar to D and C
 nnoremap("Y", "y$", "Yank to end of line")
 
+nnoremap("<leader>y", [["+y]], "yank to clipboard")
+vnoremap("<leader>y", [["+y]], "yank to clipboard")
+nnoremap("<leader>p", [["+p]], "paste from clipboard")
+vnoremap("<leader>p", [["+p]], "paste from clipboard")
+nnoremap("<leader>d", [["_d]], "delete to void")
+vnoremap("<leader>d", [["_d]], "delete to void")
+
 -- do not replace register content when pasting in visual mode
 vnoremap("p", "pgvy", "Paste does not replace register content")
 
@@ -31,7 +38,7 @@ nnoremap("<leader>qp", ":cprev<CR>", "Navigate to previous quickfix")
 cnoremap("<C-j>", "<C-n>", "Select next command mode suggestion")
 cnoremap("<C-k>", "<C-p>", "Select previous command mode suggestion")
 
--- maps c-n / c-t to navigate while searching with /
+-- maps c-n / c-p to navigate while searching with /
 vim.api.nvim_exec(
   [[
 cnoremap <expr> <c-n> getcmdtype() =~ '[\/?]' ? '<c-g>' : '<c-n>'
@@ -61,7 +68,7 @@ nnoremap("<A-k>", ":m .-2<CR>==", "Move current line up")
 vnoremap("<A-j>", ":m '>+1<CR>gv=gv", "Move current selection down")
 vnoremap("<A-k>", ":m '<-2<CR>gv=gv", "Move current selection up")
 
--- terminal binginds
+-- terminal bindings
 -- go to normal mode
 tnoremap("<C-s>", "<C-\\><C-n>", "Enter terminal normal mode")
 
