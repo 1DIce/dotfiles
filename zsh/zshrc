@@ -36,10 +36,9 @@ alias ll="l"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
-alias fd="fdfind"
-alias bat="batcat"
 alias cheat="cht.sh"
 alias v="nvim"
+alias gvim="neovide.exe --wsl"
 alias g="git"
 alias groot='cd $(git rev-parse --show-toplevel)'
 alias gitroot='cd $(git rev-parse --show-toplevel)'
@@ -54,11 +53,6 @@ set completion-ignore-case on
 set show-all-if-ambiguous on
 
 # Set PATH
-export BREW_HOME="/home/linuxbrew/.linuxbrew/bin"
-export PATH="$PATH:$BREW_HOME"
-export PATH=~/.deno/bin:$PATH
-export PATH=~/bin:$PATH
-export PATH=~/.local/bin:$PATH
 export PATH=~/.cargo/bin:$PATH
 # Go Lang installation
 export PATH=$PATH:/usr/local/go/bin
@@ -126,8 +120,6 @@ fi
 # FZF terminal history search. trigger it with CRTL+r
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 

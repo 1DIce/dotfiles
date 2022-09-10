@@ -1,0 +1,16 @@
+if [[ ! "$PATH" == */home/lars/.fzf/bin* ]]; then
+  export PATH="${PATH:+${PATH}:}/home/lars/.fzf/bin"
+fi
+
+export BREW_HOME="/home/linuxbrew/.linuxbrew/bin"
+export PATH="$PATH:$BREW_HOME"
+export PATH=~/.deno/bin:$PATH
+export PATH=~/bin:$PATH
+export PATH=~/.local/bin:$PATH
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+alias fd="fdfind"
+alias bat="batcat"
+
