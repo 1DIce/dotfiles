@@ -10,7 +10,11 @@ function M.readJson(fname)
 end
 
 function M.getDeepJsonValue(json, key)
-  if json[key] then
+  if json == nil or key == nil then
+    return nil
+  end
+
+  if json[key] ~= nil then
     -- if the key contains '.' and is valid return the value
     return json[key]
   end
@@ -18,7 +22,7 @@ function M.getDeepJsonValue(json, key)
   local keys = vim.fn.split(key, ".")
 
   local nestedTabel = json
-  for index, value in ipairs(keys) do
+  for _, value in ipairs(keys) do
     if nestedTabel == nil then
       return nil
     end
