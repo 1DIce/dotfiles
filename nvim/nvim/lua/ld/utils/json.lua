@@ -10,6 +10,11 @@ function M.readJson(fname)
 end
 
 function M.getDeepJsonValue(json, key)
+  if json[key] then
+    -- if the key contains '.' and is valid return the value
+    return json[key]
+  end
+
   local keys = vim.fn.split(key, ".")
 
   local nestedTabel = json
