@@ -1,4 +1,7 @@
+# Global wsl config that is located in windows
 [wsl2]
 memory=14GB
 swap=0
 localhostForwarding=true
+
+

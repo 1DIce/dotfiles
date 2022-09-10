@@ -1,1 +1,1 @@
-autocmd BufRead,BufNewFile *bashrc,*zshrc,*zprofile   setfiletype sh
+autocmd BufRead,BufNewFile *bashrc,*zshrc,*zprofile,profile_bash  setfiletype sh

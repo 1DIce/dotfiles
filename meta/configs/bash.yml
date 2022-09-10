@@ -2,6 +2,9 @@
     ~/.bashrc:
       platform: linux
       path: bash/bashrc
+    ~/.profile:
+      platform: linux
+      path: bash/profile_bash
     ~/.bashrc:
       platform: win32
       path: bash/win_bashrc
