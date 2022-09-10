@@ -15,7 +15,7 @@ null_ls.setup({
       disabled_filetypes = { "NvimTree", "lua", "vim", "gitconfig", "vimwiki" },
       extra_args = function(params)
         if lsp.util.root_pattern(".vscode/cspell.json")(params.bufname) then
-          return params.options and { "--config", ".vscode/cspell.json" }
+          return params.options and { "--config", ".vscode/settings.json" }
         end
         return params.options
       end,
