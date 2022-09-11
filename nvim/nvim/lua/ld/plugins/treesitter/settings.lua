@@ -1,3 +1,4 @@
+local installer = require("nvim-treesitter.install")
 local parsers = require("nvim-treesitter.parsers")
 local parser_configs = parsers.get_parser_configs()
 -- end neorgtreesitter
