@@ -44,7 +44,7 @@ M.lsp_unique_references = function(opts)
   local locations = {}
   local hashSet = {}
 
-  for _, server_results in pairs(results_lsp) do
+  for client_id, server_results in pairs(results_lsp) do
     if server_results.result then
       local filtered_results = {}
       for _, result_entry in pairs(server_results.result) do
@@ -59,7 +59,11 @@ M.lsp_unique_references = function(opts)
         end
       end
 
-      vim.list_extend(locations, vim.lsp.util.locations_to_items(filtered_results) or {})
+      local offset_encoding = vim.lsp.get_client_by_id(client_id).offset_encoding
+      vim.list_extend(
+        locations,
+        vim.lsp.util.locations_to_items(filtered_results, offset_encoding) or {}
+      )
     end
   end
 
