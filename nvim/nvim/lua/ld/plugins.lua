@@ -92,10 +92,13 @@ return require("packer").startup(function(use)
   })
 
   -- Debugging
-  -- use {
-  --   "puremourning/vimspector",
-  --   config = function() require "ld.plugins.vimspector" end,
-  -- }
+  use({
+    "rcarriga/nvim-dap-ui",
+    requires = { { "mfussenegger/nvim-dap" } },
+    config = function()
+      require("ld.plugins.dap")
+    end,
+  })
 
   -- color theme
   use("Mofiqul/vscode.nvim")
