@@ -1,4 +1,7 @@
 - crossplatform-link:
-  - ~/.vrapperrc: 
-      platform: win32
-      path: vrapper/vrapperrc
+    - ~/.vrapperrc:
+        platform: win32
+        path: vrapper/vrapperrc
+    - ~/.eclipse/org.eclipse.oomph.setup/setups/user.setup:
+        platform: win32
+        path: vrapper/eclipse.user.setup

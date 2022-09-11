@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<setup:User
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:setup="http://www.eclipse.org/oomph/setup/1.0"
+    xmlns:setup.p2="http://www.eclipse.org/oomph/setup/p2/1.0"
+    name="Lars.Debor"
+    unsignedPolicy="ACCEPT">
+  <setupTask
+      xsi:type="setup:VariableTask"
+      type="JRE"
+      name="jre.location-17"
+      value="C:\Program Files\Eclipse Adoptium\jdk-17.0.2.8-hotspot"
+      label="JRE 17 Location">
+    <description>The location of a JDK or JRE compatible with Java 17.</description>
+  </setupTask>
+  <setupTask
+      xsi:type="setup.p2:P2Task">
+    <requirement
+        name="net.sourceforge.vrapper.eclipse.jdt.feature.feature.group"/>
+    <requirement
+        name="net.sourceforge.vrapper.plugin.argtextobj.feature.group"/>
+    <requirement
+        name="net.sourceforge.vrapper.plugin.exchange.feature.group"/>
+    <requirement
+        name="net.sourceforge.vrapper.plugin.methodtextobj.feature.group"/>
+    <requirement
+        name="net.sourceforge.vrapper.plugin.sneak.feature.group"/>
+    <requirement
+        name="net.sourceforge.vrapper.plugin.surround.feature.group"/>
+    <requirement
+        name="net.sourceforge.vrapper.plugin.splitEditor.feature.group"/>
+    <requirement
+        name="net.sourceforge.vrapper.feature.group"/>
+    <repository
+        url="http://vrapper.sourceforge.net/update-site/unstable"/>
+  </setupTask>
+  <setupTask
+      xsi:type="setup:CompoundTask"
+      name="Preferences">
+    <setupTask
+        xsi:type="setup:PreferenceTask"
+        key="/instance/org.eclipse.ui.workbench/org.eclipse.ui.commands"
+        value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;org.eclipse.ui.commands>&#xA;&lt;activeKeyConfiguration keyConfigurationId=&quot;net.sourceforge.vrapper.keyscheme&quot;/>&#xA;&lt;keyBinding contextId=&quot;net.sourceforge.vrapper.eclipse.active&quot; keyConfigurationId=&quot;net.sourceforge.vrapper.keyscheme&quot; keySequence=&quot;CTRL+P&quot;/>&#xA;&lt;keyBinding commandId=&quot;org.eclipse.ui.navigate.openResource&quot; contextId=&quot;org.eclipse.ui.contexts.window&quot; keyConfigurationId=&quot;net.sourceforge.vrapper.keyscheme&quot; keySequence=&quot;CTRL+P&quot;/>&#xA;&lt;keyBinding contextId=&quot;org.eclipse.ui.contexts.window&quot; keyConfigurationId=&quot;org.eclipse.ui.defaultAcceleratorConfiguration&quot; keySequence=&quot;CTRL+SHIFT+R&quot;/>&#xA;&lt;keyBinding commandId=&quot;org.eclipse.ui.navigate.showIn&quot; contextId=&quot;org.eclipse.ui.contexts.window&quot; keyConfigurationId=&quot;org.eclipse.ui.defaultAcceleratorConfiguration&quot; keySequence=&quot;ALT+CTRL+SHIFT+S&quot;>&#xA;&lt;parameter id=&quot;org.eclipse.ui.navigate.showIn.targetId&quot; value=&quot;org.eclipse.jdt.ui.PackageExplorer&quot;/>&#xA;&lt;/keyBinding>&#xA;&lt;keyBinding commandId=&quot;org.eclipse.search.ui.openFileSearchPage&quot; contextId=&quot;org.eclipse.ui.contexts.window&quot; keyConfigurationId=&quot;net.sourceforge.vrapper.keyscheme&quot; keySequence=&quot;CTRL+F&quot;/>&#xA;&lt;keyBinding contextId=&quot;org.eclipse.ui.contexts.window&quot; keyConfigurationId=&quot;org.eclipse.ui.defaultAcceleratorConfiguration&quot; keySequence=&quot;CTRL+F&quot;/>&#xA;&lt;keyBinding contextId=&quot;org.eclipse.ui.contexts.window&quot; keyConfigurationId=&quot;org.eclipse.ui.defaultAcceleratorConfiguration&quot; keySequence=&quot;CTRL+F&quot;/>&#xA;&lt;keyBinding contextId=&quot;net.sourceforge.vrapper.eclipse.active&quot; keyConfigurationId=&quot;net.sourceforge.vrapper.keyscheme&quot; keySequence=&quot;CTRL+F&quot;/>&#xA;&lt;keyBinding contextId=&quot;net.sourceforge.vrapper.eclipse.active&quot; keyConfigurationId=&quot;net.sourceforge.vrapper.keyscheme&quot; keySequence=&quot;CTRL+F&quot;/>&#xA;&lt;/org.eclipse.ui.commands>">
+      <description>Setup custom keybindings</description>
+    </setupTask>
+  </setupTask>
+  <attributeRule
+      attributeURI="http://www.eclipse.org/oomph/setup/1.0#//InstallationTask/location"
+      value="${install.root/}${installation.id}"/>
+  <attributeRule
+      attributeURI="http://www.eclipse.org/oomph/setup/1.0#//WorkspaceTask/location"
+      value="${installation.location/ws}"/>
+  <acceptedLicense>be4a7d94b4e1903e628a3001859739a8 Eclipse Foundation Software User Agreement</acceptedLicense>
+  <acceptedLicense>DEFAULT_LICENSE Marker to remember license pre-prompting</acceptedLicense>
+  <acceptedLicense>8d3137b6d090b6860d1b977a88ceb334 Eclipse Foundation Software User Agreement</acceptedLicense>
+  <acceptedLicense>d77cfd8b73fc71776727fcbb2605709 Eclipse Foundation Software User Agreement</acceptedLicense>
+  <acceptedLicense>6a3d083ad2bd7d3a80ee293235f8c5b1 Eclipse Foundation Software User Agreement</acceptedLicense>
+  <acceptedLicense>abc76a6cc9d06e4684ff61ed74a972c Eclipse Foundation Software User Agreement</acceptedLicense>
+  <acceptedLicense>318bcab4617b336391ac7ab40514ccc3 Eclipse Foundation Software User Agreement</acceptedLicense>
+  <acceptedLicense>aa1a84ed6378c1cdba13a100c225aa57 Eclipse Foundation Software User Agreement</acceptedLicense>
+  <acceptedLicense>425529a69afe7129289ce9a30b4d2b6c Eclipse Foundation Software User Agreement</acceptedLicense>
+  <acceptedLicense>84f0b7f0a433c033764dd28540d6d199 Eclipse Foundation Software User Agreement</acceptedLicense>
+  <acceptedLicense>4450aa10f21d146d6a6a80f84275f5b2 Eclipse Foundation Software User Agreement</acceptedLicense>
+  <acceptedLicense>4b05f4dff6306cf11a7b597575311823 Red Hat, Inc. licenses these features and plugins to you under certain open source licenses (or aggregations of such licenses), which in a particular case may include the Eclipse Public License, the GNU Lesser General Public License, and/or certain other open source licenses. For precise licensing details, consult the corresponding source code, or contact Red Hat, Attn: General Counsel, 100 East Davie St., Raleigh NC 27601 USA.</acceptedLicense>
+  <acceptedLicense>1533979938dda1522969069f24f3701e Apache License</acceptedLicense>
+  <acceptedLicense>121140a2cbaa22d157099dd10a242d92 Eclipse Public License - v 1.0</acceptedLicense>
+  <acceptedLicense>6f0f3d29607e7d37a8ff5a26a575969d Grep Console Software User Agreement</acceptedLicense>
+  <acceptedLicense>d56c24ccdeee3403be5ba6423524696c Eclipse Public License - v 1.0</acceptedLicense>
+  <acceptedLicense>5c896110afbd8ffc82d3df84bdaee8a8 GNU GENERAL PUBLIC LICENSE</acceptedLicense>
+</setup:User>
