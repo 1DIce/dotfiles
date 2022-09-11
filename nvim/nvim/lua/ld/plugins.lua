@@ -324,7 +324,6 @@ return require("packer").startup(function(use)
   use({ "nvim-treesitter/nvim-treesitter-refactor", after = "nvim-treesitter" })
   use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" })
   use({ "p00f/nvim-ts-rainbow", after = "nvim-treesitter" })
-  use({ "nvim-treesitter/nvim-treesitter-angular", after = "nvim-treesitter" })
   use({ "nvim-treesitter/playground", after = "nvim-treesitter" })
   use({ "andymass/vim-matchup", after = "nvim-treesitter" })
   use({
