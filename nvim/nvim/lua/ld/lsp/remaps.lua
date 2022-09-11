@@ -159,16 +159,9 @@ function M.set_typescript(client, bufnr)
   local function buf_set_keymap(...)
     bufnoremap(bufnr, ...)
   end
-  local ts_utils = require("nvim-lsp-ts-utils")
 
-  -- defaults
-  ts_utils.setup({ update_imports_on_move = true })
-
-  -- required to fix code action ranges and filter diagnostics
-  ts_utils.setup_client(client)
-
-  buf_set_keymap("n", "<leader>loi", ":TSLspOrganize<CR>", "Organize imports")
+  buf_set_keymap("n", "<leader>loi", ":TypescriptOrganizeImports<CR>", "Organize imports")
   -- buf_set_keymap("n", "gr", ":TSLspRenameFile<CR>", 'lsp', 'lsp_', '')
-  buf_set_keymap("n", "<leader>loa", ":TSLspImportAll<CR>", "Import all")
+  buf_set_keymap("n", "<leader>loa", ":TypescriptAddMissingImports<CR>", "Import all")
 end
 return M

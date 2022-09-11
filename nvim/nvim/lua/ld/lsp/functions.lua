@@ -1,4 +1,3 @@
-local ts_utils = require("nvim-lsp-ts-utils")
 local M = {}
 
 M.show_diagnostics = function(opts)
@@ -16,7 +15,7 @@ M.format_organize_typescript = function()
   if M.is_deno_workspace() then
     vim.lsp.buf.formatting_sync()
   else
-    ts_utils.organize_imports_sync()
+    require("typescript").actions.organizeImports({ sync = true })
     vim.cmd([[ :Prettier ]])
   end
 end

@@ -183,7 +183,11 @@ local servers = {
 if functions.is_deno_workspace() then
   servers.denols = deno_config()
 else
-  servers.tsserver = require("ld.lsp.servers.tsserver")(on_attach, capabilities)
+  require("typescript").setup({
+    disable_commands = false,
+    debug = false,
+    server = require("ld.lsp.servers.tsserver")(on_attach, capabilities),
+  })
   servers.angularls = angular_config()
 end
 
