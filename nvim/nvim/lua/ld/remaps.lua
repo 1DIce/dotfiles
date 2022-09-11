@@ -11,15 +11,19 @@ nnoremap(
 -- Y should yank until end of line similar to D and C
 nnoremap("Y", "y$", "Yank to end of line")
 
-nnoremap("<leader>y", [["+y]], "yank to clipboard")
-vnoremap("<leader>y", [["+y]], "yank to clipboard")
-nnoremap("<leader>p", [["+p]], "paste from clipboard")
-vnoremap("<leader>p", [["+p]], "paste from clipboard")
-nnoremap("<leader>d", [["_d]], "delete to void")
-vnoremap("<leader>d", [["_d]], "delete to void")
+nnoremap("<leader>y", '"+y', "yank to clipboard")
+vnoremap("<leader>y", '"+y', "yank to clipboard")
+nnoremap("<leader>p", '"+p', "paste from clipboard")
+vnoremap("<leader>p", '"+p', "paste from clipboard")
+nnoremap("<leader>d", '"_d', "delete to void")
+vnoremap("<leader>d", '"_d', "delete to void")
 
 -- do not replace register content when pasting in visual mode
 vnoremap("p", "pgvy", "Paste does not replace register content")
+
+-- do not replace register content when deleting with 'x'
+nnoremap("x", '"_x', "delete character")
+vnoremap("x", '"_x', "delete character visual")
 
 -- deletes in visual
 vnoremap("X", '"_d', "Deletes on visual")
