@@ -54,8 +54,11 @@ cnoremap <expr> <c-p> getcmdtype() =~ '[\/?]' ? '<c-t>' : '<c-p>'
 -- save buffer
 nnoremap("<leader><leader>s", "<cmd>write<CR>", "save current buffer")
 
--- editing remaps
-nnoremap("<leader>ej", "<cmd>join<CR>", "join 2 lines")
+nnoremap(
+  "<leader>vcs",
+  "<cmd> lua require('ld.functions').command_to_scratch()<CR>",
+  "Command output to scratch buffer"
+)
 
 -- Undo break points
 inoremap(",", ",<C-g>u", "add undo break point after ,")
