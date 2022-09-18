@@ -3,8 +3,8 @@
 # The script makes windows ports available from inside wsl.
 # To work the windows public ssh key needs to be copy to the wsl
 
-serivceStatus=$(service ssh status)
-if [[ $serivceStatus =~ 'not running' ]]; then
+serviceStatus=$(service ssh status)
+if [[ $serviceStatus =~ 'not running' ]]; then
   echo "ERROR ssh service not running in wsl! start it by running 'sudo service ssh start'"
   exit 1
 fi
@@ -15,7 +15,7 @@ if [[ $# -eq 1 ]]; then
 	port=$1
 else
 	# forward 9222 for chrome remote debugging port
-	port=$(echo "8080\n9980\n9222" | fzf)
+	port=$(echo "8080 9980 9222" | tr "[:space:]" "\n" | fzf)
 fi
 
 (
