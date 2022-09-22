@@ -78,3 +78,5 @@
   path = ~/.gitconfig-work
 [includeIf "gitdir:~/configurator/"]
   path = ~/.gitconfig-work
+[includeIf "gitdir:C:/configurator-ide/"]
+  path = ~/.gitconfig-work
