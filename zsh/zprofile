@@ -8,6 +8,11 @@ export PATH=~/.deno/bin:$PATH
 export PATH=~/bin:$PATH
 export PATH=~/.local/bin:$PATH
 
+# Rust
+if [ -d "$HOME/.cargo/bin" ] ; then
+    PATH="$HOME/.cargo/bin:$PATH"
+fi
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 

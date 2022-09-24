@@ -191,6 +191,8 @@ else
   servers.angularls = angular_config()
 end
 
+require("ld.lsp.servers.rust-lsp").setup(on_attach, capabilities)
+
 for serverName, config in pairs(servers) do
   lsp[serverName].setup(vim.tbl_deep_extend("force", default_lsp_config, config))
   vim.cmd([[ do User LspAttachBuffers ]])
