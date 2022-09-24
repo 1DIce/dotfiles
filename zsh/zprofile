@@ -2,29 +2,3 @@ if [[ ! "$PATH" == */home/lars/.fzf/bin* ]]; then
   export PATH="${PATH:+${PATH}:}/home/lars/.fzf/bin"
 fi
 
-export BREW_HOME="/home/linuxbrew/.linuxbrew/bin"
-export PATH="$PATH:$BREW_HOME"
-export PATH=~/.deno/bin:$PATH
-export PATH=~/bin:$PATH
-export PATH=~/.local/bin:$PATH
-
-# Rust
-if [ -d "$HOME/.cargo/bin" ] ; then
-    PATH="$HOME/.cargo/bin:$PATH"
-fi
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-
-alias fd="fdfind"
-alias bat="batcat"
-
-# append windows PATH while in wsl
-if [ ! -z "$WSL_DISTRO_NAME" ]; then
-  PATH="/mnt/c/Windows/system32:$PATH"
-  PATH="/mnt/c/Windows:$PATH"
-  PATH="/mnt/c/Windows/System32/Wbem:$PATH"
-  PATH="/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:$PATH"
-  PATH="/mnt/c/Windows/System32/OpenSSH/:$PATH"
-  PATH="/mnt/c/Users/Lars.Debor/AppData/Local/Programs/Microsoft VS Code/bin:$PATH"
-fi
