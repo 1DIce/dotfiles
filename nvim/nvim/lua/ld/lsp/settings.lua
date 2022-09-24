@@ -16,6 +16,7 @@ require("mason-lspconfig").setup({
     "sumneko_lua",
     "tsserver",
     "angularls",
+    "ltex-ls",
   },
 })
 
@@ -178,6 +179,7 @@ local servers = {
   eslint = {},
   pylsp = {},
   gopls = {},
+  ltex = { filetypes = { "markdown", "plaintext" } },
   sumneko_lua = sumneko_lua_config(),
 }
 if functions.is_deno_workspace() then
