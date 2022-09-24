@@ -82,6 +82,7 @@ local gruvbox_baby = function()
 
   vim.g.gruvbox_baby_telescope_theme = 0
   vim.g.gruvbox_baby_transparent_mode = 0
+  vim.g.gruvbox_baby_use_original_palette = true
 
   vim.cmd([[colorscheme gruvbox-baby]])
 end
