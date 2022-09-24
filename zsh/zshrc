@@ -5,6 +5,7 @@ source ~/.commonrc.local
 HISTFILE=~/.histfile
 HISTSIZE=5000
 SAVEHIST=5000
+setopt share_history
 setopt autocd extendedglob
 bindkey -e
 
@@ -157,4 +158,3 @@ if [[ -o interactive ]]; then
   export PATH="${PATH}:/home/lars/.cargo/bin/navi"
 
 fi
-
