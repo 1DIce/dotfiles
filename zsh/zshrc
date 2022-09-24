@@ -53,8 +53,6 @@ set completion-ignore-case on
 # List all matches in case multiple possible completions are possible
 set show-all-if-ambiguous on
 
-# Set PATH
-export PATH=~/.cargo/bin:$PATH
 # Go Lang installation
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:~/go/bin
@@ -64,17 +62,6 @@ export EDITOR=nvim
 
 function cdf {
   local dst="$(fzf-dir "$@")"
-  if [ -z "$dst" ]; then
-    echo 'Directory picking cancelled/failed'
-    return 1
-  fi
-  cd "$dst"
-}
-
-# Vifm
-function vicd
-{
-  local dst="$(command vifm --choose-dir - "$@")"
   if [ -z "$dst" ]; then
     echo 'Directory picking cancelled/failed'
     return 1
@@ -153,8 +140,5 @@ if [[ -o interactive ]]; then
 
   # Install starship promp
   eval "$(starship init zsh)"
-  # Install navi shell widget use ctrl+g to use it
-  eval "$(navi widget zsh)"
-  export PATH="${PATH}:/home/lars/.cargo/bin/navi"
-
 fi
+
