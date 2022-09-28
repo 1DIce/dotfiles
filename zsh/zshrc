@@ -108,9 +108,6 @@ fi
 # FZF terminal history search. trigger it with CRTL+r
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-
 if [[ -o interactive ]]; then
   # zplug
   source ~/.zplug/init.zsh
