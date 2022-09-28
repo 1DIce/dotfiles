@@ -78,7 +78,7 @@ export LESSOPEN='|~/.config/less/lessfilter.sh %s'
 export LESS=' -R'
 
 # special WSL2 settings
-if grep -q WSL2 /proc/version; then
+if [ ! -z "$WSL_DISTRO_NAME" ]; then
   # xserver if running on wsl2
   export DISPLAY=$(ip route list default | awk '{print $3}'):0
   export LIBGL_ALWAYS_INDIRECT=1
