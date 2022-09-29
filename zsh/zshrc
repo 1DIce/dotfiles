@@ -114,6 +114,7 @@ if [[ -o interactive ]]; then
 
   zplug "chitoku-k/fzf-zsh-completions"
   zplug "Aloxaf/fzf-tab"
+  zplug "spaceship-prompt/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
 
   # Install plugins if there are plugins that have not been installed
   if ! zplug check --verbose; then
@@ -134,8 +135,5 @@ if [[ -o interactive ]]; then
   zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
   # configure preview
   zstyle ':fzf-tab:complete:*:*' fzf-preview 'less ${(Q)realpath}'
-
-  # Install starship promp
-  eval "$(starship init zsh)"
 fi
 

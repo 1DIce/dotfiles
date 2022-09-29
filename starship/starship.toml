@@ -1,6 +1,0 @@
-command_timeout = 2000
-
-# Disable the package module, hiding it from the prompt completely
-[package]
-disabled = true
-
