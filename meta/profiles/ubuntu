@@ -4,7 +4,7 @@ zsh
 less
 cmd-tools-apt
 starship
-nvm
+volta
 cmd-tools-npm
 fonts
 cheat-sheets

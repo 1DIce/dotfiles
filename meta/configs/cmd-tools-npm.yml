@@ -1,2 +1,2 @@
 - crossplatform-shell:
-  - npm i -g cspell prettier tree-sitter-cli
+    - npm i -g cspell prettier tree-sitter-cli @angular/cli
