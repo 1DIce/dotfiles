@@ -60,11 +60,7 @@ capabilities = vim.tbl_extend("keep", capabilities, lsp_status.capabilities)
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 if presentCmpNvimLsp then
-  capabilities = vim.tbl_extend(
-    "keep",
-    capabilities,
-    cmpNvimLsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
-  )
+  capabilities = vim.tbl_extend("keep", capabilities, cmpNvimLsp.default_capabilities())
 end
 
 M.capabilities = capabilities
@@ -80,7 +76,7 @@ local sumneko_lua_config = function()
     cmd = { "lua-language-server" },
     on_attach = function(client, bufnr)
       require("ld.lsp.events").document_highlight_under_cursor()
-      client.resolved_capabilities.document_formatting = false -- null-ls handles the formatting
+      client.server_capabilities.documentFormattingProvider = false -- null-ls handles the formatting
       on_attach(client, bufnr)
     end,
     capabilities = capabilities,

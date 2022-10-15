@@ -25,9 +25,9 @@ return function(on_attach, capabilities)
     on_attach = function(client, bufnr)
       on_attach(client, bufnr)
 
-      client.resolved_capabilities.rename = false
-      client.resolved_capabilities.document_rename = false -- renaming is done by angularls
-      client.resolved_capabilities.document_formatting = false -- tsserver, stop messing with prettier da fuck!
+      local cap = client.server_capabilities
+      cap.documentFormattingProvider = false -- null-ls handles the formatting
+      cap.renameProvider = false
       remaps.set_typescript(client, bufnr)
 
       events.document_highlight_under_cursor()
