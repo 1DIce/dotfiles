@@ -13,12 +13,13 @@ set gvimargs={file} -- +{line}
 
 " ECLIPSE COMMANDS
 eclipseaction openType org.eclipse.jdt.ui.navigate.open.type
+eclipseaction searchAllFiles org.eclipse.search.ui.openSearchDialog
 eclipseaction findAllReferences org.eclipse.jdt.ui.edit.text.java.search.references.in.workspace
-eclipseaction goToImplementation org.eclipse.jdt.ui.edit.text.java.open.implementation
+eclipseuiaction goToImplementation org.eclipse.jdt.ui.edit.text.java.open.implementation
 eclipseaction callHierachy org.eclipse.jdt.ui.edit.text.java.open.call.hierarchy
 eclipseaction organizeImports org.eclipse.jdt.ui.edit.text.java.organize.imports
 eclipseaction renameElement org.eclipse.jdt.ui.edit.text.java.rename.element
-" eclipseaction openResources org.eclipse.ui.navigate.openResource
+eclipseaction openResources org.eclipse.ui.navigate.openResource
 eclipseaction refactorMenu org.eclipse.jdt.ui.edit.text.java.refactor.quickMenu
 eclipseaction sourceMenu org.eclipse.jdt.ui.edit.text.java.source.quickMenu
 eclipseaction codeActions org.eclipse.jdt.ui.edit.text.java.correction.assist.proposals
@@ -37,12 +38,13 @@ nunmap <c-k>
 
 " map eclipse functions
 nmap <space>lt :openType<CR>
+nmap <space>fl :searchAllFiles<CR>
 nmap <space>lu :findAllReferences<CR>
 nmap <space>li :goToImplementation<CR>
 nmap <space>lc :callHierachy<CR>
 nmap <space>loa :organizeImports<CR>
 nmap <space>lr :renameElement<CR>
-" nmap <c-p> :openResources<CR>
+nmap <c-p> :openResources<CR>
 nmap <space>lor :refactorMenu<CR>
 nmap <space>los :sourceMenu<CR>
 nmap <space>la :codeActions<CR>
@@ -56,6 +58,12 @@ nmap <a-j> :moveLineDown<CR>
 vmap <a-k> :moveLineUp<CR>
 vmap <a-j> :moveLineDown<CR>
 map <c-m> :toggleMaximizeCurrentWindow<CR>
+
+" map register operation
+nnoremap <space>p "+p
+vnoremap <space>p "+p
+nnoremap <space>y "+y
+vnoremap <space>p "+y
 
 " remap content assist-mode navigation
 camap <c-k> <c-p>
