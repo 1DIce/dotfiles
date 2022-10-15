@@ -134,7 +134,11 @@ local function get_node_modules(root_dir)
   if stats == nil then
     return nil
   else
-    return root_node
+    if require("ld.utils.functions").is_windows() then
+      return vim.fn.substitute(root_node, "/", "\\", "g")
+    else
+      return root_node
+    end
   end
 end
 
