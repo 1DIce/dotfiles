@@ -5,12 +5,13 @@ if not present then
 end
 
 cmp.setup({
-  experimental = { native_menu = false },
+  preselect = cmp.PreselectMode.None, -- avoid automatic selection of random lsp entry
   snippet = {
     expand = function(args)
       require("luasnip").lsp_expand(args.body)
     end,
   },
+
   mapping = {
     ["<C-k>"] = cmp.mapping.select_prev_item(),
     ["<C-j>"] = cmp.mapping.select_next_item(),
@@ -18,10 +19,20 @@ cmp.setup({
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<C-Space>"] = cmp.mapping.complete(),
     ["<C-e>"] = cmp.mapping.close(),
-    ["<CR>"] = cmp.mapping.confirm({
-      behavior = cmp.ConfirmBehavior.Insert,
-      select = true,
-    }),
+    ["<CR>"] = {
+      i = function()
+        local cmp = require("cmp")
+        if cmp.visible() then
+          cmp.confirm({
+            behavior = cmp.ConfirmBehavior.Insert,
+            select = true,
+          })
+        else
+          -- This workaround is currently needed to make sure that pressing <CR> still works normally while cmp is not visible
+          vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<CR>", true, true, true), "n")
+        end
+      end,
+    },
   },
   formatting = {
     format = require("lspkind").cmp_format({
