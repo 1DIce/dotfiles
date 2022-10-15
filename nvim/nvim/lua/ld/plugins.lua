@@ -151,10 +151,16 @@ return require("packer").startup(function(use)
     end,
   })
 
+  -- use({
+  --   "ggandor/lightspeed.nvim",
+  --   config = function()
+  --     nmap("s", "<Plug>Lightspeed_omni_s", "Use lightspeed on whole window")
+  --   end,
+  -- })
   use({
-    "ggandor/lightspeed.nvim",
+    "ggandor/leap.nvim",
     config = function()
-      nmap("s", "<Plug>Lightspeed_omni_s", "Use lightspeed on whole window")
+      require("ld.plugins.leap")
     end,
   })
 
