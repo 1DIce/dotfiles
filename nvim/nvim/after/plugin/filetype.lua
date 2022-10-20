@@ -8,6 +8,7 @@ vim.filetype.add({
     [".lua-format"] = "yaml",
   },
   pattern = {
+    -- those are regex lua patterns % is used to escape
     ["tsconfig.*%.json"] = "jsonc",
     ["gitconfig.*"] = "gitconfig",
     [".*bashrc"] = "sh",

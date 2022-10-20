@@ -322,6 +322,7 @@ return require("packer").startup(function(use)
   })
   use({
     "nvim-treesitter/nvim-treesitter",
+    commit = "9b43ab819c756f01d2977cd481bdcaead6867174",
     config = function()
       require("ld.plugins.treesitter")
     end,
