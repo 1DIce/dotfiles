@@ -16,7 +16,6 @@ require("mason-lspconfig").setup({
     "sumneko_lua",
     "tsserver",
     "angularls",
-    "ltex-ls",
   },
 })
 
