@@ -100,39 +100,6 @@ function M.set_default(client, bufnr)
     )
   end
 
-  -- buf_set_keymap('n','<leader>fe', '<cmd>lua vim.diagnostic.set_loclist()<CR>', opts)
-  -- buf_set_keymap('n','<leader>fe', '<cmd>:LspDiagnostics 0<CR>', opts)
-  -- buf_set_keymap('n', '<leader>fe', '<cmd>lua require(\'ld.lsp.functions\').show_diagnostics()<CR>', 'lsp',
-  --                'lsp_show_diagnostics', 'Show diagnostics')
-  buf_set_keymap(
-    "n",
-    "<leader>lew",
-    "<cmd>lua require('telescope.builtin').diagnostics()<CR>",
-    "Show workspace diagnostics"
-  )
-  buf_set_keymap(
-    "n",
-    "<leader>leb",
-    "<cmd>lua require('telescope.builtin').lsp_document_diagnostics()<CR>",
-    "Show buffer diagnostics"
-  )
-  -- buf_set_keymap('n','<leader>fE', '<cmd>lua vim.diagnostic.show_line_diagnostics()<CR>', opts)
-  buf_set_keymap(
-    "n",
-    "<leader>lel",
-    "<cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>",
-    "Show line diagnostics"
-  )
-  buf_set_keymap(
-    "n",
-    "<leader>lep",
-    "<cmd>lua vim.diagnostic.goto_prev()<CR>",
-    "Previous diagnostic"
-  )
-  buf_set_keymap("n", "<leader>len", "<cmd>lua vim.diagnostic.goto_next()<CR>", "next diagnostic")
-  --[[ buf_set_keymap('n', '[e', "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>", 'lsp', 'lsp_previous_diagnostic', 'Previous diagnostic')
-  buf_set_keymap('n', ']e', "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>", 'lsp', 'lsp_next_diagnostic', 'Next diagnostic'); ]]
-
   if cap.documentFormattingProvider then
     buf_set_keymap("n", "<leader>lof", "<cmd>lua vim.lsp.buf.formatting()<CR>", "Format")
   elseif cap.documentRangeFormattingProvider then

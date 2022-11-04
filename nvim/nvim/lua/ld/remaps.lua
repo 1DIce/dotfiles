@@ -102,3 +102,18 @@ nnoremap("<leader>wl", "<cmd>wincmd l<CR>", "Move window right")
 
 nnoremap("<leader>w+", "<cmd>vertical resize +5<CR>", "Increase window size")
 nnoremap("<leader>w-", "<cmd>vertical resize -5<CR>", "Decrease window size")
+
+-- diagnostics
+nnoremap(
+  "<leader>el",
+  "<cmd>lua require('telescope.builtin').diagnostics()<CR>",
+  "Show workspace diagnostics"
+)
+nnoremap("<leader>eq", "<cmd>lua vim.diagnostic.setqflist()", "Show workspace diagnostics")
+nnoremap(
+  "<leader>eh",
+  "<cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>",
+  "Show line diagnostics"
+)
+nnoremap("<leader>ej", "<cmd>lua vim.diagnostic.goto_next()<CR>", "next diagnostic")
+nnoremap("<leader>ek", "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Previous diagnostic")
