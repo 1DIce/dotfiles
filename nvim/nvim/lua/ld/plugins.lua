@@ -157,6 +157,14 @@ return require("packer").startup(function(use)
   --   end,
   -- })
   use({
+    "rhysd/clever-f.vim",
+    config = function()
+      vim.keymap.set("n", ";", "<Plug>(clever-f-repeat-forward)", { remap = true })
+      vim.keymap.set("n", ",", "<Plug>(clever-f-repeat-back)", { remap = true })
+    end,
+  })
+
+  use({
     "ggandor/leap.nvim",
     config = function()
       require("ld.plugins.leap")

@@ -119,7 +119,6 @@ nnoremap("<leader>ej", "<cmd>lua vim.diagnostic.goto_next()<CR>", "next diagnost
 nnoremap("<leader>ek", "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Previous diagnostic")
 
 -- git more git remaps in gitsign attach callback
-
 nnoremap("<leader>gs", "<cmd>Telescope git_status<CR>", "Git status")
 nnoremap("<leader>gh", "<cmd>DiffviewFileHistory %<CR>", "Open git file history")
 nnoremap("<leader>gq", "<cmd>DiffviewClose<CR>", "Diffview close")
