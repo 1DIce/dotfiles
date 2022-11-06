@@ -1,4 +1,20 @@
+local tree_api_fs = require("nvim-tree.api").fs
 local tree_cb = require("nvim-tree.config").nvim_tree_callback
+
+local function is_typescript_file_node(node)
+  return node.type == "file" and require("ld.utils.functions").ends_with(node.absolute_path, ".ts")
+end
+
+local function rename_typescript_file(node)
+  local source = node.absolute_path
+  vim.ui.input({ prompt = "New ts file path: ", default = source }, function(input)
+    if input == "" or input == source or input == nil then
+      return
+    end
+
+    require("typescript").renameFile(source, input)
+  end)
+end
 
 -- default mappings
 local list = {
@@ -20,8 +36,6 @@ local list = {
   { key = "R", cb = tree_cb("refresh") },
   { key = "a", cb = tree_cb("create") },
   { key = "d", cb = tree_cb("remove") },
-  { key = "r", cb = tree_cb("rename") },
-  { key = "<C-r>", cb = tree_cb("full_rename") },
   { key = "x", cb = tree_cb("cut") },
   { key = "c", cb = tree_cb("copy") },
   { key = "p", cb = tree_cb("paste") },
@@ -34,8 +48,20 @@ local list = {
   { key = "-", cb = tree_cb("close") },
   { key = "q", cb = tree_cb("close") },
   { key = "g?", cb = tree_cb("toggle_help") },
+  { key = "<C-r>", cb = tree_cb("full_rename") },
   {
-    key = "c",
+    key = "r",
+    action = "rename",
+    action_cb = function(node)
+      if is_typescript_file_node(node) then
+        rename_typescript_file(node)
+      else
+        tree_api_fs.rename()
+      end
+    end,
+  },
+  {
+    key = "C",
     cb = ":lua require('ld.plugins.nvim-tree.functions').executeShellCommandOnTreeNode()<CR>",
   },
 }
