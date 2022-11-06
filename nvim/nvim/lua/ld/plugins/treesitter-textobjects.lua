@@ -9,6 +9,8 @@ require("nvim-treesitter.configs").setup({
         ["if"] = "@function.inner",
         ["ac"] = "@call.outer",
         ["ic"] = "@call.inner",
+        ["ai"] = "@conditional.outer",
+        ["ii"] = "@conditional.inner",
 
         -- xml attribute
         ["ax"] = "@attribute.outer",
@@ -55,17 +57,19 @@ local wk = require("which-key")
 wk.register({
   a = {
     f = { "Function outer motion" }, --
-    c = { "Class outer motion" },
+    c = { "call expression outer motion" },
     x = { "Attribute (html, xml) outer motion" },
     k = { "Json key outer motion" },
     v = { "Json value outer motion" },
+    i = { "conditional outer moition" },
   },
   i = {
     f = { "Function inner motion" }, --
-    c = { "Class inner motion" }, --
+    c = { "call expression inner motion" }, --
     x = { "Attribute (html, xml) inner motion" },
     k = { "Json key inner motion" },
     v = { "Json value inner motion" },
+    i = { "conditional inner moition" },
   },
   [" "] = {
     r = {
