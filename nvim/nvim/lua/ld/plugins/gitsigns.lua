@@ -40,7 +40,7 @@ require("gitsigns").setup({
       "n",
       "<leader>ghd",
       '<cmd>lua require"gitsigns".preview_hunk_inline()<CR>',
-      "Git show line blame"
+      "Git show inline diff"
     )
   end,
 })
