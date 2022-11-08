@@ -28,6 +28,7 @@ null_ls.setup({
         return cwd
       end,
     }),
+    null_ls.builtins.code_actions.cspell,
     null_ls.builtins.formatting.stylua,
     null_ls.builtins.diagnostics.yamllint,
     null_ls.builtins.formatting.shfmt,
