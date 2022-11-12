@@ -63,7 +63,6 @@ return require("packer").startup(function(use)
     end,
   })
 
-  use("dbeniamine/cheat.sh-vim")
   use({
     "tyru/open-browser.vim",
     config = function()
