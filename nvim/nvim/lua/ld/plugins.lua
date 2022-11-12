@@ -227,8 +227,6 @@ return require("packer").startup(function(use)
     end,
   })
 
-  use("vifm/vifm.vim")
-
   use({
     "goolord/alpha-nvim",
     config = function()
