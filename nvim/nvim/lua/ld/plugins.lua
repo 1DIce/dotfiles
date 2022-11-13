@@ -298,6 +298,8 @@ return require("packer").startup(function(use)
   use({ "hrsh7th/cmp-nvim-lua", after = "nvim-cmp" })
   use({ "hrsh7th/cmp-cmdline", after = "nvim-cmp" })
 
+  use({ "joshzcold/cmp-jenkinsfile", after = "nvim-cmp" })
+
   use({
     "windwp/nvim-autopairs",
     after = "nvim-cmp",

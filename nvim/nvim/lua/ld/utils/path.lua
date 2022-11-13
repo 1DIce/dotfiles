@@ -6,6 +6,13 @@ local M = {
   join = lsp.util.path.join,
 }
 
+function M.to_os_path(unix_path)
+  if require("ld.utils.functions").is_windows() then
+    return vim.fn.substitute(unix_path, "/", "\\", "g")
+  end
+  return unix_path
+end
+
 --- Search for ancestor directory that contains the specified child
 ---@param child_name string
 ---@param child_type "dir" | "file"

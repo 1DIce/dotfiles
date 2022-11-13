@@ -1,3 +1,4 @@
+local path_util = require("ld.utils.path")
 local present, cmp = pcall(require, "cmp")
 
 if not present then
@@ -44,6 +45,7 @@ cmp.setup({
           buffer = "[Buf]",
           nvim_lua = "[Lua]",
           path = "[Path]",
+          jenkinsfile = "[Jenkins]",
         })[entry.source.name]
 
         return vim_item
@@ -55,6 +57,20 @@ cmp.setup({
     { name = "luasnip", max_item_count = 10 },
     { name = "nvim_lua", max_item_count = 20 },
     { name = "path", max_item_count = 10 },
+    { name = "buffer", max_item_count = 5, keyword_length = 4 },
+  },
+})
+
+cmp.setup.filetype("Jenkinsfile", {
+  sources = {
+    {
+      name = "jenkinsfile",
+      option = {
+        gdsl_file = path_util.to_os_path(
+          os.getenv("HOME") .. "/dotfiles/merlin/jenkins-pipeline-syntax-gdsl"
+        ),
+      },
+    },
     { name = "buffer", max_item_count = 5, keyword_length = 4 },
   },
 })
