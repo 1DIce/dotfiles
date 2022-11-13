@@ -1,3 +1,4 @@
+local file_util = require("ld.utils.file")
 local M = {}
 
 function M.readJson(fname)
@@ -7,6 +8,13 @@ function M.readJson(fname)
   end
   local json = vim.fn.json_decode(jsonFile)
   return json
+end
+
+---@param filepath string filepath to write the file to
+---@param data table | Array
+function M.write_json(filepath, data)
+  local json = vim.fn.json_encode(data)
+  file_util.write_file(filepath, json)
 end
 
 function M.getDeepJsonValue(json, key)

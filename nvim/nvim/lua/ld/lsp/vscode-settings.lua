@@ -4,15 +4,8 @@ local path_util = require("ld.utils.path")
 
 local M = {}
 
-local searchVscodeAncestor = function()
-  return lsp.util.search_ancestors(vim.fn.getcwd(), function(path)
-    if path_util.is_dir(path_util.join(path, ".vscode")) then
-      return path
-    end
-  end)
-end
 local getSettingsJsonPath = function()
-  local vscodeAncestor = searchVscodeAncestor()
+  local vscodeAncestor = path_util.search_ancestors_with_child(".vscode", "dir")
   if vscodeAncestor == nil then
     return nil
   end
