@@ -37,6 +37,20 @@
         url="http://vrapper.sourceforge.net/update-site/unstable"/>
   </setupTask>
   <setupTask
+      xsi:type="setup.p2:P2Task">
+    <requirement
+        name="jdt.spelling.feature.feature.group"/>
+    <repository
+        url="http://jdt.spelling.s3-website-us-east-1.amazonaws.com"/>
+  </setupTask>
+  <setupTask
+      xsi:type="setup.p2:P2Task">
+    <requirement
+        name="com.github.matf.relativenumberruler.feature.feature.group"/>
+    <repository
+        url="http://matf.github.io/relativenumberruler/updatesite/"/>
+  </setupTask>
+  <setupTask
       xsi:type="setup:CompoundTask"
       name="Preferences">
     <setupTask
@@ -69,4 +83,7 @@
   <acceptedLicense>6f0f3d29607e7d37a8ff5a26a575969d Grep Console Software User Agreement</acceptedLicense>
   <acceptedLicense>d56c24ccdeee3403be5ba6423524696c Eclipse Public License - v 1.0</acceptedLicense>
   <acceptedLicense>5c896110afbd8ffc82d3df84bdaee8a8 GNU GENERAL PUBLIC LICENSE</acceptedLicense>
+  <acceptedLicense>595980e21fe49cdf3ad62450723e2a06 Eclipse Public License -v 1.0</acceptedLicense>
+  <acceptedCertificate>cO9wtj14c6cm9WQUql3osICHNNw= CN=Legion of the Bouncy Castle Inc., OU=Java Software Code Signing, O=Oracle Corporation</acceptedCertificate>
+  <acceptedCertificate>++kv1ZQH4GVsRL7uJKFOAeZ+eHE= CN=JCE Code Signing CA, OU=Java Software Code Signing, O=Oracle Corporation</acceptedCertificate>
 </setup:User>
