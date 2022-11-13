@@ -1,0 +1,23 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\*\shell\Neovim]
+@="Mit Neovim öffnen"
+"Icon"="\"C:\\Users\\Lars.Debor\\scoop\\apps\\neovide\\current\\neovide.exe\""
+
+[HKEY_CLASSES_ROOT\*\shell\Neovim\command]
+@="\"C:\\Users\\Lars.Debor\\scoop\\apps\\neovide\\current\\neovide.exe\" \"%1\""
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\Neovim]
+@="Mit Neovim öffnen"
+"Icon"="\"C:\\Users\\Lars.Debor\\scoop\\apps\\neovide\\current\\neovide.exe\""
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\Neovim\command]
+@="\"C:\\Users\\Lars.Debor\\scoop\\apps\\neovide\\current\\neovide.exe\" \"%1\""
+
+[HKEY_CLASSES_ROOT\Directory\shell\Neovim]
+"Icon"="\"C:\\Users\\Lars.Debor\\scoop\\apps\\neovide\\current\\neovide.exe\""
+@="Mit Neovim öffnen"
+
+[HKEY_CLASSES_ROOT\Directory\shell\Neovim\command]
+@="\"C:\\Users\\Lars.Debor\\scoop\\apps\\neovide\\current\\neovide.exe\" \"%1\""
+
