@@ -20,8 +20,8 @@ eclipseaction callHierachy org.eclipse.jdt.ui.edit.text.java.open.call.hierarchy
 eclipseaction organizeImports org.eclipse.jdt.ui.edit.text.java.organize.imports
 eclipseaction renameElement org.eclipse.jdt.ui.edit.text.java.rename.element
 eclipseaction openResources org.eclipse.ui.navigate.openResource
-eclipseaction refactorMenu org.eclipse.jdt.ui.edit.text.java.refactor.quickMenu
-eclipseaction sourceMenu org.eclipse.jdt.ui.edit.text.java.source.quickMenu
+eclipseuiaction refactorMenu org.eclipse.jdt.ui.edit.text.java.refactor.quickMenu
+eclipseuiaction sourceMenu org.eclipse.jdt.ui.edit.text.java.source.quickMenu
 eclipseaction codeActions org.eclipse.jdt.ui.edit.text.java.correction.assist.proposals
 eclipseuiaction showContextHelp org.eclipse.ui.edit.text.showInformation
 eclipseuiaction bufferQuickOutline org.eclipse.jdt.ui.edit.text.java.show.outline
@@ -46,7 +46,9 @@ nmap <space>loa :organizeImports<CR>
 nmap <space>lr :renameElement<CR>
 nmap <c-p> :openResources<CR>
 nmap <space>lor :refactorMenu<CR>
+vmap <space>lor :refactorMenu<CR>
 nmap <space>los :sourceMenu<CR>
+vmap <space>los :sourceMenu<CR>
 nmap <space>la :codeActions<CR>
 vmap <space>la :codeActions<CR>
 nmap K :showContextHelp<CR>
