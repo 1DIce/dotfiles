@@ -15,5 +15,6 @@ vim.filetype.add({
     [".*zshrc"] = "sh",
     [".*zprofile"] = "sh",
     [".*vrapper"] = "vim",
+    ["i18n/.*%.properties"] = "jproperties",
   },
 })

@@ -178,9 +178,10 @@ local servers = {
   eslint = {},
   pylsp = {},
   gopls = {},
-  ltex = { filetypes = { "markdown", "plaintext" } },
   sumneko_lua = sumneko_lua_config(),
+  ltex = require("ld.lsp.servers.ltex").setup(on_attach),
 }
+
 if functions.is_deno_workspace() then
   servers.denols = deno_config()
 else
