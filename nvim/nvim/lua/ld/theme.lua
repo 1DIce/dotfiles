@@ -68,6 +68,17 @@ end
 
 local gruvbox = function()
   vim.o.background = "dark"
+  require("gruvbox").setup({
+    inverse = true, -- invert background for search, diffs, statuslines and errors
+    contrast = "hard", -- can be "hard", "soft" or empty string
+    palette_overrides = {},
+    overrides = { SignColumn = { bg = "#1d2021" } },
+  })
+  vim.cmd("colorscheme gruvbox")
+end
+
+local gruvbox_material = function()
+  vim.o.background = "dark"
 
   vim.g.gruvbox_material_background = "medium"
   vim.g.gruvbox_material_palette = "original"

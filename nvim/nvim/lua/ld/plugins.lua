@@ -100,7 +100,8 @@ return require("packer").startup(function(use)
   use("folke/tokyonight.nvim")
   use("Mofiqul/dracula.nvim")
   use("EdenEast/nightfox.nvim")
-  use("luisiacc/gruvbox-baby")
+  use("ellisonleao/gruvbox.nvim")
+  -- use("luisiacc/gruvbox-baby")
   -- use("sainnhe/gruvbox-material")
   -- alternative onedark for nvim ful1e5/onedark.nvim
 
