@@ -8,7 +8,7 @@ set autoindent
 " enables to move selection in autocomplete menu with ctrl-n and ctrl-p
 set contentassistmode
 " :vim opens current file in nvim-qt
-set gvimpath=C:\Users\Lars.Debor\scoop\apps\neovim\current\bin\nvim-qt.exe
+set gvimpath=C:\Users\Lars.Debor\scoop\apps\neovide\current\neovide.exe
 set gvimargs={file} -- +{line}
 
 " ECLIPSE COMMANDS
@@ -20,8 +20,6 @@ eclipseaction callHierachy org.eclipse.jdt.ui.edit.text.java.open.call.hierarchy
 eclipseaction organizeImports org.eclipse.jdt.ui.edit.text.java.organize.imports
 eclipseaction renameElement org.eclipse.jdt.ui.edit.text.java.rename.element
 eclipseaction openResources org.eclipse.ui.navigate.openResource
-eclipseuiaction refactorMenu org.eclipse.jdt.ui.edit.text.java.refactor.quickMenu
-eclipseuiaction sourceMenu org.eclipse.jdt.ui.edit.text.java.source.quickMenu
 eclipseaction codeActions org.eclipse.jdt.ui.edit.text.java.correction.assist.proposals
 eclipseuiaction showContextHelp org.eclipse.ui.edit.text.showInformation
 eclipseuiaction bufferQuickOutline org.eclipse.jdt.ui.edit.text.java.show.outline
@@ -45,10 +43,12 @@ nmap <space>lc :callHierachy<CR>
 nmap <space>loa :organizeImports<CR>
 nmap <space>lr :renameElement<CR>
 nmap <c-p> :openResources<CR>
-nmap <space>lor :refactorMenu<CR>
-vmap <space>lor :refactorMenu<CR>
-nmap <space>los :sourceMenu<CR>
-vmap <space>los :sourceMenu<CR>
+" gr is jdt plugin binding for 'refactor' menu
+nmap <space>lor gr
+vmap <space>lor gr
+" gm is the jdt plugin binding for 'source' menu
+nmap <space>los gm
+vmap <space>los gm
 nmap <space>la :codeActions<CR>
 vmap <space>la :codeActions<CR>
 nmap K :showContextHelp<CR>
