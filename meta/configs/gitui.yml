@@ -1,10 +1,10 @@
 - crossplatform-link:
-    - ~/.config/gitui/key_bindings.ron:
-        path: gitui/key_bindings.ron
-        platfrom: linux
-    - ~/AppData/Roaming/gitui/key_bindings.ron:
-        path: gitui/key_bindings.ron
-        platfrom: win32
+    ~/.config/gitui/key_bindings.ron:
+      path: gitui/key_bindings.ron
+      platfrom: linux
+    ~/AppData/Roaming/gitui/key_bindings.ron:
+      path: gitui/key_bindings.ron
+      platfrom: win32
 
 - crossplatform-shell:
     - command: |

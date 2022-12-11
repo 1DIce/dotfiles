@@ -1,0 +1,7 @@
+- crossplatform-link:
+    ~/.config/alacritty/alacritty.yml:
+      path: alacritty/alacritty.yml
+      platfrom: linux
+    ~/AppData/Roaming/alacritty/alacritty.yml:
+      path: alacritty/alacritty.yml
+      platfrom: win32
