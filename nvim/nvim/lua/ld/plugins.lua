@@ -38,11 +38,9 @@ return require("packer").startup(function(use)
   })
 
   use({
-    "heavenshell/vim-jsdoc",
-    run = "make",
+    "danymat/neogen",
     config = function()
-      vim.g.jsdoc_formatter = "tsdoc"
-      vim.cmd([[nmap <silent> <leader>ld <Plug>(jsdoc)]])
+      require("ld.plugins.neogen")
     end,
   })
 
