@@ -298,7 +298,6 @@ return require("packer").startup(function(use)
   use({ "hrsh7th/cmp-path", after = "nvim-cmp" })
   use({ "hrsh7th/cmp-nvim-lua", after = "nvim-cmp" })
   use({ "hrsh7th/cmp-cmdline", after = "nvim-cmp" })
-
   use({ "joshzcold/cmp-jenkinsfile", after = "nvim-cmp" })
 
   use({
@@ -312,11 +311,12 @@ return require("packer").startup(function(use)
   -- Language packs
   use("mattn/emmet-vim")
   use({
-    "softoika/ngswitcher.vim",
+    "Everduin94/nvim-quick-switcher",
     config = function()
-      require("ld.plugins.ngswitcher")
+      require("ld.plugins.nvim-quick-switcher")
     end,
   })
+
   use({
     "nvim-treesitter/nvim-treesitter",
     commit = "9b43ab819c756f01d2977cd481bdcaead6867174",
