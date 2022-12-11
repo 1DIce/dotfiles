@@ -12,7 +12,11 @@ end
 
 local function files(opts)
   if not require("ld.utils.functions").is_windows() then
-    require("fzf-lua").files(opts)
+    if vim.fn.executable("fd") == 1 then
+      require("fzf-lua").files({ cmd = "fd -t f -L --hidden" })
+    else
+      require("fzf-lua").files({ cmd = "fdfind -t f -L --hidden" })
+    end
   else
     opts = normalize_opts(opts)
     local command
