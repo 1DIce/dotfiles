@@ -92,6 +92,7 @@ return require("packer").startup(function(use)
 
   -- color theme
   use("Mofiqul/vscode.nvim")
+  use({ "NTBBloodbath/doom-one.nvim" })
   -- use 'martinsione/darkplus.nvim'
   use("LunarVim/darkplus.nvim")
   use("tiagovla/tokyodark.nvim")

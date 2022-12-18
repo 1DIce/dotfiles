@@ -11,16 +11,46 @@ vim.o.termguicolors = true
 -- vim.cmd('colorscheme aurora')
 -- vim.cmd('highlight ColorColumn ctermbg=0 guibg=lightgrey')
 -- vim.cmd('highlight SignColumn guibg=#282828')
+local doom_one = function()
+  vim.g.doom_one_cursor_coloring = true
+  vim.g.doom_one_terminal_colors = true
+  vim.g.doom_one_italic_comments = true
+  vim.g.doom_one_enable_treesitter = true
+  -- Color whole diagnostic text or only underline
+  vim.g.doom_one_diagnostics_text_color = false
+  vim.g.doom_one_transparent_background = false
+
+  -- Pumblend transparency
+  vim.g.doom_one_pumblend_enable = false
+  vim.g.doom_one_pumblend_transparency = 20
+
+  -- Plugins integration
+  vim.g.doom_one_plugin_telescope = true
+  vim.g.doom_one_plugin_nvim_tree = true
+  vim.g.doom_one_plugin_dashboard = true
+  vim.g.doom_one_plugin_startify = true
+  vim.g.doom_one_plugin_whichkey = true
+  vim.g.doom_one_plugin_indent_blankline = true
+  vim.g.doom_one_plugin_vim_illuminate = true
+  vim.g.doom_one_plugin_lspsaga = true
+
+  vim.cmd("colorscheme doom-one")
+  vim.cmd("highlight @variable.builtin guifg=#569cd6")
+end
 
 local vscode_dark = function()
-  vim.g.vscode_style = "dark"
-  -- Enable transparent background.
-  vim.g.vscode_transparent = 0
   vim.o.background = "dark"
-  vim.cmd([[colorscheme vscode]])
+  local colors = require("vscode.colors").get_colors()
+  require("vscode").setup({
+    transparent = false,
+    italic_comments = false,
+    group_overrides = {
+      ["@variable.builtin"] = { fg = colors.vscBlue },
+      ["@TypescriptPredefinedType"] = { fg = colors.vscBlue },
+      ["@TypescriptTypeIdentifier"] = { fg = colors.vscBlueGreen },
+    },
+  })
   require("lualine").setup({ options = { theme = "vscode" } })
-  vim.cmd("highlight TSVariableBuiltin guifg=#569cd6")
-  vim.cmd("highlight TSKeywordReturn guifg=#C586C0")
 end
 
 local darkplus = function()
@@ -45,17 +75,13 @@ end
 
 local tokyonight = function()
   vim.o.background = "dark"
-  vim.g.tokyonight_style = "night"
-  vim.g.tokyonight_italic_functions = true
-  -- vim.g.tokyonight_sidebars = {"qf", "vista_kind", "terminal", "packer"}
-  -- -- Change the "hint" color to the "orange" color, and make the "error" color bright red
-  -- vim.g.tokyonight_colors = {
-  --     hint = "orange",
-  --         error = "#ff0000",
-  --             bg_sidebar = 'black'
-  --             }
-  --
-  vim.cmd("colorscheme tokyonight")
+
+  require("lualine").setup({
+    options = {
+      theme = "tokyonight",
+    },
+  })
+  vim.cmd("colorscheme tokyonight-night")
 end
 
 local tokyodark = function()
@@ -90,11 +116,9 @@ local gruvbox_baby = function()
   vim.g.gruvbox_baby_background_color = "dark"
   vim.g.gruvbox_baby_function_style = "bold"
   vim.g.gruvbox_baby_keyword_style = "italic"
-
   vim.g.gruvbox_baby_telescope_theme = 0
   vim.g.gruvbox_baby_transparent_mode = 0
   vim.g.gruvbox_baby_use_original_palette = true
-
   vim.cmd([[colorscheme gruvbox-baby]])
 end
 
@@ -124,11 +148,15 @@ end
 
 local onedarkpro = function()
   local onedarkpro = require("onedarkpro")
+  local violet = "#a9a1e1"
   onedarkpro.setup({
-    hlgroups = {
-      TSParameter = { fg = "${white}" },
-      TSProperty = { fg = "${white}" },
-      TSVariable = { fg = "${white}" },
+    colors = { white = "#cccccc", fg = violet, orange = "#da8548" },
+    highlights = {
+      ["@property"] = { fg = "${white}" },
+      ["@variable"] = { fg = "${white}" },
+      ["@TypescriptPredefinedType"] = { fg = "${orange}" },
+      ["@parameter.rust"] = { fg = "${white}" },
+      ["@variable.typescript"] = { fg = violet },
     },
     options = {
       transparency = false,
@@ -139,13 +167,17 @@ local onedarkpro = function()
     },
   })
   onedarkpro.load()
+  require("lualine").setup({ options = { theme = "onedarkpro" } })
+  vim.cmd("colorscheme onedark_vivid")
 end
 
-vscode_dark()
+-- vscode_dark()
+-- doom_one()
 -- gruvbox_baby()
 -- darkplus()
 -- tokyodark()
+-- tokyonight()
 -- github_dark()
--- onedarkpro()
+onedarkpro()
 -- monokai()
 -- gruvbox()
