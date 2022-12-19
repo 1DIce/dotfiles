@@ -65,7 +65,7 @@ map <c-m> :toggleMaximizeCurrentWindow<CR>
 nnoremap <space>p "+p
 vnoremap <space>p "+p
 nnoremap <space>y "+y
-vnoremap <space>p "+y
+vnoremap <space>y "+y
 
 " remap content assist-mode navigation
 camap <c-k> <c-p>
