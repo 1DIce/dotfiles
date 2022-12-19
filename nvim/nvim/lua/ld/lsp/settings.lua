@@ -1,6 +1,4 @@
 local lsp = require("lspconfig")
-local lsp_status = require("lsp-status")
-local remaps = require("ld.lsp.remaps")
 local functions = require("ld.lsp.functions")
 local presentCmpNvimLsp, cmpNvimLsp = pcall(require, "cmp_nvim_lsp")
 
@@ -25,8 +23,7 @@ M = {}
 vim.lsp.set_log_level("error")
 
 local function on_attach(client, bufnr)
-  remaps.set_default(client, bufnr)
-  lsp_status.on_attach(client, bufnr)
+  require("ld.lsp.remaps").set_default(client, bufnr)
 
   -- add signature autocompletion while typing
   require("lsp_signature").on_attach({
@@ -51,12 +48,8 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
     update_in_insert = false,
   })
 
-lsp_status.register_progress()
-
-local capabilities = {}
-
-capabilities = vim.tbl_extend("keep", capabilities, lsp_status.capabilities)
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+local capabilities =
+  { textDocument = { completion = { completionItem = { snippetSupport = true } } } }
 
 if presentCmpNvimLsp then
   capabilities = vim.tbl_extend("keep", capabilities, cmpNvimLsp.default_capabilities())
