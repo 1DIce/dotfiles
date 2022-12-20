@@ -73,7 +73,7 @@ local monokai = function()
   })
 end
 
-local tokyonight = function()
+local function tokyonight()
   vim.o.background = "dark"
 
   require("lualine").setup({
@@ -156,6 +156,7 @@ local onedarkpro = function()
       ["@variable"] = { fg = "${white}" },
       ["@TypescriptPredefinedType"] = { fg = "${orange}" },
       ["@parameter.rust"] = { fg = "${white}" },
+      ["@field.rust"] = { fg = violet },
       ["@variable.typescript"] = { fg = violet },
     },
     options = {
