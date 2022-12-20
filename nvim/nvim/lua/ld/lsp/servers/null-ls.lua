@@ -36,6 +36,7 @@ null_ls.setup({
     null_ls.builtins.formatting.shfmt,
     null_ls.builtins.diagnostics.shellcheck,
     null_ls.builtins.code_actions.shellcheck,
+    null_ls.builtins.formatting.prettierd,
   },
   debounce = 600,
 })

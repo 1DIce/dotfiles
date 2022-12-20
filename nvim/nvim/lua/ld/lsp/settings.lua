@@ -3,6 +3,9 @@ local functions = require("ld.lsp.functions")
 local presentCmpNvimLsp, cmpNvimLsp = pcall(require, "cmp_nvim_lsp")
 
 require("mason").setup({})
+require("mason-null-ls").setup({
+  ensure_installed = { "cspell", "stylua", "shfmt", "shellcheck", "prettierd" },
+})
 require("mason-lspconfig").setup({
   ensure_installed = {
     "bashls",

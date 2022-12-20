@@ -26,7 +26,7 @@ M.format_organize_typescript = function()
     vim.lsp.buf.formatting_sync()
   else
     M.typescript_organize_imports_sync()
-    vim.cmd([[ :Prettier ]])
+    vim.lsp.buf.formatting_sync()
   end
 end
 
