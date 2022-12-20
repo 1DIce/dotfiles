@@ -250,18 +250,18 @@ return require("packer").startup(function(use)
   })
 
   -- Autocomplete & Linters
-  -- use("prettier/vim-prettier")
   use("neovim/nvim-lspconfig")
   use("tjdevries/lsp_extensions.nvim")
   use("tami5/lspsaga.nvim")
   use("onsails/lspkind-nvim")
   use({ "ray-x/lsp_signature.nvim", tag = "v0.2.0" })
   use("jose-elias-alvarez/typescript.nvim")
+  use("folke/neodev.nvim")
   use("simrat39/rust-tools.nvim")
   use("b0o/SchemaStore.nvim")
   use({ "williamboman/mason.nvim" })
   use({ "williamboman/mason-lspconfig.nvim" })
-  use({"jayp0521/mason-null-ls.nvim"})
+  use({ "jayp0521/mason-null-ls.nvim" })
   use({
     "j-hui/fidget.nvim",
     config = function()

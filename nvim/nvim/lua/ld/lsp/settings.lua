@@ -1,3 +1,9 @@
+-- IMPORTANT: make sure to setup neodev BEFORE lspconfig
+require("neodev").setup({
+  setup_jsonls = false,
+  plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
+})
+
 local lsp = require("lspconfig")
 local functions = require("ld.lsp.functions")
 local presentCmpNvimLsp, cmpNvimLsp = pcall(require, "cmp_nvim_lsp")
@@ -27,7 +33,6 @@ vim.lsp.set_log_level("error")
 
 local function on_attach(client, bufnr)
   require("ld.lsp.remaps").set_default(client, bufnr)
-
   -- add signature autocompletion while typing
   require("lsp_signature").on_attach({
     floating_window = false,
@@ -63,12 +68,8 @@ M.capabilities = capabilities
 local default_lsp_config = { on_attach = on_attach, capabilities }
 
 local sumneko_lua_config = function()
-  local runtime_path = vim.split(package.path, ";")
-  table.insert(runtime_path, "lua/ld/init.lua")
-
   return {
     autostart = false,
-    cmd = { "lua-language-server" },
     on_attach = function(client, bufnr)
       require("ld.lsp.events").document_highlight_under_cursor()
       client.server_capabilities.documentFormattingProvider = false -- null-ls handles the formatting
@@ -78,23 +79,6 @@ local sumneko_lua_config = function()
     settings = {
       Lua = {
         format = { enable = false },
-        runtime = {
-          -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-          version = "LuaJIT",
-          -- Setup your lua path
-          path = runtime_path,
-        },
-        diagnostics = {
-          -- Get the language server to recognize the `vim` global
-          globals = { "vim" },
-        },
-        workspace = {
-          -- Make the server aware of Neovim runtime files
-          library = vim.api.nvim_get_runtime_file("", true),
-          checkThirdParty = false,
-        },
-        -- Do not send telemetry data containing a randomized but unique identifier
-        telemetry = { enable = false },
       },
     },
   }

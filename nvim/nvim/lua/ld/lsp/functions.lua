@@ -21,7 +21,7 @@ function M.typescript_organize_imports_sync(bufnr, timeout)
   return vim.lsp.buf_request_sync(bufnr, "workspace/executeCommand", parameters, timeout)
 end
 
-M.format_organize_typescript = function()
+function M.format_organize_typescript()
   if M.is_deno_workspace() then
     vim.lsp.buf.formatting_sync()
   else
