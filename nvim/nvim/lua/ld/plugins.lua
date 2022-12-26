@@ -67,12 +67,6 @@ return require("packer").startup(function(use)
       require("ld.plugins.open-browser")
     end,
   })
-  use({
-    "MattesGroeger/vim-bookmarks",
-    config = function()
-      require("ld.plugins.vim-bookmarks")
-    end,
-  })
 
   use({
     "vimwiki/vimwiki",
