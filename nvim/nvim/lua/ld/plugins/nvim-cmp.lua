@@ -21,8 +21,13 @@ cmp.setup({
     ["<C-Space>"] = cmp.mapping.complete(),
     ["<C-e>"] = cmp.mapping.close(),
     ["<CR>"] = {
-      i = function()
+      i = function(fallback)
         local cmp = require("cmp")
+        local filetype = vim.bo.filetype
+        if filetype == "DressingInput" then
+          -- call the overriden mapping from dressing.nvim otherwise we would insert a new line
+          fallback()
+        end
         if cmp.visible() then
           cmp.confirm({
             behavior = cmp.ConfirmBehavior.Insert,
