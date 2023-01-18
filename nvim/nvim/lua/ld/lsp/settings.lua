@@ -93,7 +93,7 @@ end
 local html_config = function()
   local cloned_capabilities = vim.deepcopy(capabilities)
   cloned_capabilities.textDocument.completion.completionItem.snippetSupport = true
-  return { capabilities = cloned_capabilities }
+  return { capabilities = cloned_capabilities, init_options = {provideFormatter = false, format = { enable = false }} }
 end
 
 local json_config = function()
