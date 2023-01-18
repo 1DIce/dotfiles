@@ -60,6 +60,8 @@ return require("packer").startup(function(use)
       require("ld.plugins.gitsigns")
     end,
   })
+  -- makes vim follow symlinks, makes vim-fugitive work proerly with symlinks
+  use({ "aymericbeaumet/vim-symlink" })
 
   use({
     "tyru/open-browser.vim",
