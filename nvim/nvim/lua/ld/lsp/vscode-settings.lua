@@ -4,7 +4,7 @@ local path_util = require("ld.utils.path")
 
 local M = {}
 
-local getSettingsJsonPath = function()
+local function getSettingsJsonPath()
   local vscodeAncestor = path_util.search_ancestors_with_child(".vscode", "dir")
   if vscodeAncestor == nil then
     return nil
@@ -19,7 +19,7 @@ end
 
 local settingsJsonCache = nil
 
-local getSettingsJson = function()
+local function getSettingsJson()
   if settingsJsonCache ~= nil then
     return settingsJsonCache
   end

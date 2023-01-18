@@ -6,8 +6,12 @@ function M.readJson(fname)
   for i, line in ipairs(jsonFile) do
     jsonFile[i] = vim.fn.substitute(line, "//.*$", "", "g")
   end
-  local json = vim.fn.json_decode(jsonFile)
-  return json
+  local success, json = pcall(vim.fn.json_decode, jsonFile)
+  if success then
+    return json
+  else
+    return nil
+  end
 end
 
 ---@param filepath string filepath to write the file to
