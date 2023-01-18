@@ -37,6 +37,7 @@ nunmap <c-k>
 " map eclipse functions
 nmap <space>lt :openType<CR>
 nmap <space>fl :searchAllFiles<CR>
+vmap <space>fl :searchAllFiles<CR>
 nmap <space>lu :findAllReferences<CR>
 nmap <space>li :goToImplementation<CR>
 nmap <space>lc :callHierachy<CR>
