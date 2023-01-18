@@ -11,20 +11,23 @@ local normalize_opts = function(opts)
 end
 
 local function files(opts)
+  local rg_command = "rg --files --color=never -L --hidden"
+  -- tail to get rid of current directory from the results
+  local fallback_find_command = "find . -type f -printf '%P\n' | tail +2"
+
   if not require("ld.utils.functions").is_windows() then
-    if vim.fn.executable("fd") == 1 then
-      require("fzf-lua").files({ cmd = "fd -t f -L --hidden" })
+    if vim.fn.executable("rg") == 1 then
+      require("fzf-lua").files({ cmd = rg_command })
     else
-      require("fzf-lua").files({ cmd = "fdfind -t f -L --hidden" })
+      require("fzf-lua").files({ cmd = fallback_find_command })
     end
   else
     opts = normalize_opts(opts)
     local command
-    if vim.fn.executable("fd") == 1 then
-      command = "fd --color always -t f -L"
+    if vim.fn.executable("rg") == 1 then
+      command = rg_command
     else
-      -- tail to get rid of current directory from the results
-      command = "find . -type f -printf '%P\n' | tail +2"
+      command = fallback_find_command
     end
 
     coroutine.wrap(function()
