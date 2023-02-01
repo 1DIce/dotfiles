@@ -30,4 +30,13 @@ function M.format_organize_typescript()
   end
 end
 
+function M.go_to_definition()
+  local filetype = vim.bo.filetype
+  if filetype == "typescript" then
+    vim.cmd(":TypescriptGoToSourceDefinition")
+  else
+    vim.lsp.buf.definition()
+  end
+end
+
 return M

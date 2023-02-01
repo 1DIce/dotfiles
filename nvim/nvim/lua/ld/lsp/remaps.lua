@@ -20,7 +20,12 @@ function M.set_default(client, bufnr)
       "Preview definition"
     )
     buf_set_keymap("n", "gT", "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Go to type definition")
-    buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", "Preview definition")
+    buf_set_keymap(
+      "n",
+      "gd",
+      "<cmd>lua require('ld.lsp.functions').go_to_definition()<CR>",
+      "go to  definition"
+    )
   end
 
   if cap.implementationProvider then
