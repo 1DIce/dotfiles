@@ -10,7 +10,7 @@ local presentCmpNvimLsp, cmpNvimLsp = pcall(require, "cmp_nvim_lsp")
 
 require("mason").setup({})
 require("mason-null-ls").setup({
-  ensure_installed = { "cspell", "stylua", "shfmt", "shellcheck", "prettierd" },
+  ensure_installed = { "cspell", "stylua", "shfmt", "shellcheck", "prettierd", "yamllint" },
 })
 require("mason-lspconfig").setup({
   ensure_installed = {
