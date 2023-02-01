@@ -12,6 +12,7 @@ HISTSIZE=1000
 HISTFILESIZE=2000
 
 export PATH=~/.deno/bin:$PATH
+export PATH=~/ltex-ls/bin:$PATH
 
 export EDITOR=nvim
 
@@ -36,5 +37,29 @@ function cdf {
   cd "$dst"
 }
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+function cdmer {
+  local commonDirectories=$(find /c/configurator-ide -mindepth 1 -maxdepth 2 -type d -name git 2>/dev/null)
+  local dotfiles="~/dotfiles/"
+  local selected=$({
+    echo "$dotfiles"
+    echo "$commonDirectories"
+  } | sort -u | fzf)
+  cd "$selected" || exit
+}
 
+function merlin-setup {
+  if [ -z "$1" ]; then
+    echo 'No directory name for the new merlin clone was given'
+    return 1
+  fi
+  local dirName=/c/configurator-ide/"$1"
+  mkdir "$dirName"
+  cd "$dirName" || exit
+  git clone "https://gitlab.cas.de/dcm/product.git" ./git
+  cd git || exit
+  local branch=$(printf 'master\nlts/11.0\nlts/10.10\nlts/10.0' | fzf)
+  git checkout "$branch"
+  ./eclipse-installer
+}
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
