@@ -142,6 +142,7 @@ M.live_grep_raw = function(opts, mode)
       "--column",
       "--smart-case",
       "--hidden",
+      "--trim",
     },
     auto_quoting = false,
     mappings = {
