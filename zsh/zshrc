@@ -108,6 +108,13 @@ fi
 # FZF terminal history search. trigger it with CRTL+r
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# setup mcfly history search
+export MCFLY_KEY_SCHEME=vim
+export MCFLY_FUZZY=2
+export MCFLY_RESULTS=50
+export MCFLY_INTERFACE_VIEW=BOTTOM
+eval "$(mcfly init zsh)"
+
 if [[ -o interactive ]]; then
   # zplug
   source ~/.zplug/init.zsh

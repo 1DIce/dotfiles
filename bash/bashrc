@@ -129,5 +129,13 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+
+# setup mcfly history search
+export MCFLY_KEY_SCHEME=vim
+export MCFLY_FUZZY=2
+export MCFLY_RESULTS=50
+export MCFLY_INTERFACE_VIEW=BOTTOM
+eval "$(mcfly init bash)"
+
 # install starship prompt
 eval "$(starship init bash)"
