@@ -106,9 +106,9 @@ function M.set_default(client, bufnr)
   end
 
   if cap.documentFormattingProvider then
-    buf_set_keymap("n", "<leader>lof", "<cmd>lua vim.lsp.buf.formatting()<CR>", "Format")
+    buf_set_keymap("n", "<leader>lof", "<cmd>lua vim.lsp.buf.format({async = true})<CR>", "Format")
   elseif cap.documentRangeFormattingProvider then
-    buf_set_keymap("n", "<leader>lof", "<cmd>lua vim.lsp.buf.formatting()<CR>", "Format")
+    buf_set_keymap("n", "<leader>lof", "<cmd>lua vim.lsp.buf.format({async = true})<CR>", "Format")
   end
 
   if cap.renameProvider then

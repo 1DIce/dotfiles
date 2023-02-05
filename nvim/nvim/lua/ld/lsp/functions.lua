@@ -1,3 +1,4 @@
+local util_functions = require("ld.utils.functions")
 local M = {}
 
 M.show_diagnostics = function(opts)
@@ -23,16 +24,25 @@ end
 
 function M.format_organize_typescript()
   if M.is_deno_workspace() then
-    vim.lsp.buf.formatting_sync()
+    vim.lsp.buf.format({
+      filter = function(client)
+        return client.name == "denols"
+      end,
+      async = false,
+    })
   else
     M.typescript_organize_imports_sync()
-    vim.lsp.buf.formatting_sync()
+    vim.lsp.buf.format({
+      async = false,
+    })
   end
 end
 
 function M.go_to_definition()
   local filetype = vim.bo.filetype
-  if filetype == "typescript" then
+  if
+    filetype == "typescript" and util_functions.command_exists("TypescriptGoToSourceDefinition")
+  then
     vim.cmd(":TypescriptGoToSourceDefinition")
   else
     vim.lsp.buf.definition()
