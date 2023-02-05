@@ -53,7 +53,10 @@ local list = {
     key = "r",
     action = "rename",
     action_cb = function(node)
-      if is_typescript_file_node(node) then
+      if
+        is_typescript_file_node(node)
+        and require("ld.lsp.functions").is_lsp_client_active("tsserver")
+      then
         rename_typescript_file(node)
       else
         tree_api_fs.rename()

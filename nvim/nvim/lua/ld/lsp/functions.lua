@@ -12,6 +12,15 @@ M.is_deno_workspace = function()
   return vim.loop.fs_stat(cwd .. "/deno.json") ~= nil
 end
 
+M.is_lsp_client_active = function(client_name)
+  local clients = vim.lsp.get_active_clients({ name = client_name })
+  local filtered_clients = vim.tbl_filter(function(c)
+    return c.name == client_name
+  end, vim.tbl_values(clients))
+
+  return not vim.tbl_isempty(filtered_clients)
+end
+
 function M.typescript_organize_imports_sync(bufnr, timeout)
   bufnr = bufnr or vim.api.nvim_get_current_buf()
 
