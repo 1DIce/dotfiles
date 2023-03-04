@@ -63,3 +63,6 @@
     - ~/bin/mmodel-clear-cache:
         path: scripts/mmodel-clear-cache.sh
         platform: win32
+    - ~/bin/man:
+        path: scripts/man-on-windows.sh
+        platform: win32
