@@ -1,6 +1,7 @@
 - crossplatform-link:
-  ~/.fzf: libs/fzf
-  ~/.fzf.zsh: fzf/fzf.zsh
-  ~/.fzf.bash: fzf/fzf.bash
+    - ~/.fzf: libs/fzf
+    - ~/.fzf.zsh: fzf/fzf.zsh
+    - ~/.fzf.bash: fzf/fzf.bash
 - crossplatform-shell:
-  - ~/.fzf/install
+    - command: ~/.fzf/install
+      platform: linux

@@ -1,4 +1,4 @@
-- crossplatform-link: 
+- crossplatform-link:
     ~/.bashrc:
       platform: linux
       path: bash/bashrc
