@@ -3,8 +3,8 @@ source ~/.commonrc.local
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
-HISTSIZE=5000
-SAVEHIST=5000
+HISTSIZE=200000
+SAVEHIST=$HISTSIZE
 setopt share_history
 setopt autocd extendedglob
 bindkey -e
