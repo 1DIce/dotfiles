@@ -3,6 +3,7 @@ local parsers = require("nvim-treesitter.parsers")
 local parser_configs = parsers.get_parser_configs()
 -- end neorgtreesitter
 parser_configs.css.filetype_to_parsername = "less"
+parser_configs.jsonc.filetype_to_parsername = "json"
 
 parser_configs.angular = {
   install_info = {
@@ -22,7 +23,7 @@ treesitter.setup({
     "typescript",
     "markdown",
     "lua",
-    "json",
+    "jsonc",
     "css",
     "scss",
     "javascript",
