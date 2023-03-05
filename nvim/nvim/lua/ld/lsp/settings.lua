@@ -20,7 +20,7 @@ require("mason-lspconfig").setup({
     "html",
     "cssls",
     "eslint",
-    "sumneko_lua",
+    "lua_ls",
     "tsserver",
     "angularls",
   },
@@ -93,7 +93,10 @@ end
 local html_config = function()
   local cloned_capabilities = vim.deepcopy(capabilities)
   cloned_capabilities.textDocument.completion.completionItem.snippetSupport = true
-  return { capabilities = cloned_capabilities, init_options = {provideFormatter = false, format = { enable = false }} }
+  return {
+    capabilities = cloned_capabilities,
+    init_options = { provideFormatter = false, format = { enable = false } },
+  }
 end
 
 local json_config = function()
@@ -158,7 +161,7 @@ local servers = {
   eslint = {},
   pylsp = {},
   gopls = {},
-  sumneko_lua = sumneko_lua_config(),
+  lua_ls = sumneko_lua_config(),
   ltex = require("ld.lsp.servers.ltex").setup(on_attach),
 }
 
