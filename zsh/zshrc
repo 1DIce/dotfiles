@@ -94,6 +94,9 @@ fi
 if [[ -n "$TMUX" ]]; then
   # making sure that colors are correct in tmux
   export TERM="tmux-256color"
+
+  # capture tmux pane content and pipe it into vim
+  alias tv="tmux capture-pane -Jp -S- | nvim"
 fi
 
 
