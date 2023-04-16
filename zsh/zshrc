@@ -77,28 +77,13 @@ export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
 export LESSOPEN='|~/.config/less/lessfilter.sh %s'
 export LESS=' -R'
 
-# special WSL2 settings
-if [ ! -z "$WSL_DISTRO_NAME" ]; then
-  # xserver if running on wsl2
-  export DISPLAY=$(ip route list default | awk '{print $3}'):0
-  export LIBGL_ALWAYS_INDIRECT=1
-
-  export CHROME_BIN=/mnt/c/Program\ Files/Google/Chrome/Application/chrome.exe
-
-  alias docker="sudo podman"
-  alias docker-compose="sudo podman-compose"
-fi
-
+export CHROME_BIN=google-chrome-stable
 
 # Special settings while in tmux
 if [[ -n "$TMUX" ]]; then
-  # making sure that colors are correct in tmux
-  export TERM="tmux-256color"
-
   # capture tmux pane content and pipe it into vim
   alias tv="tmux capture-pane -Jp -S- | nvim"
 fi
-
 
 # Bashmarks aliases. Bashmarks is source in .zshenv
 alias blist="bls"
