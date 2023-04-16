@@ -2,6 +2,14 @@ local lsp = require("lspconfig")
 
 local M = {}
 
+local function get_language(bufname)
+  if require("ld.utils.functions").ends_with(bufname, "_de.properties") then
+    return "de-DE"
+  else
+    return "en-US"
+  end
+end
+
 function M.setup(on_attach)
   vim.api.nvim_create_autocmd({ "BufRead", "BufWritePost" }, {
     pattern = "*_de.properties",
@@ -20,11 +28,7 @@ function M.setup(on_attach)
     on_attach = function(client, bufnr)
       local bufnr = vim.api.nvim_get_current_buf()
       local bufname = vim.fn.bufname(bufnr)
-      local language = IF_ELSE(
-        require("ld.utils.functions").ends_with(bufname, "_de.properties"),
-        "de-DE",
-        "en-US"
-      )
+      local language = get_language(bufname)
       client.config.settings.ltex.language = language
       on_attach(client, bufnr)
     end,
