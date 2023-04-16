@@ -134,7 +134,6 @@ local angular_config = function()
     default_node_modules,
     "--ngProbeLocations",
     default_node_modules,
-    "--experimental-ivy",
   }
   return {
     cmd = ngls_cmd,
@@ -158,7 +157,9 @@ local servers = {
   html = html_config(),
   cssls = css_config(),
   dockerls = {},
-  eslint = {},
+  eslint = {
+    root_dir = lsp.util.root_pattern("tsconfig.json"),
+  },
   pylsp = {},
   gopls = {},
   lua_ls = sumneko_lua_config(),
