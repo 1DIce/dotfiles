@@ -5,9 +5,9 @@
     shell:
       stdout: true
 
-
-- clean: ['~']
+- clean: ["~"]
 
 - create:
     - ~/Downloads
     - ~/bin
+    - ~/.fonts
