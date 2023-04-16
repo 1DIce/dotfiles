@@ -38,6 +38,7 @@ treesitter.setup({
   },
   highlight = {
     enable = true,
+    additional_vim_regex_highlighting = { "plantuml" },
   },
   rainbow = { enable = true, extended_mode = false, max_file_lines = nil },
   matchup = { enable = true },

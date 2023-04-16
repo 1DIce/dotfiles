@@ -77,6 +77,10 @@ return require("packer").startup(function(use)
     end,
   })
 
+  -- PlantUML
+  use({ "weirongxu/plantuml-previewer.vim" })
+  use({ "aklt/plantuml-syntax" })
+
   -- Debugging
   use({
     "rcarriga/nvim-dap-ui",
