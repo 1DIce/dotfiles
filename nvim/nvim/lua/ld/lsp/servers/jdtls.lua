@@ -105,6 +105,52 @@ function M.launch_pde()
   execute_command({ command = "java.pde.resolveLaunchArguments", arguments = { uri } }, callback)
 end
 
+function M.start_mmodel()
+  local launch_cmd = {
+    java_bin() .. "w.exe",
+    "-XX:+ShowCodeDetailsInExceptionMessages",
+    "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=127.0.0.1:" .. debug_port,
+    "-Dorg.eclipse.swt.graphics.Resource.reportNonDisposed=true",
+    "-Dfile.encoding=UTF-8",
+    "-Dosgi.configuration.area=@user.home/AppData/Local/CAS/Merlin/10.17.0-product/configuration",
+    "-Duser.language=de",
+    "-Dorg.eclipse.update.reconcile=false",
+    "-DKeycloakServerCheckTimeout=15",
+    "-Xms128M",
+    "-Xmx2048M",
+    "--add-modules=ALL-SYSTEM",
+    [[-classpath "C:\Users\Lars.Debor\.local\share\java\eclipse\ruby\.metadata\.plugins\org.eclipse.pde.core\.bundle_pool\plugins\org.eclipse.equinox.launcher_1.5.100.v20180827-1352.jar" org.eclipse.equinox.launcher.Main]],
+    [[-launcher "C:\Users\Lars.Debor\.local\share\java\eclipse\ruby\.metadata\.plugins\org.eclipse.pde.core\.bundle_pool\eclipse.exe"]],
+    "-name Eclipse",
+    "-showsplash 600",
+    "-product de.cas.merlin.product.model.vario.MModelProduct",
+    [[-data "C:\Users\Lars.Debor\.local\share\java\eclipse\ruby/../runtime-MModel.product"]],
+    "-configuration file:C:/Users/Lars.Debor/.local/share/java/eclipse/ruby/.metadata/.plugins/org.eclipse.pde.core/MModel.product/",
+    "-dev file:C:/Users/Lars.Debor/.local/share/java/eclipse/ruby/.metadata/.plugins/org.eclipse.pde.core/MModel.product/dev.properties",
+    "-os win32",
+    "-ws win32",
+    "-arch x86_64",
+    "-nl de_DE",
+    "-consoleLog",
+    "-vm ./jre/bin",
+    "-data @noDefault",
+    "-clearPersistedState",
+  }
+
+  -- os.execute(vim.fn.join(launch_cmd, " "))
+  -- local Job = require("plenary.job")
+
+  -- Job:new({
+  --   command = java_bin() .. ".exe",
+  --   args = launch_cmd,
+  --   cwd = root_dir,
+  --   env = {},
+  --   on_exit = function(j, return_val)
+  --     print(return_val)
+  --     print(j:result())
+  --   end,
+  -- }):start()
+end
 
 local dap = require("dap")
 dap.configurations.java = {
@@ -118,6 +164,7 @@ dap.configurations.java = {
 }
 
 local config = {
+  root_dir = path.join(root_dir, "m.model"),
   flags = { debounce_text_changes = 80, allow_incremental_sync = true },
   handlers = {
     ["language/status"] = function() end,
@@ -158,9 +205,18 @@ config.settings = {
     configuration = {
       runtimes = get_runtimes(),
       maven = {
-        userSettings = "./maven/settings.xml",
-        globalSettings = "./maven/settings.xml",
+        userSettings = "../maven/settings.xml",
+        globalSettings = "../maven/settings.xml",
       },
+    },
+    compile = {
+      nullAnalysis = {
+        nonnull = {},
+        nullable = {},
+      },
+    },
+    import = {
+      generatesMetadataFilesAtProjectRoot = true,
     },
   },
 }
@@ -191,7 +247,7 @@ config.cmd = {
   get_workspace_folder(),
 }
 config.on_attach = function(client, bufnr)
-  require("ld.lsp.remaps").set_default(client, bufnr, true)
+  require("ld.lsp.remaps").set_default(client, bufnr)
   -- require("ld.lsp.settings").on_attach(client, bufnr, true)
   -- require("ld.lsp.settings").on_attach(client, bufnr, { server_side_fuzzy_completion = true })
 
@@ -253,3 +309,7 @@ function M.jdtls_start_or_attach()
 end
 
 return M
+-- TODO
+--  formtter
+--  start .launch file -> check vscode pde
+--  load targetplatform
