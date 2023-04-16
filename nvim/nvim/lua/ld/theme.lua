@@ -76,6 +76,12 @@ end
 local function tokyonight()
   vim.o.background = "dark"
 
+  require("tokyonight").setup({
+    styles = {
+      comments = { italic = false },
+      keywords = { italic = false },
+    },
+  })
   require("lualine").setup({
     options = {
       theme = "tokyonight",
@@ -177,8 +183,8 @@ end
 -- gruvbox_baby()
 -- darkplus()
 -- tokyodark()
--- tokyonight()
+tokyonight()
 -- github_dark()
-onedarkpro()
+-- onedarkpro()
 -- monokai()
 -- gruvbox()
