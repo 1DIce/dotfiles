@@ -11,6 +11,7 @@ null_ls.setup({
     null_ls.builtins.formatting.black,
     null_ls.builtins.diagnostics.cspell.with({
       filetypes = {},
+      method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
       diagnostics_postprocess = function(diagnostic)
         diagnostic.severity = vim.diagnostic.severity["INFO"]
       end,
