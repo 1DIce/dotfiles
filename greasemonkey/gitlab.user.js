@@ -26,7 +26,7 @@
       const toggleTreeViewButton = document.querySelector(
         "[data-qa-selector = file_tree_button]"
       );
-      // pressed alt+t to toggle code review file tree
+      // pressed alt+w to toggle the code review file tree
       if (
         toggleTreeViewButton != null &&
         e.keyCode == 87 &&
