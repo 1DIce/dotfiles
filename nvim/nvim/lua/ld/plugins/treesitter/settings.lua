@@ -55,11 +55,9 @@ treesitter.setup({
   },
 })
 
-require("nvim-treesitter.highlight").set_custom_captures({
-  -- Highlight the @foo.bar capture group with the "Identifier" highlight group.
-  -- ["foo.bar"] = "Identifier",
-  ["TypescriptTypeIdentifier"] = "TSType",
-  ["TypescriptAccessibility"] = "TSKeyword",
-  ["TypescriptImplements"] = "TSKeyword",
-  ["TypescriptPredefinedType"] = "TSTypeBuiltin",
-})
+-- Highlight the @foo.bar capture group with the "Identifier" highlight group.
+-- vim.api.nvim_set_hl(0, "@foo.bar", { link = "Identifier" })
+vim.api.nvim_set_hl(0, "@TypescriptTypeIdentifier", { link = "TSType" })
+vim.api.nvim_set_hl(0, "@TypescriptAccessibility", { link = "TSKeyword" })
+vim.api.nvim_set_hl(0, "@TypescriptImplements", { link = "TSKeyword" })
+vim.api.nvim_set_hl(0, "@TypescriptPredefinedType", { link = "TSTypeBuiltin" })
