@@ -80,11 +80,19 @@ function M.set_default(client, bufnr)
       "Workspace property defintions"
     )
 
-    -- search for symbols in current buffer
+    -- search for symbols in current buffer via lsp
     buf_set_keymap(
       "n",
       "<leader>bs",
       "<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>",
+      "Search document symbols"
+    )
+  else
+    -- search for symbols in current buffer via treesitter -> only needed if lsp is not available
+    buf_set_keymap(
+      "n",
+      "<leader>bs",
+      "<cmd>lua require('telescope.builtin').treesitter()<CR>",
       "Search document symbols"
     )
   end
