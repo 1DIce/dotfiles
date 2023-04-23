@@ -214,6 +214,13 @@ if not require("ld.utils.functions").is_windows() then
         file_icons = true, -- show file icons?
         color_icons = true, -- colorize file|git icons
         winopts = { height = 0.95 },
+        actions = {
+          ["default"] = actions.file_edit,
+          ["ctrl-s"] = actions.file_split,
+          ["ctrl-v"] = actions.file_vsplit,
+          ["ctrl-t"] = actions.file_tabedit,
+          ["ctrl-q"] = actions.file_sel_to_qf,
+        },
       },
       status = {
         prompt = "GitStatus❯ ",
