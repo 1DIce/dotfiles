@@ -105,7 +105,9 @@ local json_config = function()
   return {
     capabilities = cloned_capabilities,
     init_options = { provideFormatter = false, format = { enable = false } },
-    settings = { json = { schemas = require("schemastore").json.schemas() } },
+    settings = {
+      json = { schemas = require("schemastore").json.schemas(), validate = { enable = true } },
+    },
   }
 end
 
