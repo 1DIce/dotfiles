@@ -1,5 +1,6 @@
 local lib = require("nvim-tree.lib")
 local utils = require("nvim-tree.utils")
+local api = require("nvim-tree.api")
 
 local M = {}
 
@@ -11,7 +12,7 @@ M.executeShellCommandOnTreeNode = function()
 
   if answer or #answer >= 0 then
     vim.cmd(answer)
-    lib.refresh_tree()
+    api.tree.reload()
   end
   return
 end
