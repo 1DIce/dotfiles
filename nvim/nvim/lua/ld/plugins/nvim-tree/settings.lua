@@ -2,7 +2,9 @@ local tree_api_fs = require("nvim-tree.api").fs
 local tree_cb = require("nvim-tree.config").nvim_tree_callback
 
 local function is_typescript_file_node(node)
-  return node.type == "file" and require("ld.utils.functions").ends_with(node.absolute_path, ".ts")
+  return node ~= nil
+    and node.type == "file"
+    and require("ld.utils.functions").ends_with(node.absolute_path, ".ts")
 end
 
 local function rename_typescript_file(node)
