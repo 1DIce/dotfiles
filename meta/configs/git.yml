@@ -2,18 +2,16 @@
     ~/.gitconfig: git/gitconfig
     ~/.gitconfig-work: git/gitconfig-work
     ~/.gitignore: git/global-gitignore
-    ~/.gitmessage: git/gitmessage
 
 - crossplatform-link:
-    - ~/.gitconfig-credential: 
+    - ~/.gitconfig-credential:
         platform: linux
         environment: WSL_DISTRO_NAME
         path: git/gitconfig-credential-wsl
-    - ~/.gitconfig-credential: 
+    - ~/.gitconfig-credential:
         platform: linux
         environment: "!WSL_DISTRO_NAME"
         path: git/gitconfig-credential-store
-    - ~/.gitconfig-credential: 
+    - ~/.gitconfig-credential:
         platform: win32
         path: git/gitconfig-credential-store
-
