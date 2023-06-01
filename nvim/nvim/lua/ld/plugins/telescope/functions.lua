@@ -16,7 +16,7 @@ M.search_config = function()
 end
 
 local lsp_location_result_to_key = function(lsp_result)
-  local uri = lsp_result.uri
+  local uri = utils.url_decode(lsp_result.uri)
   local rangeStart = lsp_result.range.start
   local rangeEnd = lsp_result.range["end"]
 

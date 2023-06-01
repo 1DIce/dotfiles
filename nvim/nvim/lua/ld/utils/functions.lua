@@ -66,4 +66,15 @@ function M.add_text_in_current_cursor_postion(text)
   vim.api.nvim_set_current_line(new_line)
 end
 
+--- Url decodes the text if it is url decoded
+---@param text input text to decode
+---@return string
+function M.url_decode(text)
+  local result = vim.fn.substitute(text, "%2C", ",", "ge")
+  result = vim.fn.substitute(result, "%3A", ":", "ge")
+  result = vim.fn.substitute(result, "%5B", "[", "ge")
+  result = vim.fn.substitute(result, "%5D", "]", "ge")
+  return result
+end
+
 return M
