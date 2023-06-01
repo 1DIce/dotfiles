@@ -42,5 +42,5 @@ return {
 	font = wezterm.font("UbuntuMono NF"),
 	-- font = wezterm.font("FiraCode Mono NF"),
 	font_size = 12,
-	color_scheme = "Gruvbox Dark",
+	color_scheme = "GruvboxDark",
 }
