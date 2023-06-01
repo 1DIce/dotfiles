@@ -1,141 +1,135 @@
--- local present, packer = pcall(require, 'ld.packer_init')
--- if not present then return false end
-local fn = vim.fn
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
     "git",
     "clone",
-    "--depth",
-    "1",
-    "https://github.com/wbthomason/packer.nvim",
-    install_path,
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
   })
 end
+vim.opt.rtp:prepend(lazypath)
 
-return require("packer").startup(function(use)
-  local utils = require("ld.utils.functions")
+vim.g.mapleader = " " -- Make sure to set mapleader before lazy so your mappings are correct
 
-  use({ "wbthomason/packer.nvim", event = "VimEnter" })
-  use("lewis6991/impatient.nvim")
+local utils = require("ld.utils.functions")
+return require("lazy").setup({
 
-  use("tpope/vim-rsi")
-
-  use("MunifTanjim/nui.nvim") -- ui library
-  use({
+  "tpope/vim-rsi",
+  "MunifTanjim/nui.nvim", -- ui library
+  {
     "stevearc/dressing.nvim",
     config = function()
       require("ld.plugins.dressing")
     end,
-  })
-
-  use("editorconfig/editorconfig-vim")
+  },
 
   -- allow commenting blocks with gcc
-  use({
+  {
     "numToStr/Comment.nvim",
     config = function()
       require("Comment").setup()
     end,
-  })
+  },
 
-  use({
+  {
     "danymat/neogen",
     config = function()
       require("ld.plugins.neogen")
     end,
-  })
+  },
 
   -- git client
-  use("tpope/vim-fugitive")
-  use({
+  "tpope/vim-fugitive",
+  {
     -- Adds commands :DiffviewFileHistory and :DiffviewOpen [git ref]
     "sindrets/diffview.nvim",
-    requires = "nvim-lua/plenary.nvim",
+    dependencies = "nvim-lua/plenary.nvim",
     config = function()
       require("diffview").setup({})
     end,
-  })
-  use({
+  },
+  {
     "lewis6991/gitsigns.nvim",
     config = function()
       require("ld.plugins.gitsigns")
     end,
-  })
+  },
   -- makes vim follow symlinks, makes vim-fugitive work proerly with symlinks
-  use({ "aymericbeaumet/vim-symlink" })
+  { "aymericbeaumet/vim-symlink" },
 
-  use({
+  {
     "tyru/open-browser.vim",
     config = function()
       require("ld.plugins.open-browser")
     end,
-  })
+  },
 
-  use({
+  {
     "vimwiki/vimwiki",
     config = function()
       require("ld.plugins.vim-wiki")
     end,
-  })
+  },
 
   -- PlantUML
-  use({ "weirongxu/plantuml-previewer.vim" })
-  use({ "aklt/plantuml-syntax" })
+  "weirongxu/plantuml-previewer.vim",
+  "aklt/plantuml-syntax",
 
   -- Debugging
-  use({
+  {
     "rcarriga/nvim-dap-ui",
-    requires = { { "mfussenegger/nvim-dap" } },
+    dependencies = { { "mfussenegger/nvim-dap" } },
     config = function()
       require("ld.plugins.dap")
     end,
-  })
+  },
 
   -- color theme
-  use("Mofiqul/vscode.nvim")
-  use({ "NTBBloodbath/doom-one.nvim" })
+  "Mofiqul/vscode.nvim",
+  "NTBBloodbath/doom-one.nvim",
   -- use 'martinsione/darkplus.nvim'
   -- use("LunarVim/darkplus.nvim")
   -- use("tiagovla/tokyodark.nvim")
-  use("folke/tokyonight.nvim")
-  use("ellisonleao/gruvbox.nvim")
+  "folke/tokyonight.nvim",
+  "ellisonleao/gruvbox.nvim",
   -- alternative onedark for nvim ful1e5/onedark.nvim
   -- use("joshdick/onedark.vim")
-  use("tanvirtin/monokai.nvim")
+  "tanvirtin/monokai.nvim",
   -- use("rebelot/kanagawa.nvim")
   -- use("yashguptaz/calvera-dark.nvim")
   -- use("projekt0n/github-nvim-theme")
-  use("olimorris/onedarkpro.nvim")
-  use("martinda/Jenkinsfile-vim-syntax")
-  use({
+  "olimorris/onedarkpro.nvim",
+  "martinda/Jenkinsfile-vim-syntax",
+  {
     "norcalli/nvim-colorizer.lua",
     config = function()
       require("colorizer").setup({ "less", "css", "scss" })
     end,
-  })
+  },
 
-  use("szw/vim-maximizer")
-  use("mbbill/undotree")
+  "szw/vim-maximizer",
+  "mbbill/undotree",
 
-  use("kassio/neoterm")
-  use({
+  "kassio/neoterm",
+  {
     "akinsho/toggleterm.nvim",
     branch = "main",
     config = function()
       require("ld.plugins.toggleterm")
     end,
-  })
+  },
 
   -- icons
-  use("kyazdani42/nvim-web-devicons")
+  "kyazdani42/nvim-web-devicons",
 
-  use({
+  {
     "kevinhwang91/nvim-bqf",
     config = function()
       require("ld.plugins.nvim-bqf")
     end,
-  })
+  },
 
   -- use({
   --   "ggandor/lightspeed.nvim",
@@ -143,208 +137,199 @@ return require("packer").startup(function(use)
   --     nmap("s", "<Plug>Lightspeed_omni_s", "Use lightspeed on whole window")
   --   end,
   -- })
-  use({
+  {
     "rhysd/clever-f.vim",
     config = function()
       vim.keymap.set("n", ";", "<Plug>(clever-f-repeat-forward)", { remap = true })
       vim.keymap.set("n", ",", "<Plug>(clever-f-repeat-back)", { remap = true })
     end,
-  })
+  },
 
-  use({
+  {
     "ggandor/leap.nvim",
     config = function()
       require("ld.plugins.leap")
     end,
-  })
+  },
 
-  use("tpope/vim-repeat") -- extends . repeat, for example for make it work with vim-sneak
-  use("tpope/vim-surround") -- Change surrounding arks
-  use("wellle/targets.vim")
+  "tpope/vim-repeat", -- extends . repeat, for example for make it work with vim-sneak
+  "tpope/vim-surround", -- Change surrounding arks
+  "wellle/targets.vim",
 
-  use({
+  {
     "rmagatti/auto-session",
     config = function()
       require("ld.plugins.auto-session")
     end,
-  })
+  },
 
-  use({
+  {
     "nvim-telescope/telescope.nvim",
-    requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
+    dependencies = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
     config = function()
       require("ld.plugins.telescope")
     end,
-  })
+  },
 
   -- on windows make and gcc need to be installed via scoop
-  use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+  { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 
-  use({ "nvim-telescope/telescope-live-grep-args.nvim" })
+  "nvim-telescope/telescope-live-grep-args.nvim",
 
-  if utils.is_linux() then
-    use({
-      "AckslD/nvim-neoclip.lua",
-      requires = {
-        { "tami5/sqlite.lua", module = "sqlite" },
-        { "nvim-telescope/telescope.nvim" },
-      },
-      config = function()
-        require("neoclip").setup({ enable_persistent_history = true })
-      end,
-    })
-  end
+  {
+    "AckslD/nvim-neoclip.lua",
+    cond = utils.is_linux(),
+    dependencies = {
+      { "tami5/sqlite.lua", module = "sqlite" },
+      { "nvim-telescope/telescope.nvim" },
+    },
+    config = function()
+      require("neoclip").setup({ enable_persistent_history = true })
+    end,
+  },
 
-  use({
+  {
     "ibhagwan/fzf-lua",
-    requires = {
+    dependencies = {
       "kyazdani42/nvim-web-devicons", -- optional for icons
       "vijaymarupudi/nvim-fzf",
     },
     config = function()
       require("ld.plugins.fzf")
     end,
-  })
-  use({
-    "vijaymarupudi/nvim-fzf",
-    config = function()
-      require("ld.plugins.fzf")
-    end,
-  })
+  },
 
-  use("gennaro-tedesco/nvim-peekup") -- shows register preview
+  "gennaro-tedesco/nvim-peekup", -- shows register preview
 
-  use({
+  {
     "folke/which-key.nvim",
     config = function()
       require("ld.plugins.which-key")
     end,
-  })
+  },
 
-  use({
+  {
     "goolord/alpha-nvim",
     config = function()
       require("ld.plugins.alpha")
     end,
-  })
+  },
 
-  use({
+  {
     "kyazdani42/nvim-tree.lua",
     config = function()
       require("ld.plugins.nvim-tree")
     end,
-  })
+  },
 
-  use({
+  {
     "ThePrimeagen/harpoon",
     config = function()
       require("ld.plugins.harpoon")
     end,
-    requires = { "nvim-lua/plenary.nvim" },
-  })
+    dependencies = { "nvim-lua/plenary.nvim" },
+  },
 
   -- Autocomplete & Linters
-  use("neovim/nvim-lspconfig")
-  use("tjdevries/lsp_extensions.nvim")
-  use("tami5/lspsaga.nvim")
-  use("onsails/lspkind-nvim")
-  use({ "ray-x/lsp_signature.nvim", tag = "v0.2.0" })
-  use("jose-elias-alvarez/typescript.nvim")
-  use("folke/neodev.nvim")
-  use("simrat39/rust-tools.nvim")
-  use("b0o/SchemaStore.nvim")
-  use({ "williamboman/mason.nvim" })
-  use({ "williamboman/mason-lspconfig.nvim" })
-  use({ "jayp0521/mason-null-ls.nvim" })
-  use({
+  "neovim/nvim-lspconfig",
+  "tjdevries/lsp_extensions.nvim",
+  "tami5/lspsaga.nvim",
+  "onsails/lspkind-nvim",
+  { "ray-x/lsp_signature.nvim", version = "v0.2.0" },
+  "jose-elias-alvarez/typescript.nvim",
+  "folke/neodev.nvim",
+  "simrat39/rust-tools.nvim",
+  "b0o/SchemaStore.nvim",
+  "williamboman/mason.nvim",
+  "williamboman/mason-lspconfig.nvim",
+  "jayp0521/mason-null-ls.nvim",
+  {
     "j-hui/fidget.nvim",
     config = function()
       require("fidget").setup({})
     end,
-  })
-  use({
+  },
+  {
     "jose-elias-alvarez/null-ls.nvim",
     config = function()
       require("ld.lsp.servers.null-ls")
     end,
-    requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-  })
-  use({
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+  },
+  {
     "mfussenegger/nvim-jdtls",
     config = function()
       require("ld.lsp.servers.jdtls")
     end,
-  })
+  },
 
-  use({
+  {
     "hrsh7th/nvim-cmp",
     config = function()
       require("ld.plugins.nvim-cmp")
     end,
     event = "InsertEnter",
-  })
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
+      "saadparwaiz1/cmp_luasnip",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-nvim-lua",
+      "hrsh7th/cmp-cmdline",
+      "joshzcold/cmp-jenkinsfile",
+      {
+        "windwp/nvim-autopairs",
+        config = function()
+          require("ld.plugins.nvim-autopairs")
+        end,
+      },
+    },
+  },
 
-  use({
+  {
     "L3MON4D3/LuaSnip",
     config = function()
       require("ld.plugins.snippets")
     end,
-  })
-
-  use({ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" })
-  use({ "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" })
-  use({ "hrsh7th/cmp-buffer", after = "nvim-cmp" })
-  use({ "hrsh7th/cmp-path", after = "nvim-cmp" })
-  use({ "hrsh7th/cmp-nvim-lua", after = "nvim-cmp" })
-  use({ "hrsh7th/cmp-cmdline", after = "nvim-cmp" })
-  use({ "joshzcold/cmp-jenkinsfile", after = "nvim-cmp" })
-
-  use({
-    "windwp/nvim-autopairs",
-    after = "nvim-cmp",
-    config = function()
-      require("ld.plugins.nvim-autopairs")
-    end,
-  })
+  },
 
   -- Language packs
-  use("mattn/emmet-vim")
-  use({
+  "mattn/emmet-vim",
+  {
     "Everduin94/nvim-quick-switcher",
     config = function()
       require("ld.plugins.nvim-quick-switcher")
     end,
-  })
+  },
 
-  use({
+  {
     "nvim-treesitter/nvim-treesitter",
     config = function()
       require("ld.plugins.treesitter")
     end,
-    run = function()
+    build = function()
       vim.cmd([[TSUpdate]])
     end,
-  })
-
-  use({ "nvim-treesitter/nvim-treesitter-refactor", after = "nvim-treesitter" })
-  use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" })
-  use({ "mrjones2014/nvim-ts-rainbow", after = "nvim-treesitter" })
-  use({ "nvim-treesitter/playground", after = "nvim-treesitter" })
-  use({ "andymass/vim-matchup", after = "nvim-treesitter" })
-  use({
-    "nvim-treesitter/nvim-treesitter-context",
-    after = "nvim-treesitter",
-    config = function()
-      require("ld.plugins.treesitter-context")
-    end,
-  })
-  use({
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    config = function()
-      require("ld.plugins.treesitter-textobjects")
-    end,
-    after = "nvim-treesitter",
-  })
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter-refactor",
+      "windwp/nvim-ts-autotag",
+      "mrjones2014/nvim-ts-rainbow",
+      "nvim-treesitter/playground",
+      "andymass/vim-matchup",
+      {
+        "nvim-treesitter/nvim-treesitter-context",
+        config = function()
+          require("ld.plugins.treesitter-context")
+        end,
+      },
+      {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        config = function()
+          require("ld.plugins.treesitter-textobjects")
+        end,
+      },
+    },
+  },
 
   -- use {
   --   "ThePrimeagen/refactoring.nvim",
@@ -352,17 +337,11 @@ return require("packer").startup(function(use)
   --   requires = {{"nvim-lua/plenary.nvim"}, {"nvim-treesitter/nvim-treesitter"}}
   -- }
 
-  use({
+  {
     "nvim-lualine/lualine.nvim",
-    requires = { "kyazdani42/nvim-web-devicons", opt = true },
+    dependencies = { "kyazdani42/nvim-web-devicons", lazy = true },
     config = function()
       require("ld.plugins.lualine-config")
     end,
-  })
-
-  -- Automatically set up you configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
-  if packer_bootstrap then
-    require("packer").sync()
-  end
-end)
+  },
+})

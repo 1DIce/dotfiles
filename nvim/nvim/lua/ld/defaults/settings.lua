@@ -68,7 +68,6 @@ vim.o.signcolumn = "yes:2"
 -- vim.o.signcolumn = 'number'
 
 vim.g.loaded_matchparen = 1
-vim.g.mapleader = " "
 
 vim.g.wildignorecase = true
 

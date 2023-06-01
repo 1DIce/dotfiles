@@ -49,7 +49,7 @@ treesitter.setup({
   autotag = { enable = true },
   playground = { enable = true },
   query_linter = {
-    enable = true,
+    enable = false,
     use_virtual_text = true,
     lint_events = { "BufWrite", "CursorHold" },
   },
