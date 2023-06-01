@@ -69,3 +69,6 @@
     - ~/bin/change-db:
         path: scripts/change-db.sh
         platform: win32
+    - ~/bin/mer-delete-workspace-connection:
+        path: scripts/mer-delete-workspace-connection.sh
+        platform: win32
