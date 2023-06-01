@@ -28,6 +28,7 @@
   stat = !git-stat
   depgraph = !git-depgraph
   root = rev-parse --show-toplevel
+  ch = !git-ch
 
 [merge]
   guitool = kdiff3
