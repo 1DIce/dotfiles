@@ -66,3 +66,6 @@
     - ~/bin/man:
         path: scripts/man-on-windows.sh
         platform: win32
+    - ~/bin/change-db:
+        path: scripts/change-db.sh
+        platform: win32
