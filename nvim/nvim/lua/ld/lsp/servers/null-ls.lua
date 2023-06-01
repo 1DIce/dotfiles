@@ -18,18 +18,17 @@ null_ls.setup({
       disabled_filetypes = { "NvimTree", "lua", "vim", "gitconfig", "vimwiki" },
       extra_args = function(params)
         if lsp.util.root_pattern(".vscode/cspell.json")(params.bufname) then
-          return params.options and { "--config", ".vscode/cspell.json" }
+          return vim.list_extend( params.options, { "--config", ".vscode/cspell.json" })
         end
         return params.options
       end,
-
-      cwd = function(params)
-        local cwd = lsp.util.root_pattern("tsconfig.json")(params.bufname)
-          or lsp.util.root_pattern(".vscode/")(params.bufname)
-          or lsp.util.root_pattern("package.json", ".git/", ".zshrc")(params.bufname)
-          or lsp.util.path.dirname(params.bufname)
-        return cwd
-      end,
+      -- cwd = function(params)
+      --   local cwd = lsp.util.root_pattern("tsconfig.json")(params.bufname)
+      --     or lsp.util.root_pattern(".vscode/")(params.bufname)
+      --     or lsp.util.root_pattern("package.json", ".git/", ".zshrc")(params.bufname)
+      --     or lsp.util.path.dirname(params.bufname)
+      --   return cwd
+      -- end,
     }),
     null_ls.builtins.code_actions.cspell,
     null_ls.builtins.formatting.stylua,
