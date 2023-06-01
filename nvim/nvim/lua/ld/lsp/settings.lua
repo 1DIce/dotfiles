@@ -119,7 +119,7 @@ local function get_node_modules(root_dir)
     return nil
   else
     if require("ld.utils.functions").is_windows() then
-      return vim.fn.substitute(root_node, "/", "\\", "g")
+      return vim.fn.substitute(root_node, "/", "\\\\", "g")
     else
       return root_node
     end
@@ -161,6 +161,10 @@ local servers = {
   dockerls = {},
   eslint = {
     root_dir = lsp.util.root_pattern("tsconfig.json"),
+    -- Refer to https://github.com/Microsoft/vscode-eslint#settings-options for documentation.
+    settings = {
+      workingDirectory = { { mode = "location" } },
+    },
   },
   pylsp = {},
   gopls = {},
