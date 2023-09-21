@@ -9,7 +9,7 @@ if [[ $serviceStatus =~ 'not running' ]]; then
   exit 1
 fi
 
-WSL_IP=$(wsl.exe hostname -I | xargs) # xargs is used to strip whitespace
+WSL_IP=$(wsl.exe hostname -I | cut -d' ' -f1) # xargs is used to strip whitespace
 
 if [[ $# -eq 1 ]]; then
 	port=$1
