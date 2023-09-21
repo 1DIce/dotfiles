@@ -72,3 +72,5 @@
     - ~/bin/mer-delete-workspace-connection:
         path: scripts/mer-delete-workspace-connection.sh
         platform: win32
+    - ~/bin/jira-issues-to-confluence-markup:
+        path: scripts/jira-issues-to-confluence-markup.sh
