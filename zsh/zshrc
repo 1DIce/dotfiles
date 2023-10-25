@@ -14,9 +14,8 @@ bindkey -e
 zstyle :compinstall filename '/home/lars/.zshrc'
 
 autoload -Uz compinit
-compinit
+compinit -u
 # End of lines added by compinstall
-
 
 # aliases
 alias l="lsd --date '+%e.%m.%y %H:%M' -l"       # List in long format, exclude dotfiles
@@ -79,9 +78,7 @@ alias blist="bls"
 alias bfind='bls --no-color | fzf | cut -f1 -d "=" | xargs bcd'
 
 # ripgrep for fzf if available
-if type rg &> /dev/null; then
-  export FZF_DEFAULT_COMMAND='rg --files'
-fi
+export FZF_DEFAULT_COMMAND='rg --files'
 # FZF terminal history search. trigger it with CRTL+r
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
