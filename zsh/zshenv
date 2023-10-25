@@ -33,16 +33,3 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 alias fd="fdfind"
 alias bat="batcat"
 
-# append windows PATH while in wsl
-if [ ! -z "$WSL_DISTRO_NAME" ]; then
-  WIN_USER_HOME="/mnt/c/Users/Lars.Debor"
-
-  PATH="/mnt/c/Windows/system32:$PATH"
-  PATH="/mnt/c/Windows:$PATH"
-  PATH="/mnt/c/Windows/System32/Wbem:$PATH"
-  PATH="/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:$PATH"
-  PATH="/mnt/c/Windows/System32/OpenSSH/:$PATH"
-  PATH="$WIN_USER_HOME/AppData/Local/Programs/Microsoft VS Code/bin:$PATH"
-  PATH="$WIN_USER_HOME/scoop/apps/neovide/current:$PATH"
-fi
-

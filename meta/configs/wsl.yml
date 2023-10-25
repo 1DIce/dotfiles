@@ -1,12 +1,42 @@
 - crossplatform-link:
-  - ~/.wslconfig:
-      platform: win32
-      force: true
-      path: wsl/wslconfig
+    - ~/.wslconfig:
+        platform: win32
+        force: true
+        path: wsl/wslconfig
+    # make windows executables available inside wsl
+    - ~/bin/explorer.exe:
+        platform: linux
+        environment: WSL_DISTRO_NAME
+        force: true
+        path: /mnt/c/Windows/explorer.exe
+    - ~/bin/wsl.exe:
+        platform: linux
+        environment: WSL_DISTRO_NAME
+        force: true
+        path: /mnt/c/Windows/System32/wsl.exe
+    - ~/bin/powershell.exe:
+        platform: linux
+        environment: WSL_DISTRO_NAME
+        force: true
+        path: /mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe
+    - ~/bin/ssh.exe:
+        platform: linux
+        environment: WSL_DISTRO_NAME
+        force: true
+        path: /mnt/c/Windows/System32/OpenSSH/ssh.exe
+    - ~/bin/code:
+        platform: linux
+        environment: WSL_DISTRO_NAME
+        force: true
+        path: /mnt/c/Users/Lars.Debor/AppData/Local/Programs/Microsoft VS Code/bin/code
+    - ~/bin/neovide:
+        platform: linux
+        environment: WSL_DISTRO_NAME
+        force: true
+        path: /mnt/c/Users/Lars.Debor/scoop/apps/neovide/current/neovide
 
 - crossplatform-shell:
-  # wsl.conf does not get picked up when it is symlinked
+    # wsl.conf does not get picked up when it is symlinked
     - command: sudo cp ./wsl/wsl.conf /etc/wsl.conf
       platform: linux
       environment: WSL_DISTRO_NAME
-
