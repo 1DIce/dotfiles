@@ -74,3 +74,5 @@
         platform: win32
     - ~/bin/jira-issues-to-confluence-markup:
         path: scripts/jira-issues-to-confluence-markup.sh
+    - ~/bin/fnpm:
+        path: scripts/fnpm.sh
