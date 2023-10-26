@@ -5,6 +5,19 @@
 // ==/UserScript==
 
 (function () {
+  // Make ticket numbers in the merge request title clickable
+  [...document.getElementsByClassName("title page-title")].forEach((e) => {
+    const ticket = e.innerHTML.match(/\[MER-\d+\]/g)[0];
+    if (ticket) {
+      e.innerHTML = e.innerHTML.replace(
+        ticket,
+        `<a target='_blank' href='https://jira.cas.de/browse/${ticket
+          .replace("[", "")
+          .replace("]", "")}'>${ticket}</a>`
+      );
+    }
+  });
+
   document.addEventListener(
     "keydown",
     function (e) {
