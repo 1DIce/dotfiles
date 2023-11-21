@@ -5,4 +5,4 @@
         && unzip ~/Downloads/UbuntuMono.zip -d ~/.fonts
         && fc-cache -fv
         && rm -v ~/Downloads/UbuntuMono.zip
-      environment: "WSL_DISTRO_NAME"
+      platform: linux
