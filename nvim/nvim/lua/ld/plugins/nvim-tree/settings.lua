@@ -1,5 +1,4 @@
 local tree_api_fs = require("nvim-tree.api").fs
-local tree_cb = require("nvim-tree.config").nvim_tree_callback
 
 local function is_typescript_file_node(node)
   return node ~= nil
