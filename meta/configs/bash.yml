@@ -2,9 +2,12 @@
     ~/.bashrc:
       platform: linux
       path: bash/bashrc
+      force: true
     ~/.profile:
       platform: linux
       path: bash/profile_bash
+      force: true
     ~/.bashrc:
       platform: win32
       path: bash/win_bashrc
+      force: true

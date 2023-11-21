@@ -1,5 +1,6 @@
 local
 locale
+bash
 zsh
 less
 cmd-tools-apt
@@ -9,7 +10,6 @@ cmd-tools-npm
 fonts
 cheat-sheets
 brew
-bash
 git
 fzf
 tmux

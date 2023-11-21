@@ -48,4 +48,4 @@ if [ ! -z "$WSL_DISTRO_NAME" ]; then
   PATH="$WIN_USER_HOME/AppData/Local/Programs/Microsoft VS Code/bin:$PATH"
   PATH="$WIN_USER_HOME/scoop/shims/neovide.exe:$PATH"
 fi
-i
+
