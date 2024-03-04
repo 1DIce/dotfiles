@@ -12,6 +12,9 @@ HISTSIZE=5000
 HISTFILESIZE=200000
 HISTFILE=~/.histfile
 
+# make sure history from this session is appended
+PROMPT_COMMAND='history -a'
+
 export PATH=~/.deno/bin:$PATH
 export PATH=~/ltex-ls/bin:$PATH
 
@@ -28,6 +31,7 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias gitroot='cd $(git rev-parse --show-toplevel)'
 alias groot='cd $(git rev-parse --show-toplevel)'
+alias open='start' # start is the windows equivalent to xdg-open
 
 function cdf {
   local dst="$(fzf-dir "$@")"
