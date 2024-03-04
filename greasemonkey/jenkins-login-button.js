@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        _Adding a jenkins login button
 // @description Adds Login button to the botton of a jenkins site
-// @match       *://jenkins.cas-merlin.de/view/*
+// @match       *://jenkins.cas-merlin.de/*
 // ==/UserScript==
 
 /*--- Create a button in a container div.  It will be styled and

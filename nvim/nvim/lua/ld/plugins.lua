@@ -165,16 +165,18 @@ return require("lazy").setup({
 
   {
     "nvim-telescope/telescope.nvim",
-    dependencies = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
+    dependencies = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" },
+  
+  -- on windows make and gcc need to be installed via scoop
+  { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+
+  "nvim-telescope/telescope-live-grep-args.nvim"
+
+  },
     config = function()
       require("ld.plugins.telescope")
     end,
   },
-
-  -- on windows make and gcc need to be installed via scoop
-  { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-
-  "nvim-telescope/telescope-live-grep-args.nvim",
 
   {
     "AckslD/nvim-neoclip.lua",
