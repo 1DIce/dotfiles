@@ -1,2 +1,2 @@
 - shell:
-  - bash -c "scripts/stylua-install.sh"
+    - bash -c "scripts/stylua-install.sh"

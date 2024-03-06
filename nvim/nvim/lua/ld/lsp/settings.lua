@@ -84,6 +84,12 @@ local sumneko_lua_config = function()
   }
 end
 
+local clangd_config = function()
+  local cloned_capabilities = vim.deepcopy(capabilities)
+  cloned_capabilities.offsetEncoding = { "utf-16" }
+  return { capabilities = cloned_capabilities }
+end
+
 local css_config = function()
   local cloned_capabilities = vim.deepcopy(capabilities)
   cloned_capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -157,6 +163,7 @@ local servers = {
   yamlls = {},
   jsonls = json_config(),
   html = html_config(),
+  clangd = clangd_config(),
   cssls = css_config(),
   dockerls = {},
   eslint = {
