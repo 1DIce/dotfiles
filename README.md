@@ -1,5 +1,10 @@
 # Dotfiles
 
+## Getting started - Ubuntu
+1. setup shell proper configuration `./install-profile.sh ubuntu-shell`
+2. install zsh and switch to it `sudo apt update && sudo apt install zsh -y && chsh -s /usr/bin/zsh`
+3. setup the rest of the dotfiles and software `.install-profile ubuntu`
+
 ## Requirements for installing windows tools
 - [scoop](scoop.sh) is installed
 

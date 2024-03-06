@@ -1,10 +1,4 @@
-local
-locale
-bash
-zsh
-less
 cmd-tools-apt
-starship
 volta
 cmd-tools-npm
 fonts
