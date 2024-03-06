@@ -1,3 +1,6 @@
+- create:
+    - ~/.config/fzf-run
+
 - crossplatform-link:
     - ~/wsl-start-vpn-kit.sh:
         path: scripts/wsl2/wsl-start-vpnkit.sh
