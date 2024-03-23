@@ -67,4 +67,6 @@ function merlin-setup {
   ./eclipse-installer
 }
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Setup fzf (fzf should already be installed on the PATH by scoop)
+eval "$(fzf --bash)"

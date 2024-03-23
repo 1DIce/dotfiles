@@ -121,7 +121,12 @@ fi
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Setup fzf
+if [[ -d "$HOME/.fzf/bin" ]]; then
+  PATH="$HOME/.fzf/bin:$PATH"
+fi
+eval "$(fzf --bash)"
 
 
 # setup mcfly history search

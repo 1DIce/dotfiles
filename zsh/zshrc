@@ -100,8 +100,12 @@ alias bfind='bls --no-color | fzf | cut -f1 -d "=" | xargs bcd'
 
 # ripgrep for fzf if available
 export FZF_DEFAULT_COMMAND='rg --files'
-# FZF terminal history search. trigger it with CRTL+r
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Setup fzf
+if [[ -d "$HOME/.fzf/bin" ]]; then
+  PATH="$HOME/.fzf/bin:$PATH"
+fi
+eval "$(fzf --zsh)"
 
 # setup mcfly history search
 export MCFLY_KEY_SCHEME=vim
