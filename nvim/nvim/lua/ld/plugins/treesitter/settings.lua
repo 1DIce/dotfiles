@@ -35,6 +35,7 @@ treesitter.setup({
     "query",
     "java",
     "vim",
+    "cpp",
   },
   highlight = {
     enable = true,

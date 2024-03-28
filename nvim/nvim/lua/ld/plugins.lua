@@ -333,11 +333,13 @@ return require("lazy").setup({
     },
   },
 
-  -- use {
-  --   "ThePrimeagen/refactoring.nvim",
-  --   config = function() require("ld.plugins.refactoring") end,
-  --   requires = {{"nvim-lua/plenary.nvim"}, {"nvim-treesitter/nvim-treesitter"}}
-  -- }
+  {
+    "ThePrimeagen/refactoring.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" },
+    config = function()
+      require("ld.plugins.refactoring")
+    end,
+  },
 
   {
     "nvim-lualine/lualine.nvim",

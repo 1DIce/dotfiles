@@ -105,12 +105,7 @@ function M.set_default(client, bufnr)
 
   if cap.codeActionProvider then
     buf_set_keymap("n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<CR>", "code action")
-    buf_set_keymap(
-      "v",
-      "<leader>la",
-      "<cmd>lua vim.lsp.buf.range_code_action()<CR>",
-      "range code action"
-    )
+    buf_set_keymap("v", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<CR>", "range code action")
   end
 
   if cap.documentFormattingProvider then

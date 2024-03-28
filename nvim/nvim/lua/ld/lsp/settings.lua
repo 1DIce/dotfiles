@@ -177,6 +177,7 @@ local servers = {
   gopls = {},
   lua_ls = sumneko_lua_config(),
   ltex = require("ld.lsp.servers.ltex").setup(on_attach),
+  cmake = {},
 }
 
 if functions.is_deno_workspace() then
