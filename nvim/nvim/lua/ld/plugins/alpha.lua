@@ -15,7 +15,7 @@ dashboard.section.header.val = {
 
 -- Set menu
 dashboard.section.buttons.val = {
-  dashboard.button("s", "  > Restore session", ":RestoreSession <CR><CR>"),
+  dashboard.button("s", "  > Restore session", ":SessionRestore <CR><CR>"),
   dashboard.button("e", "  > New file", ":ene <BAR> startinsert <CR>"),
   dashboard.button("f", "  > Find file", ":lua require('ld.plugins.fzf').files()<CR>"),
   dashboard.button("r", "  > Recent", ":Telescope oldfiles<CR>"),
