@@ -9,6 +9,7 @@
 #	pager = less -E -X
   pager = delta
   excludesFile = ~/.gitignore
+  fsmonitor = true
 
 [push]
 	default = simple
