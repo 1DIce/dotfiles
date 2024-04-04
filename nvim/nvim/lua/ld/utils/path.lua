@@ -4,6 +4,7 @@ local M = {
   is_dir = lsp.util.path.is_dir,
   is_file = lsp.util.path.is_file,
   join = lsp.util.path.join,
+  sanitize = lsp.util.path.sanitize,
 }
 
 function M.to_os_path(unix_path)

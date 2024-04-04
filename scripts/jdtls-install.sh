@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 JDTLS_ROOT="$HOME/.local/share/java/jdtls"
+JDTLS_EXTENSION_ROOT="$HOME/.local/share/java/jdtls-extensions"
 
 function jdtls_install {
 	echo 'Installing jdtls...'
@@ -31,4 +32,44 @@ function jdtls_install {
 	return 0
 }
 
-jdtls_install
+function install_extensions {
+  rm -rf "$JDTLS_EXTENSION_ROOT"
+  mkdir -p "$JDTLS_EXTENSION_ROOT"
+  cd "$JDTLS_EXTENSION_ROOT"
+
+  java_debug_install
+
+  java_test_install
+
+  pde_support_install
+}
+
+function java_debug_install {
+  git clone https://github.com/microsoft/java-debug.git vscode-java-debug
+  pushd vscode-java-debug > /dev/null
+  ./mvnw clean install
+  popd > /dev/null
+}
+
+function java_test_install {
+  git clone https://github.com/microsoft/vscode-java-test.git
+  pushd vscode-java-test > /dev/null
+  npm install
+  npm run build-plugin
+  popd > /dev/null
+}
+
+function pde_support_install {
+  echo "FAILED to install PDE support"
+  # TODO download release from github and unpack that
+}
+
+if [ "$1" == "extensions" ]; then
+  install_extensions
+else
+  jdtls_install
+  install_extensions
+fi
+
+
+

@@ -29,6 +29,7 @@
     "m.model/de.cas.merlin.product.model.massprocessing.bom",
     "m.model/de.cas.merlin.product.model.importer.sap",
     "m.model/de.cas.merlin.product.model.importer.step.ap242",
+    "m.model/de.cas.merlin.product.model.importer.step.ap242.model",
     "m.model/de.cas.merlin.product.model.images3D",
     "m.model/de.cas.merlin.product.model.flex",
     "m.model/de.cas.merlin.product.model.gw.productimport",

@@ -1,11 +1,24 @@
-local path = require("lspconfig.util").path
+-- Eclipse Java development tools (JDT) Language Server downloaded from:
+-- https://www.eclipse.org/downloads/download.php?file=/jdtls/milestones/1.21.0/jdt-language-server-1.21.0-202303161431.tar.gz
 local jdtls = require("jdtls")
-local execute_command = require("jdtls.util").execute_command
+-- Change or delete this if you don't depend on nvim-cmp for completions.
+local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local utils = require("ld.utils.functions")
+local path = require("ld.utils.path")
 
-local root_markers = { ".git" }
-local root_dir = require("jdtls.setup").find_root(root_markers)
 local home = vim.fn.getenv("HOME")
+
+-- Change jdtls_path to wherever you have your Eclipse Java development tools (JDT) Language Server downloaded to.
+local jdtls_path = path.join(home, path.sanitize("/.local/share/java/jdtls"))
+local launcher_jar = vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar")
+local workspace_dir_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
+
+local git_root = vim.fs.dirname(vim.fs.find({ ".git" }, { upward = true, type = "directory" })[1])
+local root_dir = vim.fs.dirname(vim.fs.find({ "pom.xml", ".git" }, { upward = true })[1])
+
+-- for completions
+local client_capabilities = vim.lsp.protocol.make_client_capabilities()
+local capabilities = cmp_nvim_lsp.default_capabilities(client_capabilities)
 
 local function progress_report(_, result, ctx)
   local lsp = vim.lsp
@@ -42,9 +55,21 @@ local function progress_report(_, result, ctx)
   lsp.handlers["$/progress"](nil, msg, info)
 end
 
-local function get_workspace_folder()
+local function get_config_dir()
+  -- Unlike some other programming languages (e.g. JavaScript)
+  -- lua considers 0 truthy!
+  if vim.fn.has("linux") == 1 then
+    return "config_linux"
+  elseif vim.fn.has("mac") == 1 then
+    return "config_mac"
+  else
+    return "config_win"
+  end
+end
+
+local function get_java_bin()
   if utils.is_windows() then
-    return path.join("C:/configurator-ide/jdtls/ws/", vim.fn.fnamemodify(root_dir, ":p:h:h:t"))
+    return path.join(vim.fn.getenv("JAVA_HOME"), "/bin/java")
   else
     return path.join(
       home,
@@ -54,262 +79,186 @@ local function get_workspace_folder()
   end
 end
 
-local debug_port = 5005
-
--- local java_bin = function() return  home .. "/.local/share/java/17/bin/java" .. get_executeable_file_exetension() end;
-local function java_bin()
-  return path.join(home, path.sanitize(".local/share/java/17/bin/java"))
-end
-
-local function configuration_path()
-  if utils.is_windows() then
-    return path.join(home, path.sanitize("/.local/share/java/jdtls/config_win"))
-  else
-    return home .. "/.local/share/java/jdtls/config_linux"
-  end
-end
-
-local function get_runtimes()
-  return {
-    {
-      name = "JavaSE-11",
-      path = path.join(home, path.sanitize("/.local/share/java/11/")),
-    },
-    {
-      name = "JavaSE-17",
-      path = path.join(home, path.sanitize("/.local/share/java/17/")),
-    },
+function get_bundles()
+  local bundles = {
+    vim.fn.glob(
+      vim.fs.normalize(
+        "~/.local/share/java/jdtls-extensions/vscode-java-debug/**/com.microsoft.java.debug.plugin-*.jar"
+      ),
+      1
+    ),
   }
+  vim.list_extend(
+    bundles,
+    vim.split(
+      vim.fn.glob(
+        vim.fs.normalize("~/.local/share/java/jdtls-extensions/vscode-java-test/server/*.jar"),
+        1
+      ),
+      "\n"
+    )
+  )
+  vim.list_extend(
+    bundles,
+    vim.split(
+      vim.fn.glob(
+        vim.fs.normalize("~/.local/share/java/jdtls-extensions/vscode-pde-support/server/*.jar"),
+        1
+      ),
+      "\n"
+    )
+  )
+  return bundles
 end
 
-M = {}
-
-function M.reload_target_platform()
-  local uri = vim.uri_from_fname("m.model/merlin.model.runtime/merlin.model.runtime.target")
-  print(uri)
-  execute_command({
-    command = "java.pde.reloadTargetPlatform",
-    arguments = { uri },
-  })
-end
-
-function M.launch_pde()
-  local uri = vim.uri_from_fname("git/m.model/merlin.model.product/MModel.product.launch")
-  local callback = function(error, response)
-    if error ~= nil then
-      print(vim.inspect(error))
-    else
-      print(vim.inspect(response))
-    end
-  end
-  execute_command({ command = "java.pde.resolveLaunchArguments", arguments = { uri } }, callback)
-end
-
-function M.start_mmodel()
-  local launch_cmd = {
-    java_bin() .. "w.exe",
-    "-XX:+ShowCodeDetailsInExceptionMessages",
-    "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=127.0.0.1:" .. debug_port,
-    "-Dorg.eclipse.swt.graphics.Resource.reportNonDisposed=true",
-    "-Dfile.encoding=UTF-8",
-    "-Dosgi.configuration.area=@user.home/AppData/Local/CAS/Merlin/10.17.0-product/configuration",
-    "-Duser.language=de",
-    "-Dorg.eclipse.update.reconcile=false",
-    "-DKeycloakServerCheckTimeout=15",
-    "-Xms128M",
-    "-Xmx2048M",
-    "--add-modules=ALL-SYSTEM",
-    [[-classpath "C:\Users\Lars.Debor\.local\share\java\eclipse\ruby\.metadata\.plugins\org.eclipse.pde.core\.bundle_pool\plugins\org.eclipse.equinox.launcher_1.5.100.v20180827-1352.jar" org.eclipse.equinox.launcher.Main]],
-    [[-launcher "C:\Users\Lars.Debor\.local\share\java\eclipse\ruby\.metadata\.plugins\org.eclipse.pde.core\.bundle_pool\eclipse.exe"]],
-    "-name Eclipse",
-    "-showsplash 600",
-    "-product de.cas.merlin.product.model.vario.MModelProduct",
-    [[-data "C:\Users\Lars.Debor\.local\share\java\eclipse\ruby/../runtime-MModel.product"]],
-    "-configuration file:C:/Users/Lars.Debor/.local/share/java/eclipse/ruby/.metadata/.plugins/org.eclipse.pde.core/MModel.product/",
-    "-dev file:C:/Users/Lars.Debor/.local/share/java/eclipse/ruby/.metadata/.plugins/org.eclipse.pde.core/MModel.product/dev.properties",
-    "-os win32",
-    "-ws win32",
-    "-arch x86_64",
-    "-nl de_DE",
-    "-consoleLog",
-    "-vm ./jre/bin",
-    "-data @noDefault",
-    "-clearPersistedState",
-  }
-
-  -- os.execute(vim.fn.join(launch_cmd, " "))
-  -- local Job = require("plenary.job")
-
-  -- Job:new({
-  --   command = java_bin() .. ".exe",
-  --   args = launch_cmd,
-  --   cwd = root_dir,
-  --   env = {},
-  --   on_exit = function(j, return_val)
-  --     print(return_val)
-  --     print(j:result())
-  --   end,
-  -- }):start()
-end
-
-local dap = require("dap")
-dap.configurations.java = {
-  {
-    type = "java",
-    request = "attach",
-    name = "Debug (Attach) - Remote",
-    hostName = "127.0.0.1",
-    port = debug_port,
-  },
-}
-
+-- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
 local config = {
-  root_dir = path.join(root_dir, "m.model"),
+  capabilities = capabilities,
+  cmd = {
+    -- This sample path was tested on Cygwin, a "unix-like" Windows environment.
+    -- Please contribute to this Wiki if this doesn't work for another Windows
+    -- environment like [Git for Windows](https://gitforwindows.org/) or PowerShell.
+    -- JDTLS currently needs Java 17 to work, but you can replace this line with "java"
+    -- if Java 17 is on your PATH.
+    get_java_bin(),
+    "-Declipse.application=org.eclipse.jdt.ls.core.id1",
+    "-Dosgi.bundles.defaultStartLevel=4",
+    "-Declipse.product=org.eclipse.jdt.ls.core.product",
+    "-Dlog.protocol=true",
+    "-Dlog.level=ALL",
+    "-Xmx4g",
+    "-Xms1g",
+    "--add-modules=ALL-SYSTEM",
+    "--add-opens",
+    "java.base/java.util=ALL-UNNAMED",
+    "--add-opens",
+    "java.base/java.lang=ALL-UNNAMED",
+    "-jar",
+    launcher_jar,
+    "-configuration",
+    vim.fs.normalize(jdtls_path .. "/" .. get_config_dir()),
+    "-data",
+    -- vim.fn.expand("~/.cache/jdtls-workspace/") .. workspace_dir_name,
+    vim.fs.normalize(
+      path.join(path.join(vim.fs.dirname(git_root), "jdtls-ws"), workspace_dir_name)
+    ),
+  },
+  root_dir = root_dir,
+  settings = {
+    java = {
+      autobuild = {
+        enabled = false,
+      },
+      -- project = {
+      --   referencedLibraries = {
+      --     vim.fs.normalize("~/.m2/repository/com/aspose/aspose-cells/22.3/aspose-cells-22.3.jar"),
+      --     vim.fs.normalize("~/.m2/repository/com/aspose/aspose-cells/21.5/aspose-cells-21.5.jar"),
+      --     vim.fs.normalize(
+      --       "~/.m2/repository/com/aspose/aspose-words/22.2/aspose-words-22.2-jdk17.jar"
+      --     ),
+      --   },
+      -- },
+      signatureHelp = { enabled = true },
+      -- contentProvider = {preferred = 'fernflower'},
+      -- completion = {
+      --   favoriteStaticMembers = {
+      --     "org.hamcrest.MatcherAssert.assertThat", "org.hamcrest.Matchers.*",
+      --     "org.hamcrest.CoreMatchers.*", "org.junit.jupiter.api.Assertions.*",
+      --     "java.util.Objects.requireNonNull",
+      --     "java.util.Objects.requireNonNullElse", "org.mockito.Mockito.*"
+      --   },
+      --   filteredTypes = {
+      --     "com.sun.*", "io.micrometer.shaded.*", "java.awt.*", "jdk.*", "sun.*"
+      --   }
+      -- },
+      sources = {
+        organizeImports = { starThreshold = 9999, staticStarThreshold = 9999 },
+      },
+      codeGeneration = {
+        toString = {
+          template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
+        },
+        hashCodeEquals = { useJava7Objects = true },
+        useBlocks = true,
+      },
+      format = {
+        settings = {
+          url = "./.merlin-java-formatter-profile.xml",
+        },
+      },
+      configuration = {
+        -- runtimes = get_runtimes(),
+        maven = {
+          userSettings = path.to_os_path(path.join(git_root, "maven/settings.xml")),
+          globalSettings = path.to_os_path(path.join(git_root, "maven/settings.xml")),
+        },
+      },
+      compile = {
+        nullAnalysis = {
+          nonnull = {},
+          nullable = {},
+        },
+      },
+      import = {
+        generatesMetadataFilesAtProjectRoot = true,
+        -- exclusions = {
+        --   "**/node_modules/**",
+        --   "**/.metadata/**",
+        --   "**/archetype-resources/**",
+        --   "**/META_INF/maven/**",
+        -- },
+      },
+    },
+  },
   flags = { debounce_text_changes = 80, allow_incremental_sync = true },
   handlers = {
     ["language/status"] = function() end,
     ["language/progressReport"] = progress_report,
   },
-}
-
-config.settings = {
-  java = {
-    signatureHelp = { enabled = true },
-    -- contentProvider = {preferred = 'fernflower'},
-    -- completion = {
-    --   favoriteStaticMembers = {
-    --     "org.hamcrest.MatcherAssert.assertThat", "org.hamcrest.Matchers.*",
-    --     "org.hamcrest.CoreMatchers.*", "org.junit.jupiter.api.Assertions.*",
-    --     "java.util.Objects.requireNonNull",
-    --     "java.util.Objects.requireNonNullElse", "org.mockito.Mockito.*"
-    --   },
-    --   filteredTypes = {
-    --     "com.sun.*", "io.micrometer.shaded.*", "java.awt.*", "jdk.*", "sun.*"
-    --   }
-    -- },
-    sources = {
-      organizeImports = { starThreshold = 9999, staticStarThreshold = 9999 },
-    },
-    codeGeneration = {
-      toString = {
-        template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
-      },
-      hashCodeEquals = { useJava7Objects = true },
-      useBlocks = true,
-    },
-    format = {
-      settings = {
-        url = path.join(root_dir, ".merlin-java-formatter-profile.xml"),
-      },
-    },
-    configuration = {
-      runtimes = get_runtimes(),
-      maven = {
-        userSettings = "../maven/settings.xml",
-        globalSettings = "../maven/settings.xml",
-      },
-    },
-    compile = {
-      nullAnalysis = {
-        nonnull = {},
-        nullable = {},
-      },
-    },
-    import = {
-      generatesMetadataFilesAtProjectRoot = true,
-    },
+  init_options = {
+    -- https://github.com/eclipse/eclipse.jdt.ls/wiki/Language-Server-Settings-&-Capabilities#extended-client-capabilities
+    extendedClientCapabilities = jdtls.extendedClientCapabilities,
+    bundles = get_bundles(),
   },
-}
-config.cmd = {
-  java_bin(),
-  "-Declipse.application=org.eclipse.jdt.ls.core.id1",
-  "-Dosgi.bundles.defaultStartLevel=4",
-  "-Declipse.product=org.eclipse.jdt.ls.core.product",
-  "-Dlog.protocol=true",
-  "-Dlog.level=ALL",
-  "-Xmx4g",
-  "-Xms1g",
-  "--add-modules=ALL-SYSTEM",
-  "--add-opens",
-  "java.base/java.util=ALL-UNNAMED",
-  "--add-opens",
-  "java.base/java.lang=ALL-UNNAMED",
-  "-jar",
-  vim.fn.glob(
-    path.join(
-      home,
-      path.sanitize("/.local/share/java/jdtls/plugins/org.eclipse.equinox.launcher_*.jar")
-    )
-  ),
-  "-configuration",
-  configuration_path(),
-  "-data",
-  get_workspace_folder(),
-}
-config.on_attach = function(client, bufnr)
-  require("ld.lsp.remaps").set_default(client, bufnr)
-  -- require("ld.lsp.settings").on_attach(client, bufnr, true)
-  -- require("ld.lsp.settings").on_attach(client, bufnr, { server_side_fuzzy_completion = true })
+  on_attach = function(client, bufnr)
+    require("ld.lsp.remaps").set_default(client, bufnr)
 
-  jdtls.setup_dap({ hotcodereplace = "auto" })
-  require("jdtls.setup").add_commands()
-  local opts = { silent = true, buffer = bufnr }
-  -- vim.keymap.set("n", "<A-o>", jdtls.organize_imports, opts)
-  -- vim.keymap.set("n", "<leader>df", jdtls.test_class, opts)
-  -- vim.keymap.set("n", "<leader>dn", jdtls.test_nearest_method, opts)
-  -- vim.keymap.set("n", "crv", jdtls.extract_variable, opts)
-  -- vim.keymap.set("v", "crm", [[<ESC><CMD>lua require('jdtls').extract_method(true)<CR>]], opts)
-  -- vim.keymap.set("n", "crc", jdtls.extract_constant, opts)
-
-  -- local create_command = vim.api.nvim_buf_create_user_command
-  -- create_command(bufnr, "W", require("me.lsp.ext").remove_unused_imports, { nargs = 0 })
-end
-
-local jar_patterns = {
-  "/.local/share/java/jdtls-extensions/vscode-java-debug/extension/server/com.microsoft.java.debug.plugin-*.jar",
-  "/.local/share/java/jdtls-extensions/vscode-java-test/extension/server/*.jar",
-  "/.local/share/java/jdtls-extensions/vscode-pde-support/extension/server/*.jar",
+    -- https://github.com/mfussenegger/dotfiles/blob/833d634251ebf3bf7e9899ed06ac710735d392da/vim/.config/nvim/ftplugin/java.lua#L88-L94
+    -- local opts = { silent = true, buffer = bufnr }
+    -- vim.keymap.set(
+    --   "n",
+    --   "<leader>lo",
+    --   jdtls.organize_imports,
+    --   { desc = "Organize imports", buffer = bufnr }
+    -- )
+    -- -- Should 'd' be reserved for debug?
+    -- vim.keymap.set("n", "<leader>df", jdtls.test_class, opts)
+    -- vim.keymap.set("n", "<leader>dn", jdtls.test_nearest_method, opts)
+    -- vim.keymap.set(
+    --   "n",
+    --   "<leader>rv",
+    --   jdtls.extract_variable_all,
+    --   { desc = "Extract variable", buffer = bufnr }
+    -- )
+    -- vim.keymap.set(
+    --   "v",
+    --   "<leader>rm",
+    --   [[<ESC><CMD>lua require('jdtls').extract_method(true)<CR>]],
+    --   { desc = "Extract method", buffer = bufnr }
+    -- )
+    -- vim.keymap.set(
+    --   "n",
+    --   "<leader>rc",
+    --   jdtls.extract_constant,
+    --   { desc = "Extract constant", buffer = bufnr }
+    -- )
+  end,
 }
--- local plugin_path = "/.local/share/java/jdtls-extensions/vscode-java-test/extension/server/*.jar",
--- npm install broke for me: https://github.com/npm/cli/issues/2508
--- So gather the required jars manually; this is based on the gulpfile.js in the vscode-java-test repo
--- local bundle_list = vim.tbl_map(function(x)
---   return require("jdtls.path").join(plugin_path, x)
--- end, {
---   "org.eclipse.jdt.junit4.runtime_*.jar",
---   "org.eclipse.jdt.junit5.runtime_*.jar", "org.junit.jupiter.api*.jar",
---   "org.junit.jupiter.engine*.jar", "org.junit.jupiter.migrationsupport*.jar",
---   "org.junit.jupiter.params*.jar", "org.junit.vintage.engine*.jar",
---   "org.opentest4j*.jar", "org.junit.platform.commons*.jar",
---   "org.junit.platform.engine*.jar", "org.junit.platform.launcher*.jar",
---   "org.junit.platform.runner*.jar", "org.junit.platform.suite.api*.jar",
---   "org.apiguardian*.jar",
--- })
--- vim.list_extend(jar_patterns, bundle_list)
-local bundles = {}
-for _, jar_pattern in ipairs(jar_patterns) do
-  for _, bundle in ipairs(vim.split(vim.fn.glob(path.join(home, path.sanitize(jar_pattern))), "\n")) do
-    if
-      not vim.endswith(bundle, "com.microsoft.java.test.runner-jar-with-dependencies.jar")
-      and not vim.endswith(bundle, "com.microsoft.java.test.runner.jar")
-    then
-      table.insert(bundles, bundle)
-    end
-  end
-end
-local extendedClientCapabilities = jdtls.extendedClientCapabilities
-extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
-config.init_options = {
-  bundles = bundles,
-  extendedClientCapabilities = extendedClientCapabilities,
-}
+
+M = {}
 
 function M.jdtls_start_or_attach()
   jdtls.start_or_attach(config)
 end
 
 return M
--- TODO
---  formtter
---  start .launch file -> check vscode pde
---  load targetplatform
