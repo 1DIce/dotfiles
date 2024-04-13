@@ -28,6 +28,7 @@ local function files(opts)
   end
   opts.cmd = cmd
 
+  opts.cwd_prompt = false
   opts.ignore_current_file = true
 
   return fzflua.files(opts)
