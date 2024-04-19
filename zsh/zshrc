@@ -81,6 +81,8 @@ function cdf {
 # bat as pager for man
 export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
 
+export BAT_THEME=tokyonight_night
+
 
 # Syntax highl
 export LESSOPEN='|~/.config/less/lessfilter.sh %s'

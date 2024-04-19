@@ -1,0 +1,12 @@
+- create:
+    - ~/.config/bat
+
+- crossplatform-link:
+    - ~/.config/bat/themes:
+        platform: linux
+        path: bat/themes
+
+- crossplatform-shell:
+    # rebuild the bat cache with the new theme
+    - command: bat cache --build
+      platform: linux
