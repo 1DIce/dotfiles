@@ -49,28 +49,28 @@ The repository layout is pretty straight forward the following graph gives an ov
 ```
 
 
-# Installation
+## Installation
 
-## Installation on Ubuntu and Wsl
+### Installation on Ubuntu and Wsl
 1. Clone this repo into `~/dotfiles` by running `cd ~ && git clone https://github.com/1DIce/dotfiles.git`
 2. Setup shell proper configuration `./install-profile.sh ubuntu-shell`
 3. Install zsh and switch to it `sudo apt update && sudo apt install zsh -y && chsh -s /usr/bin/zsh`
 4. **Restart your terminal** to start using zsh. It is required for the rest of the installation to work properly.
 5. Setup the rest of the dotfiles and software `.install-profile ubuntu`
 
-## Installation on Windows
+### Installation on Windows
 1. Make sure that [scoop](scoop.sh) is installed on the system. Dotbot will use it to install dependencies
 2. Make sure you are using [git-bash](https://gitforwindows.org/) to run the installation
 3. Clone this repo into `~/dotfiles` by running `cd ~ && git clone https://github.com/1DIce/dotfiles.git`
 4. Run the dotbot profile for windows to install everything `./install-profile.sh windows`
 
-# Additional notes
+## Additional notes
 
-## installing a dotbot profile
+### Installing a dotbot profile
 `./install-profile <profile> [<configs...>]`
 The possible values for `profile` are the files in `meta/profiles/`
 
-## installing a single dotbot config
+### Installing a single dotbot config
 `./install-standalone <configs...>`
 The possible values for `configs` are the files in `meta/configs/`
 
@@ -78,7 +78,7 @@ You can also invoke a single configuration as a sudoer by adding -sudo to the en
 `./install-standalone some-config-sudo some-other-config`
 
 
-## Adding a new git submodule
+### Adding a new git submodule
 Add the submodule to the repository by running:
 ```
 cd ~/dotfiles 
@@ -89,8 +89,8 @@ git config -f .gitmodules submodule.path/to/submodule.ignore dirty
 
 Modify the install.conf.yml accordingly
 
-## Resources
+### Resources
 - https://github.com/anishathalye/dotbot/wiki/Tips-and-Tricks#how-can-i-have-different-groups-of-tasks-for-different-hosts-with-different-configurations
 
-# Credits
+## Credits
 - [ThePrimeagen](https://github.com/ThePrimeagen) for tmux-sessionizer and neovim setup inspiration
