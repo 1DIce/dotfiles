@@ -66,13 +66,6 @@ return require("lazy").setup({
     end,
   },
 
-  {
-    "vimwiki/vimwiki",
-    config = function()
-      require("ld.plugins.vim-wiki")
-    end,
-  },
-
   -- PlantUML
   "weirongxu/plantuml-previewer.vim",
   "aklt/plantuml-syntax",
