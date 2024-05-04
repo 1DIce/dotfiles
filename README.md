@@ -1,4 +1,4 @@
-# Dotfiles
+![Banner](banner.png)
 
 ## Getting started - Ubuntu
 1. setup shell proper configuration `./install-profile.sh ubuntu-shell`
