@@ -5,21 +5,11 @@ local parser_configs = parsers.get_parser_configs()
 parser_configs.css.filetype_to_parsername = "less"
 parser_configs.jsonc.filetype_to_parsername = "json"
 
-parser_configs.angular = {
-  install_info = {
-    url = "https://github.com/shootex/tree-sitter-angular",
-    files = { "src/parser.c" },
-    branch = "main",
-  },
-}
-if not parsers.has_parser("angular") then
-  installer.update("angular")
-end
-
 local treesitter = require("nvim-treesitter.configs")
 
 treesitter.setup({
   ensure_installed = {
+    "angular",
     "typescript",
     "markdown",
     "lua",
