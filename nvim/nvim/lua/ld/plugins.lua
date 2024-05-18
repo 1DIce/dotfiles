@@ -141,6 +141,7 @@ return require("lazy").setup({
         char = {
           highlight = { backdrop = false },
         },
+        search = { enabled = false },
       },
     },
   -- stylua: ignore
