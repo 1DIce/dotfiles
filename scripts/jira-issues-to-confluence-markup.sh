@@ -7,7 +7,7 @@ NR==1 {
     }
 }
 NR>1 {
-print "* " "{jiraissues:anonymous=false|url=https://jira.cas.de/issues/browse/"$ix["Issue key"]"}"
+print "* " "{jira:key="$ix["Issue key"]"}"
 }
-' 
+'
 
