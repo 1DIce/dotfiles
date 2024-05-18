@@ -77,14 +77,6 @@ function M.set_default(client, bufnr)
       "<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>",
       "Search document symbols"
     )
-  else
-    -- search for symbols in current buffer via treesitter -> only needed if lsp is not available
-    buf_set_keymap(
-      "n",
-      "<leader>bs",
-      "<cmd>lua require('telescope.builtin').treesitter()<CR>",
-      "Search document symbols"
-    )
   end
 
   buf_set_keymap("i", "<c-H>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Show signature")
