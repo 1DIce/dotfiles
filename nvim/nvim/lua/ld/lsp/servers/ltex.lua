@@ -2,11 +2,16 @@ local lsp = require("lspconfig")
 
 local M = {}
 
+local default_language = "de-DE"
+
 local function get_language(bufname)
   if require("ld.utils.functions").ends_with(bufname, "_de.properties") then
     return "de-DE"
-  else
+  elseif require("ld.utils.functions").ends_with(bufname, ".properties") then
     return "en-US"
+  else
+    -- use auto detection
+    return "auto"
   end
 end
 
@@ -24,7 +29,7 @@ function M.setup(on_attach)
   })
 
   local lsp_config = {
-    filetypes = { "jproperties", "markdown" },
+    filetypes = { "jproperties", "markdown", "tex" },
     on_attach = function(client, bufnr)
       local bufnr = vim.api.nvim_get_current_buf()
       local bufname = vim.fn.bufname(bufnr)
@@ -34,13 +39,14 @@ function M.setup(on_attach)
     end,
     settings = {
       ltex = {
-        language = "de-DE",
+        language = default_language,
         hiddenFalsePositives = {
           ["de-DE"] = { { rule = "WHITESPACE", sentence = "^.*=" } },
           -- ["en-US"] = {[[^.*=]],
         },
       },
     },
+    single_file_support = true,
   }
 
   return lsp_config

@@ -15,10 +15,10 @@ null_ls.setup({
       diagnostics_postprocess = function(diagnostic)
         diagnostic.severity = vim.diagnostic.severity["INFO"]
       end,
-      disabled_filetypes = { "NvimTree", "lua", "vim", "gitconfig", "vimwiki" },
+      disabled_filetypes = { "NvimTree", "lua", "vim", "gitconfig", "vimwiki", "tex", "markdown" },
       extra_args = function(params)
         if lsp.util.root_pattern(".vscode/cspell.json")(params.bufname) then
-          return vim.list_extend( params.options, { "--config", ".vscode/cspell.json" })
+          return vim.list_extend(params.options, { "--config", ".vscode/cspell.json" })
         end
         return params.options
       end,
