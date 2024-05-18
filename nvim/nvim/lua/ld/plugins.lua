@@ -65,7 +65,7 @@ return require("lazy").setup({
   -- Debugging
   {
     "rcarriga/nvim-dap-ui",
-    dependencies = { { "mfussenegger/nvim-dap" } },
+    dependencies = { { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
     config = function()
       require("ld.plugins.dap")
     end,
@@ -226,7 +226,7 @@ return require("lazy").setup({
   -- Autocomplete & Linters
   "neovim/nvim-lspconfig",
   "tjdevries/lsp_extensions.nvim",
-  "tami5/lspsaga.nvim",
+  "nvimdev/lspsaga.nvim",
   "onsails/lspkind-nvim",
   { "ray-x/lsp_signature.nvim", version = "v0.2.0" },
   "jose-elias-alvarez/typescript.nvim",

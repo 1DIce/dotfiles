@@ -13,12 +13,7 @@ function M.set_default(client, bufnr)
   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
   if cap.definitionProvider then
-    buf_set_keymap(
-      "n",
-      "gD",
-      "<cmd>lua require('lspsaga.provider').preview_definition()<CR>",
-      "Preview definition"
-    )
+    buf_set_keymap("n", "gD", "<cmd>Lspsaga peek_definition<CR>", "Preview definition")
     buf_set_keymap("n", "gT", "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Go to type definition")
     buf_set_keymap(
       "n",
@@ -46,12 +41,7 @@ function M.set_default(client, bufnr)
   end
 
   -- buf_set_keymap('n','<leader>th', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap(
-    "n",
-    "K",
-    "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>",
-    "Hover documentation"
-  )
+  buf_set_keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", "Hover documentation")
 
   if cap.documentSymbolProvider then
     -- search for all kinds of workspace symbols
@@ -116,7 +106,7 @@ function M.set_default(client, bufnr)
 
   if cap.renameProvider then
     -- buf_set_keymap('n','<leader>rr','<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    buf_set_keymap("n", "<leader>lr", "<cmd>lua require('lspsaga.rename').rename()<CR>", "Rename")
+    buf_set_keymap("n", "<leader>lr", "<cmd>Lspsaga rename<CR>", "Rename")
     -- buf_set_keymap('n', '<leader>lr', '<cmd>lua require(\'renamer\').rename()<cr>', 'lsp', 'lsp_rename', 'Rename')
   end
 

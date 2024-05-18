@@ -112,7 +112,7 @@ nnoremap(
 nnoremap("<leader>eq", "<cmd>lua vim.diagnostic.setqflist()", "Show workspace diagnostics")
 nnoremap(
   "<leader>eh",
-  "<cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>",
+  "<cmd>lua vim.diagnostic.open_float({border = 'rounded'})<CR>",
   "Show line diagnostics"
 )
 nnoremap("<leader>ej", "<cmd>lua vim.diagnostic.goto_next()<CR>", "next diagnostic")
