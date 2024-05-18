@@ -2,6 +2,13 @@ vim.api.nvim_create_user_command("NgTestCur", function()
   vim.cmd([[:Tkill | :T npm run test -- --include $(realpath --relative-to . %:p) ]])
 end, {})
 
+-- build angular App and fill the quickfix list with issues
+vim.api.nvim_create_user_command("NgMake", function()
+  vim.cmd(
+    [[:setlocal makeprg=ng\ build | setlocal errorformat=%EError:\ %f:%l:%c\ -\ %m,%-G%.%# | :make ]]
+  )
+end, {})
+
 local getDiffviewOriginalFilePath = function()
   local absolutePath = require("diffview.lib"):get_current_view():infer_cur_file().absolute_path
   if absolutePath then
