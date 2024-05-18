@@ -20,3 +20,7 @@ vim.api.nvim_create_user_command("GenUUID", function()
   local nline = line:sub(0, pos) .. uuid .. line:sub(pos + 1)
   vim.api.nvim_set_current_line(nline)
 end, {})
+
+vim.api.nvim_create_user_command("LspToggleInlayHints", function()
+  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end, {})
