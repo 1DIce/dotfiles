@@ -248,6 +248,7 @@ return require("lazy").setup({
   },
   {
     "mfussenegger/nvim-jdtls",
+    dependencies = { "mfussenegger/nvim-dap", "rcarriga/nvim-dap-ui" },
     config = function()
       require("ld.lsp.servers.jdtls")
     end,
