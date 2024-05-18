@@ -1,5 +1,3 @@
-vim.o.termguicolors = true
-
 local function tokyonight()
   vim.o.background = "dark"
 
