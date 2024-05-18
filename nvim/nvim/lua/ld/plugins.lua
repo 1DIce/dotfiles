@@ -51,13 +51,6 @@ return require("lazy").setup({
   -- makes vim follow symlinks, makes vim-fugitive work proerly with symlinks
   { "aymericbeaumet/vim-symlink" },
 
-  {
-    "tyru/open-browser.vim",
-    config = function()
-      require("ld.plugins.open-browser")
-    end,
-  },
-
   -- PlantUML
   "weirongxu/plantuml-previewer.vim",
   "aklt/plantuml-syntax",
