@@ -15,7 +15,7 @@ vim.cmd([[autocmd BufWritePre *.ts :lua require('ld.lsp.functions').format_organ
 -- Format file on save
 vim.cmd(
   -- using prettierd from null-ls for formatting
-  [[autocmd BufWritePre *.html,*.js,*.yml,*.yaml,*.less,*.json,*.scss,*.css,*.lua,*.cpp,*.h,*.rs :lua vim.lsp.buf.format({async = false}) ]]
+  [[autocmd BufWritePre *.html,*.js,*.yml,*.yaml,*.less,*.json,*.jsonc,*.scss,*.css,*.lua,*.cpp,*.h,*.rs :lua vim.lsp.buf.format({async = false}) ]]
 )
 
 return M
