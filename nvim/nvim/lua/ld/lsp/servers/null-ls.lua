@@ -63,6 +63,7 @@ local function build_cspell_json_from_vscode_settings()
     cspell_settings.words = {}
   end
   vim.list_extend(cspell_settings.words, vscode_cspell_words)
+  cpsell_settings.language = "en"
   cspell_settings.words = vim.fn.sort(cspell_settings.words)
   cspell_settings.words = vim.fn.uniq(cspell_settings.words)
 
