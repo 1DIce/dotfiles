@@ -78,6 +78,17 @@ return require("lazy").setup({
       require("ld.plugins.dap")
     end,
   },
+  {
+    "jay-babu/mason-nvim-dap.nvim",
+    event = "VeryLazy",
+    dependencies = { "williamboman/mason.nvim", "mfussenegger/nvim-dap" },
+    config = function()
+      require("mason-nvim-dap").setup({
+        ensure_installed = { "codelldb" },
+        handlers = {}, -- sets up dap in the predefined manner
+      })
+    end,
+  },
 
   -- color theme
   "Mofiqul/vscode.nvim",
