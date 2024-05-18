@@ -25,14 +25,6 @@ return require("lazy").setup({
     end,
   },
 
-  -- allow commenting blocks with gcc
-  {
-    "numToStr/Comment.nvim",
-    config = function()
-      require("Comment").setup()
-    end,
-  },
-
   {
     "danymat/neogen",
     config = function()
