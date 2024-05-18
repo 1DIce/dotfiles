@@ -91,20 +91,7 @@ return require("lazy").setup({
   },
 
   -- color theme
-  "Mofiqul/vscode.nvim",
-  "NTBBloodbath/doom-one.nvim",
-  -- use 'martinsione/darkplus.nvim'
-  -- use("LunarVim/darkplus.nvim")
-  -- use("tiagovla/tokyodark.nvim")
   "folke/tokyonight.nvim",
-  "ellisonleao/gruvbox.nvim",
-  -- alternative onedark for nvim ful1e5/onedark.nvim
-  -- use("joshdick/onedark.vim")
-  "tanvirtin/monokai.nvim",
-  -- use("rebelot/kanagawa.nvim")
-  -- use("yashguptaz/calvera-dark.nvim")
-  -- use("projekt0n/github-nvim-theme")
-  "olimorris/onedarkpro.nvim",
   "martinda/Jenkinsfile-vim-syntax",
   {
     "norcalli/nvim-colorizer.lua",
