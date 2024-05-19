@@ -2,7 +2,13 @@ return {
   -- Autocomplete & Linters
   "neovim/nvim-lspconfig",
   "tjdevries/lsp_extensions.nvim",
-  "nvimdev/lspsaga.nvim",
+  {
+    "nvimdev/lspsaga.nvim",
+    config = function()
+      local saga = require("lspsaga")
+      saga.setup({ lightbulb = { enable = false } })
+    end,
+  },
   "onsails/lspkind-nvim",
   { "ray-x/lsp_signature.nvim", version = "v0.2.0" },
   "jose-elias-alvarez/typescript.nvim",
