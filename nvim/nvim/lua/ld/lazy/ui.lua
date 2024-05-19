@@ -5,8 +5,11 @@ return {
 
   {
     "stevearc/dressing.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
     config = function()
-      require("ld.plugins.dressing")
+      require("dressing").setup({
+        select = { telescope = require("telescope.themes").get_cursor() },
+      })
     end,
   },
 
