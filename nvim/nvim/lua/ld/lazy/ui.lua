@@ -19,12 +19,4 @@ return {
   },
 
   "gennaro-tedesco/nvim-peekup", -- shows register preview
-
-  {
-    -- neovim welcome screen
-    "goolord/alpha-nvim",
-    config = function()
-      require("ld.plugins.alpha")
-    end,
-  },
 }
