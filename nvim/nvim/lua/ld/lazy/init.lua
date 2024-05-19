@@ -7,7 +7,6 @@ return {
 
   -- color theme
   "folke/tokyonight.nvim",
-  "martinda/Jenkinsfile-vim-syntax",
   {
     -- visualize hexcode color defintions in code
     "norcalli/nvim-colorizer.lua",

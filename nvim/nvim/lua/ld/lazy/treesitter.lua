@@ -4,6 +4,8 @@ local function treesitter_config()
   parser_configs.css.filetype_to_parsername = "less"
   parser_configs.jsonc.filetype_to_parsername = "json"
 
+  vim.treesitter.language.register("groovy", "Jenkinsfile")
+
   ---@diagnostic disable-next-line: missing-fields
   require("nvim-treesitter.configs").setup({
     ensure_installed = {
@@ -24,6 +26,7 @@ local function treesitter_config()
       "java",
       "vim",
       "cpp",
+      "groovy",
     },
     highlight = {
       enable = true,
