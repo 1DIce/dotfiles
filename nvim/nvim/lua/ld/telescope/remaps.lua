@@ -2,44 +2,44 @@ nnoremap("<leader>fp", "<cmd>Telescope projects<CR>", "Projects")
 
 nnoremap(
   "<leader>fl",
-  "<cmd>lua require('ld.plugins.telescope.functions').live_grep_raw()<CR>",
+  "<cmd>lua require('ld.telescope.functions').live_grep_raw()<CR>",
   "Live grep"
 )
 vnoremap(
   "<leader>fl",
-  "<cmd>lua require('ld.plugins.telescope.functions').live_grep_raw({},'v')<CR>",
+  "<cmd>lua require('ld.telescope.functions').live_grep_raw({},'v')<CR>",
   "Live grep visual"
 )
 nnoremap("<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<CR>", "Find files")
-nnoremap("<C-p>", "<cmd>lua require('ld.plugins.fzf').files()<CR>", "Find files")
+nnoremap("<C-p>", "<cmd>lua require('ld.fzf').files()<CR>", "Find files")
 vnoremap("<leader>fv", "<cmd>lua require('fzf-lua').grep_visual()<CR>", "Find visual selection")
 nnoremap(
   "<leader>fg",
-  "<cmd>lua require('ld.plugins.telescope.functions').git_files()<CR>",
+  "<cmd>lua require('ld.telescope.functions').git_files()<CR>",
   "Find git files"
 )
 vnoremap(
   "<leader>fg",
-  "<cmd>lua require('ld.plugins.telescope.functions').git_files()<CR>",
+  "<cmd>lua require('ld.telescope.functions').git_files()<CR>",
   "Find git files"
 )
 nnoremap("<leader>fc", "<cmd>lua require('telescope.builtin').git_status()<CR>", "Find git files")
 
 nnoremap(
   "<leader>fs",
-  "<cmd>lua require('ld.plugins.telescope.functions').live_grep_raw({default_text = vim.fn.expand('<cword>')})<CR>",
+  "<cmd>lua require('ld.telescope.functions').live_grep_raw({default_text = vim.fn.expand('<cword>')})<CR>",
   "Find string under cursor"
 )
 
 nnoremap(
   "<leader>fm",
-  "<cmd>lua require('ld.plugins.telescope.functions').find_files_angular_material()<CR>",
+  "<cmd>lua require('ld.telescope.functions').find_files_angular_material()<CR>",
   "Search angular material source code"
 )
 
 nnoremap(
   "<leader>vs",
-  "<cmd>lua require('ld.plugins.telescope.functions').search_config()<CR>",
+  "<cmd>lua require('ld.telescope.functions').search_config()<CR>",
   "Search neovim config"
 )
 nnoremap(
@@ -71,12 +71,12 @@ nnoremap(
 
 nnoremap(
   "<leader>bl",
-  "<cmd>lua require('ld.plugins.telescope.functions').buffers()<CR>",
+  "<cmd>lua require('ld.telescope.functions').buffers()<CR>",
   "List open buffers"
 )
 
 nnoremap(
   "<leader>fo",
-  "<cmd>lua require('ld.plugins.telescope.functions').file_browser_home()<CR>",
+  "<cmd>lua require('ld.telescope.functions').file_browser_home()<CR>",
   "Open file browser in $HOME"
 )

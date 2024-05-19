@@ -6,7 +6,7 @@ return {
       "vijaymarupudi/nvim-fzf",
     },
     config = function()
-      require("ld.plugins.fzf")
+      require("ld.fzf")
     end,
   },
 }

@@ -86,7 +86,7 @@ local function on_attach(bufnr)
   vim.keymap.set(
     "n",
     "C",
-    ":lua require('ld.plugins.nvim-tree.functions').executeShellCommandOnTreeNode()<CR>",
+    ":lua require('ld.nvim-tree.functions').executeShellCommandOnTreeNode()<CR>",
     opts("Execute shell command")
   )
 

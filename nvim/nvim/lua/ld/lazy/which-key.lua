@@ -2,7 +2,7 @@ return {
   {
     "folke/which-key.nvim",
     config = function()
-      require("ld.plugins.which-key")
+      require("ld.which-key")
     end,
   },
 }

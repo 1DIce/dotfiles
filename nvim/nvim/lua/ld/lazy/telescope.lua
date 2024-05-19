@@ -11,7 +11,7 @@ return {
       "AckslD/nvim-neoclip.lua",
     },
     config = function()
-      require("ld.plugins.telescope")
+      require("ld.telescope")
     end,
   },
   {

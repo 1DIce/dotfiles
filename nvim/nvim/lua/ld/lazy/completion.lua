@@ -3,7 +3,7 @@ return {
   {
     "hrsh7th/nvim-cmp",
     config = function()
-      require("ld.plugins.nvim-cmp")
+      require("ld.nvim-cmp")
     end,
     event = "InsertEnter",
     dependencies = {
@@ -17,7 +17,7 @@ return {
       {
         "windwp/nvim-autopairs",
         config = function()
-          require("ld.plugins.nvim-autopairs")
+          require("ld.nvim-autopairs")
         end,
       },
     },
