@@ -2,7 +2,7 @@ require("ld.defaults")
 
 require("ld.utils.remaps")
 
-require("ld.plugins")
+require("ld.init-lazy")
 
 require("ld.utils")
 
