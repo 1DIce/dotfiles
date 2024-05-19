@@ -1,7 +1,4 @@
 vim.filetype.add({
-  extension = {
-    jenkins = "Jenkinsfile",
-  },
   filename = {
     ["angular.json"] = "jsonc",
     ["profile_bash"] = "sh",
@@ -16,5 +13,20 @@ vim.filetype.add({
     [".*zprofile"] = "sh",
     [".*vrapperrc"] = "vim",
     ["i18n/.*%.properties"] = "jproperties",
+  },
+})
+
+-- Detecting jenkins files
+vim.filetype.add({
+  extension = {
+    jenkins = "Jenkinsfile",
+    jenkinsfile = "Jenkinsfile",
+    Jenkinsfile = "Jenkinsfile",
+  },
+  filename = {
+    ["Jenkinsfile"] = "Jenkinsfile",
+  },
+  pattern = {
+    ["Jenkinsfile*"] = "Jenkinsfile",
   },
 })
