@@ -40,6 +40,7 @@ cmp.setup({
       end,
     },
   },
+  ---@diagnostic disable-next-line: missing-fields
   formatting = {
     format = require("lspkind").cmp_format({
       mode = "symbol",
