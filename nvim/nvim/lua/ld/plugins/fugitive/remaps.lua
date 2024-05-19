@@ -1,6 +1,0 @@
-nmap("<leader>gs", "<cmd>G<CR>", "Git status")
-nmap("<leader>gf", "<cmd>diffget //2<CR>", "TODO diffget 2")
-nmap("<leader>gj", "<cmd>diffget //3<CR>", "TODO diffget 3")
-nmap("<leader>gd", "<cmd>Gdiffsplit<CR>", "Shows diff with git")
-nmap("<leader>gb", "<cmd>Git blame<CR>", "Blame")
-nmap("<leader>gh", "<cmd>0Gclog!<CR>", "Navigate history")
