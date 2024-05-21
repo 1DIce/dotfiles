@@ -24,7 +24,7 @@ cmp.setup({
       i = function(fallback)
         local cmp = require("cmp")
         local filetype = vim.bo.filetype
-        if filetype == "DressingInput" then
+        if filetype == "DressingInput" or filetype == "sagarename" then
           -- call the overriden mapping from dressing.nvim otherwise we would insert a new line
           fallback()
         end

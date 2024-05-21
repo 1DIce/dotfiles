@@ -6,7 +6,13 @@ return {
     "nvimdev/lspsaga.nvim",
     config = function()
       local saga = require("lspsaga")
-      saga.setup({ lightbulb = { enable = false } })
+      saga.setup({
+        lightbulb = { enable = false },
+        beacon = { enable = false },
+        symbol_in_winbar = {
+          enable = false,
+        },
+      })
     end,
   },
   "onsails/lspkind-nvim",
