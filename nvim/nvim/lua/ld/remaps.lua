@@ -15,8 +15,6 @@ nnoremap("<leader>y", '"+y', "yank to clipboard")
 vnoremap("<leader>y", '"+y', "yank to clipboard")
 nnoremap("<leader>p", '"+p', "paste from clipboard")
 vnoremap("<leader>p", '"+p', "paste from clipboard")
-nnoremap("<leader>d", '"_d', "delete to void")
-vnoremap("<leader>d", '"_d', "delete to void")
 
 -- do not replace register content when pasting in visual mode
 vnoremap("p", "pgvy", "Paste does not replace register content")
