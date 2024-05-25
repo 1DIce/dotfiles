@@ -67,19 +67,21 @@ cmp.setup({
   },
 })
 
-cmp.setup.filetype("Jenkinsfile", {
-  sources = {
-    {
-      name = "jenkinsfile",
-      option = {
-        gdsl_file = path_util.to_os_path(
-          os.getenv("HOME") .. "/dotfiles/merlin/jenkins-pipeline-syntax-gdsl"
-        ),
+if not vim.g.started_by_firenvim then
+  cmp.setup.filetype("Jenkinsfile", {
+    sources = {
+      {
+        name = "jenkinsfile",
+        option = {
+          gdsl_file = path_util.to_os_path(
+            os.getenv("HOME") .. "/dotfiles/merlin/jenkins-pipeline-syntax-gdsl"
+          ),
+        },
       },
+      { name = "buffer", max_item_count = 5, keyword_length = 4 },
     },
-    { name = "buffer", max_item_count = 5, keyword_length = 4 },
-  },
-})
+  })
+end
 
 local cmdlineMappings = {
   ["<C-j>"] = {

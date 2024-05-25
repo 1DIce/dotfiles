@@ -4,17 +4,20 @@ return {
     "tpope/vim-fugitive",
     -- makes vim follow symlinks, makes vim-fugitive work proerly with symlinks
     dependencies = "aymericbeaumet/vim-symlink",
+    lazy = vim.g.started_by_firenvim,
   },
   {
     -- Adds commands :DiffviewFileHistory and :DiffviewOpen [git ref]
     "sindrets/diffview.nvim",
     dependencies = "nvim-lua/plenary.nvim",
+    lazy = vim.g.started_by_firenvim,
     config = function()
       require("diffview").setup({})
     end,
   },
   {
     "lewis6991/gitsigns.nvim",
+    lazy = vim.g.started_by_firenvim,
     config = function()
       require("gitsigns").setup({
         on_attach = function(bufnr)

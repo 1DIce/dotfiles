@@ -1,6 +1,7 @@
 return {
   {
     "kevinhwang91/nvim-bqf",
+    lazy = vim.g.started_by_firenvim,
     config = function()
       ---@diagnostic disable-next-line: missing-fields
       require("bqf").setup({

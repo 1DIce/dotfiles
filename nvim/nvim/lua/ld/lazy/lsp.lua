@@ -4,6 +4,7 @@ return {
   "tjdevries/lsp_extensions.nvim",
   {
     "nvimdev/lspsaga.nvim",
+    lazy = vim.g.started_by_firenvim,
     config = function()
       local saga = require("lspsaga")
       saga.setup({

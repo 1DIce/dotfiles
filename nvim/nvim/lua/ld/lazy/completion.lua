@@ -13,7 +13,6 @@ return {
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-nvim-lua",
       "hrsh7th/cmp-cmdline",
-      "joshzcold/cmp-jenkinsfile",
       {
         "windwp/nvim-autopairs",
         config = function()
@@ -21,5 +20,9 @@ return {
         end,
       },
     },
+  },
+  {
+    "joshzcold/cmp-jenkinsfile",
+    lazy = vim.g.started_by_firenvim,
   },
 }

@@ -2,6 +2,7 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     dependencies = { "kyazdani42/nvim-web-devicons", lazy = true },
+    lazy = vim.g.started_by_firenvim,
     config = function()
       require("lualine").setup({
         options = {

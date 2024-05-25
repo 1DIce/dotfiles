@@ -1,3 +1,7 @@
+-- disable using shada file in firenvim. It seems to break it all the time
+if vim.g.started_by_firenvim then
+  vim.opt.shadafile = "NONE"
+end
 -- disable netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
