@@ -4,7 +4,7 @@ return {
   "tpope/vim-repeat", -- extends . repeat, for example for make it work with vim-sneak
   "tpope/vim-surround", -- Change surrounding arks
   "wellle/targets.vim",
-
+  "AndrewRadev/bufferize.vim",
   -- color theme
   "folke/tokyonight.nvim",
   {
