@@ -1,7 +1,8 @@
 - crossplatform-shell:
-  - command: brew install pipx && pipx ensurepath
-    platform: linux
-  - command: python -m pip install --user pipx && python -m pipx ensurepath
-    platform: win32
-  - pipx install thefuck
-  - pipx install yamllint
+    - command: brew install pipx && pipx ensurepath
+      platform: linux
+    - command: python -m pip install --user pipx && python -m pipx ensurepath
+      platform: win32
+      # The fuck does currently not support a newer python version
+    - pipx install --python 3.11 --fetch-missing-python thefuck
+    - pipx install yamllint
