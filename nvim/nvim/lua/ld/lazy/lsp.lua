@@ -17,7 +17,7 @@ return {
     end,
   },
   "onsails/lspkind-nvim",
-  { "ray-x/lsp_signature.nvim", version = "v0.2.0" },
+  { "ray-x/lsp_signature.nvim", version = "v0.3.1" },
   "jose-elias-alvarez/typescript.nvim",
   "folke/neodev.nvim",
   {

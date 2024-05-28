@@ -32,15 +32,19 @@ M = {}
 vim.lsp.set_log_level("error")
 
 local function on_attach(client, bufnr)
+  vim.diagnostic.config({
+    virtual_text = { severity = vim.diagnostic.severity.ERROR },
+    underline = true,
+  })
+
+  if vim.tbl_contains({ "null-ls" }, client.name) then -- blacklist lsp
+    return
+  end
   require("ld.lsp.remaps").set_default(client, bufnr)
   -- add signature autocompletion while typing
   require("lsp_signature").on_attach({
     floating_window = false,
     timer_interval = 500,
-  })
-  vim.diagnostic.config({
-    virtual_text = { severity = vim.diagnostic.severity.ERROR },
-    underline = true,
   })
 end
 
