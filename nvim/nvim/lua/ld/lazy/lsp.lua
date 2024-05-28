@@ -1,7 +1,6 @@
 return {
   -- Autocomplete & Linters
   "neovim/nvim-lspconfig",
-  "tjdevries/lsp_extensions.nvim",
   {
     "nvimdev/lspsaga.nvim",
     lazy = vim.g.started_by_firenvim,
