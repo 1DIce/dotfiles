@@ -8,6 +8,11 @@ local liblldb_path = extension_path .. "/lldb/lib/liblldb.so"
 function M.setup(on_attach, capabilities)
   vim.g.rustaceanvim = function()
     return {
+      tools = {
+        hover_actions = {
+          { replace_builtin_hover = false },
+        },
+      },
       server = {
         on_attach = function(client, bufnr)
           on_attach(client, bufnr)

@@ -59,6 +59,10 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
 
     update_in_insert = false,
   })
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+  -- Use a rounded border with `FloatBorder` highlights
+  border = "rounded",
+})
 
 local capabilities =
   { textDocument = { completion = { completionItem = { snippetSupport = true } } } }
