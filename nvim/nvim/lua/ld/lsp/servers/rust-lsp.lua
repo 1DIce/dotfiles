@@ -6,23 +6,18 @@ local codelldb_path = extension_path .. "/adapter/codelldb"
 local liblldb_path = extension_path .. "/lldb/lib/liblldb.so"
 
 function M.setup()
-  vim.g.rustaceanvim = function()
-    return {
-      tools = {
-        hover_actions = {
-          { replace_builtin_hover = false },
-        },
+  vim.g.rustaceanvim = {
+    tools = {
+      hover_actions = {
+        { replace_builtin_hover = false },
       },
-      server = {
-        dap = {
-          adapter = require("rustaceanvim.config").get_codelldb_adapter(
-            codelldb_path,
-            liblldb_path
-          ),
-        },
+    },
+    server = {
+      dap = {
+        adapter = require("rustaceanvim.config").get_codelldb_adapter(codelldb_path, liblldb_path),
       },
-    }
-  end
+    },
+  }
 end
 
 return M
