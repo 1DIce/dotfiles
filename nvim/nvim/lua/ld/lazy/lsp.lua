@@ -17,7 +17,10 @@ return {
   },
   "onsails/lspkind-nvim",
   { "ray-x/lsp_signature.nvim", version = "v0.3.1" },
-  "jose-elias-alvarez/typescript.nvim",
+  {
+  "pmizio/typescript-tools.nvim",
+  dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+  },
   "folke/neodev.nvim",
   {
     "mrcjkb/rustaceanvim",

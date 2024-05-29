@@ -1,40 +1,48 @@
 local remaps = require("ld.lsp.remaps")
-local events = require("ld.lsp.events")
 local vscodeSettings = require("ld.lsp.vscode-settings")
 
-local initOptions = {
-  preferences = {
-    quotePreference = "double",
-    importModuleSpecifierPreference = vscodeSettings.getValueOr(
-      "typescript.preferences.importModuleSpecifier",
-      "non-relative"
-    ),
-  },
-}
+M = {}
 
-local settings = {
-  typescript = { format = { indentSize = 2 } },
-  completions = { completeFunctionCalls = true },
-}
-
-return function(on_attach, capabilities)
-  local modfiedCapabilities = vim.deepcopy(capabilities)
-  modfiedCapabilities.textDocument.rename = false
-
-  return {
+function M.setup()
+  require("typescript-tools").setup({
     on_attach = function(client, bufnr)
-      on_attach(client, bufnr)
-
       local cap = client.server_capabilities
       cap.documentFormattingProvider = false -- null-ls handles the formatting
       cap.renameProvider = false
       remaps.set_typescript(client, bufnr)
-
-      events.document_highlight_under_cursor()
     end,
-    init_options = initOptions,
-    capabilities = modfiedCapabilities,
 
-    settings = settings,
-  }
+    handlers = {
+      ["textDocument/rename"] = function(err, result, ctx, config)
+        -- empty handler because renaming should be done by angular client and not by tsserver
+      end,
+    },
+    settings = {
+      -- spawn additional tsserver instance to calculate diagnostics on it
+      separate_diagnostic_server = true,
+      publish_diagnostic_on = "insert_leave",
+      expose_as_code_action = { "remove_unused", "fix_all" },
+      -- string|nil - specify a custom path to `tsserver.js` file, if this is nil or file under path
+      -- not exists then standard path resolution strategy is applied
+      tsserver_path = nil,
+      complete_function_calls = true,
+      include_completions_with_insert_text = true,
+      tsserver_file_preferences = {
+        quotePreference = "double",
+        importModuleSpecifierPreference = vscodeSettings.getValueOr(
+          "typescript.preferences.importModuleSpecifier",
+          "non-relative"
+        ),
+      },
+      tsserver_format_options = {
+        { indentSize = 2 },
+      },
+    },
+  })
+
+  vim.api.nvim_create_user_command("TypescriptRenameFile", function()
+    require("typescript-tools.api").rename_file(true)
+  end, {})
 end
+
+return M
