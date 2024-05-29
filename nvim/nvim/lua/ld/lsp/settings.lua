@@ -37,15 +37,7 @@ local function on_attach(client, bufnr)
     underline = true,
   })
 
-  if vim.tbl_contains({ "null-ls" }, client.name) then -- blacklist lsp
-    return
-  end
   require("ld.lsp.remaps").set_default(client, bufnr)
-  -- add signature autocompletion while typing
-  require("lsp_signature").on_attach({
-    floating_window = false,
-    timer_interval = 500,
-  })
 end
 
 M.on_attach = on_attach
@@ -79,13 +71,15 @@ local sumneko_lua_config = function()
   return {
     autostart = false,
     on_attach = function(client, bufnr)
-      client.server_capabilities.documentFormattingProvider = false -- null-ls handles the formatting
+      client.server_capabilities.documentFormattingProvider = false
       on_attach(client, bufnr)
     end,
     capabilities = capabilities,
     settings = {
       Lua = {
-        format = { enable = false },
+        format = {
+          enable = false, -- null-ls handles the formatting
+        },
       },
     },
   }

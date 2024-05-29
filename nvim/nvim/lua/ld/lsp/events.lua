@@ -1,6 +1,7 @@
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("ld-lsp-attach", { clear = true }),
   callback = function(event)
+    local bufnr = event.buf
     local client = vim.lsp.get_client_by_id(event.data.client_id)
 
     -- The following two autocommands are used to highlight references of the
@@ -31,13 +32,20 @@ vim.api.nvim_create_autocmd("LspAttach", {
       })
     end
 
+    if not vim.tbl_contains({ "null-ls" }, client.name) then -- blacklist lsp
+      -- add signature autocompletion while typing
+      require("lsp_signature").on_attach({
+        floating_window = false,
+        timer_interval = 500,
+      }, bufnr)
+    end
   end,
 })
 
 -- The following autocommands setup formating on save
 local format_on_save_augroup = vim.api.nvim_create_augroup("ld-format_on_save", { clear = true })
 -- using special organize imports + formatting with prettier for typescript files
-vim.api.nvim_create_autocmd({ "BufWritePre"  }, {
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   pattern = "*.ts",
   group = format_on_save_augroup,
   callback = function()
@@ -45,12 +53,11 @@ vim.api.nvim_create_autocmd({ "BufWritePre"  }, {
   end,
 })
 
-
 -- using prettierd from null-ls or native lsp client for formatting on save on all those file types
-vim.api.nvim_create_autocmd({ "BufWritePre"  }, {
-  pattern = "*.html,*.js,*.yml,*.yaml,*.less,*.json,*.jsonc,*.scss,*.css,*.lua,*.cpp,*.h,*.rs"
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  pattern = "*.html,*.js,*.yml,*.yaml,*.less,*.json,*.jsonc,*.scss,*.css,*.lua,*.cpp,*.h,*.rs",
   group = format_on_save_augroup,
   callback = function()
-    vim.lsp.buf.format({async = false})
+    vim.lsp.buf.format({ async = false })
   end,
 })
