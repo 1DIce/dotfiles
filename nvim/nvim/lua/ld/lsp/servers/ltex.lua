@@ -15,7 +15,7 @@ local function get_language(bufname)
   end
 end
 
-function M.setup(on_attach)
+function M.setup()
   vim.api.nvim_create_autocmd({ "BufRead", "BufWritePost" }, {
     pattern = "*_de.properties",
     -- replace unicode escape sequences with actual characters
@@ -35,7 +35,6 @@ function M.setup(on_attach)
       local bufname = vim.fn.bufname(bufnr)
       local language = get_language(bufname)
       client.config.settings.ltex.language = language
-      on_attach(client, bufnr)
     end,
     settings = {
       ltex = {

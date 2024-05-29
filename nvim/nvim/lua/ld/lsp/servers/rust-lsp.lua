@@ -5,7 +5,7 @@ local codelldb_path = extension_path .. "/adapter/codelldb"
 -- The path is only valid on linux!
 local liblldb_path = extension_path .. "/lldb/lib/liblldb.so"
 
-function M.setup(on_attach, capabilities)
+function M.setup()
   vim.g.rustaceanvim = function()
     return {
       tools = {
@@ -14,9 +14,6 @@ function M.setup(on_attach, capabilities)
         },
       },
       server = {
-        on_attach = function(client, bufnr)
-          on_attach(client, bufnr)
-        end,
         dap = {
           adapter = require("rustaceanvim.config").get_codelldb_adapter(
             codelldb_path,

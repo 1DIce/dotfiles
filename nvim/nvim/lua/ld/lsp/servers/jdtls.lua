@@ -221,7 +221,6 @@ local config = {
     bundles = get_bundles(),
   },
   on_attach = function(client, bufnr)
-    require("ld.lsp.remaps").set_default(client, bufnr)
 
     -- https://github.com/mfussenegger/dotfiles/blob/833d634251ebf3bf7e9899ed06ac710735d392da/vim/.config/nvim/ftplugin/java.lua#L88-L94
     -- local opts = { silent = true, buffer = bufnr }

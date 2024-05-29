@@ -26,21 +26,13 @@ require("mason-lspconfig").setup({
   },
 })
 
+local function on_attach() end
+
 M = {}
+
 -- for debugging lsp
 -- Levels by name: 'trace', 'debug', 'info', 'warn', 'error'
 vim.lsp.set_log_level("error")
-
-local function on_attach(client, bufnr)
-  vim.diagnostic.config({
-    virtual_text = { severity = vim.diagnostic.severity.ERROR },
-    underline = true,
-  })
-
-  require("ld.lsp.remaps").set_default(client, bufnr)
-end
-
-M.on_attach = on_attach
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
   vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -65,15 +57,11 @@ end
 
 M.capabilities = capabilities
 
-local default_lsp_config = { on_attach = on_attach, capabilities }
+local default_lsp_config = { capabilities }
 
 local sumneko_lua_config = function()
   return {
     autostart = false,
-    on_attach = function(client, bufnr)
-      client.server_capabilities.documentFormattingProvider = false
-      on_attach(client, bufnr)
-    end,
     capabilities = capabilities,
     settings = {
       Lua = {
@@ -178,7 +166,7 @@ local servers = {
   pylsp = {},
   gopls = {},
   lua_ls = sumneko_lua_config(),
-  ltex = require("ld.lsp.servers.ltex").setup(on_attach),
+  ltex = require("ld.lsp.servers.ltex").setup(),
   cmake = {},
 }
 
@@ -193,7 +181,7 @@ else
   servers.angularls = angular_config()
 end
 
-require("ld.lsp.servers.rust-lsp").setup(on_attach, capabilities)
+require("ld.lsp.servers.rust-lsp").setup()
 
 for serverName, config in pairs(servers) do
   lsp[serverName].setup(vim.tbl_deep_extend("force", default_lsp_config, config))
