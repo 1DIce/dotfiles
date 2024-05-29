@@ -6,6 +6,7 @@ return {
     config = function()
       require("lualine").setup({
         options = {
+          theme = "tokyonight",
           disabled_filetypes = {
             winbar = { "NvimTree", "fugitive", "gitcommit", "alpha", "neoterm" },
           },
@@ -15,7 +16,7 @@ return {
           lualine_a = {
             { "mode" },
           },
-          lualine_b = { "branch", "diff", "diagnostics" },
+          lualine_b = { "branch", "diagnostics" },
           lualine_c = {},
           lualine_x = { "progress", "location" },
           lualine_y = { "encoding", "fileformat" },
