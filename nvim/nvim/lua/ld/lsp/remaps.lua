@@ -40,8 +40,7 @@ function M.set_default(client, bufnr)
     )
   end
 
-  -- buf_set_keymap('n','<leader>th', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()", "Hover documentation")
+  buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover documentation")
 
   if cap.documentSymbolProvider then
     -- search for all kinds of workspace symbols
