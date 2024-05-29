@@ -158,7 +158,8 @@ local servers = {
     root_dir = lsp.util.root_pattern("tsconfig.json"),
     -- Refer to https://github.com/Microsoft/vscode-eslint#settings-options for documentation.
     settings = {
-      workingDirectory = { { mode = "location" } },
+      workingDirectory = { mode = "location" },
+      format = false,
     },
   },
   pylsp = {},
