@@ -79,7 +79,6 @@ local sumneko_lua_config = function()
   return {
     autostart = false,
     on_attach = function(client, bufnr)
-      require("ld.lsp.events").document_highlight_under_cursor()
       client.server_capabilities.documentFormattingProvider = false -- null-ls handles the formatting
       on_attach(client, bufnr)
     end,
