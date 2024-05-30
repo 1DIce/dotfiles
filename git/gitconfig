@@ -84,3 +84,5 @@
   path = ~/.gitconfig-work
 [includeIf "gitdir:C:/configurator-ide/"]
   path = ~/.gitconfig-work
+[credential "https://dev.azure.com"]
+	useHttpPath = true
