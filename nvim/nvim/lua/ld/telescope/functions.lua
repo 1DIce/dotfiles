@@ -41,6 +41,9 @@ M.lsp_unique_references = function(opts)
     return
   end
 
+  local lnum = vim.api.nvim_win_get_cursor(vim.api.nvim_get_current_win())[1]
+  local include_current_line = opts.include_current_line == true
+
   local locations = {}
   local hashSet = {}
 
@@ -65,6 +68,12 @@ M.lsp_unique_references = function(opts)
         vim.lsp.util.locations_to_items(filtered_results, offset_encoding) or {}
       )
     end
+  end
+
+  if not include_current_line then
+    locations = vim.tbl_filter(function(v)
+      return not (v.filename and v.lnum == lnum)
+    end, locations)
   end
 
   if vim.tbl_isempty(locations) then
