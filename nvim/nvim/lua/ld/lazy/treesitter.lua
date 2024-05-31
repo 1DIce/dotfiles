@@ -34,12 +34,7 @@ local function treesitter_config()
     },
     rainbow = { enable = true, extended_mode = false, max_file_lines = nil },
     matchup = { enable = true },
-    refactor = {
-      highlight_current_scope = { enable = false },
-      highlight_definitions = { enable = false },
-    },
     autotag = { enable = true },
-    playground = { enable = true },
     query_linter = {
       enable = false,
       use_virtual_text = true,
@@ -193,25 +188,19 @@ return {
     end,
     config = function()
       treesitter_config()
+      treesitter_context_config()
+      treesitter_textobjects_config()
     end,
 
     dependencies = {
-      "nvim-treesitter/nvim-treesitter-refactor",
       "windwp/nvim-ts-autotag",
       "mrjones2014/nvim-ts-rainbow",
-      "nvim-treesitter/playground",
       "andymass/vim-matchup",
       {
         "nvim-treesitter/nvim-treesitter-context",
-        config = function()
-          treesitter_context_config()
-        end,
       },
       {
         "nvim-treesitter/nvim-treesitter-textobjects",
-        config = function()
-          treesitter_textobjects_config()
-        end,
       },
     },
   },
