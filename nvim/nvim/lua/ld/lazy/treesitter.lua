@@ -32,9 +32,7 @@ local function treesitter_config()
       enable = true,
       additional_vim_regex_highlighting = { "plantuml" },
     },
-    rainbow = { enable = true, extended_mode = false, max_file_lines = nil },
     matchup = { enable = true },
-    autotag = { enable = true },
     query_linter = {
       enable = false,
       use_virtual_text = true,
@@ -188,20 +186,37 @@ return {
     end,
     config = function()
       treesitter_config()
+    end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+    },
+    config = function()
       treesitter_context_config()
+    end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+    },
+    config = function()
       treesitter_textobjects_config()
     end,
-
-    dependencies = {
-      "windwp/nvim-ts-autotag",
-      "mrjones2014/nvim-ts-rainbow",
-      "andymass/vim-matchup",
-      {
-        "nvim-treesitter/nvim-treesitter-context",
-      },
-      {
-        "nvim-treesitter/nvim-treesitter-textobjects",
-      },
-    },
   },
+  {
+
+    "windwp/nvim-ts-autotag",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    config = function()
+      require("nvim-ts-autotag").setup({})
+    end,
+  },
+  {
+    "hiphish/rainbow-delimiters.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+  },
+  "andymass/vim-matchup",
 }
