@@ -8,6 +8,13 @@ vim.api.nvim_create_user_command("NgMake", function()
     [[:setlocal makeprg=ng\ build | setlocal errorformat=%EError:\ %f:%l:%c\ -\ %m,%-G%.%# | :make ]]
   )
 end, {})
+--
+-- run angular App test and fill the quickfix list with issues
+vim.api.nvim_create_user_command("NgMakeTest", function()
+  vim.cmd(
+    [[:setlocal makeprg=ng\ test\ --configuration=ci\ --watch=false | setlocal errorformat=%EError:\ %f:%l:%c\ -\ %m,%-G%.%# | :make]]
+  )
+end, {})
 
 local getDiffviewOriginalFilePath = function()
   local absolutePath = require("diffview.lib"):get_current_view():infer_cur_file().absolute_path
