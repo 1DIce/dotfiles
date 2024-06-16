@@ -57,6 +57,7 @@ vim.o.updatetime = 50
 -- noinsert: Do not insert text until a selection is made
 -- noselect: Do not select, force user to select one from the menu
 vim.o.completeopt = "menu,menuone,noselect"
+vim.o.complete = ".,w,t"
 
 -- use ripgrep as the grep command
 vim.o.grepprg = "rg --vimgrep --no-heading --smart-case --hidden"
