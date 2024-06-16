@@ -15,12 +15,7 @@ function M.set_default(client, bufnr)
   if cap.definitionProvider then
     buf_set_keymap("n", "gD", "<cmd>Lspsaga peek_definition<CR>", "Preview definition")
     buf_set_keymap("n", "gT", "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Go to type definition")
-    buf_set_keymap(
-      "n",
-      "gd",
-      "<cmd>lua require('ld.lsp.functions').go_to_definition()<CR>",
-      "go to  definition"
-    )
+    buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", "go to  definition")
   end
 
   if cap.implementationProvider then
@@ -119,10 +114,10 @@ function M.set_typescript(client, bufnr)
   buf_set_keymap(
     "n",
     "<leader>loi",
-    "<cmd>lua require('ld.lsp.functions').typescript_organize_imports()<CR>",
-    "Organize imports"
+    "<cmd>lua require('ld.lsp.functions').format_organize_typescript()<CR>",
+    "Format & organize imports"
   )
   -- buf_set_keymap("n", "gr", ":TSLspRenameFile<CR>", 'lsp', 'lsp_', '')
-  buf_set_keymap("n", "<leader>loa", "<cmd>TSToolsAddMissingImports<CR>", "Import all")
+  buf_set_keymap("n", "<leader>loa", "<cmd>VtsExec add_missing_imports<CR>", "Import all")
 end
 return M

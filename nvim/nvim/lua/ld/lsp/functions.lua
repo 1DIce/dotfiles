@@ -21,6 +21,16 @@ M.is_lsp_client_active = function(client_name)
   return not vim.tbl_isempty(filtered_clients)
 end
 
+function M.typescript_organize_imports_sync(bufnr, timeout)
+  bufnr = bufnr or vim.api.nvim_get_current_buf()
+
+  local parameters = {
+    command = "typescript.organizeImports",
+    arguments = { vim.api.nvim_buf_get_name(bufnr) },
+  }
+  return vim.lsp.buf_request_sync(bufnr, "workspace/executeCommand", parameters, timeout)
+end
+
 function M.format_organize_typescript()
   if M.is_deno_workspace() then
     vim.lsp.buf.format({
@@ -30,19 +40,10 @@ function M.format_organize_typescript()
       async = false,
     })
   else
-    require("typescript-tools.api").organize_imports(true)
+    M.typescript_organize_imports_sync()
     vim.lsp.buf.format({
       async = false,
     })
-  end
-end
-
-function M.go_to_definition()
-  local filetype = vim.bo.filetype
-  if filetype == "typescript" and util_functions.command_exists("TSToolsGoToSourceDefinition") then
-    require("typescript-tools.api").go_to_source_definition(true)
-  else
-    vim.lsp.buf.definition()
   end
 end
 

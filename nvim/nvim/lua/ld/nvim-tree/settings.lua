@@ -13,8 +13,7 @@ local function rename_typescript_file(node)
       return
     end
 
-    -- TODO maybe just copy this function from the repo jose-elias-alvarez/typescript.nvim
-    require("typescript").renameFile(source, input)
+    require("vtsls").rename(source, input, nil, nil)
   end)
 end
 
@@ -91,16 +90,16 @@ local function on_attach(bufnr)
     opts("Execute shell command")
   )
 
-  vim.keymap.set("n", "r", function(node)
-    --TODO renaming any file is not supported by typescript-tools
-    -- if
-    --   is_typescript_file_node(node)
-    --   and require("ld.lsp.functions").is_lsp_client_active("tsserver")
-    -- then
-    --   rename_typescript_file(node)
-    -- else
-    tree_api_fs.rename()
-    -- end
+  vim.keymap.set("n", "r", function()
+    local node = api.tree.get_node_under_cursor()
+    if
+      is_typescript_file_node(node)
+      and require("ld.lsp.functions").is_lsp_client_active("vtsls")
+    then
+      rename_typescript_file(node)
+    else
+      tree_api_fs.rename()
+    end
   end, opts("Rename"))
 end
 

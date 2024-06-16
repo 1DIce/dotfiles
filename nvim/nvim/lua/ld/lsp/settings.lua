@@ -21,7 +21,8 @@ require("mason-lspconfig").setup({
     "cssls",
     "eslint",
     "lua_ls",
-    "tsserver",
+    -- "tsserver",
+    "vtsls", -- alternative typescript lsp
     "angularls",
   },
 })
@@ -176,7 +177,7 @@ local servers = {
 if functions.is_deno_workspace() then
   servers.denols = deno_config()
 else
-  require("ld.lsp.servers.tsserver").setup()
+  servers.vtsls = require("ld.lsp.servers.vtsls-typescript").setup()
   servers.angularls = angular_config()
 end
 

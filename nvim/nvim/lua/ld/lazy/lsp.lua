@@ -15,11 +15,8 @@ return {
       })
     end,
   },
+  "yioneko/nvim-vtsls",
   "onsails/lspkind-nvim",
-  {
-    "pmizio/typescript-tools.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-  },
   "folke/neodev.nvim",
   {
     "mrcjkb/rustaceanvim",
