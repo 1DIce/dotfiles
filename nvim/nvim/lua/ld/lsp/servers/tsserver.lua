@@ -28,7 +28,7 @@ function M.setup()
       complete_function_calls = true,
       include_completions_with_insert_text = true,
       tsserver_file_preferences = {
-        quotePreference = "double",
+        quotePreference = vscodeSettings.getValueOr("typescript.preferences.quoteStyle,", "double"),
         importModuleSpecifierPreference = vscodeSettings.getValueOr(
           "typescript.preferences.importModuleSpecifier",
           "non-relative"
