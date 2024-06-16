@@ -1,37 +1,6 @@
 local function files(opts)
   opts = opts or {}
-
-  local fzflua = require("fzf-lua")
-
-  local cmd = nil
-  local fdCmd = "fdfind"
-  if vim.fn.executable("fd") == 1 then
-    fdCmd = "fd"
-  end
-
-  local fzfutils = require("fzf-lua.utils")
-  -- fzf-lua.defaults#defaults.files.fd_opts
-  cmd = string.format(
-    fdCmd .. [[ --color=never --type f --hidden --follow --exclude .git -x printf "{/} %s {}\n"]],
-    fzfutils.ansi_codes.grey("{//}")
-  )
-  opts.fzf_opts = {
-    -- process ansi colors
-    ["--ansi"] = "",
-    ["--with-nth"] = "1..-2",
-    ["--delimiter"] = "\\s",
-  }
-  opts._fmt = opts._fmt or {}
-  opts._fmt.from = function(entry, _opts)
-    local s = fzfutils.strsplit(entry, " ")
-    return s[3]
-  end
-  opts.cmd = cmd
-
-  opts.cwd_prompt = false
-  opts.ignore_current_file = true
-
-  return fzflua.files(opts)
+  return require("fzf-lua").files(opts)
 end
 
 local actions = require("fzf-lua.actions")
