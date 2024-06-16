@@ -123,6 +123,6 @@ function M.set_typescript(client, bufnr)
     "Organize imports"
   )
   -- buf_set_keymap("n", "gr", ":TSLspRenameFile<CR>", 'lsp', 'lsp_', '')
-  buf_set_keymap("n", "<leader>loa", ":TypescriptAddMissingImports<CR>", "Import all")
+  buf_set_keymap("n", "<leader>loa", "<cmd>TSToolsAddMissingImports<CR>", "Import all")
 end
 return M
