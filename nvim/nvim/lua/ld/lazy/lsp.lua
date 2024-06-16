@@ -16,10 +16,9 @@ return {
     end,
   },
   "onsails/lspkind-nvim",
-  { "ray-x/lsp_signature.nvim", version = "v0.3.1" },
   {
-  "pmizio/typescript-tools.nvim",
-  dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
   },
   "folke/neodev.nvim",
   {

@@ -38,14 +38,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end,
       })
     end
-
-    if not vim.tbl_contains({ "null-ls" }, client.name) then -- blacklist lsp
-      -- add signature autocompletion while typing
-      require("lsp_signature").on_attach({
-        floating_window = false,
-        timer_interval = 500,
-      }, bufnr)
-    end
   end,
 })
 
