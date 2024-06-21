@@ -31,14 +31,14 @@ function M.getDeepJsonValue(json, key)
     return json[key]
   end
 
-  local keys = vim.fn.split(key, ".")
+  local keys = vim.split(key, ".", { plain = true })
 
   local nestedTabel = json
   for _, value in ipairs(keys) do
+    nestedTabel = nestedTabel[value]
     if nestedTabel == nil then
       return nil
     end
-    nestedTabel = nestedTabel[value]
   end
   return nestedTabel
 end
