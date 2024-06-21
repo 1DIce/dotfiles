@@ -37,25 +37,17 @@ function M.setup()
         preferGoToSourceDefinition = true,
         preferences = {
           quotePreference = vscodeSettings.getValueOr(
-            "typescript.preferences.quoteStyle,",
+            "typescript.preferences.quoteStyle",
             "double"
           ),
           importModuleSpecifierPreference = vscodeSettings.getValueOr(
             "typescript.preferences.importModuleSpecifier",
             "non-relative"
           ),
-          autoImportFileExcludePatterns = {
-            "./src/generated/antlr-ruletree/**/*",
-            "**/node_modules/@types/node",
-            "**/node_modules/@types/lz-string",
-            "**/node_modules/lz-string",
-            "**/node_modules/tinymce",
-            "**/node_modules/dayjs",
-            "**/node_modules/ajv",
-            "**/node_modules/ajv-formats",
-            "**/node_modules/ajv-keywords",
-            "**/node_modules/antlr4",
-          },
+          autoImportFileExcludePatterns = vscodeSettings.getValueOr(
+            "typescript.preferences.autoImportFileExcludePatterns",
+            nil
+          ),
         },
         format = {
           { indentSize = 2 },
