@@ -3,4 +3,4 @@
       platform: linux
     - command: scoop install main/volta
       platform: win32
-    - command: volta install node@18 && volta install yarn
+    - command: volta install node@20 && volta install yarn
