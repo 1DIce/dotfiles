@@ -3,11 +3,6 @@
 	url = https://github.com/anishathalye/dotbot
 	ignore = dirty
   shallow = true
-[submodule "libs/powerlevel10k"]
-	path = libs/powerlevel10k
-	url = https://github.com/romkatv/powerlevel10k.git
-	ignore = dirty
-  shallow = true
 [submodule "libs/dotbot-apt-get"]
 	path = meta/dotbot-apt-get
 	url = https://github.com/rubenvereecken/dotbot-apt-get
