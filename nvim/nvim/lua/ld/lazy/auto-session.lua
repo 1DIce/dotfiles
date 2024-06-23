@@ -7,6 +7,9 @@ return {
         auto_session_suppress_dirs = { "~/" },
         auto_save_enabled = true,
         auto_restore_enabled = false,
+        -- The nvim-tree window is empty after restoring
+        -- and also not really worth restoring anyway
+        pre_save_cmds = { "NvimTreeClose" },
       })
     end,
   },
