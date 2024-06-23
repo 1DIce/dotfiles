@@ -17,7 +17,16 @@ return {
   },
   "yioneko/nvim-vtsls",
   "onsails/lspkind-nvim",
-  "folke/neodev.nvim",
+  {
+    "folke/lazydev.nvim",
+    ft = "lua",
+    opts = {
+      -- disable when a .luarc.json file is found
+      enabled = function(root_dir)
+        return not vim.uv.fs_stat(root_dir .. "/.luarc.json")
+      end,
+    },
+  },
   {
     "mrcjkb/rustaceanvim",
     version = "^4", -- Recommended

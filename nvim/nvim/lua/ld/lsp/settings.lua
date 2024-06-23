@@ -1,17 +1,14 @@
--- IMPORTANT: make sure to setup neodev BEFORE lspconfig
-require("neodev").setup({
-  setup_jsonls = false,
-  plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
-})
-
 local lsp = require("lspconfig")
 local functions = require("ld.lsp.functions")
 local presentCmpNvimLsp, cmpNvimLsp = pcall(require, "cmp_nvim_lsp")
 
 require("mason").setup({})
-require("mason-null-ls").setup({
-  ensure_installed = { "cspell", "stylua", "shfmt", "shellcheck", "prettierd", "yamllint" },
-})
+require("mason-null-ls").setup(
+  ---@diagnostic disable-next-line: missing-fields
+  {
+    ensure_installed = { "cspell", "stylua", "shfmt", "shellcheck", "prettierd", "yamllint" },
+  }
+)
 require("mason-lspconfig").setup({
   ensure_installed = {
     "bashls",
@@ -62,10 +59,9 @@ M.capabilities = capabilities
 
 local default_lsp_config = { capabilities }
 
-local sumneko_lua_config = function()
+local function sumneko_lua_config()
   return {
     autostart = false,
-    capabilities = capabilities,
     settings = {
       Lua = {
         format = {
@@ -76,19 +72,19 @@ local sumneko_lua_config = function()
   }
 end
 
-local clangd_config = function()
+local function clangd_config()
   local cloned_capabilities = vim.deepcopy(capabilities)
   cloned_capabilities.offsetEncoding = { "utf-16" }
   return { capabilities = cloned_capabilities }
 end
 
-local css_config = function()
+local function css_config()
   local cloned_capabilities = vim.deepcopy(capabilities)
   cloned_capabilities.textDocument.completion.completionItem.snippetSupport = true
   return { capabilities = cloned_capabilities }
 end
 
-local html_config = function()
+local function html_config()
   local cloned_capabilities = vim.deepcopy(capabilities)
   cloned_capabilities.textDocument.completion.completionItem.snippetSupport = true
   return {
@@ -97,7 +93,7 @@ local html_config = function()
   }
 end
 
-local json_config = function()
+local function json_config()
   local cloned_capabilities = vim.deepcopy(capabilities)
   cloned_capabilities.textDocument.completion.completionItem.snippetSupport = true
   return {
@@ -126,7 +122,7 @@ end
 
 local default_node_modules = get_node_modules(vim.fn.getcwd())
 
-local angular_config = function()
+local function angular_config()
   local ngls_cmd = {
     "ngserver",
     "--stdio",
@@ -144,7 +140,7 @@ local angular_config = function()
   }
 end
 
-local deno_config = function()
+local function deno_config()
   return {
     root_dir = lsp.util.root_pattern("deno.json"),
     init_options = { lint = true },

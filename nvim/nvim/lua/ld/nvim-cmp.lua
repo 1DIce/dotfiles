@@ -61,7 +61,6 @@ cmp.setup({
   sources = {
     { name = "nvim_lsp", max_item_count = 50 },
     { name = "luasnip", max_item_count = 10 },
-    { name = "nvim_lua", max_item_count = 20 },
     { name = "async_path", max_item_count = 10 },
     { name = "buffer", max_item_count = 5, keyword_length = 4 },
   },
@@ -78,6 +77,18 @@ if not vim.g.started_by_firenvim then
           ),
         },
       },
+      { name = "buffer", max_item_count = 5, keyword_length = 4 },
+    },
+  })
+  cmp.setup.filetype("lua", {
+    sources = {
+      { name = "nvim_lsp", max_item_count = 50 },
+      {
+        name = "lazydev",
+        group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+      },
+      { name = "luasnip", max_item_count = 10 },
+      { name = "nvim_lua", max_item_count = 20 },
       { name = "buffer", max_item_count = 5, keyword_length = 4 },
     },
   })
