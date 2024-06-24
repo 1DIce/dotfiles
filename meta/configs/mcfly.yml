@@ -1,3 +1,0 @@
-- crossplatform-shell:
-    - command: ./scripts/install-mcfly.sh
-      platform: linux

@@ -6,7 +6,7 @@ require("mason").setup({})
 require("mason-null-ls").setup(
   ---@diagnostic disable-next-line: missing-fields
   {
-    ensure_installed = { "cspell", "stylua", "shfmt", "shellcheck", "prettierd", "yamllint" },
+    ensure_installed = { "cspell", "stylua", "shfmt", "shellcheck", "prettierd" },
   }
 )
 require("mason-lspconfig").setup({
