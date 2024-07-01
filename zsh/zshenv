@@ -10,11 +10,6 @@ export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:=${HOME}/.config}
 source ~/.local/bin/bashmarks.sh
 
 
-if [ -d "/home/linuxbrew/.linuxbrew/bin" ] ; then
-  export BREW_HOME="/home/linuxbrew/.linuxbrew/bin"
-  export PATH="$PATH:$BREW_HOME"
-fi
-
 if [ -d "$HOME/.deno/bin" ] ; then
   export PATH=~/.deno/bin:$PATH
 fi

@@ -3,14 +3,12 @@ volta
 cmd-tools-npm
 fonts
 cheat-sheets
-brew
 git
 fzf
 tmux
 scripts
 nvim
 lua-tools
-cmd-tools-brew
 kitty
 vimwiki
 vifm
