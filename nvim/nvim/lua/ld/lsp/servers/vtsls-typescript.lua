@@ -36,11 +36,8 @@ function M.setup()
         },
         preferGoToSourceDefinition = true,
         preferences = {
-          quotePreference = vscodeSettings.getValueOr(
-            "typescript.preferences.quoteStyle",
-            "double"
-          ),
-          importModuleSpecifierPreference = vscodeSettings.getValueOr(
+          quoteStyle = vscodeSettings.getValueOr("typescript.preferences.quoteStyle", "double"),
+          importModuleSpecifier = vscodeSettings.getValueOr(
             "typescript.preferences.importModuleSpecifier",
             "non-relative"
           ),
