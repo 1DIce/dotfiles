@@ -91,12 +91,9 @@ function M.set_default(client, bufnr)
   end
 
   if cap.renameProvider then
-    -- buf_set_keymap('n','<leader>rr','<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    buf_set_keymap("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename")
-    -- buf_set_keymap('n', '<leader>lr', '<cmd>lua require(\'renamer\').rename()<cr>', 'lsp', 'lsp_rename', 'Rename')
+    buf_set_keymap("n", "<leader>lr", "<cmd>lua require('ld.lsp.functions').rename()<CR>", "Rename")
   end
 
-  -- buf_set_keymap('n','<leader>fll', ":lua vim.cmd('e'..vim.lsp.get_log_path())<CR>", opts)
   buf_set_keymap("n", "<leader>lli", ":LspInfo()<CR>", "[DEBUG] LSP Info")
 
   -- map('n','gs','<cmd>lua vim.lsp.buf.signature_help()<CR>')

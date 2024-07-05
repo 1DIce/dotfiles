@@ -47,4 +47,18 @@ function M.format_organize_typescript()
   end
 end
 
+function M.rename()
+  if M.is_lsp_client_active("vtsls") and M.is_lsp_client_active("angularls") then
+    local bufnr = vim.api.nvim_get_current_buf()
+    local buf_name = vim.api.nvim_buf_get_name(bufnr)
+    if vim.endswith(buf_name, "component.ts") then
+      vim.lsp.buf.rename(nil, { name = "angularls" })
+    else
+      vim.lsp.buf.rename(nil, { name = "vtsls" })
+    end
+  else
+    vim.lsp.buf.rename()
+  end
+end
+
 return M

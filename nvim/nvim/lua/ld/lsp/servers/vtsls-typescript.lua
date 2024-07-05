@@ -8,15 +8,10 @@ function M.setup()
     on_attach = function(client, bufnr)
       local cap = client.server_capabilities
       cap.documentFormattingProvider = false -- null-ls handles the formatting
-      cap.renameProvider = false
       remaps.set_typescript(client, bufnr)
     end,
 
-    handlers = {
-      ["textDocument/rename"] = function(err, result, ctx, config)
-        -- empty handler because renaming should be done by angular client and not by tsserver
-      end,
-    },
+    handlers = {},
 
     settings = {
       complete_function_calls = true,
