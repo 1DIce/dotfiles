@@ -10,6 +10,7 @@
 - search for apt install uninstall and move to nix-env
 - uninstall: 
 - `sudo apt remove fd-find unzip trash-cli bat ripgrep jq shellcheck imagemagick imagemagick-doc graphviz`
+- remove `golang-go`
 
 
 
