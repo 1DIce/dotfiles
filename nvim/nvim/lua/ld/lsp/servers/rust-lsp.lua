@@ -9,7 +9,7 @@ function M.setup()
   vim.g.rustaceanvim = {
     tools = {
       hover_actions = {
-        { replace_builtin_hover = false },
+        replace_builtin_hover = false,
       },
     },
     server = {
