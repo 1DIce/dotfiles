@@ -74,7 +74,7 @@ function M.set_default(client, bufnr)
     buf_set_keymap(
       "n",
       "<leader>bs",
-      "<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>",
+      "<cmd>lua require('ld.telescope.functions').lsp_document_symbols()<CR>",
       "Search document symbols"
     )
   end

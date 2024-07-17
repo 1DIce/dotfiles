@@ -181,4 +181,76 @@ M.git_files = function()
   end
 end
 
+-- Remove all nested symbols except for class and interface members
+local function filter_lsp_document_symbol_results(lsp_server_results)
+  for _, toplevel_symbol in pairs(lsp_server_results) do
+    if
+      toplevel_symbol.kind == 5 -- kind class
+      or toplevel_symbol.kind == 11 -- kind interface
+      or toplevel_symbol.kind == 23 --kind struct
+    then
+      filter_lsp_document_symbol_results(toplevel_symbol.children)
+    else
+      toplevel_symbol.children = {}
+    end
+  end
+end
+
+M.lsp_document_symbols = function(opts)
+  opts = opts or {}
+  local params = vim.lsp.util.make_position_params(opts.winnr)
+  vim.lsp.buf_request(opts.bufnr, "textDocument/documentSymbol", params, function(err, result, _, _)
+    if err then
+      vim.api.nvim_err_writeln("Error when finding document symbols: " .. err.message)
+      return
+    end
+
+    if not result or vim.tbl_isempty(result) then
+      utils.notify("Custom lsp_document_symbols", {
+        msg = "No results from textDocument/documentSymbol",
+        level = "INFO",
+      })
+      return
+    end
+
+    filter_lsp_document_symbol_results(result)
+
+    local locations = vim.lsp.util.symbols_to_items(result or {}, opts.bufnr) or {}
+    if locations == nil then
+      -- error message already printed in `utils.filter_symbols`
+      return
+    end
+    if vim.tbl_isempty(locations) then
+      utils.notify("custom lsp_document_symbols", {
+        msg = "No document_symbol locations found",
+        level = "INFO",
+      })
+      return
+    end
+
+    -- sort location by line numbers
+    table.sort(locations, function(a, b)
+      return a.lnum < b.lnum
+    end)
+
+    opts.path_display = { "hidden" }
+    pickers
+      .new(opts, {
+        prompt_title = "LSP Top-Level Document Symbols",
+        finder = finders.new_table({
+          results = locations,
+          entry_maker = opts.entry_maker or make_entry.gen_from_lsp_symbols(opts),
+        }),
+        previewer = conf.qflist_previewer(opts),
+        sorter = conf.prefilter_sorter({
+          tag = "symbol_type",
+          sorter = conf.generic_sorter(opts),
+        }),
+        push_cursor_on_edit = true,
+        push_tagstack_on_edit = true,
+      })
+      :find()
+  end)
+end
+
 return M
