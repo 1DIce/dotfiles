@@ -48,11 +48,13 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
   border = "rounded",
 })
 
+local client_capabilities = vim.lsp.protocol.make_client_capabilities()
 local capabilities =
   { textDocument = { completion = { completionItem = { snippetSupport = true } } } }
 
 if presentCmpNvimLsp then
-  capabilities = vim.tbl_extend("keep", capabilities, cmpNvimLsp.default_capabilities())
+  capabilities =
+    vim.tbl_deep_extend("force", cmpNvimLsp.default_capabilities(client_capabilities), capabilities)
 end
 
 M.capabilities = capabilities
