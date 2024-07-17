@@ -1,0 +1,2 @@
+- crossplatform-shell:
+    - cargo install --git https://github.com/1DIce/coding-flow

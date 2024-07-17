@@ -3,6 +3,52 @@ local function files(opts)
   return require("fzf-lua").files(opts)
 end
 
+-- Inherit from the "buffer_or_file" previewer
+local WorkspaceTypesPreviewer = require("fzf-lua.previewer.builtin").buffer_or_file:extend()
+function WorkspaceTypesPreviewer:new(o, opts, fzf_win)
+  WorkspaceTypesPreviewer.super.new(self, o, opts, fzf_win)
+  setmetatable(self, WorkspaceTypesPreviewer)
+  return self
+end
+function WorkspaceTypesPreviewer:parse_entry(entry_str)
+  -- Assume an arbitrary entry in the format of 'file:line'
+  local parts = vim.fn.split(entry_str, "\t")
+  local selected_file = parts[2]
+
+  local file = require("fzf-lua").path.entry_to_file(selected_file)
+  return file
+end
+
+local function workspace_public_types(opts)
+  opts = opts or {}
+  -- Currently only typescript files are supported
+  return require("fzf-lua").fzf_exec("coding-flow workspace-types --language typescript", {
+    prompt = "Types❯ ",
+    slient_fail = false,
+    previewer = WorkspaceTypesPreviewer,
+    winopts = {
+      height = 0.90, -- window height
+      width = 0.95, -- window width
+      row = 0.35, -- window row position (0=top, 1=bottom)
+      col = 0.50, -- window col position (0=left, 1=right)
+    },
+    fzf_opts = {
+      ["--delimiter"] = "\t",
+    },
+    actions = {
+      ["default"] = function(selected)
+        local parts = vim.fn.split(selected[1], "\t")
+        local selected_file = parts[2]
+
+        local file = require("fzf-lua").path.entry_to_file(selected_file)
+        -- open file and go to cursor position afterwards
+        vim.cmd("edit " .. file.path)
+        pcall(vim.api.nvim_win_set_cursor, 0, { tonumber(file.line), tonumber(file.col) - 1 })
+      end,
+    },
+  })
+end
+
 local actions = require("fzf-lua.actions")
 require("fzf-lua").setup({
   winopts = {
@@ -297,5 +343,6 @@ require("fzf-lua").setup({
 
 local M = {}
 M.files = files
+M.workspace_public_types = workspace_public_types
 
 return M

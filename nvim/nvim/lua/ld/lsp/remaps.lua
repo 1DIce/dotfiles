@@ -38,13 +38,19 @@ function M.set_default(client, bufnr)
   buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover documentation")
 
   if cap.documentSymbolProvider then
-    -- search for all kinds of workspace symbols
     buf_set_keymap(
       "n",
       "<leader>lt",
-      '<cmd>lua require(\'telescope.builtin\').lsp_dynamic_workspace_symbols({symbols={"class","interface"}, file_ignore_patterns={"%.spec.ts","node_modules"}})<CR>',
+      "<cmd>lua require('ld.fzf').workspace_public_types()<CR>",
       "Workspace type defintions"
     )
+    -- search for all kinds of workspace symbols
+    -- buf_set_keymap(
+    --   "n",
+    --   "<leader>lt",
+    --   '<cmd>lua require(\'telescope.builtin\').lsp_dynamic_workspace_symbols({symbols={"class","interface"}, file_ignore_patterns={"%.spec.ts","node_modules"}})<CR>',
+    --   "Workspace type defintions"
+    -- )
     buf_set_keymap(
       "n",
       "<leader>lc",
