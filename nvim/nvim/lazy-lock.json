@@ -61,6 +61,7 @@
   "popup.nvim": { "branch": "master", "commit": "b7404d35d5d3548a82149238289fa71f7f6de4ac" },
   "rainbow-delimiters.nvim": { "branch": "master", "commit": "b29da4a6061a88270e875b38367d82c04c856128" },
   "refactoring.nvim": { "branch": "master", "commit": "d07218748c48e756c27aa6859bfa6e62a3d271af" },
+  "rgflow.nvim": { "branch": "master", "commit": "f1f51660476d74e22d18936dc0901154db6709d0" },
   "rustaceanvim": { "branch": "master", "commit": "047f9c9d8cd2861745eb9de6c1570ee0875aa795" },
   "sqlite.lua": { "branch": "master", "commit": "d0ffd703b56d090d213b497ed4eb840495f14a11" },
   "targets.vim": { "branch": "master", "commit": "6325416da8f89992b005db3e4517aaef0242602e" },
