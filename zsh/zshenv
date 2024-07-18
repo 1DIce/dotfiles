@@ -25,6 +25,3 @@ fi
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
-alias fd="fdfind"
-alias bat="batcat"
-
