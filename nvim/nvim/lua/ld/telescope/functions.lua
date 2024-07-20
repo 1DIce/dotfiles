@@ -185,6 +185,7 @@ end
 local function filter_lsp_document_symbol_results(lsp_server_results)
   for _, toplevel_symbol in pairs(lsp_server_results) do
     if
+      -- https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#symbolKind
       toplevel_symbol.kind == 5 -- kind class
       or toplevel_symbol.kind == 11 -- kind interface
       or toplevel_symbol.kind == 23 --kind struct

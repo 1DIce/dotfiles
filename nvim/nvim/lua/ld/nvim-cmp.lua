@@ -13,13 +13,10 @@ cmp.setup({
     end,
   },
 
-  mapping = {
-    ["<C-k>"] = cmp.mapping.select_prev_item(),
-    ["<C-j>"] = cmp.mapping.select_next_item(),
+  mapping = cmp.mapping.preset.insert({
     ["<C-d>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<C-Space>"] = cmp.mapping.complete(),
-    ["<C-e>"] = cmp.mapping.close(),
     ["<CR>"] = {
       i = function(fallback)
         local cmp = require("cmp")
@@ -39,7 +36,7 @@ cmp.setup({
         end
       end,
     },
-  },
+  }),
   ---@diagnostic disable-next-line: missing-fields
   formatting = {
     format = require("lspkind").cmp_format({
@@ -95,14 +92,14 @@ if not vim.g.started_by_firenvim then
 end
 
 local cmdlineMappings = {
-  ["<C-j>"] = {
+  ["<C-p>"] = {
     c = function()
       if cmp.visible() then
         cmp.select_next_item()
       end
     end,
   },
-  ["<C-k>"] = {
+  ["<C-n>"] = {
     c = function()
       if cmp.visible() then
         cmp.select_prev_item()
