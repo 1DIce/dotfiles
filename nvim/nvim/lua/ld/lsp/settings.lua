@@ -56,7 +56,6 @@ if presentCmpNvimLsp then
   capabilities =
     vim.tbl_deep_extend("force", cmpNvimLsp.default_capabilities(client_capabilities), capabilities)
 end
-
 M.capabilities = capabilities
 
 local default_lsp_config = { capabilities }
@@ -175,7 +174,9 @@ local servers = {
 if functions.is_deno_workspace() then
   servers.denols = deno_config()
 else
+  require("lspconfig.configs").vtsls = require("vtsls").lspconfig -- set default server config, optional but recommended
   servers.vtsls = require("ld.lsp.servers.vtsls-typescript").setup()
+
   servers.angularls = angular_config()
 end
 
