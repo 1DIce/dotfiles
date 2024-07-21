@@ -19,11 +19,15 @@ function WorkspaceTypesPreviewer:parse_entry(entry_str)
   return file
 end
 
-local function workspace_public_types(opts)
+---
+---@param cmd string command to exectute external coding-flow tool
+---@param opts any
+---@return nil
+local function workspace_coding_flow_symbols(cmd, opts)
   opts = opts or {}
   -- Currently only typescript files are supported
-  return require("fzf-lua").fzf_exec("coding-flow workspace-types --language typescript", {
-    prompt = "Types❯ ",
+  return require("fzf-lua").fzf_exec(cmd, {
+    prompt = opts.prompt,
     slient_fail = false,
     previewer = WorkspaceTypesPreviewer,
     winopts = {
@@ -47,6 +51,51 @@ local function workspace_public_types(opts)
       end,
     },
   })
+end
+
+local function workspace_public_types(opts)
+  opts = opts or {}
+  if opts.prompt == nil then
+    opts.prompt = "Types❯ "
+  end
+  if require("ld.lsp.functions").is_typescript_workspace() then
+    workspace_coding_flow_symbols(
+      "coding-flow workspace-symbols --language typescript --type type",
+      opts
+    )
+  else
+    require("fzf-lua").lsp_workspace_symbols(opts)
+  end
+end
+
+local function workspace_public_functions(opts)
+  opts = opts or {}
+  if opts.prompt == nil then
+    opts.prompt = "Functions❯ "
+  end
+  if require("ld.lsp.functions").is_typescript_workspace() then
+    workspace_coding_flow_symbols(
+      "coding-flow workspace-symbols --language typescript --type function",
+      opts
+    )
+  else
+    require("telescope.builtin").lsp_workspace_symbols({ symbols = { "function" } })
+  end
+end
+
+local function workspace_public_variables(opts)
+  opts = opts or {}
+  if opts.prompt == nil then
+    opts.prompt = "Variables❯ "
+  end
+  if require("ld.lsp.functions").is_typescript_workspace() then
+    workspace_coding_flow_symbols(
+      "coding-flow workspace-symbols --language typescript --type variable",
+      opts
+    )
+  else
+    require("telescope.builtin").lsp_workspace_symbols({ symbols = { "variable" } })
+  end
 end
 
 local actions = require("fzf-lua.actions")
@@ -344,5 +393,7 @@ require("fzf-lua").setup({
 local M = {}
 M.files = files
 M.workspace_public_types = workspace_public_types
+M.workspace_public_functions = workspace_public_functions
+M.workspace_public_variables = workspace_public_variables
 
 return M

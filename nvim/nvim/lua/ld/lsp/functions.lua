@@ -12,6 +12,12 @@ M.is_deno_workspace = function()
   return vim.loop.fs_stat(cwd .. "/deno.json") ~= nil
 end
 
+M.is_typescript_workspace = function()
+  local cwd = vim.fn.getcwd()
+  return vim.loop.fs_stat(cwd .. "/tsconfig.json") ~= nil
+    or vim.loop.fs_stat(cwd .. "/package.json") ~= nil
+end
+
 M.is_lsp_client_active = function(client_name)
   local clients = vim.lsp.get_active_clients({ name = client_name })
   local filtered_clients = vim.tbl_filter(function(c)

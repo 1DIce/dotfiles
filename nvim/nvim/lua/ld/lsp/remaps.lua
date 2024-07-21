@@ -53,21 +53,15 @@ function M.set_default(client, bufnr)
     -- )
     buf_set_keymap(
       "n",
-      "<leader>lc",
-      '<cmd>lua require(\'telescope.builtin\').lsp_dynamic_workspace_symbols({symbols={"constant"}, file_ignore_patterns={"%.spec.ts","^e2e/","node_modules"}})<CR>',
-      "Workspace constant defintions"
+      "<leader>lv",
+      "<cmd>lua require('ld.fzf').workspace_public_variables()<CR>",
+      "Workspace variable defintions"
     )
     buf_set_keymap(
       "n",
       "<leader>lf",
-      '<cmd>lua require(\'telescope.builtin\').lsp_dynamic_workspace_symbols({symbols={"function"}, file_ignore_patterns={"%.spec.ts","^e2e/","node_modules"}})<CR>',
+      "<cmd>lua require('ld.fzf').workspace_public_functions()<CR>",
       "Workspace function defintions"
-    )
-    buf_set_keymap(
-      "n",
-      "<leader>lp",
-      '<cmd>lua require(\'telescope.builtin\').lsp_dynamic_workspace_symbols({symbols={"property"}, file_ignore_patterns={"%.spec.ts","^e2e/","node_modules"}})<CR>',
-      "Workspace property defintions"
     )
 
     -- search for symbols in current buffer via lsp
