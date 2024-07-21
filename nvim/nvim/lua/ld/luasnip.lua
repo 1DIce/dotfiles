@@ -7,7 +7,7 @@ ls.config.set_config({
   updateevents = "TextChanged,TextChangedI",
   enable_autosnippets = false,
 
-  ext_opts = { [types.choiceNode] = { active = { virt_text = { { "<-", "Error" } } } } },
+  ext_opts = { [types.choiceNode] = { active = { virt_text = { { "<- ChoiceNode", "Error" } } } } },
 })
 
 -- Loading all snippets from directory
