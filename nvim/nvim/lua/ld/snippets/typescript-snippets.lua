@@ -148,7 +148,7 @@ ls.add_snippets("typescript", {
     "func",
     fmt(
       [[
-    {}function {}({}) {{
+    {}function {}({}): {} {{
       {}
     }}
   ]],
@@ -156,6 +156,7 @@ ls.add_snippets("typescript", {
         c(1, { t(""), t("export ") }),
         i(2, "name"),
         i(3),
+        i(4),
         i(0),
       }
     )
