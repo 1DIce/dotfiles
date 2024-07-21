@@ -1,3 +1,5 @@
+local actions = require("fzf-lua.actions")
+
 local function files(opts)
   opts = opts or {}
   return require("fzf-lua").files(opts)
@@ -38,16 +40,37 @@ local function workspace_coding_flow_symbols(cmd, opts)
     },
     fzf_opts = {
       ["--delimiter"] = "\t",
+      ["--multi"] = "", -- activate multi selection
+      ["--nth"] = "1", -- limit search to symbol names only
     },
     actions = {
       ["default"] = function(selected)
-        local parts = vim.fn.split(selected[1], "\t")
-        local selected_file = parts[2]
+        if #selected == 1 then
+          local parts = vim.fn.split(selected[1], "\t")
+          local selected_file = parts[2]
 
-        local file = require("fzf-lua").path.entry_to_file(selected_file)
-        -- open file and go to cursor position afterwards
-        vim.cmd("edit " .. file.path)
-        pcall(vim.api.nvim_win_set_cursor, 0, { tonumber(file.line), tonumber(file.col) - 1 })
+          local file = require("fzf-lua").path.entry_to_file(selected_file)
+          -- open file and go to cursor position afterwards
+          vim.cmd("edit " .. file.path)
+          pcall(vim.api.nvim_win_set_cursor, 0, { tonumber(file.line), tonumber(file.col) - 1 })
+        else
+          -- handle multiple selections by sending them to quickfix
+          local qf_entries = {}
+          for _, selected_entry in ipairs(selected) do
+            local parts = vim.fn.split(selected_entry, "\t")
+            local symbol_name = parts[1]
+            local selected_file = parts[2]
+            local file_parts = vim.fn.split(selected_file, ":")
+            table.insert(qf_entries, {
+              filename = file_parts[1],
+              lnum = file_parts[2],
+              col = file_parts[3],
+              text = symbol_name,
+            })
+          end
+          vim.fn.setqflist(qf_entries)
+          vim.cmd("copen")
+        end
       end,
     },
   })
@@ -98,7 +121,6 @@ local function workspace_public_variables(opts)
   end
 end
 
-local actions = require("fzf-lua.actions")
 require("fzf-lua").setup({
   -- use telescope profile as the base
   "telescope",
@@ -186,6 +208,7 @@ require("fzf-lua").setup({
       ["ctrl-a"] = "beginning-of-line",
       ["ctrl-e"] = "end-of-line",
       ["alt-a"] = "toggle-all",
+      ["ctrl-q"] = "select-all+accept",
       -- Only valid with fzf previewers (bat/cat/git/etc)
       ["f3"] = "toggle-preview-wrap",
       ["f4"] = "toggle-preview",
@@ -238,7 +261,6 @@ require("fzf-lua").setup({
       ["ctrl-s"] = actions.file_split,
       ["ctrl-v"] = actions.file_vsplit,
       ["ctrl-t"] = actions.file_tabedit,
-      ["ctrl-q"] = actions.file_sel_to_qf,
       -- custom actions are available too
       ["ctrl-y"] = function(selected)
         print(selected[1])
