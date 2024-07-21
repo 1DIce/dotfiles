@@ -32,6 +32,25 @@ local function recursive_if_else_node(index)
   end, {})
 end
 
+local function recursive_switch_case(index)
+  return d(index, function()
+    return sn(
+      nil,
+      c(1, {
+        sn(nil, { t({ "default: {", "\t\t" }), i(1), t({ "", "\t}" }) }),
+        sn(nil, {
+          t("case "),
+          i(1),
+          t({ ": {", "\t\t" }),
+          i(2),
+          t({ "", "\t}", "\t" }),
+          recursive_switch_case(3),
+        }),
+      })
+    )
+  end, {})
+end
+
 ls.add_snippets("typescript", {
   s(
     "forof",
@@ -99,16 +118,44 @@ ls.add_snippets("typescript", {
   ),
 
   s(
+    "switch",
+    fmt(
+      [[
+    switch({}) {{
+      case {}: {{
+        {}
+      }}
+      case {}: {{
+        {}
+      }}
+      {}
+    }}
+    {}
+  ]],
+      {
+        i(1),
+        i(2),
+        i(3),
+        i(4),
+        i(5),
+        recursive_switch_case(6),
+        i(0),
+      }
+    )
+  ),
+
+  s(
     "func",
     fmt(
       [[
-    {}function({}) {{
+    {}function {}({}) {{
       {}
     }}
   ]],
       {
         c(1, { t(""), t("export ") }),
-        i(2),
+        i(2, "name"),
+        i(3),
         i(0),
       }
     )
