@@ -100,6 +100,8 @@ end
 
 local actions = require("fzf-lua.actions")
 require("fzf-lua").setup({
+  -- use telescope profile as the base
+  "telescope",
   winopts = {
     -- split = "botright new", -- open in a split instead?
     -- "belowright new"  : split below
