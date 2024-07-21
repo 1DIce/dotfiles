@@ -13,6 +13,25 @@ local f = ls.function_node
 local d = ls.dynamic_node
 local rep = require("luasnip.extras").rep
 
+local function recursive_if_else_node(index)
+  return d(index, function()
+    return sn(
+      nil,
+      c(1, {
+        sn(nil, { t({ "else {", "\t" }), i(1), t({ "", "}", "" }), i(0) }),
+        sn(nil, {
+          t("else if("),
+          i(1, "condition"),
+          t({ ") {", "\t" }),
+          i(2),
+          t({ "", "}" }),
+          recursive_if_else_node(3),
+        }),
+      })
+    )
+  end, {})
+end
+
 ls.add_snippets("typescript", {
   s(
     "forof",
@@ -63,14 +82,21 @@ ls.add_snippets("typescript", {
     )
   ),
 
-  -- TODO adding a choise node to add more else if steps could be cool
   s(
     "ifelse",
     fmt(
       [[
     if({}) {{
       {}
-    }} else {{
+    }} {}
+  ]],
+      {
+        i(1, "condition"),
+        i(2),
+        recursive_if_else_node(3),
+      }
+    )
+  ),
       {}
     }}
   ]],
