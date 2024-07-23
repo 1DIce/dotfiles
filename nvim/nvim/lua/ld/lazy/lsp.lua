@@ -1,6 +1,12 @@
 return {
   -- Autocomplete & Linters
-  "neovim/nvim-lspconfig",
+  {
+    "neovim/nvim-lspconfig",
+    dependencies = {
+      "antosha417/nvim-lsp-file-operations",
+    },
+  },
+
   {
     "nvimdev/lspsaga.nvim",
     lazy = vim.g.started_by_firenvim,

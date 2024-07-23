@@ -56,6 +56,9 @@ if presentCmpNvimLsp then
   capabilities =
     vim.tbl_deep_extend("force", cmpNvimLsp.default_capabilities(client_capabilities), capabilities)
 end
+capabilities =
+  vim.tbl_deep_extend("force", capabilities, require("lsp-file-operations").default_capabilities())
+
 M.capabilities = capabilities
 
 local default_lsp_config = { capabilities }
