@@ -181,6 +181,11 @@ M.git_files = function()
   end
 end
 
+local function is_typescript_describe_block(symbol)
+  return symbol.kind == 12 -- kind function
+    and (string.match(symbol.name, "^fdescribe%(") or string.match(symbol.name, "^describe%("))
+end
+
 -- Remove all nested symbols except for class and interface members
 local function filter_lsp_document_symbol_results(lsp_server_results)
   for _, toplevel_symbol in pairs(lsp_server_results) do
@@ -189,6 +194,7 @@ local function filter_lsp_document_symbol_results(lsp_server_results)
       toplevel_symbol.kind == 5 -- kind class
       or toplevel_symbol.kind == 11 -- kind interface
       or toplevel_symbol.kind == 23 --kind struct
+      or is_typescript_describe_block(toplevel_symbol)
     then
       filter_lsp_document_symbol_results(toplevel_symbol.children)
     else
