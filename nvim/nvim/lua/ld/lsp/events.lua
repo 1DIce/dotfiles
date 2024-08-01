@@ -47,8 +47,8 @@ local format_on_save_augroup = vim.api.nvim_create_augroup("ld-format_on_save", 
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   pattern = "*.ts",
   group = format_on_save_augroup,
-  callback = function()
-    require("ld.lsp.functions").format_organize_typescript()
+  callback = function(event_data)
+    require("ld.lsp.functions").format_organize_typescript(event_data.buf)
   end,
 })
 

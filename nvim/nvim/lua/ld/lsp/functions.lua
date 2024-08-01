@@ -19,7 +19,7 @@ M.is_typescript_workspace = function()
 end
 
 M.is_lsp_client_active = function(client_name)
-  local clients = vim.lsp.get_active_clients({ name = client_name })
+  local clients = vim.lsp.get_clients({ name = client_name })
   local filtered_clients = vim.tbl_filter(function(c)
     return c.name == client_name
   end, vim.tbl_values(clients))
@@ -34,10 +34,16 @@ function M.typescript_organize_imports_sync(bufnr, timeout)
     command = "typescript.organizeImports",
     arguments = { vim.api.nvim_buf_get_name(bufnr) },
   }
-  return vim.lsp.buf_request_sync(bufnr, "workspace/executeCommand", parameters, timeout)
+  local client = vim.lsp.get_clients({ bufnr = bufnr, name = "vtsls" })[1]
+  if client == nil then
+    return
+  end
+  -- only run this request against the typescript lsp because other lsp server might
+  -- simply not respond until the timeout
+  return client.request_sync("workspace/executeCommand", parameters, timeout, bufnr)
 end
 
-function M.format_organize_typescript()
+function M.format_organize_typescript(bufnr)
   if M.is_deno_workspace() then
     vim.lsp.buf.format({
       filter = function(client)
@@ -46,7 +52,7 @@ function M.format_organize_typescript()
       async = false,
     })
   else
-    M.typescript_organize_imports_sync()
+    M.typescript_organize_imports_sync(bufnr)
     vim.lsp.buf.format({
       async = false,
     })
