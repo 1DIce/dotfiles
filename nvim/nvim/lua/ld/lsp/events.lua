@@ -56,7 +56,7 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   pattern = "*.html,*.js,*.yml,*.yaml,*.less,*.json,*.jsonc,*.scss,*.css,*.lua,*.cpp,*.h,*.rs",
   group = format_on_save_augroup,
-  callback = function()
-    vim.lsp.buf.format({ async = false })
+  callback = function(event_data)
+    vim.lsp.buf.format({ async = false, bufnr = event_data.buf })
   end,
 })

@@ -53,9 +53,7 @@ function M.format_organize_typescript(bufnr)
     })
   else
     M.typescript_organize_imports_sync(bufnr)
-    vim.lsp.buf.format({
-      async = false,
-    })
+    vim.lsp.buf.format({ async = false, bufnr = bufnr })
   end
 end
 
