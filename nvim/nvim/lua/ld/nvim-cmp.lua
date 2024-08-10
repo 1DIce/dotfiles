@@ -56,7 +56,24 @@ cmp.setup({
     }),
   },
   sources = {
-    { name = "nvim_lsp", max_item_count = 50 },
+    {
+      name = "nvim_lsp",
+      max_item_count = 50,
+      entry_filter = function(entry, ctx)
+        if ctx.filetype == "rust" then
+          local item = entry.completion_item
+          if
+            item.kind == 15 -- kind 15 == "Snippet"
+            and item.filterText == "call"
+          then
+            -- filter out rust lsp call expression snippet because it bugs out alot
+            return false
+          end
+        end
+        -- returning true will keep the entry
+        return true
+      end,
+    },
     { name = "luasnip", max_item_count = 10 },
     { name = "async_path", max_item_count = 10 },
     { name = "buffer", max_item_count = 5, keyword_length = 4 },
