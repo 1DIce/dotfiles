@@ -168,7 +168,7 @@ ls.add_snippets("typescript", {
       [[
     it("should {}", () => {{
       {}
-    }}),
+    }})
     ]],
       {
         i(1),
@@ -184,7 +184,7 @@ ls.add_snippets("typescript", {
       [[
     describe({}, () => {{
       {}
-    }}),
+    }})
     ]],
       {
         i(1),
