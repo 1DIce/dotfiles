@@ -9,6 +9,7 @@ local function treesitter_config()
   ---@diagnostic disable-next-line: missing-fields
   require("nvim-treesitter.configs").setup({
     ensure_installed = {
+      "astro",
       "angular",
       "typescript",
       "markdown",
