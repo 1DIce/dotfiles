@@ -151,6 +151,7 @@ local function deno_config()
 end
 
 local servers = {
+  -- to get fromatting and linting shellcheck and shfmt need to be installed
   bashls = {},
   yamlls = {},
   jsonls = json_config(),
