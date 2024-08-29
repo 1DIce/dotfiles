@@ -6,7 +6,6 @@ local cspell = require("cspell")
 
 local cspell_config = {
   find_json = function(directory)
-    P(directory)
     local files = vim.fs.find({ "cspell.json" }, { path = "./.vscode/", type = "file" })
     if files and files[1] then
       return files[1]
