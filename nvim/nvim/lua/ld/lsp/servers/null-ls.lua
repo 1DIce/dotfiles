@@ -6,10 +6,17 @@ local cspell = require("cspell")
 
 local cspell_config = {
   find_json = function(directory)
-    local files = vim.fs.find({ "cspell.json" }, { path = "./.vscode/", type = "file" })
-    if files and files[1] then
-      return files[1]
+    local project_files = vim.fs.find({ "cspell.json" }, { path = "./.vscode/", type = "file" })
+    if project_files and project_files[1] then
+      return project_files[1]
     end
+
+    -- searching from current working directory upward. Should find the global cspell config in home as a fallback.
+    local upward_search_results = vim.fs.find({ ".cspell.json", "cspell.json" }, { upward = true })
+    if upward_search_results and upward_search_results[1] then
+      return upward_search_results[1]
+    end
+    vim.notify("WARN: No cspell.json was found!", vim.log.levels.WARN)
 
     return nil
   end,
