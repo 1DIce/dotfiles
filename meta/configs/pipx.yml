@@ -3,5 +3,4 @@
       platform: linux
     - command: python -m pip install --user pipx && python -m pipx ensurepath
       platform: win32
-    - pipx install thefuck
     - pipx install yamllint
