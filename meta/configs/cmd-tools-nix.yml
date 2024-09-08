@@ -1,4 +1,6 @@
 - crossplatform-shell:
     - nix-env -iA nixpkgs.fd nixpkgs.unzip nixpkgs.trash-cli nixpkgs.ripgrep
-    - nix-env -iA nixpkgs.fzf nixpkgs.lsd nixpkgs.delta nixpkgs.deno nixpkgs.go
     - nix-env -iA nixpkgs.bat nixpkgs.jq nixpkgs.imagemagick nixpkgs.graphviz nixpkgs.thefuck
+    - nix-env -iA nixpkgs.fzf nixpkgs.lsd nixpkgs.delta nixpkgs.deno nixpkgs.go nixpkgs.rustup
+    # need to configure rustup
+    - rustup default stable
