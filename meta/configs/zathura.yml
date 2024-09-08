@@ -2,6 +2,6 @@
     ~/.config/zathura/zathurarc: zathura/zathurarc
 
 - crossplatform-shell:
-    - command: sudo apt update && sudo apt install zathura
+    - command: sudo apt update && sudo apt install zathura -y
       platform: linux
       environment: "!WSL_DISTRO_NAME"
