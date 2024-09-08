@@ -1,5 +1,6 @@
 cspell
 cmd-tools-apt
+cmd-tools-nix
 volta
 cmd-tools-npm
 fonts
@@ -24,5 +25,4 @@ shfmt
 git-depgraph
 zathura
 wsl
-alacritty
 coding-flow
