@@ -1,7 +1,19 @@
+- create:
+    - ~/.config/alacritty
+
 - crossplatform-link:
+    ~/.config/alacritty/alacritty.toml:
+      path: alacritty/alacritty.toml
+      platform: linux
+    ~/.config/alacritty/alacritty_tokyonight_night.toml:
+      path: alacritty/alacritty_tokyonight_night.toml
+      platform: linux
     ~/.config/alacritty/alacritty.yml:
       path: alacritty/alacritty.yml
-      platfrom: linux
+      platform: linux
+    ~/.config/alacritty/alacritty_tokyonight_night.yml:
+      path: alacritty/alacritty_tokyonight_night.yml
+      platform: linux
     ~/AppData/Roaming/alacritty/alacritty.yml:
       path: alacritty/alacritty.yml
-      platfrom: win32
+      platform: win32
