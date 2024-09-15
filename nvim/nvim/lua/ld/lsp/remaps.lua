@@ -93,13 +93,13 @@ function M.set_default(client, bufnr)
     buf_set_keymap("n", "<leader>lr", "<cmd>lua require('ld.lsp.functions').rename()<CR>", "Rename")
   end
 
-  buf_set_keymap("n", "<leader>lli", ":LspInfo()<CR>", "[DEBUG] LSP Info")
+  -- open litee call hierachy ui
+  buf_set_keymap("n", "<leader>la", "<cmd>lua vim.lsp.buf.incoming_calls()<CR>", "Call Hierachy")
+  buf_set_keymap("v", "<leader>la", "<cmd>lua vim.lsp.buf.incoming_calls()<CR>", "Call Hierachy")
 
   -- map('n','gs','<cmd>lua vim.lsp.buf.signature_help()<CR>')
   -- map('n','gi','<cmd>lua vim.lsp.buf.implementation()<CR>')
   -- map('n','<leader>ah','<cmd>lua vim.lsp.buf.hover()<CR>')
-  -- map('n','<leader>ai','<cmd>lua vim.lsp.buf.incoming_calls()<CR>')
-  -- map('n','<leader>ao','<cmd>lua vim.lsp.buf.outgoing_calls()<CR>')
 end
 
 function M.set_typescript(client, bufnr)
