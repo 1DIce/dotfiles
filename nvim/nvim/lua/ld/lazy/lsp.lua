@@ -7,20 +7,6 @@ return {
     },
   },
 
-  {
-    "nvimdev/lspsaga.nvim",
-    lazy = vim.g.started_by_firenvim,
-    config = function()
-      local saga = require("lspsaga")
-      saga.setup({
-        lightbulb = { enable = false },
-        beacon = { enable = false },
-        symbol_in_winbar = {
-          enable = false,
-        },
-      })
-    end,
-  },
   "yioneko/nvim-vtsls",
   "onsails/lspkind-nvim",
   {

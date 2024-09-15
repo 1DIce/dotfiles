@@ -13,7 +13,6 @@ function M.set_default(client, bufnr)
   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
   if cap.definitionProvider then
-    buf_set_keymap("n", "gD", "<cmd>Lspsaga peek_definition<CR>", "Preview definition")
     buf_set_keymap("n", "gT", "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Go to type definition")
     buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", "go to  definition")
   end
