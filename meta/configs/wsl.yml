@@ -41,3 +41,6 @@
     - command: ln -sf "$(wslpath "$(wslvar USERPROFILE)")/scoop/apps/neovide/current/neovide" ~/bin/neovide
       platform: linux
       environment: WSL_DISTRO_NAME
+    - command: ln -sf "$(wslpath "$(wslvar USERPROFILE)")/obsidian-vaults/notes" ~/obsidian-vaults/notes
+      platform: linux
+      environment: WSL_DISTRO_NAME
