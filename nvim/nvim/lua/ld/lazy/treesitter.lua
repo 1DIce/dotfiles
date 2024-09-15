@@ -136,47 +136,36 @@ local function treesitter_textobjects_config()
 
   local wk = require("which-key")
 
-  wk.register({
-    a = {
-      f = { "Function outer motion" }, --
-      c = { "call expression outer motion" },
-      x = { "Attribute (html, xml) outer motion" },
-      k = { "Json key outer motion" },
-      v = { "Json value outer motion" },
-      i = { "conditional outer moition" },
+  wk.add({
+    {
+      mode = { "o" },
+      { " rP", desc = "Swap parameter to previous" },
+      { " rp", desc = "Swap parameter to next" },
+      { "[M", desc = "Go to previous function (end)" },
+      { "[[", desc = "Go to previous class (start)" },
+      { "[]", desc = "Go to previous class (end)" },
+      { "[m", desc = "Go to previous function (start)" },
+      { "]M", desc = "Go to next function (end)" },
+      { "][", desc = "Go to next class (end)" },
+      { "]]", desc = "Go to next class (start)" },
+      { "]m", desc = "Go to next function (start)" },
+      { "ac", desc = "call expression outer motion" },
+      { "af", desc = "Function outer motion" },
+      { "ai", desc = "conditional outer moition" },
+      { "ak", desc = "Json key outer motion" },
+      { "av", desc = "Json value outer motion" },
+      { "ax", desc = "Attribute (html, xml) outer motion" },
+      { "ic", desc = "call expression inner motion" },
+      { "if", desc = "Function inner motion" },
+      { "ii", desc = "conditional inner moition" },
+      { "ik", desc = "Json key inner motion" },
+      { "iv", desc = "Json value inner motion" },
+      { "ix", desc = "Attribute (html, xml) inner motion" },
+      { "zI", desc = "Decrement scope (selection)" },
+      { "zi", desc = "Init treesitter selection" },
+      { "zo", desc = "Expand scope (selection)" },
     },
-    i = {
-      f = { "Function inner motion" }, --
-      c = { "call expression inner motion" }, --
-      x = { "Attribute (html, xml) inner motion" },
-      k = { "Json key inner motion" },
-      v = { "Json value inner motion" },
-      i = { "conditional inner moition" },
-    },
-    [" "] = {
-      r = {
-        p = { "Swap parameter to next" }, --
-        P = { "Swap parameter to previous" },
-      },
-    },
-    ["]"] = {
-      m = { "Go to next function (start)" },
-      M = { "Go to next function (end)" },
-      ["]"] = { "Go to next class (start)" },
-      ["["] = { "Go to next class (end)" },
-    },
-    ["["] = {
-      m = { "Go to previous function (start)" },
-      M = { "Go to previous function (end)" },
-      ["["] = { "Go to previous class (start)" },
-      ["]"] = { "Go to previous class (end)" },
-    },
-    z = {
-      i = { "Init treesitter selection" },
-      o = { "Expand scope (selection)" },
-      I = { "Decrement scope (selection)" },
-    },
-  }, { mode = "o" })
+  })
 end
 
 return {
