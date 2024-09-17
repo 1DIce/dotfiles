@@ -35,8 +35,8 @@ nnoremap("<leader>qo", ":copen<CR>", "Open quickfix list")
 nnoremap("<leader>qc", ":cclose<CR>", "Close quickfix list")
 nnoremap("<leader>qn", ":cnext<CR>", "Navigate to next quickfix")
 nnoremap("<leader>qp", ":cprev<CR>", "Navigate to previous quickfix")
-nnoremap("<c-j>", ":cnext<CR>", "Navigate to next quickfix")
-nnoremap("<c-k>", ":cprev<CR>", "Navigate to previous quickfix")
+nnoremap("<c-j>", ":cnext<CR>zz", "Navigate to next quickfix")
+nnoremap("<c-k>", ":cprev<CR>zz", "Navigate to previous quickfix")
 
 -- navigate command mode autocomplete
 cnoremap("<C-j>", "<C-n>", "Select next command mode suggestion")
