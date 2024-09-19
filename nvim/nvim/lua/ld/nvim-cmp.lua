@@ -142,9 +142,13 @@ cmp.setup.cmdline(":", {
     -- },
     {
       name = "cmdline",
-      max_item_count = 30,
-      keyword_pattern = [=[[^[:blank:]\!]*]=],
-      keyword_length = 3,
+      option = {
+        ignore_cmds = { "Man", "!", "grep", "vimgrep" },
+      },
+      --
+      -- max_item_count = 30,
+      -- keyword_pattern = [=[[^[:blank:]\!]*]=],
+      -- keyword_length = 3,
     },
   }),
 })
