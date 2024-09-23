@@ -39,9 +39,9 @@ compinit -u
 # End of lines added by compinstall
 
 # aliases
-alias l="lsd --date '+%e.%m.%y %H:%M' -l"       # List in long format, exclude dotfiles
+alias l="eza -l --icons"       # List in long format, exclude dotfiles
 alias la="l -a"      # List in long format, include dotfiles
-alias ld="l -d */"   # List in long format, only directories
+alias ld="l -a --only-dirs"   # List in long format, only directories
 alias ll="l"
 alias ..="cd .."
 alias ...="cd ../.."
@@ -130,10 +130,10 @@ _fzf_comprun() {
   shift
 
   case "$command" in
-    cd)           fzf --preview 'lsd --tree --color=always {} | head -200' "$@" ;;
+    cd)           fzf --preview 'eza --tree --color=always {} | head -200' "$@" ;;
     export|unset) fzf --preview "eval 'echo \$'{}"         "$@" ;;
     ssh)          fzf --preview 'dig {}'                   "$@" ;;
-    *)            fzf --preview "bat -n --color=always --line-range :500 {} || lsd --tree --color=always {} | head -200" "$@" ;;
+    *)            fzf --preview "bat -n --color=always --line-range :500 {} || eza --tree --color=always {} | head -200" "$@" ;;
   esac
 }
 

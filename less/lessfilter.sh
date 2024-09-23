@@ -3,7 +3,7 @@ mime=$(file -bL --mime-type "$1")
 category=${mime%%/*}
 kind=${mime##*/}
 if [ -d "$1" ]; then
-	lsd -h --color=always --blocks=name,size,date,links "$1"
+	eza -l --color=always "$1"
 elif [ "$category" = image ]; then
 	chafa "$1"
 	exiftool "$1"
