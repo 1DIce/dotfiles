@@ -20,6 +20,7 @@ local function treesitter_config()
       "javascript",
       "html",
       "go",
+      "gomod",
       "bash",
       "toml",
       "yaml",

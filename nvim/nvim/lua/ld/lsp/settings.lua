@@ -168,7 +168,17 @@ local servers = {
     },
   },
   pylsp = {},
-  gopls = {},
+  gopls = {
+    settings = {
+      gopls = {
+        analyses = {
+          unusedparams = true,
+        },
+        staticcheck = true,
+        gofumpt = true,
+      },
+    },
+  },
   lua_ls = sumneko_lua_config(),
   ltex = require("ld.lsp.servers.ltex").setup(),
   cmake = {},

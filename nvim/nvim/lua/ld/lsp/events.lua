@@ -52,6 +52,14 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   end,
 })
 
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  pattern = "*.go",
+  group = format_on_save_augroup,
+  callback = function(event_data)
+    require("ld.lsp.functions").format_organize_golang(event_data.buf)
+  end,
+})
+
 -- using prettierd from null-ls or native lsp client for formatting on save on all those file types
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   pattern = "*.html,*.js,*.yml,*.yaml,*.less,*.json,*.jsonc,*.scss,*.css,*.lua,*.cpp,*.h,*.rs,*.astro",
