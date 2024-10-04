@@ -79,3 +79,6 @@
         path: scripts/jira-issues-to-confluence-markup.sh
     - ~/bin/fnpm:
         path: scripts/fnpm.sh
+    - ~/bin/i3exit.sh:
+        path: scripts/i3exit.sh
+        platform: linux
