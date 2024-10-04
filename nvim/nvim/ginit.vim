@@ -30,5 +30,5 @@ snoremap <silent><RightMouse> <C-G>:call GuiShowContextMenu()<CR>gv
 
 if exists('g:neovide')
   let g:neovide_cursor_animation_length=0
-  set guifont=UbuntuMono\ NF:h13
+  set guifont=UbuntuMono\ Nerd\ Font:h13
 endif
