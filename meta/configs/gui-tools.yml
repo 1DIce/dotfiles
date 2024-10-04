@@ -1,9 +1,10 @@
 - crossplatform-shell:
-  - command: sudo add-apt-repository ppa:appimagelauncher-team/stable -y && sudo apt update && sudo apt install appimagelauncher -y
-    platform: linux 
-    environment: "!WSL_DISTRO_NAME"
+    - command: sudo add-apt-repository ppa:appimagelauncher-team/stable -y && sudo apt update && sudo apt install appimagelauncher -y
+      platform: linux
+      environment:
+        "!WSL_DISTRO_NAME"
 
-      # installin markdown editor Mark Text and integrating the app image by using app image laucher 
-  - command: wget -O ~/bin/marktext.AppImage https://github.com/marktext/marktext/releases/latest/download/marktext-x86_64.AppImage && chmod +x ~/bin/marktext.AppImage && ail-cli integrate ~/bin/marktext.AppImage
-    platform: linux 
-    environment: "!WSL_DISTRO_NAME"
+        # installin markdown editor Mark Text and integrating the app image by using app image laucher
+    - command: wget -O ~/bin/marktext.AppImage https://github.com/marktext/marktext/releases/latest/download/marktext-x86_64.AppImage && chmod +x ~/bin/marktext.AppImage && ail-cli integrate ~/bin/marktext.AppImage
+      platform: linux
+      environment: "!WSL_DISTRO_NAME"
