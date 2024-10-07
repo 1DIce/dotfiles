@@ -29,6 +29,7 @@ local function treesitter_config()
       "vim",
       "cpp",
       "groovy",
+      "rust",
     },
     highlight = {
       enable = true,
