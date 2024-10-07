@@ -14,7 +14,7 @@ else
     runningSessionNames=$(tmux list-sessions -F "#{session_path}")
   fi
   # make sure duplicate paths are filtered out
-  selected=$({echo "~/dotfiles"; echo "$bookmarks"; echo "$commonDirectories"; echo "$runningSessionNames"; } | sort -u | fzf)
+  selected=$({echo "$HOME/dotfiles"; echo "$bookmarks"; echo "$commonDirectories"; echo "$runningSessionNames"; } | sort -u | fzf)
 fi
 
 if [[ -z $selected ]]; then
