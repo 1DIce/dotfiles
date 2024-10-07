@@ -2,5 +2,5 @@
     ~/.tmux.conf: tmux/tmux.conf
 
 - crossplatform-shell:
-    - command: sudo apt remove tmux -y && nix-env -iA nixpkgs.tmux
+    - command: nix-env -iA nixpkgs.tmux
       platform: linux
