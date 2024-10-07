@@ -90,7 +90,8 @@ vim.o.foldlevelstart = 99 -- start file with all folds opened
 vim.wo.foldmethod = "expr"
 vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
 
-vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
+vim.o.sessionoptions =
+  "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 -- shows spaces
 vim.o.list = false
