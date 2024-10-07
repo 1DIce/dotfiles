@@ -3,6 +3,8 @@ vim.filetype.add({
     ["angular.json"] = "jsonc",
     ["profile_bash"] = "sh",
     [".lua-format"] = "yaml",
+    ["docker-compose.yaml"] = "yaml.docker-compose",
+    ["docker-compose.yml"] = "yaml.docker-compose",
   },
   pattern = {
     -- those are regex lua patterns % is used to escape
@@ -13,6 +15,12 @@ vim.filetype.add({
     [".*zprofile"] = "sh",
     [".*vrapperrc"] = "vim",
     ["i18n/.*%.properties"] = "jproperties",
+
+    -- Sets the filetype to `yaml.docker-compose` if it matches the pattern
+    [".*%.compose%.yml"] = "yaml.docker-compose",
+    [".*%.compose%.yaml"] = "yaml.docker-compose",
+    [".*%.docker-compose%.yml"] = "yaml.docker-compose",
+    [".*%.docker-compose%.yaml"] = "yaml.docker-compose",
   },
 })
 

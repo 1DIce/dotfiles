@@ -20,6 +20,8 @@ require("mason-lspconfig").setup({
     "lua_ls",
     "vtsls", -- alternative typescript lsp
     "angularls",
+    "docker_compose_language_service",
+    "dockerls",
   },
 })
 
@@ -159,6 +161,8 @@ local servers = {
   clangd = clangd_config(),
   cssls = css_config(),
   dockerls = {},
+  -- only starts up if the filetype is yaml.dockercompose `:set filetype=yaml.dockercompose`
+  docker_compose_language_service = {},
   eslint = {
     root_dir = lsp.util.root_pattern("tsconfig.json"),
     -- Refer to https://github.com/Microsoft/vscode-eslint#settings-options for documentation.
