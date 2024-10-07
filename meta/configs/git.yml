@@ -18,5 +18,6 @@
 - crossplatform-shell:
     - command: sudo add-apt-repository ppa:git-core/ppa && sudo apt update && sudo apt install git -y
       platform: linux
+      environment: "!ARCH_DISTRO_NAME"
     - command: nix-env -iA nixpkgs.git-credential-oauth
       platform: linux

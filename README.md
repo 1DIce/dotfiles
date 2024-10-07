@@ -53,10 +53,20 @@ The repository layout is pretty straight forward the following graph gives an ov
 
 ### Installation on Ubuntu and Wsl
 1. Clone this repo into `~/dotfiles` by running `cd ~ && git clone https://github.com/1DIce/dotfiles.git`
-2. Setup shell proper configuration `./install-profile.sh ubuntu-shell`
-3. Install zsh and switch to it `sudo apt update && sudo apt install zsh -y && chsh -s /usr/bin/zsh`
-4. **Restart your terminal** to start using zsh. It is required for the rest of the installation to work properly.
-5. Setup the rest of the dotfiles and software `.install-profile ubuntu`
+2. Install nix package manager by running  `./install-standalone.sh nix` and follow the on screen instructions
+3. Setup shell proper configuration `./install-profile.sh ubuntu-shell`
+4. Install zsh and switch to it `sudo apt update && sudo apt install zsh -y && chsh -s /usr/bin/zsh`
+5. **Restart your terminal** to start using zsh. It is required for the rest of the installation to work properly.
+6. Setup the rest of the dotfiles and software `.install-profile ubuntu`
+
+### Installation on Arch based distro
+1. `ARCH_DISTRO_NAME=<name>` example add `ARCH_DISTRO_NAME=Endeavour` to `etc/environment`. It is best to login again to make sure the change takes effect.
+1. Clone this repo into `~/dotfiles` by running `cd ~ && git clone https://github.com/1DIce/dotfiles.git`
+2. Install nix package manager by running  `./install-standalone.sh nix` and follow the on screen instructions
+3. Setup shell proper configuration `./install-profile.sh arch-shell`
+4. Install zsh and switch to it `sudo pacman -Sy zsh && chsh -s /usr/bin/zsh`
+5. **Restart your terminal** to start using zsh. It is required for the rest of the installation to work properly. If restarting the terminal is not working, logout and log back into the system again.
+6. Setup the rest of the dotfiles and software `.install-profile arch`
 
 ### Installation on Windows
 1. Make sure that [scoop](scoop.sh) is installed on the system. Dotbot will use it to install dependencies

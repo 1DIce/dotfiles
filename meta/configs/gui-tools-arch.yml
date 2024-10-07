@@ -1,0 +1,3 @@
+- crossplatform-shell:
+    - sudo pacman -Sy --noconfirm kdiff3 zathura xclip
+    - yay -Sy --noconfirm appimagelauncher
