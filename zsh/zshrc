@@ -55,6 +55,8 @@ alias gitroot='cd $(git rev-parse --show-toplevel)'
 alias fm="vicd ./"
 alias marktext="marktext.AppImage"
 alias notes="nvim  '+let g:auto_session_enabled = v:false' -c VimwikiIndex"
+alias clipboard-from="xclip -o -selection clipboard"
+alias clipboard-to="xclip -selection clipboard"
 
 
 # Make Tab autocomplete regardless of filename case
