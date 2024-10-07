@@ -52,21 +52,6 @@ function cdmer {
   cd "$selected" || exit
 }
 
-function merlin-setup {
-  if [ -z "$1" ]; then
-    echo 'No directory name for the new merlin clone was given'
-    return 1
-  fi
-  local dirName=/c/configurator-ide/"$1"
-  mkdir "$dirName"
-  cd "$dirName" || exit
-  git clone "https://gitlab.cas.de/dcm/product.git" ./git
-  cd git || exit
-  local branch=$(printf 'master\nlts/11.0\nlts/10.10\nlts/10.0' | fzf)
-  git checkout "$branch"
-  ./eclipse-installer
-}
-
 
 # Setup fzf (fzf should already be installed on the PATH by scoop)
 eval "$(fzf --bash)"

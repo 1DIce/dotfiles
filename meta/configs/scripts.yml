@@ -5,9 +5,6 @@
     - ~/wsl-start-vpn-kit.sh:
         path: scripts/wsl2/wsl-start-vpnkit.sh
         platform: linux
-    - ~/wsl2-ubuntu-map-win-localhost.sh:
-        path: scripts/wsl2/wsl2-ubuntu-map-win-localhost.sh
-        platform: linux
     - ~/wsl-forward-windows-port.sh:
         path: scripts/wsl2/wsl-forward-windows-port.sh
         platform: linux
@@ -63,17 +60,8 @@
     - ~/.config/fzf-run/fzf-run.json:
         path: scripts/fzf-run/fzf-run.json
         platform: linux
-    - ~/bin/mmodel-clear-cache:
-        path: scripts/mmodel-clear-cache.sh
-        platform: win32
     - ~/bin/man:
         path: scripts/man-on-windows.sh
-        platform: win32
-    - ~/bin/change-db:
-        path: scripts/change-db.sh
-        platform: win32
-    - ~/bin/mer-delete-workspace-connection:
-        path: scripts/mer-delete-workspace-connection.sh
         platform: win32
     - ~/bin/jira-issues-to-confluence-markup:
         path: scripts/jira-issues-to-confluence-markup.sh
