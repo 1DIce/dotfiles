@@ -4,7 +4,7 @@ local types = require("luasnip.util.types")
 
 ls.config.set_config({
   history = true,
-  updateevents = "TextChanged,TextChangedI",
+  update_events = "TextChanged,TextChangedI,InsertLeave",
   enable_autosnippets = false,
 
   ext_opts = { [types.choiceNode] = { active = { virt_text = { { "<- ChoiceNode", "Error" } } } } },
@@ -12,6 +12,11 @@ ls.config.set_config({
 
 -- Loading all snippets from directory
 for _, ft_path in ipairs(vim.api.nvim_get_runtime_file("lua/ld/snippets/*.lua", true)) do
+  loadfile(ft_path)()
+end
+
+-- Loading snippets from go.nvim directory
+for _, ft_path in ipairs(vim.api.nvim_get_runtime_file("lua/snips/go.lua", false)) do
   loadfile(ft_path)()
 end
 
