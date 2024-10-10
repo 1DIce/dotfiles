@@ -1,2 +1,2 @@
 - crossplatform-shell:
-    - sudo pacman -Sy --noconfirm gcc make cmake fuse2 sqlite chafa git entr
+    - sudo pacman -Sy --noconfirm gcc make cmake fuse2 sqlite chafa git watchexec
