@@ -1,0 +1,10 @@
+- crossplatform-link:
+    - ~/.config/rofi:
+        path: i3-endeavour/rofi
+        platform: linux
+    - ~/.config/i3:
+        path: i3-endeavour/i3
+        platform: linux
+    - ~/.config/picom.conf:
+        path: i3-endeavour/picom.conf
+        platform: linux

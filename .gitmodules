@@ -27,3 +27,6 @@
 [submodule "libs/git-madge"]
 	path = libs/git-madge
 	url = https://github.com/1Dice/git-madge.git
+[submodule "i3-endeavour"]
+	path = i3-endeavour
+	url = https://github.com/1DIce/i3-endeavour
