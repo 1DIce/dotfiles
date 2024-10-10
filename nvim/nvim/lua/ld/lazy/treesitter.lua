@@ -30,6 +30,7 @@ local function treesitter_config()
       "cpp",
       "groovy",
       "rust",
+      "sql",
       "http",
     },
     highlight = {
@@ -85,6 +86,7 @@ local function treesitter_textobjects_config()
   ---@diagnostic disable-next-line: missing-fields
   require("nvim-treesitter.configs").setup({
     textobjects = {
+      enable = true,
       select = {
         enable = true,
         lookahead = true,
