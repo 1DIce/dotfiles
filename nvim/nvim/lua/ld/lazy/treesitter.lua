@@ -30,6 +30,7 @@ local function treesitter_config()
       "cpp",
       "groovy",
       "rust",
+      "http",
     },
     highlight = {
       enable = true,
