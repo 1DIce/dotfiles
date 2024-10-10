@@ -27,6 +27,35 @@ return {
   {
     "mfussenegger/nvim-jdtls",
   },
+  {
+    "ray-x/go.nvim",
+    dependencies = {
+      "neovim/nvim-lspconfig",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    lazy = false,
+    config = function()
+      require("go").setup({
+        lsp_cfg = false,
+        lsp_keymaps = false,
+        lsp_codelens = false,
+        null_ls = false,
+        lsp_inlay_hints = {
+          enable = false,
+        },
+        gopls_remote_auto = false,
+        dap_debug = false,
+        dap_debug_keymap = false,
+        dap_debug_gui = false,
+        dap_debug_vt = false,
+
+        verbose = false,
+        textobjects = false,
+
+        luasnip = false, -- relevant snippets are loaded in luasnips config file
+      })
+    end,
+  },
   "b0o/SchemaStore.nvim",
   "williamboman/mason.nvim",
   "williamboman/mason-lspconfig.nvim",
