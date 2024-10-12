@@ -38,19 +38,6 @@ nnoremap("<leader>qp", ":cprev<CR>", "Navigate to previous quickfix")
 nnoremap("<c-j>", ":cnext<CR>zz", "Navigate to next quickfix")
 nnoremap("<c-k>", ":cprev<CR>zz", "Navigate to previous quickfix")
 
--- navigate command mode autocomplete
-cnoremap("<C-j>", "<C-n>", "Select next command mode suggestion")
-cnoremap("<C-k>", "<C-p>", "Select previous command mode suggestion")
-
--- maps c-n / c-p to navigate while searching with /
-vim.api.nvim_exec(
-  [[
-cnoremap <expr> <c-n> getcmdtype() =~ '[\/?]' ? '<c-g>' : '<c-n>'
-cnoremap <expr> <c-p> getcmdtype() =~ '[\/?]' ? '<c-t>' : '<c-p>'
-]],
-  false
-)
-
 -- save buffer
 nnoremap("<leader><leader>s", "<cmd>write<CR>", "save current buffer")
 
