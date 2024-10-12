@@ -94,8 +94,8 @@ function M.set_default(client, bufnr)
   end
 
   -- open litee call hierachy ui
-  buf_set_keymap("n", "<leader>la", "<cmd>lua vim.lsp.buf.incoming_calls()<CR>", "Call Hierachy")
-  buf_set_keymap("v", "<leader>la", "<cmd>lua vim.lsp.buf.incoming_calls()<CR>", "Call Hierachy")
+  buf_set_keymap("n", "<leader>lh", "<cmd>lua vim.lsp.buf.incoming_calls()<CR>", "Call Hierachy")
+  buf_set_keymap("v", "<leader>lh", "<cmd>lua vim.lsp.buf.incoming_calls()<CR>", "Call Hierachy")
 
   -- map('n','gs','<cmd>lua vim.lsp.buf.signature_help()<CR>')
   -- map('n','gi','<cmd>lua vim.lsp.buf.implementation()<CR>')
