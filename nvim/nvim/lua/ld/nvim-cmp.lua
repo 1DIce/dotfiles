@@ -121,14 +121,14 @@ local cmdlineMappings = {
   ["<C-p>"] = {
     c = function()
       if cmp.visible() then
-        cmp.select_next_item()
+        cmp.select_prev_item()
       end
     end,
   },
   ["<C-n>"] = {
     c = function()
       if cmp.visible() then
-        cmp.select_prev_item()
+        cmp.select_next_item()
       end
     end,
   },
