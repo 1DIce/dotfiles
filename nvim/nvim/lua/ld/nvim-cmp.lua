@@ -96,6 +96,12 @@ if not vim.g.started_by_firenvim then
     },
   })
 
+  cmp.setup.filetype("go", {
+    mapping = {
+      ["<CR>"] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }),
+    },
+  })
+
   cmp.setup.filetype("lua", {
     sources = {
       { name = "nvim_lsp", max_item_count = 50 },
