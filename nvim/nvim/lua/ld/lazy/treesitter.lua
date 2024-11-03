@@ -213,5 +213,23 @@ return {
     "hiphish/rainbow-delimiters.nvim",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
   },
-  "andymass/vim-matchup",
+  {
+    "andymass/vim-matchup",
+    config = function(_, opts)
+      local ok, cmp = pcall(require, "cmp")
+      -- disabling matchup temporarly while cmp window is open because
+      -- matchup can sometimes close the cmp window prematurely while
+      -- going to the next completion
+      -- https://github.com/hrsh7th/nvim-cmp/issues/1940
+      if ok then
+        cmp.event:on("menu_opened", function()
+          vim.b.matchup_matchparen_enabled = false
+        end)
+        cmp.event:on("menu_closed", function()
+          vim.b.matchup_matchparen_enabled = true
+        end)
+      end
+      require("match-up").setup(opts)
+    end,
+  },
 }
