@@ -14,6 +14,12 @@
     ~/.config/alacritty/alacritty_tokyonight_night.yml:
       path: alacritty/alacritty_tokyonight_night.yml
       platform: linux
+    ~/.config/alacritty/alacritty.toml:
+      path: alacritty/alacritty.toml
+      platform: darwin
+    ~/.config/alacritty/alacritty_tokyonight_night.toml:
+      path: alacritty/alacritty_tokyonight_night.toml
+      platform: darwin
     ~/AppData/Roaming/alacritty/alacritty.yml:
       path: alacritty/alacritty.yml
       platform: win32

@@ -16,6 +16,9 @@ if grep -q WSL2 /proc/version; then
 elif [ "$UNAME" == "linux" ]; then
   # is normal linux not wsl
   kdiff3 "$base" "$local" "$remote" -L1 base -L2 local -L3 remote -o "$merged"
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+  # is normal linux not wsl
+  kdiff3 "$base" "$local" "$remote" -L1 base -L2 local -L3 remote -o "$merged"
 else
   /C/Program\ Files/KDiff3/kdiff3.exe "$base" "$local" "$remote" -L1 base -L2 local -L3 remote -o "$merged"
 fi

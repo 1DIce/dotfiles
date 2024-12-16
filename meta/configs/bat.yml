@@ -3,10 +3,10 @@
 
 - crossplatform-link:
     - ~/.config/bat/themes:
-        platform: linux
+        platform: "!win32"
         path: bat/themes
 
 - crossplatform-shell:
     # rebuild the bat cache with the new theme
     - command: bat cache --build
-      platform: linux
+      platform: "!win32"

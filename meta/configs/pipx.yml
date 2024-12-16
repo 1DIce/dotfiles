@@ -1,6 +1,8 @@
 - crossplatform-shell:
     - command: nix-env -iA nixpkgs.pipx
       platform: linux
+    - command: brew install pipx
+      platform: darwin
     - command: python -m pip install --user pipx && python -m pipx ensurepath
       platform: win32
     - pipx install yamllint

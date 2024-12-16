@@ -4,3 +4,5 @@
 - crossplatform-shell:
     - command: nix-env -iA nixpkgs.tmux
       platform: linux
+    - command: brew install tmux
+      platform: darwin

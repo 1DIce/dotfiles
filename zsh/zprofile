@@ -1,4 +1,18 @@
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  # setup homebrew
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+
+  # Add vs code to PATH
+  export PATH="${PATH:+${PATH}:}/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+  # Add idea to PATH
+  export PATH="${PATH:+${PATH}:}/Applications/IntelliJ IDEA.app/Contents/MacOS"
+
+  # export KUBECONFIG="$HOME/.kube/dev-config.yaml:$HOME/.kube/test-config.yaml"
+  export KUBECONFIG="$HOME/.kube/combined-config.yaml"
+
+fi
+
+
 if [[ ! "$PATH" == */home/lars/.fzf/bin* ]]; then
   export PATH="${PATH:+${PATH}:}/home/lars/.fzf/bin"
 fi
-

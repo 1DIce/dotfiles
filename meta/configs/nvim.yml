@@ -2,6 +2,9 @@
     - ~/.config/nvim:
         platform: linux
         path: nvim/nvim
+    - ~/.config/nvim:
+        platform: darwin
+        path: nvim/nvim
     - ~/AppData/Local/nvim:
         platform: win32
         path: nvim/nvim
@@ -11,3 +14,5 @@
       platform: linux
     - command: scoop install neovim
       platform: win32
+    - command: brew install neovim
+      platform: darwin

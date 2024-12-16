@@ -21,6 +21,9 @@ export PATH=~/.local/bin:$PATH
 if [ -d "$HOME/.cargo/bin" ] ; then
     PATH="$HOME/.cargo/bin:$PATH"
 fi
+if [ -d "$HOME/.rustup/toolchains/stable-aarch64-apple-darwin/bin" ] ; then
+    PATH="$HOME/.rustup/toolchains/stable-aarch64-apple-darwin/bin:$PATH"
+fi
 
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"

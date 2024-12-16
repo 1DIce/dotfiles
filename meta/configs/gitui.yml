@@ -4,7 +4,7 @@
 - crossplatform-link:
     - ~/.config/gitui/key_bindings.ron:
         path: gitui/key_bindings.ron
-        platform: linux
+        platform: "!win32"
     - ~/AppData/Roaming/gitui/key_bindings.ron:
         path: gitui/key_bindings.ron
         platform: win32
@@ -12,3 +12,5 @@
 - crossplatform-shell:
     - command: nix-env -iA nixpkgs.gitui
       platform: linux
+    - command: brew install gitui
+      platform: darwin

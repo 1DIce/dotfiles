@@ -2,9 +2,6 @@
     - ~/.config/fzf-run
 
 - crossplatform-link:
-    - ~/wsl-start-vpn-kit.sh:
-        path: scripts/wsl2/wsl-start-vpnkit.sh
-        platform: linux
     - ~/wsl-forward-windows-port.sh:
         path: scripts/wsl2/wsl-forward-windows-port.sh
         platform: linux
@@ -21,7 +18,7 @@
         platform: linux
     - ~/bin/tmux-sessionizer:
         path: scripts/tmux-sessionizer.sh
-        platform: linux
+        platform: "!win32"
     - ~/bin/git-review-diff:
         path: scripts/git-review-diff.sh
     - ~/bin/worktree-create:
@@ -30,9 +27,6 @@
         path: scripts/git-stat.sh
     - ~/bin/git-ch:
         path: scripts/git-fzf-checkout.sh
-    - ~/bin/build-merlin-libs:
-        path: scripts/build-merlin-libs.sh
-        platform: linux
     - ~/bin/prettier-format-staged:
         path: scripts/prettier-format-staged.sh
         platform: linux
@@ -43,7 +37,7 @@
         platform: linux
     - ~/bin/live-grep:
         path: scripts/live-grep.sh
-        platform: linux
+        platform: "!win32"
     - ~/bin/tmux-vifm-sessionizer:
         path: scripts/tmux-vifm-sessionizer.sh
         platform: linux
@@ -56,10 +50,10 @@
         platform: win32
     - ~/bin/kdiff-merge.sh:
         path: scripts/kdiff-merge.sh
-        platform: linux
+        platform: "!win32"
     - ~/.config/fzf-run/fzf-run.json:
         path: scripts/fzf-run/fzf-run.json
-        platform: linux
+        platform: "!win32"
     - ~/bin/man:
         path: scripts/man-on-windows.sh
         platform: win32
