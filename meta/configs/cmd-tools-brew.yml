@@ -1,0 +1,3 @@
+- crossplatform-shell:
+    - brew install fd ripgrep bat jq thefuck fzf eza delta chafa git-gui luarocks kdiff3 watchexec rustup 
+    - rustup default stable
