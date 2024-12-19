@@ -48,6 +48,13 @@
 [difftool "vscode"]
   cmd = code --wait --diff $LOCAL $REMOTE
 
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path =
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+
 [mergetool "fugitive"]
   cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
 
@@ -76,7 +83,6 @@
   hunk-header-file-style = red
   hunk-header-line-number-style = "#067a00"
   hunk-header-style = file line-number syntax
-
 
 [include]
   path = ~/.gitconfig-credential
