@@ -11,6 +11,9 @@
   excludesFile = ~/.gitignore
   fsmonitor = true
 
+[rerere]
+	enabled = true
+
 [init]
   defaultBranch = main
 [push]
