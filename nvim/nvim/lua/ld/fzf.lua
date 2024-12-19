@@ -252,7 +252,7 @@ require("fzf-lua").setup({
     -- previewer         = "cat",       -- uncomment to override previewer
     prompt = "Files❯ ",
     winopts = { preview = { hidden = "hidden" } },
-    git_icons = true, -- show git icons?
+    git_icons = false, -- show git icons?
     file_icons = true, -- show file icons?
     color_icons = true, -- colorize file|git icons
     actions = {
