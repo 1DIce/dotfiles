@@ -23,6 +23,8 @@
         path: scripts/git-review-diff.sh
     - ~/bin/worktree-create:
         path: scripts/git-create-worktree.sh
+    - ~/bin/init-worktree:
+        path: scripts/git-init-worktree.sh
     - ~/bin/git-stat:
         path: scripts/git-stat.sh
     - ~/bin/git-ch:
