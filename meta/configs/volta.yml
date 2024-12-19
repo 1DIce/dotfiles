@@ -3,6 +3,6 @@
       platform: linux
     - command: scoop install main/volta
       platform: win32
-    - command: brew install volta
+    - command: curl https://get.volta.sh | bash -s -- --skip-setup
       platform: darwin
     - command: volta install node@20 && volta install yarn
