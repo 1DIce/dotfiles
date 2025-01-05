@@ -1,5 +1,4 @@
 return {
-  "mattn/emmet-vim",
   {
     "hrsh7th/nvim-cmp",
     config = function()
