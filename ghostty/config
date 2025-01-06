@@ -1,1 +1,5 @@
 theme = tokyonight_night
+
+# disable programming ligatures
+font-feature = -calt
+
