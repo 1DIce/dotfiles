@@ -3,6 +3,7 @@ local
 zsh
 spaceship
 less
+ghostty
 alacritty
 cspell
 volta

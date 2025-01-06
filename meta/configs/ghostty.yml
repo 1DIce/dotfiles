@@ -1,0 +1,9 @@
+- create:
+    - ~/.config/ghostty
+- crossplatform-link:
+    - ~/.config/ghostty/config:
+        platform: "linux"
+        path: ghostty/config
+    - ~/Library/Application\ Support/com.mitchellh.ghostty/config:
+        platform: "darwin"
+        path: ghostty/config
