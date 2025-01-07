@@ -5,6 +5,37 @@ if not present then
   return
 end
 
+-- Until https://github.com/hrsh7th/nvim-cmp/issues/1716
+-- (cmp.ConfirmBehavior.MatchSuffix) gets implemented, use this local wrapper
+-- to choose between `cmp.ConfirmBehavior.Insert` and
+-- `cmp.ConfirmBehavior.Replace`:
+local confirm = function(entry)
+  local behavior = cmp.ConfirmBehavior.Replace
+  if entry then
+    local completion_item = entry.completion_item
+    local newText = ""
+    if completion_item.textEdit then
+      newText = completion_item.textEdit.newText
+    elseif type(completion_item.insertText) == "string" and completion_item.insertText ~= "" then
+      newText = completion_item.insertText
+    else
+      newText = completion_item.word or completion_item.label or ""
+    end
+
+    -- How many characters will be different after the cursor position if we
+    -- replace?
+    local diff_after = math.max(0, entry.replace_range["end"].character + 1)
+      - entry.context.cursor.col
+
+    -- Does the text that will be replaced after the cursor match the suffix
+    -- of the `newText` to be inserted? If not, we should `Insert` instead.
+    if entry.context.cursor_after_line:sub(1, diff_after) ~= newText:sub(-diff_after) then
+      behavior = cmp.ConfirmBehavior.Insert
+    end
+  end
+  cmp.confirm({ select = true, behavior = behavior })
+end
+
 cmp.setup({
   preselect = cmp.PreselectMode.None, -- avoid automatic selection of random lsp entry
   snippet = {
@@ -26,10 +57,8 @@ cmp.setup({
           fallback()
         end
         if cmp.visible() then
-          cmp.confirm({
-            behavior = cmp.ConfirmBehavior.Insert,
-            select = true,
-          })
+          local entry = cmp.get_selected_entry()
+          confirm(entry)
         else
           -- This workaround is currently needed to make sure that pressing <CR> still works normally while cmp is not visible
           vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<CR>", true, true, true), "n")
@@ -93,12 +122,6 @@ if not vim.g.started_by_firenvim then
         },
       },
       { name = "buffer", max_item_count = 5, keyword_length = 4 },
-    },
-  })
-
-  cmp.setup.filetype("go", {
-    mapping = {
-      ["<CR>"] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }),
     },
   })
 
