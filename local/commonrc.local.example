@@ -1,6 +1,7 @@
 # Create a copy of this file without the .example ending
 # Replace placeholders with correct data
-# Symlink the file 
+# Symlink the file
 export JENKINS_USERNAME="<user.name>"
 export JENKINS_BASE_URL="https://<jenkins-base-url>"
 export GITLAB_API_TOKEN="access-token"
+export GITLAB_BASE_URL="https://gitlab.example.com"

@@ -7,14 +7,16 @@ if [[ $# -eq 1 ]]; then
 else
   # tr -s ' ' squeezes the whitespace
   local bookmarks=$(bls | tr -s ' ' | cut -f3 -d ' ')
-  local commonDirectories=$(find ~/work ~/personal ~/open-source -mindepth 1 -maxdepth 1 -type d 2> /dev/null)
+  local commonDirectories=$(find ~/personal ~/open-source -mindepth 1 -maxdepth 1 -type d 2> /dev/null)
+  local workNormalDirs=$(find ~/work -mindepth 1 -maxdepth 1 -type d ! -exec test -e '{}/.worktree.root' \; -print 2> /dev/null)
+  local workWorktrees=$(find ~/work -mindepth 2 -maxdepth 2 -type f -name ".worktree.root" -exec bash -c 'find "$(dirname {})" -mindepth 1 -maxdepth 1 -type d' \; 2> /dev/null)
   local runningSessionNames=""
   if [[ ! -z $tmux_running ]]; then
-    # get CWD's of all currently running sesseions
+    # get CWD's of all currently running sessions
     runningSessionNames=$(tmux list-sessions -F "#{session_path}")
   fi
   # make sure duplicate paths are filtered out
-  selected=$({echo "$HOME/dotfiles"; echo "$bookmarks"; echo "$commonDirectories"; echo "$runningSessionNames"; } | sort -u | fzf)
+  selected=$({echo "$HOME/dotfiles"; echo "$bookmarks"; echo "$commonDirectories"; echo "$runningSessionNames"; echo "$workNormalDirs"; echo "$workWorktrees"; } | sort -u | fzf)
 fi
 
 if [[ -z $selected ]]; then
