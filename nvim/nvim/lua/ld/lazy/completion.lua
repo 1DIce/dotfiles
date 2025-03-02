@@ -12,6 +12,7 @@ return {
       { url = "https://codeberg.org/FelipeLema/cmp-async-path.git" },
       "hrsh7th/cmp-nvim-lua",
       "hrsh7th/cmp-cmdline",
+      "rcarriga/cmp-dap",
       {
         "windwp/nvim-autopairs",
         config = function()

@@ -38,6 +38,11 @@ end
 
 cmp.setup({
   preselect = cmp.PreselectMode.None, -- avoid automatic selection of random lsp entry
+  -- custom enabled function to make cmp-dap completions work
+  enabled = function()
+    return vim.api.nvim_get_option_value("buftype", { buf = 0 }) ~= "prompt"
+      or require("cmp_dap").is_dap_buffer()
+  end,
   snippet = {
     expand = function(args)
       require("luasnip").lsp_expand(args.body)
@@ -142,6 +147,12 @@ if not vim.g.started_by_firenvim then
     sources = {
       { name = "vim-dadbod-completion" },
       { name = "buffer" },
+    },
+  })
+
+  cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+    sources = {
+      { name = "dap" },
     },
   })
 end

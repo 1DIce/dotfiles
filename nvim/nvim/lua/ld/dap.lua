@@ -44,17 +44,36 @@ dap.configurations.typescript = { -- change this to javascript if needed
   },
 }
 
-vim.cmd([[
-    nnoremap <silent> <F5> <Cmd>lua require'dap'.continue()<CR>
-    nnoremap <silent> <F6> <Cmd>lua require'dap'.step_over()<CR>
-    nnoremap <silent> <F7> <Cmd>lua require'dap'.step_into()<CR>
-    nnoremap <silent> <F8> <Cmd>lua require'dap'.step_out()<CR>
-    nnoremap <silent> <Leader>db <Cmd>lua require'dap'.toggle_breakpoint()<CR>
-    nnoremap <silent> <Leader>dB <Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
-    nnoremap <silent> <Leader>dp <Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
-    nnoremap <silent> <Leader>dr <Cmd>lua require'dap'.repl.open()<CR>
-    nnoremap <silent> <Leader>dl <Cmd>lua require'dap'.run_last()<CR>
-]])
+vim.keymap.set("n", "<F5>", function()
+  require("dap").continue()
+end)
+vim.keymap.set("n", "<F6>", function()
+  require("dap").step_over()
+end)
+vim.keymap.set("n", "<F7>", function()
+  require("dap").step_into()
+end)
+vim.keymap.set("n", "<F8>", function()
+  require("dap").step_out()
+end)
+vim.keymap.set("n", "<Leader>db", function()
+  require("dap").toggle_breakpoint()
+end)
+vim.keymap.set("n", "<Leader>dB", function()
+  require("dap").set_breakpoint()
+end)
+vim.keymap.set("n", "<Leader>dp", function()
+  require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
+end)
+vim.keymap.set("n", "<Leader>dr", function()
+  require("dap").repl.open()
+end)
+vim.keymap.set("n", "<Leader>dl", function()
+  require("dap").run_last()
+end)
+vim.keymap.set({ "n", "v" }, "<Leader>dk", function()
+  require("dap.ui.widgets").hover()
+end)
 
 dapui.setup({})
 
