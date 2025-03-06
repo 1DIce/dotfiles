@@ -16,3 +16,4 @@ git-depgraph
 zathura
 coding-flow
 bat
+yamllint
