@@ -29,7 +29,7 @@ function M.set_default(client, bufnr)
     buf_set_keymap(
       "n",
       "<leader>lu",
-      "<cmd>lua require('ld.telescope.functions').lsp_unique_references({})<CR>",
+      "<cmd>lua require('ld.telescope.functions').lsp_unique_references({include_current_line = true})<CR>",
       "Show references"
     )
   end
