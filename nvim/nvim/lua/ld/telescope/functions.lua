@@ -204,6 +204,11 @@ local function filter_lsp_document_symbol_results(lsp_server_results)
 end
 
 M.lsp_document_symbols = function(opts)
+  if vim.bo.filetype == "rust" then
+    require("telescope.builtin").lsp_document_symbols(opts)
+    return
+  end
+
   opts = opts or {}
   local params = vim.lsp.util.make_position_params(opts.winnr)
   vim.lsp.buf_request(opts.bufnr, "textDocument/documentSymbol", params, function(err, result, _, _)

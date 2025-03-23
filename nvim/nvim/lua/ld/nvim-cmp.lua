@@ -93,7 +93,7 @@ cmp.setup({
   sources = {
     {
       name = "nvim_lsp",
-      max_item_count = 50,
+      max_item_count = 100,
       entry_filter = function(entry, ctx)
         if ctx.filetype == "rust" then
           local item = entry.completion_item
