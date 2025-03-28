@@ -48,7 +48,11 @@ null_ls.setup({
       config = cspell_config,
     }),
     null_ls.builtins.formatting.stylua,
-    null_ls.builtins.diagnostics.yamllint,
+    null_ls.builtins.diagnostics.yamllint.with({
+      cwd = function()
+        return vim.uv.cwd()
+      end,
+    }),
     null_ls.builtins.formatting.prettierd,
   },
   debounce = 600,
