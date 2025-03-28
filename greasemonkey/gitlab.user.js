@@ -34,6 +34,8 @@
         !e.metaKey
       ) {
         reviewdCheckbox.click();
+        // focusing the diff again to make scrolling down with  arrow keys work
+        document.querySelector("diff-file")?.focus();
       }
     },
     false,
