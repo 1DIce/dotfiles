@@ -180,7 +180,10 @@ local cmdlineMappings = {
 }
 
 -- `/` cmdline setup.
-cmp.setup.cmdline("/", { sources = { { name = "buffer", max_item_count = 15 } } })
+cmp.setup.cmdline({ "/", "?" }, {
+  mapping = cmdlineMappings,
+  sources = { { name = "buffer", max_item_count = 15 } },
+})
 
 -- `:` cmdline setup.
 cmp.setup.cmdline(":", {
