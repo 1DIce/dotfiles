@@ -92,7 +92,7 @@ function M.setup()
         semanticTokens = true,
         noSemanticString = true, -- disable semantic string tokens so we can use treesitter highlight injection
         ["local"] = get_current_gomod(),
-        gofumpt = true,
+        gofumpt = false,
       },
     },
   }
