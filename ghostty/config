@@ -3,5 +3,5 @@ theme = tokyonight_night
 # disable programming ligatures
 font-feature = -calt
 
-macos-option-as-alt = true
+macos-option-as-alt = left
 
