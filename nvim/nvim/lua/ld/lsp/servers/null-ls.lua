@@ -27,7 +27,6 @@ null_ls.setup({
     require("ld.lsp.remaps").set_default(client, bufnr)
   end,
   sources = {
-    null_ls.builtins.formatting.black,
     -- cspell might not work without a config file in ./.vscode/cspell.json
     cspell.diagnostics.with({
       filetypes = {},

@@ -22,6 +22,7 @@ require("mason-lspconfig").setup({
     "angularls",
     "docker_compose_language_service",
     "dockerls",
+    "basedpyright",
   },
 })
 
@@ -171,12 +172,15 @@ local servers = {
       format = false,
     },
   },
-  pylsp = {},
   gopls = require("ld.lsp.servers.gopls").setup(),
   lua_ls = sumneko_lua_config(),
   ltex = require("ld.lsp.servers.ltex").setup(),
   cmake = {},
   astro = {},
+  ruff = { cmd = { "uvx", "ruff", "server" } }, -- python formatter
+  basedpyright = {
+    root_dir = lsp.util.root_pattern(".git"),
+  },
 }
 
 if functions.is_deno_workspace() then
