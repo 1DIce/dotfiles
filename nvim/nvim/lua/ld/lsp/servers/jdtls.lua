@@ -257,7 +257,7 @@ local config = {
 M = {}
 
 function M.jdtls_start_or_attach()
-  jdtls.start_or_attach(config)
+  -- jdtls.start_or_attach(config)
 end
 
 return M
