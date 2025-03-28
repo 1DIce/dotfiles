@@ -138,10 +138,10 @@ local function angular_config()
     default_node_modules,
   }
   return {
-    cmd = ngls_cmd,
-    on_new_config = function(new_config)
-      new_config.cmd = ngls_cmd
-    end,
+    -- cmd = ngls_cmd,
+    -- on_new_config = function(new_config)
+    --   new_config.cmd = ngls_cmd
+    -- end,
     filetypes = { "typescript", "angular.html", "typescriptreact", "typescript.tsx" },
   }
 end
