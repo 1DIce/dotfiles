@@ -31,7 +31,7 @@ local lsp_location_result_to_key = function(lsp_result)
 end
 
 M.lsp_unique_references = function(opts)
-  local params = vim.lsp.util.make_position_params()
+  local params = vim.lsp.util.make_position_params(nil, "utf-8")
   params.context = { includeDeclaration = true }
 
   local results_lsp, err =
