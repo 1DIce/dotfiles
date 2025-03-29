@@ -1,11 +1,6 @@
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("ld-lsp-attach", { clear = true }),
   callback = function(event)
-    vim.diagnostic.config({
-      virtual_text = { severity = vim.diagnostic.severity.ERROR },
-      underline = true,
-    })
-
     local bufnr = event.buf
     local client = vim.lsp.get_client_by_id(event.data.client_id)
 

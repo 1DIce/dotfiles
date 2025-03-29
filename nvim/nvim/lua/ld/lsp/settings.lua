@@ -32,15 +32,6 @@ M = {}
 -- Levels by name: 'trace', 'debug', 'info', 'warn', 'error'
 vim.lsp.set_log_level("error")
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] =
-  vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-    -- virtual_text = {spacing = 0, prefix = '■'},
-
-    -- see: ":help vim.lsp.diagnostic.set_signs()"
-    signs = true,
-
-    update_in_insert = false,
-  })
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
   -- Use a rounded border with `FloatBorder` highlights
   border = "rounded",

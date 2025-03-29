@@ -90,25 +90,6 @@ nnoremap("<leader>wl", "<cmd>wincmd l<CR>", "Move window right")
 nnoremap("<leader>w+", "<cmd>vertical resize +5<CR>", "Increase window size")
 nnoremap("<leader>w-", "<cmd>vertical resize -5<CR>", "Decrease window size")
 
--- diagnostics
-nnoremap(
-  "<leader>el",
-  "<cmd>lua require('telescope.builtin').diagnostics()<CR>",
-  "Show workspace diagnostics"
-)
-nnoremap("<leader>eq", "<cmd>lua vim.diagnostic.setqflist()", "Show workspace diagnostics")
-vim.keymap.set("n", "<leader>eh", function()
-  vim.diagnostic.open_float({
-    suffix = function(d)
-      return (" (%s)"):format(d.source)
-    end,
-    border = "rounded",
-  })
-end, { desc = "Show line diagnostics" })
-
-nnoremap("<leader>ej", "<cmd>lua vim.diagnostic.goto_next()<CR>", "next diagnostic")
-nnoremap("<leader>ek", "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Previous diagnostic")
-
 -- git more git remaps in gitsign attach callback
 nnoremap("<leader>gs", "<cmd>Telescope git_status<CR>", "Git status")
 nnoremap("<leader>gh", "<cmd>DiffviewFileHistory %<CR>", "Open git file history")

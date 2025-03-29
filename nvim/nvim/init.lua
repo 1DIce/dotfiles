@@ -10,3 +10,4 @@ require("ld.theme")
 
 require("ld.lsp")
 require("ld.remaps")
+require("ld.diagnostics")
