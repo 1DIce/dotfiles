@@ -143,17 +143,8 @@ require("fzf-lua").setup({
     -- border = {'╭', '─', '╮', '│', '╯', '─', '╰', '│'},
     border = "single",
     fullscreen = false, -- start fullscreen?
-    hl = {
-      normal = "Normal", -- window normal color (fg+bg)
-      border = "Normal", -- border color (try 'FloatBorder')
-      -- Only valid with the builtin previewer:
-      cursor = "Cursor", -- cursor highlight (grep/LSP matches)
-      cursorline = "CursorLine", -- cursor line
-      -- title       = 'Normal',        -- preview border title (file/buffer)
-      -- scrollbar_f = 'PmenuThumb',    -- scrollbar "full" section highlight
-      -- scrollbar_e = 'PmenuSbar',     -- scrollbar "empty" section highlight
-    },
     preview = {
+      delay = 100, -- delay(ms) displaying the preview. prevents lag on fast scrolling
       -- default     = 'bat',           -- override the default previewer?
       -- default uses the 'builtin' previewer
       border = "border", -- border|noborder, applies only to
@@ -180,6 +171,16 @@ require("fzf-lua").setup({
       --   vim.api.nvim_buf_set_keymap(0, "t", "<C-j>", "<Down>",
       --     { silent = true, noremap = true })
     end,
+  },
+  hls = {
+    normal = "Normal", -- window normal color (fg+bg)
+    border = "Normal", -- border color (try 'FloatBorder')
+    -- Only valid with the builtin previewer:
+    cursor = "Cursor", -- cursor highlight (grep/LSP matches)
+    cursorline = "CursorLine", -- cursor line
+    -- title       = 'Normal',        -- preview border title (file/buffer)
+    -- scrollbar_f = 'PmenuThumb',    -- scrollbar "full" section highlight
+    -- scrollbar_e = 'PmenuSbar',     -- scrollbar "empty" section highlight
   },
   keymap = {
     -- These override the default tables completely
@@ -240,8 +241,6 @@ require("fzf-lua").setup({
     git_diff = { cmd = "git diff", args = "--color" },
     man = { cmd = "man -c %s | col -bx" },
     builtin = {
-      delay = 100, -- delay(ms) displaying the preview
-      -- prevents lag on fast scrolling
       syntax = true, -- preview syntax highlight?
       syntax_limit_l = 0, -- syntax limit (lines), 0=nolimit
       syntax_limit_b = 1024 * 1024, -- syntax limit (bytes), 0=nolimit
