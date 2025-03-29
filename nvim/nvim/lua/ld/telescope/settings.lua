@@ -19,6 +19,7 @@ telescope.setup({
     sorting_strategy = "ascending",
     timeoutlen = 2000,
     prompt_prefix = ">",
+    border = false,
     file_ignore_patterns = {
       ".backup",
       ".swap",
@@ -53,11 +54,6 @@ telescope.setup({
     lsp_dynamic_workspace_symbols = { debounce = 300 },
   },
 })
-
-functions.link_highlight("TelescopeBorder", "GruvboxBg2", true)
-functions.link_highlight("TelescopePromptBorder", "GruvboxBg2", true)
-functions.link_highlight("TelescopeResultsBorder", "GruvboxBg2", true)
-functions.link_highlight("TelescopePreviewBorder", "GruvboxBg2", true)
 
 if functions.is_linux() then
   telescope.load_extension("neoclip")
