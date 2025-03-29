@@ -1,5 +1,6 @@
-vim.diagnostic.config({
+local default_config = {
   virtual_text = { severity = vim.diagnostic.severity.ERROR },
+  virtual_lines = false,
   underline = true,
   update_in_insert = false,
   signs = {
@@ -10,7 +11,9 @@ vim.diagnostic.config({
       [vim.diagnostic.severity.HINT] = "",
     },
   },
-})
+}
+
+vim.diagnostic.config(default_config)
 
 nnoremap(
   "<leader>el",
@@ -27,6 +30,14 @@ vim.keymap.set("n", "<leader>eh", function()
     border = "rounded",
   })
 end, { desc = "Show line diagnostics" })
+
+vim.keymap.set("n", "<leader>ev", function()
+  if vim.diagnostic.config().virtual_lines == false then
+    vim.diagnostic.config({ virtual_lines = true, virtual_text = false })
+  else
+    vim.diagnostic.config(default_config)
+  end
+end, { desc = "Toggle virtual lines diagnostics" })
 
 nnoremap("<leader>ej", "<cmd>lua vim.diagnostic.goto_next()<CR>", "next diagnostic")
 nnoremap("<leader>ek", "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Previous diagnostic")
