@@ -32,66 +32,15 @@ M = {}
 -- Levels by name: 'trace', 'debug', 'info', 'warn', 'error'
 vim.lsp.set_log_level("error")
 
-local client_capabilities = vim.lsp.protocol.make_client_capabilities()
-local capabilities =
-  { textDocument = { completion = { completionItem = { snippetSupport = true } } } }
+local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 if presentCmpNvimLsp then
-  capabilities =
-    vim.tbl_deep_extend("force", cmpNvimLsp.default_capabilities(client_capabilities), capabilities)
+  capabilities = cmpNvimLsp.default_capabilities(capabilities)
 end
 capabilities =
   vim.tbl_deep_extend("force", capabilities, require("lsp-file-operations").default_capabilities())
 
 M.capabilities = capabilities
-
-local default_lsp_config = { capabilities }
-
-local function sumneko_lua_config()
-  return {
-    autostart = false,
-    settings = {
-      Lua = {
-        format = {
-          enable = false, -- null-ls handles the formatting
-        },
-      },
-    },
-  }
-end
-
-local function clangd_config()
-  local cloned_capabilities = vim.deepcopy(capabilities)
-  cloned_capabilities.offsetEncoding = { "utf-16" }
-  return { capabilities = cloned_capabilities }
-end
-
-local function css_config()
-  local cloned_capabilities = vim.deepcopy(capabilities)
-  cloned_capabilities.textDocument.completion.completionItem.snippetSupport = true
-  return { capabilities = cloned_capabilities }
-end
-
-local function html_config()
-  local cloned_capabilities = vim.deepcopy(capabilities)
-  cloned_capabilities.textDocument.completion.completionItem.snippetSupport = true
-  return {
-    capabilities = cloned_capabilities,
-    init_options = { provideFormatter = false, format = { enable = false } },
-  }
-end
-
-local function json_config()
-  local cloned_capabilities = vim.deepcopy(capabilities)
-  cloned_capabilities.textDocument.completion.completionItem.snippetSupport = true
-  return {
-    capabilities = cloned_capabilities,
-    init_options = { provideFormatter = false, format = { enable = false } },
-    settings = {
-      json = { schemas = require("schemastore").json.schemas(), validate = { enable = true } },
-    },
-  }
-end
 
 local function get_node_modules(root_dir)
   -- util.find_node_modules_ancestor()
@@ -139,10 +88,14 @@ local servers = {
   -- to get fromatting and linting shellcheck and shfmt need to be installed
   bashls = {},
   yamlls = {},
-  jsonls = json_config(),
-  html = html_config(),
-  clangd = clangd_config(),
-  cssls = css_config(),
+  jsonls = {
+    init_options = { provideFormatter = false, format = { enable = false } },
+    settings = {
+      json = { schemas = require("schemastore").json.schemas(), validate = { enable = true } },
+    },
+  },
+  html = { init_options = { provideFormatter = false, format = { enable = false } } },
+  cssls = {},
   dockerls = {},
   -- only starts up if the filetype is yaml.dockercompose `:set filetype=yaml.dockercompose`
   docker_compose_language_service = {},
@@ -155,7 +108,16 @@ local servers = {
     },
   },
   gopls = require("ld.lsp.servers.gopls").setup(),
-  lua_ls = sumneko_lua_config(),
+  lua_ls = {
+    autostart = false,
+    settings = {
+      Lua = {
+        format = {
+          enable = false, -- null-ls handles the formatting
+        },
+      },
+    },
+  },
   ltex_plus = require("ld.lsp.servers.ltex").setup(),
   cmake = {},
   astro = {},
@@ -177,7 +139,7 @@ end
 require("ld.lsp.servers.rust-lsp").setup()
 
 for serverName, config in pairs(servers) do
-  lsp[serverName].setup(vim.tbl_deep_extend("force", default_lsp_config, config))
+  lsp[serverName].setup(vim.tbl_deep_extend("force", { capabilities }, config))
   vim.cmd([[ do User LspAttachBuffers ]])
 end
 

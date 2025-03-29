@@ -34,8 +34,6 @@ function M.set_default(client, bufnr)
     )
   end
 
-  buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover documentation")
-
   if cap.documentSymbolProvider then
     buf_set_keymap(
       "n",
@@ -96,10 +94,6 @@ function M.set_default(client, bufnr)
   -- open litee call hierachy ui
   buf_set_keymap("n", "<leader>lh", "<cmd>lua vim.lsp.buf.incoming_calls()<CR>", "Call Hierachy")
   buf_set_keymap("v", "<leader>lh", "<cmd>lua vim.lsp.buf.incoming_calls()<CR>", "Call Hierachy")
-
-  -- map('n','gs','<cmd>lua vim.lsp.buf.signature_help()<CR>')
-  -- map('n','gi','<cmd>lua vim.lsp.buf.implementation()<CR>')
-  -- map('n','<leader>ah','<cmd>lua vim.lsp.buf.hover()<CR>')
 end
 
 function M.set_typescript(client, bufnr)
