@@ -32,15 +32,6 @@ M = {}
 -- Levels by name: 'trace', 'debug', 'info', 'warn', 'error'
 vim.lsp.set_log_level("error")
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-  -- Use a rounded border with `FloatBorder` highlights
-  border = "rounded",
-})
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-  -- Use a rounded border with `FloatBorder` highlights
-  border = "rounded",
-})
-
 local client_capabilities = vim.lsp.protocol.make_client_capabilities()
 local capabilities =
   { textDocument = { completion = { completionItem = { snippetSupport = true } } } }

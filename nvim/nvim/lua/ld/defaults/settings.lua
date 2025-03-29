@@ -95,6 +95,9 @@ vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
 vim.o.sessionoptions =
   "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
+-- setting global border style for all floating windows
+vim.o.winborder = "rounded"
+
 -- shows spaces
 vim.o.list = false
 
