@@ -125,13 +125,6 @@ require("fzf-lua").setup({
   -- use telescope profile as the base
   "telescope",
   winopts = {
-    -- split = "botright new", -- open in a split instead?
-    -- "belowright new"  : split below
-    -- "aboveleft new"   : split above
-    -- "belowright vnew" : split right
-    -- "aboveleft vnew   : split left
-    -- Only valid when using a float window
-    -- (i.e. when 'split' is not defined)
     height = 0.55, -- window height
     width = 0.95, -- window width
     row = 0.88, -- window row position (0=top, 1=bottom)
@@ -141,36 +134,19 @@ require("fzf-lua").setup({
     -- window, can be set to 'false' to remove all borders or to
     -- 'none', 'single', 'double' or 'rounded' (default)
     -- border = {'╭', '─', '╮', '│', '╯', '─', '╰', '│'},
-    border = "single",
+    border = "rounded",
     fullscreen = false, -- start fullscreen?
     preview = {
       delay = 100, -- delay(ms) displaying the preview. prevents lag on fast scrolling
-      -- default     = 'bat',           -- override the default previewer?
-      -- default uses the 'builtin' previewer
       border = "border", -- border|noborder, applies only to
-      -- native fzf previewers (bat/cat/git/etc)
-      wrap = "nowrap", -- wrap|nowrap
       hidden = "nohidden", -- hidden|nohidden
       vertical = "down:45%", -- up|down:size
       horizontal = "right:50%", -- right|left:size
-      layout = "flex", -- horizontal|vertical|flex
       flip_columns = 120, -- #cols to switch to horizontal on flex
       -- Only valid with the builtin previewer:
-      title = true, -- preview border title (file/buf)?
-      scrollbar = "float", -- `false` or string:'float|border'
-      -- float:  in-window floating border
-      -- border: in-border chars (see below)
-      scrolloff = "-2", -- float scrollbar offset from right
-      -- applies only when scrollbar = 'float'
       scrollchars = { "█", "" }, -- scrollbar chars ({ <full>, <empty> }
       -- applies only when scrollbar = 'border'
     },
-    on_create = function()
-      -- called once upon creation of the fzf main window
-      -- can be used to add custom fzf-lua mappings, e.g:
-      --   vim.api.nvim_buf_set_keymap(0, "t", "<C-j>", "<Down>",
-      --     { silent = true, noremap = true })
-    end,
   },
   hls = {
     normal = "Normal", -- window normal color (fg+bg)
@@ -238,8 +214,6 @@ require("fzf-lua").setup({
       config = nil, -- nil uses $BAT_CONFIG_PATH
     },
     head = { cmd = "head", args = nil },
-    git_diff = { cmd = "git diff", args = "--color" },
-    man = { cmd = "man -c %s | col -bx" },
     builtin = {
       syntax = true, -- preview syntax highlight?
       syntax_limit_l = 0, -- syntax limit (lines), 0=nolimit
