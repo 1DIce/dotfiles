@@ -1,7 +1,6 @@
 return {
   {
     "ThePrimeagen/harpoon",
-    lazy = vim.g.started_by_firenvim,
     config = function()
       require("harpoon").setup({
         save_on_toggle = true,

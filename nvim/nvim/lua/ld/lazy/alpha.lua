@@ -2,7 +2,6 @@ return {
   {
     -- neovim welcome screen
     "goolord/alpha-nvim",
-    lazy = vim.g.started_by_firenvim,
     config = function()
       local alpha = require("alpha")
       local dashboard = require("alpha.themes.dashboard")

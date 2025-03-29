@@ -23,7 +23,6 @@ return {
   },
   {
     "joshzcold/cmp-jenkinsfile",
-    lazy = vim.g.started_by_firenvim,
     dependencies = {
       "hrsh7th/nvim-cmp",
     },

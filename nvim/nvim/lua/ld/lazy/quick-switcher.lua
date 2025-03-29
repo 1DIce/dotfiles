@@ -1,7 +1,6 @@
 return {
   {
     "Everduin94/nvim-quick-switcher",
-    lazy = vim.g.started_by_firenvim,
     config = function()
       local switcher = require("nvim-quick-switcher")
 
