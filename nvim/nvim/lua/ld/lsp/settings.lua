@@ -156,7 +156,7 @@ local servers = {
   },
   gopls = require("ld.lsp.servers.gopls").setup(),
   lua_ls = sumneko_lua_config(),
-  ltex = require("ld.lsp.servers.ltex").setup(),
+  ltex_plus = require("ld.lsp.servers.ltex").setup(),
   cmake = {},
   astro = {},
   ruff = { cmd = { "uvx", "ruff", "server" } }, -- python formatter
