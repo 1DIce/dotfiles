@@ -59,12 +59,6 @@ return {
   "b0o/SchemaStore.nvim",
   "williamboman/mason.nvim",
   "williamboman/mason-lspconfig.nvim",
-  {
-    "j-hui/fidget.nvim",
-    config = function()
-      require("fidget").setup({})
-    end,
-  },
 
   {
     "ldelossa/litee.nvim",

@@ -34,14 +34,32 @@ null_ls.setup({
       diagnostics_postprocess = function(diagnostic)
         diagnostic.severity = vim.diagnostic.severity["INFO"]
       end,
-      disabled_filetypes = { "NvimTree", "lua", "vim", "gitconfig", "vimwiki", "tex", "markdown" },
+      disabled_filetypes = {
+        "NvimTree",
+        "lua",
+        "vim",
+        "gitconfig",
+        "vimwiki",
+        "tex",
+        "markdown",
+        "snacks_dashboard",
+      },
       cwd = function()
         return vim.uv.cwd()
       end,
       config = cspell_config,
     }),
     cspell.code_actions.with({
-      disabled_filetypes = { "NvimTree", "lua", "vim", "gitconfig", "vimwiki", "tex", "markdown" },
+      disabled_filetypes = {
+        "NvimTree",
+        "lua",
+        "vim",
+        "gitconfig",
+        "vimwiki",
+        "tex",
+        "markdown",
+        "snacks_dashboard",
+      },
       cwd = function()
         return vim.uv.cwd()
       end,
