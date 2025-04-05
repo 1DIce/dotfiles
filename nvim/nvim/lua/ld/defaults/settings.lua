@@ -87,6 +87,8 @@ vim.o.foldlevelstart = 99 -- start file with all folds opened
 vim.wo.foldmethod = "expr"
 vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
+vim.cmd("let g:vim_json_syntax_conceal = 0")
+
 vim.o.sessionoptions =
   "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
