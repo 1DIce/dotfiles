@@ -2,7 +2,6 @@
 -- https://www.eclipse.org/downloads/download.php?file=/jdtls/milestones/1.21.0/jdt-language-server-1.21.0-202303161431.tar.gz
 local jdtls = require("jdtls")
 -- Change or delete this if you don't depend on nvim-cmp for completions.
-local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local utils = require("ld.utils.functions")
 local path = require("ld.utils.path")
 
@@ -17,8 +16,7 @@ local git_root = vim.fs.dirname(vim.fs.find({ ".git" }, { upward = true, type = 
 local root_dir = vim.fs.dirname(vim.fs.find({ "pom.xml", ".git" }, { upward = true })[1])
 
 -- for completions
-local client_capabilities = vim.lsp.protocol.make_client_capabilities()
-local capabilities = cmp_nvim_lsp.default_capabilities(client_capabilities)
+local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 local function progress_report(_, result, ctx)
   local lsp = vim.lsp

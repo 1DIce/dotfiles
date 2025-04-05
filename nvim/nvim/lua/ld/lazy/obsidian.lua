@@ -6,7 +6,6 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-telescope/telescope.nvim",
-    "hrsh7th/nvim-cmp",
   },
   opts = {
     workspaces = {
