@@ -30,7 +30,7 @@ elif [[ $selected = '..' ]]; then
   selected=$(dirname $(pwd))
 fi
 
-session_name=$(basename "$selected" | tr . _)
+session_name=$(echo  "$(basename $(dirname "$selected"))""/$(basename "$selected")" | tr . _)
 
 not_in_tmux() {
 	[[ -z "$TMUX" ]]
