@@ -87,7 +87,7 @@ local function workspace_public_types(opts)
       opts
     )
   else
-    require("fzf-lua").lsp_workspace_symbols(opts)
+    require("fzf-lua").lsp_live_workspace_symbols(opts)
   end
 end
 
