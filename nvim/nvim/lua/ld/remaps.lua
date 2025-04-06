@@ -74,7 +74,6 @@ tnoremap("<C-w>k", "<C-\\><C-n><C-w>k", "Terminal switch pane up")
 -- buffer
 nnoremap("<leader>bd", "<cmd>bd<CR>", "Deletes buffer")
 nnoremap("<leader>bD", "<cmd>bd!<CR>", "Force delete buffer")
-nnoremap("<leader>bo", "<cmd>BufOnly<CR>", "Deletes all other buffers except yours")
 nnoremap("<leader>bad", "<cmd>%bd<CR>", "Deletes all buffers")
 nnoremap("<leader>bw", "<cmd>update<CR>", "Saves/writes/updates buffer")
 nnoremap("<leader>bW", "<cmd>update!<CR>", "Force save/write/update buffer")
