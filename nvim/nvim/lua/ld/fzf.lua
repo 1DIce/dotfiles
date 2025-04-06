@@ -86,6 +86,11 @@ local function workspace_public_types(opts)
       "coding-flow workspace-symbols --language typescript --type type",
       opts
     )
+  elseif require("ld.lsp.functions").is_python_workspace() then
+    workspace_coding_flow_symbols(
+      "coding-flow workspace-symbols --language python --type type",
+      opts
+    )
   else
     require("fzf-lua").lsp_live_workspace_symbols(opts)
   end
@@ -99,6 +104,11 @@ local function workspace_public_functions(opts)
   if require("ld.lsp.functions").is_typescript_workspace() then
     workspace_coding_flow_symbols(
       "coding-flow workspace-symbols --language typescript --type function",
+      opts
+    )
+  elseif require("ld.lsp.functions").is_python_workspace() then
+    workspace_coding_flow_symbols(
+      "coding-flow workspace-symbols --language python --type function",
       opts
     )
   else
@@ -116,6 +126,8 @@ local function workspace_public_variables(opts)
       "coding-flow workspace-symbols --language typescript --type variable",
       opts
     )
+  elseif require("ld.lsp.functions").is_python_workspace() then
+    workspace_coding_flow_symbols("coding-flow workspace-symbols --language python --type va", opts)
   else
     require("telescope.builtin").lsp_workspace_symbols({ symbols = { "variable" } })
   end

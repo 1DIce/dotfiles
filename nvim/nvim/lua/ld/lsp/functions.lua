@@ -18,6 +18,11 @@ M.is_typescript_workspace = function()
     or vim.loop.fs_stat(cwd .. "/package.json") ~= nil
 end
 
+function M.is_python_workspace()
+  local cwd = vim.fn.getcwd()
+  return vim.loop.fs_stat(cwd .. "/pyproject.toml") ~= nil
+end
+
 M.is_lsp_client_active = function(client_name)
   local clients = vim.lsp.get_clients({ name = client_name })
   local filtered_clients = vim.tbl_filter(function(c)
