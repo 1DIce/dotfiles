@@ -47,6 +47,24 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   end,
 })
 
+-- using ruff to organize imports + formatt for python files
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  pattern = "*.py",
+  group = format_on_save_augroup,
+  callback = function(event_data)
+    local client = vim.lsp.get_clients({ bufnr = bufnr, name = "ruff" })[1]
+    if client ~= nil then
+      require("ld.lsp.functions").run_code_action_sync(
+        "source.organizeImports",
+        event_data.buf,
+        1000,
+        0
+      )
+    end
+    vim.lsp.buf.format({ async = false, bufnr = event_data.buf })
+  end,
+})
+
 -- using prettierd from null-ls or native lsp client for formatting on save on all those file types
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   pattern = "*.html,*.js,*.yml,*.yaml,*.less,*.json,*.jsonc,*.scss,*.css,*.lua,*.cpp,*.h,*.rs,*.astro,*.go,*.py",

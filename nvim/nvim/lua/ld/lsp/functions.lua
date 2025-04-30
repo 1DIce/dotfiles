@@ -80,4 +80,35 @@ function M.rename()
   end
 end
 
+---@param action table
+---@param buf integer
+---@param timeout_ms ActionTimeoutMs
+---@param attempt integer
+function M.run_code_action_sync(action, buf, timeout_ms, attempt)
+  if attempt > 3 then
+    vim.notify("Max resolve attempts reached for action " .. action.kind, vim.log.levels.WARN)
+    return
+  end
+
+  if action.edit then
+    vim.lsp.util.apply_workspace_edit(action.edit, "utf-16")
+  elseif action.command then
+    vim.lsp.buf.execute_command(action.command)
+  else
+    -- neovim:runtime/lua/vim/lsp/buf.lua shows how to run a code action
+    -- synchronously. This section is based on that.
+    local resolve_result = vim.lsp.buf_request_sync(buf, "codeAction/resolve", action, timeout_ms)
+    if resolve_result then
+      for _, resolved_action in pairs(resolve_result) do
+        handle_action_sync(resolved_action.result, buf, timeout_ms, attempt + 1)
+      end
+    else
+      vim.notify(
+        "Failed to resolve code action " .. action.kind .. " without edit or command",
+        vim.log.levels.WARN
+      )
+    end
+  end
+end
+
 return M
