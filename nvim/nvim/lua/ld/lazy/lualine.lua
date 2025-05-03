@@ -7,7 +7,15 @@ return {
         options = {
           theme = "tokyonight",
           disabled_filetypes = {
-            winbar = { "NvimTree", "fugitive", "gitcommit", "alpha", "neoterm", "snacks_dashboard" },
+            winbar = {
+              "NvimTree",
+              "fugitive",
+              "gitcommit",
+              "alpha",
+              "neoterm",
+              "snacks_dashboard",
+              "toggleterm",
+            },
           },
           globalstatus = true,
         },
