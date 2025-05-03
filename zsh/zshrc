@@ -50,6 +50,7 @@ alias cheat="cht.sh"
 alias v="nvim"
 alias gvim="neovide.exe --wsl"
 alias g="git"
+alias gg="nvim -c G -c only" # Open git fugitive in as the only buffer
 alias groot='cd $(git rev-parse --show-toplevel)'
 alias gitroot='cd $(git rev-parse --show-toplevel)'
 alias fm="vicd ./"
