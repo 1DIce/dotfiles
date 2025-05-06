@@ -1,3 +1,5 @@
 - crossplatform-shell:
-    - brew install fd ripgrep bat jq thefuck fzf eza delta chafa git-gui luarocks kdiff3 watchexec rustup ghostty
+    - brew install fd ripgrep bat jq thefuck fzf eza delta chafa git-gui luarocks kdiff3 watchexec rustup ghostty docker docker-compose
     - rustup default stable
+    # setup docker compose as a docker plugin
+    - mkdir -p ~/.docker/cli-plugins && ln -sfn /opt/homebrew/opt/docker-compose/bin/docker-compose ~/.docker/cli-plugins/docker-compose
