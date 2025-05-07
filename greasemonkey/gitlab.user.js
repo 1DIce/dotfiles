@@ -7,13 +7,14 @@
 (function () {
   // Make ticket numbers in the merge request title clickable
   [...document.getElementsByClassName("title")].forEach((e) => {
-    const ticket = e.innerHTML.match(/\[MER-\d+\]/g)[0];
+    const ticket = e.innerHTML.match(/CDEV-\d+/gi)?.[0];
     if (ticket) {
       e.innerHTML = e.innerHTML.replace(
         ticket,
-        `<a target='_blank' href='https://jira.cas.de/browse/${ticket
-          .replace("[", "")
-          .replace("]", "")}'>${ticket}</a>`,
+        `<a target='_blank' href='https://smight.atlassian.net/browse/${ticket.replace(
+          ":",
+          "",
+        )}'>${ticket}</a>`,
       );
     }
   });
