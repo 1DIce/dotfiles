@@ -67,8 +67,6 @@ function M.set_default(client, bufnr)
     )
   end
 
-  buf_set_keymap("i", "<c-H>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Show signature")
-
   -- if cap.workspaceSymbolProvider then
   --   map('n','<leader>gW','<cmd>lua vim.lsp.buf.workspace_symbol()<CR>', opts)
   -- end

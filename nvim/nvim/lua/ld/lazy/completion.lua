@@ -26,6 +26,20 @@ return {
         completion = { menu = { auto_show = true } },
       },
 
+      -- enabled signature only triggered via <c-h>
+      signature = {
+        enabled = true,
+        trigger = {
+          enabled = true,
+
+          show_on_trigger_character = false,
+          show_on_insert_on_trigger_character = false,
+        },
+        window = {
+          show_documentation = false,
+        },
+      },
+
       -- All presets have the following mappings:
       -- C-space: Open menu or open docs if already open
       -- C-n/C-p or Up/Down: Select next/previous item
@@ -37,6 +51,7 @@ return {
         ["<C-i>"] = { "select_and_accept" },
         -- disable a keymap from the preset
         ["<C-k>"] = {},
+        ["<C-h>"] = { "show_signature" },
       },
 
       appearance = {
