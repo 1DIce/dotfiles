@@ -5,12 +5,9 @@ function M.set_default(client, bufnr)
   local function buf_set_keymap(...)
     bufnoremap(bufnr, ...)
   end
-  local function buf_set_option(...)
-    vim.api.nvim_buf_set_option(bufnr, ...)
-  end
   local cap = client.server_capabilities
 
-  buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+  vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
 
   if cap.definitionProvider then
     buf_set_keymap("n", "gT", "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Go to type definition")
