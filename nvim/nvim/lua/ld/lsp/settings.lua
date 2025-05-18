@@ -107,7 +107,7 @@ local servers = {
   },
   gopls = require("ld.lsp.servers.gopls").setup(),
   lua_ls = {
-    autostart = false,
+    autostart = true,
     settings = {
       Lua = {
         format = {
