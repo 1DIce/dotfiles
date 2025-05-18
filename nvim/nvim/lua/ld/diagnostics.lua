@@ -1,5 +1,5 @@
 local default_config = {
-  virtual_text = { severity = vim.diagnostic.severity.ERROR },
+  virtual_text = false, -- disable virtual_text because i use "tiny-inline-diagnostic" plugin
   virtual_lines = false,
   underline = true,
   update_in_insert = false,
@@ -20,12 +20,18 @@ nnoremap(
   "<cmd>lua require('telescope.builtin').diagnostics()<CR>",
   "Show workspace diagnostics"
 )
-nnoremap("<leader>eq", "<cmd>lua vim.diagnostic.setqflist()", "Show workspace diagnostics")
+vim.keymap.set("n", "<leader>eq", function()
+  vim.diagnostic.setqflist({ severity = vim.diagnostic.severity.ERROR })
+end, { desc = "Send Errors to qflist" })
 
 vim.keymap.set("n", "<leader>eh", function()
   vim.diagnostic.open_float({
     suffix = function(d)
-      return (" (%s)"):format(d.source)
+      if d.source then
+        return (" (%s)"):format(d.source), ""
+      else
+        return "", ""
+      end
     end,
     border = "rounded",
   })
@@ -33,8 +39,10 @@ end, { desc = "Show line diagnostics" })
 
 vim.keymap.set("n", "<leader>ev", function()
   if vim.diagnostic.config().virtual_lines == false then
+    require("tiny-inline-diagnostic").disable()
     vim.diagnostic.config({ virtual_lines = true, virtual_text = false })
   else
+    require("tiny-inline-diagnostic").enable()
     vim.diagnostic.config(default_config)
   end
 end, { desc = "Toggle virtual lines diagnostics" })
