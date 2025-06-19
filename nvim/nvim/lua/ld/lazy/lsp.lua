@@ -86,4 +86,31 @@ return {
       require("litee.calltree").setup(opts)
     end,
   },
+  {
+    "bassamsdata/namu.nvim",
+    config = function()
+      require("namu").setup({
+
+        namu_symbols = {
+          options = {
+            AllowKinds = {
+              rust = {
+                "Function",
+                "Method",
+                "Module",
+                "Property",
+                "Variable",
+                -- "Constant",
+                "Enum",
+                "Interface",
+                -- "Field",
+                "Struct",
+              },
+            },
+            focus_current_symbol = false,
+          },
+        },
+      })
+    end,
+  },
 }

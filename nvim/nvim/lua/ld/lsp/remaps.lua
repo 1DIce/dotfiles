@@ -59,12 +59,16 @@ function M.set_default(client, bufnr)
     )
 
     -- search for symbols in current buffer via lsp
-    buf_set_keymap(
-      "n",
-      "<leader>bs",
-      "<cmd>lua require('ld.telescope.functions').lsp_document_symbols()<CR>",
-      "Search document symbols"
-    )
+    -- buf_set_keymap(
+    --   "n",
+    --   "<leader>bs",
+    --   "<cmd>lua require('ld.telescope.functions').lsp_document_symbols()<CR>",
+    --   "Search document symbols"
+    -- )
+    vim.keymap.set("n", "<leader>bs", ":Namu symbols<cr>", {
+      desc = "Jump to LSP symbol",
+      silent = true,
+    })
   end
 
   -- if cap.workspaceSymbolProvider then
