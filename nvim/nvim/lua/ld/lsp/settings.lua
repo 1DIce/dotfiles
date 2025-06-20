@@ -5,7 +5,7 @@ require("mason").setup({})
 require("mason-null-ls").setup(
   ---@diagnostic disable-next-line: missing-fields
   {
-    ensure_installed = { "cspell", "stylua", "shfmt", "shellcheck", "prettierd" },
+    ensure_installed = { "stylua", "shfmt", "shellcheck", "prettierd" },
   }
 )
 require("mason-lspconfig").setup({
@@ -82,6 +82,8 @@ local function deno_config()
   }
 end
 
+require("ld.lsp.servers.cspell").setup()
+
 local servers = {
   -- to get fromatting and linting shellcheck and shfmt need to be installed
   bashls = {},
@@ -123,6 +125,7 @@ local servers = {
   basedpyright = {
     root_dir = lsp.util.root_pattern(".git"),
   },
+  cspell_lsp = {}, -- default config in cspell.lua
 }
 
 if functions.is_deno_workspace() then

@@ -8,7 +8,6 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "neovim/nvim-lspconfig",
-      "davidmh/cspell.nvim",
     },
   },
 }
