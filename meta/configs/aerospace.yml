@@ -1,0 +1,6 @@
+- create:
+    - ~/.config/aerospace
+- crossplatform-link:
+    ~/.config/aerospace/aerospace.toml:
+      path: aerospace/aerospace.toml
+      platform: darwin
