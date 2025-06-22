@@ -50,6 +50,7 @@
   "nvim-vtsls": { "branch": "main", "commit": "b1f2dfc1ed21d741ebbc211fe02f830ea4545f09" },
   "nvim-web-devicons": { "branch": "master", "commit": "c90dee4e930ab9f49fa6d77f289bff335b49e972" },
   "obsidian.nvim": { "branch": "main", "commit": "ae1f76a75c7ce36866e1d9342a8f6f5b9c2caf9b" },
+  "overseer.nvim": { "branch": "master", "commit": "72c68aab0358c92f451168b704c411c4a3e3410e" },
   "plantuml-previewer.vim": { "branch": "master", "commit": "368a1f331c1ff29f6a3ee76facfca39a7f374b13" },
   "plantuml-syntax": { "branch": "master", "commit": "9d4900aa16674bf5bb8296a72b975317d573b547" },
   "plenary.nvim": { "branch": "master", "commit": "857c5ac632080dba10aae49dba902ce3abf91b35" },

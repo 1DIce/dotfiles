@@ -19,7 +19,7 @@ function findMatchingRemoteBranch(){
 # check if the user input is an existing remote branch
 INPUT_REMOTE_BRANCH=$(findMatchingRemoteBranch "$1")
 if [ -z "$INPUT_REMOTE_BRANCH" ]; then
-  BRANCH_NAME="feature/lars/$1"
+  BRANCH_NAME="feature/lars/$1" # should be read from a .config file maybe worktree.root
   WORKTREE_DIR_NAME=$1
 else
   BRANCH_NAME=$INPUT_REMOTE_BRANCH
