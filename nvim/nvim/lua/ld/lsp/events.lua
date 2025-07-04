@@ -40,7 +40,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 local format_on_save_augroup = vim.api.nvim_create_augroup("ld-format_on_save", { clear = true })
 -- using special organize imports + formatting with prettier for typescript files
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  pattern = "*.ts",
+  pattern = "*.ts,*.tsx",
   group = format_on_save_augroup,
   callback = function(event_data)
     require("ld.lsp.functions").format_organize_typescript(event_data.buf)
