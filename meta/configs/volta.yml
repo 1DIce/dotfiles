@@ -5,4 +5,4 @@
       platform: win32
     - command: curl https://get.volta.sh | bash -s -- --skip-setup
       platform: darwin
-    - command: volta install node@20 && volta install yarn
+    - command: volta install node@22 && volta install yarn
