@@ -126,6 +126,7 @@ local servers = {
     root_dir = lsp.util.root_pattern(".git"),
   },
   cspell_lsp = {}, -- default config in cspell.lua
+  just = {},
 }
 
 if functions.is_deno_workspace() then
