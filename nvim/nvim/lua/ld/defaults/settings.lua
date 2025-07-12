@@ -30,6 +30,9 @@ vim.o.wrap = false
 vim.o.relativenumber = true
 vim.o.number = true
 
+-- don not consider things like col-8 as negative number when incrementing with <c-A>
+vim.opt.nrformats:append({ "blank" })
+
 vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.swapfile = false
@@ -59,6 +62,11 @@ vim.o.complete = ".,w,t"
 -- use ripgrep as the grep command
 vim.o.grepprg = "rg --vimgrep --no-heading --smart-case --hidden"
 vim.o.grepformat = "%f:%l:%c:%m"
+
+if vim.version.ge(vim.version(), "11.1.0") then
+  -- adding inline character diff option
+  vim.o.diffopt = "internal,filler,closeoff,linematch:40:inline:char"
+end
 
 -- Don't show the dumb matching stuff.
 vim.cmd([[set shortmess+=c]])
