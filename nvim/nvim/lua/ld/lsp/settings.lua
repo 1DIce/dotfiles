@@ -9,6 +9,7 @@ require("mason-null-ls").setup(
   }
 )
 require("mason-lspconfig").setup({
+  automatic_enable = false,
   ensure_installed = {
     "bashls",
     "yamlls",
