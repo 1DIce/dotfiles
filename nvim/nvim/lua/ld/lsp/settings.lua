@@ -151,4 +151,6 @@ for serverName, config in pairs(servers) do
   vim.cmd([[ do User LspAttachBuffers ]])
 end
 
+require("ld.lsp.neotest")
+
 return M
