@@ -38,3 +38,7 @@ end, {})
 vim.api.nvim_create_user_command("LspToggleInlayHints", function()
   vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end, {})
+
+vim.api.nvim_create_user_command("Notifications", function()
+  Snacks.notifier.show_history()
+end, {})
