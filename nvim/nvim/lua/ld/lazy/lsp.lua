@@ -22,7 +22,7 @@ return {
   {
     "mrcjkb/rustaceanvim",
     version = "^6", -- Recommended
-    lazy = false, -- This plugin is already lazy
+    lazy = false,   -- This plugin is already lazy
   },
   {
     "mfussenegger/nvim-jdtls",
@@ -59,7 +59,6 @@ return {
   "b0o/SchemaStore.nvim",
   "williamboman/mason.nvim",
   "williamboman/mason-lspconfig.nvim",
-
   {
     "ldelossa/litee.nvim",
     event = "VeryLazy",

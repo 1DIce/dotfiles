@@ -8,6 +8,9 @@ return {
           theme = "tokyonight",
           disabled_filetypes = {
             winbar = {
+              "nvim-dap-view",
+              "dap-view-term",
+              "dap-view",
               "NvimTree",
               "fugitive",
               "gitcommit",

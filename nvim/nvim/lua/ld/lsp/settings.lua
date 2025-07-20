@@ -2,6 +2,11 @@ local lsp = require("lspconfig")
 local functions = require("ld.lsp.functions")
 
 require("mason").setup({})
+require("mason-nvim-dap").setup({
+  ensure_installed = { "codelldb" },
+  handlers = {}, -- sets up dap in the predefined manner
+})
+
 require("mason-null-ls").setup(
   ---@diagnostic disable-next-line: missing-fields
   {

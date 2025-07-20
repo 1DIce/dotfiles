@@ -1,10 +1,30 @@
 return {
   {
-    "rcarriga/nvim-dap-ui",
-    dependencies = { { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
+    "mfussenegger/nvim-dap",
     config = function()
       require("ld.dap")
     end,
+  },
+  {
+    "igorlfs/nvim-dap-view",
+    dependencies = { { "mfussenegger/nvim-dap" } },
+    ---@module 'dap-view'
+    ---@type dapview.Config
+    opts = {
+      winbar = {
+        -- Adding a "console" section to merge the terminal with the other views
+        sections = {
+          "watches",
+          "scopes",
+          "exceptions",
+          "breakpoints",
+          "threads",
+          "repl",
+          "console",
+        },
+        default_section = "scopes",
+      },
+    },
   },
   {
     "mfussenegger/nvim-dap-python",
@@ -22,11 +42,5 @@ return {
     "jay-babu/mason-nvim-dap.nvim",
     event = "VeryLazy",
     dependencies = { "williamboman/mason.nvim", "mfussenegger/nvim-dap" },
-    config = function()
-      require("mason-nvim-dap").setup({
-        ensure_installed = { "codelldb" },
-        handlers = {}, -- sets up dap in the predefined manner
-      })
-    end,
   },
 }

@@ -1,11 +1,10 @@
-local dapui = require("dapui")
 local dap = require("dap")
 local utils = require("ld.utils.functions")
 
 local function get_chrome_debugger_path()
   if utils.is_windows() then
     return vim.fn.stdpath("data")
-      .. "\\mason\\packages\\chrome-debug-adapter\\out\\src\\chromeDebug.js"
+        .. "\\mason\\packages\\chrome-debug-adapter\\out\\src\\chromeDebug.js"
   else
     return vim.fn.stdpath("data") .. "/mason/bin/chrome-debug-adapter"
   end
@@ -58,31 +57,29 @@ vim.keymap.set("n", "<F8>", function()
 end)
 vim.keymap.set("n", "<Leader>db", function()
   require("dap").toggle_breakpoint()
-end)
+end, { desc = "Toggle breakpoint" })
 vim.keymap.set("n", "<Leader>dB", function()
   require("dap").set_breakpoint()
-end)
+end, { desc = "Set breakpoint" })
 vim.keymap.set("n", "<Leader>dp", function()
   require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
-end)
+end, { desc = "Set breakpoint with msg" })
 vim.keymap.set("n", "<Leader>dr", function()
   require("dap").repl.open()
 end)
 vim.keymap.set("n", "<Leader>dl", function()
   require("dap").run_last()
-end)
+end, { desc = "Dap run last" })
 vim.keymap.set({ "n", "v" }, "<Leader>dk", function()
-  require("dap.ui.widgets").hover()
-end)
-
-dapui.setup({})
+  require("dap.ui.widgets").hover(nil, { border = "rounded" })
+end, { desc = "Debug hover" })
 
 dap.listeners.after.event_initialized["dapui_config"] = function()
-  dapui.open()
+  require("dap-view").open()
 end
 dap.listeners.before.event_terminated["dapui_config"] = function()
-  dapui.close()
+  require("dap-view").close()
 end
 dap.listeners.before.event_exited["dapui_config"] = function()
-  dapui.close()
+  require("dap-view").close()
 end
