@@ -39,3 +39,16 @@ vim.filetype.add({
     ["Jenkinsfile*"] = "Jenkinsfile",
   },
 })
+
+-- Go templates and helm charts
+vim.filetype.add({
+  extension = {
+    gotmpl = "gotmpl",
+  },
+  pattern = {
+    [".*/templates/.*%.tpl"] = "helm",
+    [".*/templates/.*%.yaml"] = "helm",
+    [".*/templates/.*%.yml"] = "helm",
+    ["helmfile.*%.ya?ml"] = "helm",
+  },
+})

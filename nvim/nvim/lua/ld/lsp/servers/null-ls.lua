@@ -7,6 +7,7 @@ null_ls.setup({
   sources = {
     null_ls.builtins.formatting.stylua,
     null_ls.builtins.diagnostics.yamllint.with({
+      disabled_filetypes = { "helm" },
       cwd = function()
         return vim.uv.cwd()
       end,
