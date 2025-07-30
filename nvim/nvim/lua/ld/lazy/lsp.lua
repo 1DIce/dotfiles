@@ -105,6 +105,7 @@ return {
                 -- "Field",
                 "Struct",
               },
+              python = { "Function", "Class", "Method", "Constant", "Enum" },
             },
             focus_current_symbol = false,
           },
