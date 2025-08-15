@@ -54,11 +54,7 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   callback = function(event_data)
     local client = vim.lsp.get_clients({ bufnr = bufnr, name = "ruff" })[1]
     if client ~= nil then
-      require("ld.lsp.functions").run_code_action_sync(
-        "source.organizeImports",
-        event_data.buf,
-        client
-      )
+      require("ld.lsp.functions").run_code_action_sync("source.fixAll", event_data.buf, client)
     end
     vim.lsp.buf.format({ async = false, bufnr = event_data.buf })
   end,
