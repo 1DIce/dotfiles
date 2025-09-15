@@ -28,3 +28,8 @@ fi
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
+
+# opencode
+if [[ -d "$HOME/.opencode/bin" ]]; then
+  export PATH="$HOME/.opencode/bin:$PATH"
+fi
