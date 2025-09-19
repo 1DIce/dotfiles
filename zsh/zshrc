@@ -142,6 +142,12 @@ _fzf_comprun() {
 
 
 if [[ -o interactive ]]; then
+
+  # setup direnv hook
+  if command -v direnv >/dev/null 2>&1; then
+    eval "$(direnv hook zsh)"
+  fi
+
   #setup thefuck
   eval $(thefuck --alias)
 

@@ -1,6 +1,6 @@
 - crossplatform-shell:
     - sudo apt update && sudo apt install build-essential cmake rename libfuse2 sqlite3 libsqlite3-dev python-is-python3 python3-venv  -y
-    - sudo apt install chafa git-gui luarocks -y
+    - sudo apt install chafa git-gui luarocks direnv -y
     - command: sudo apt install kdiff3 xclip -y
       platform: linux
       environment: "!WSL_DISTRO_NAME"
