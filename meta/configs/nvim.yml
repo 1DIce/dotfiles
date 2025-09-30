@@ -8,6 +8,12 @@
     - ~/AppData/Local/nvim:
         platform: win32
         path: nvim/nvim
+    - ~/.config/nvim-vscode:
+        platform: linux
+        path: nvim/nvim-vscode
+    - ~/.config/nvim-vscode:
+        platform: darwin
+        path: nvim/nvim-vscode
 
 - crossplatform-shell:
     - command: rm -f ~/bin/nvim && wget -O ~/bin/nvim https://github.com/neovim/neovim/releases/download/stable/nvim-linux-x86_64.appimage && chmod +x ~/bin/nvim
