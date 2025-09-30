@@ -1,0 +1,4 @@
+- crossplatform-link:
+    - ~/.ideavimrc:
+        platform: darwin
+        path: ideavim/ideavimrc
