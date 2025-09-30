@@ -57,6 +57,7 @@ alias fm="vicd ./"
 alias marktext="marktext.AppImage"
 alias clipboard-from="xclip -o -selection clipboard"
 alias clipboard-to="xclip -selection clipboard"
+alias j="just"
 
 
 # Make Tab autocomplete regardless of filename case
