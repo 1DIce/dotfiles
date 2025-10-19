@@ -35,6 +35,8 @@ local function treesitter_config()
       "rust",
       "sql",
       "http",
+      "terraform",
+      "hcl",
     },
     highlight = {
       enable = true,

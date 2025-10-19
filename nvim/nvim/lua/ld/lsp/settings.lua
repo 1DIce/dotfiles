@@ -127,6 +127,7 @@ local servers = {
   ltex_plus = require("ld.lsp.servers.ltex").setup(),
   cmake = {},
   astro = {},
+  terraformls = {},
   ruff = { cmd = { "uvx", "ruff", "server" } }, -- python formatter
   basedpyright = {
     root_dir = lsp.util.root_pattern(".git"),
