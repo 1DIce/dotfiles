@@ -2,3 +2,4 @@
 **/.vimspector.json
 **/.lastBuild.info
 **/.git/**
+.envrc
