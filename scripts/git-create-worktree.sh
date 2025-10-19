@@ -42,6 +42,14 @@ git worktree add "../$WORKTREE_DIR_NAME" -b "$BRANCH_NAME"
 # TODO i need a way to set the base branch: master lts/10.0 or lts/10.10
 
 popd
+
+if [ -f "$WORKTREE_ROOT_DIR"/post-create-worktree-hook.sh ]; then
+  # run post create hook script if it exists with the path to the newly created worktree
+  echo "running post-create-hook for worktree $WORKTREE_ROOT_DIR/$WORKTREE_DIR_NAME"
+
+  "$WORKTREE_ROOT_DIR"/post-create-worktree-hook.sh "$WORKTREE_ROOT_DIR/$WORKTREE_DIR_NAME"
+fi
+
 exit 1
 
 
