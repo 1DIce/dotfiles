@@ -1,28 +1,27 @@
 return {
+
   {
-    "kevinhwang91/nvim-bqf",
-    config = function()
-      ---@diagnostic disable-next-line: missing-fields
-      require("bqf").setup({
-        auto_enable = true,
-        --      preview = {
-        --     win_height = 12,
-        --     win_vheight = 12,
-        --     delay_syntax = 80,
-        --     border_chars = {'┃', '┃', '━', '━', '┏', '┓', '┗', '┛', '█'}
-        -- },
-        -- func_map = {
-        --     vsplit = '',
-        --     ptogglemode = 'z,',
-        --     stoggleup = ''
-        -- },
-        -- filter = {
-        --     fzf = {
-        --         action_for = {['ctrl-s'] = 'split'},
-        --         extra_opts = {'--bind', 'ctrl-o:toggle-all', '--prompt', '> '}
-        --     }
-        -- }
-      })
-    end,
+    "stevearc/quicker.nvim",
+    ft = "qf",
+    ---@module "quicker"
+    ---@type quicker.SetupOptions
+    opts = {
+      keys = {
+        {
+          ">",
+          function()
+            require("quicker").expand({ before = 2, after = 2, add_to_existing = true })
+          end,
+          desc = "Expand quickfix context",
+        },
+        {
+          "<",
+          function()
+            require("quicker").collapse()
+          end,
+          desc = "Collapse quickfix context",
+        },
+      },
+    },
   },
 }
