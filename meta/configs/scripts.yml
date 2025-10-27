@@ -66,3 +66,9 @@
     - ~/bin/i3exit.sh:
         path: scripts/i3exit.sh
         platform: linux
+    - ~/bin/copy:
+        path: scripts/copy.sh
+    - ~/bin/pasta:
+        path: scripts/pasta.sh
+    - ~/bin/pastas:
+        path: scripts/pastas.sh
