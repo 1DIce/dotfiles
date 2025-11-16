@@ -1,5 +1,3 @@
-local lsp = require("lspconfig")
-
 local M = {}
 
 local default_language = "de-DE"

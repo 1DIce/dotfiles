@@ -50,36 +50,27 @@ vim.api.nvim_create_user_command("CSpellSettingsFromVscode", function()
 end, {})
 
 function M.setup()
-  local lsp_configurations = require("lspconfig.configs")
-
-  if not lsp_configurations.cspell_lsp then
-    -- cspell_lsp does not yet exist in lsp config
-    -- so i am setting a default config
-    lsp_configurations.cspell_lsp = {
-      default_config = {
-        cmd = { "cspell-lsp", "--stdio", "--config", find_cspell_config() }, -- If the --config parameter is missing it will use the project cspell.json file.
-        filetypes = {
-          "go",
-          "rust",
-          "js",
-          "ts",
-          "html",
-          "css",
-          "json",
-          "yaml",
-          "markdown",
-          "gitcommit",
-          "python",
-        },
-        root_dir = require("lspconfig.util").root_pattern(".git"),
+  vim.lsp.config("cspell", {
+    default_config = {
+      cmd = { "cspell-lsp", "--stdio", "--config", find_cspell_config() }, -- If the --config parameter is missing it will use the project cspell.json file.
+      filetypes = {
+        "go",
+        "rust",
+        "js",
+        "ts",
+        "html",
+        "css",
+        "json",
+        "yaml",
+        "markdown",
+        "gitcommit",
+        "python",
       },
-    }
-  else
-    vim.notify(
-      "WARN: found cspell_lsp in lsp_config. My custom default config is no longer used!!",
-      vim.log.levels.WARN
-    )
-  end
+      root_markers = { ".git" },
+    },
+  })
+
+  vim.lsp.enable("cspell")
 end
 
 return M

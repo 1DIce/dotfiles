@@ -1,4 +1,3 @@
-local lsp = require("lspconfig")
 local functions = require("ld.lsp.functions")
 
 require("mason").setup({})
@@ -83,7 +82,7 @@ end
 
 local function deno_config()
   return {
-    root_dir = lsp.util.root_pattern("deno.json"),
+    root_markers = { "deno.json" },
     init_options = { lint = true },
   }
 end
@@ -93,7 +92,16 @@ require("ld.lsp.servers.cspell").setup()
 local servers = {
   -- to get fromatting and linting shellcheck and shfmt need to be installed
   bashls = {},
-  yamlls = {},
+  yamlls = {
+    settings = {
+      yaml = { customTags = {
+        "!reference sequence",
+      } },
+      schemas = {
+        ["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] = "./.gitlab/ci/*",
+      },
+    },
+  },
   jsonls = {
     init_options = { provideFormatter = false, format = { enable = false } },
     settings = {
@@ -106,7 +114,8 @@ local servers = {
   -- only starts up if the filetype is yaml.dockercompose `:set filetype=yaml.dockercompose`
   docker_compose_language_service = {},
   eslint = {
-    root_dir = lsp.util.root_pattern("tsconfig.json"),
+
+    root_markers = { "tsconfig.json" },
     -- Refer to https://github.com/Microsoft/vscode-eslint#settings-options for documentation.
     settings = {
       workingDirectory = { mode = "location" },
@@ -130,9 +139,8 @@ local servers = {
   terraformls = {},
   ruff = { cmd = { "uvx", "ruff", "server" } }, -- python formatter
   basedpyright = {
-    root_dir = lsp.util.root_pattern(".git"),
+    root_markers = { ".git" },
   },
-  cspell_lsp = {}, -- default config in cspell.lua
   just = {},
 }
 
@@ -148,8 +156,8 @@ end
 require("ld.lsp.servers.rust-lsp").setup()
 
 for serverName, config in pairs(servers) do
-  lsp[serverName].setup(vim.tbl_deep_extend("force", { capabilities }, config))
-  vim.cmd([[ do User LspAttachBuffers ]])
+  vim.lsp.config(serverName, config)
+  vim.lsp.enable(serverName, true)
 end
 
 require("ld.lsp.neotest")
