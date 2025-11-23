@@ -35,7 +35,7 @@ function M.set_default(client, bufnr)
     buf_set_keymap(
       "n",
       "<leader>lt",
-      "<cmd>lua require('ld.fzf').workspace_public_types()<CR>",
+      "<cmd>lua require('ld.picker.coding-flow').workspace_public_types()<CR>",
       "Workspace type defintions"
     )
     -- search for all kinds of workspace symbols
@@ -48,13 +48,13 @@ function M.set_default(client, bufnr)
     buf_set_keymap(
       "n",
       "<leader>lv",
-      "<cmd>lua require('ld.fzf').workspace_public_variables()<CR>",
+      "<cmd>lua require('ld.picker.coding-flow').workspace_public_variables()<CR>",
       "Workspace variable defintions"
     )
     buf_set_keymap(
       "n",
       "<leader>lf",
-      "<cmd>lua require('ld.fzf').workspace_public_functions()<CR>",
+      "<cmd>lua require('ld.picker.coding-flow').workspace_public_functions()<CR>",
       "Workspace function defintions"
     )
 
