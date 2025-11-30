@@ -9,6 +9,8 @@ function M.set_default(client, bufnr)
 
   vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
 
+  buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", "Show hover documentation")
+
   if cap.definitionProvider then
     buf_set_keymap("n", "gT", "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Go to type definition")
     buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", "go to  definition")

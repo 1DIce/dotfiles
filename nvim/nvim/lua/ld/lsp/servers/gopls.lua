@@ -14,51 +14,12 @@ M = {}
 
 function M.setup()
   local gopls = {
-    capabilities = {
-      textDocument = {
-        completion = {
-          completionItem = {
-            commitCharactersSupport = true,
-            deprecatedSupport = true,
-            documentationFormat = { "markdown", "plaintext" },
-            preselectSupport = true,
-            insertReplaceSupport = true,
-            labelDetailsSupport = true,
-            snippetSupport = vim.snippet and true or false,
-            resolveSupport = {
-              properties = {
-                "edit",
-                "documentation",
-                "details",
-                "additionalTextEdits",
-              },
-            },
-          },
-          completionList = {
-            itemDefaults = {
-              "editRange",
-              "insertTextFormat",
-              "insertTextMode",
-              "data",
-            },
-          },
-          contextSupport = true,
-          dynamicRegistration = true,
-        },
-      },
-    },
     filetypes = { "go", "gomod", "gosum", "gotmpl", "gohtmltmpl", "gotexttmpl" },
     message_level = vim.lsp.protocol.MessageType.Error,
     cmd = {
       "gopls",
     },
-    root_dir = function(fname)
-      local has_lsp, lspconfig = pcall(require, "lspconfig")
-      if has_lsp then
-        local util = lspconfig.util
-        return util.root_pattern("go.work", "go.mod", ".git")(fname) or util.path.dirname(fname)
-      end
-    end,
+    root_markers = { "go.work", "go.mod", ".git" },
     flags = { allow_incremental_sync = true, debounce_text_changes = 500 },
     settings = {
       gopls = {
@@ -90,7 +51,7 @@ function M.setup()
         diagnosticsDelay = "250ms",
         diagnosticsTrigger = "Edit",
         semanticTokens = true,
-        noSemanticString = true, -- disable semantic string tokens so we can use treesitter highlight injection
+        semanticTokenTypes = { string = false }, -- disable semantic string tokens so we can use treesitter highlight injection
         ["local"] = get_current_gomod(),
         gofumpt = false,
       },
