@@ -25,6 +25,8 @@
         path: scripts/git-create-worktree.sh
     - ~/bin/init-worktree:
         path: scripts/git-init-worktree.sh
+    - ~/bin/git-cat-all-objects:
+        path: scripts/git-cat-all-objects.sh
     - ~/bin/git-stat:
         path: scripts/git-stat.sh
     - ~/bin/git-ch:
@@ -66,6 +68,8 @@
     - ~/bin/i3exit.sh:
         path: scripts/i3exit.sh
         platform: linux
+    - ~/bin/worktree-clean:
+        path: scripts/worktree-clean.sh
     - ~/bin/copy:
         path: scripts/copy.sh
     - ~/bin/pasta:
