@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 function stripOrigin() {
   sed 's|^origin/||'
 }
@@ -37,7 +39,7 @@ WORKTREE_MAIN=$(cat "$WORKTREE_ROOT_DIR/.worktree.root" | grep 'main_dir=.*' | c
 pushd "$WORKTREE_ROOT_DIR/$WORKTREE_MAIN"
 
 # git worktree add --track -b <branch> <path> <remote>/<branch>
-git worktree add "../$WORKTREE_DIR_NAME" -b "$BRANCH_NAME"
+git worktree add "../$WORKTREE_DIR_NAME" -b "$BRANCH_NAME" || exit 1
 
 # TODO i need a way to set the base branch: master lts/10.0 or lts/10.10
 
