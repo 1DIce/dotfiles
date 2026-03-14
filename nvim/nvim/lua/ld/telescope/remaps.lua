@@ -42,19 +42,11 @@ nnoremap(
   "<cmd>lua require('ld.telescope.functions').search_config()<CR>",
   "Search neovim config"
 )
-nnoremap(
-  "<leader>vh",
-  "<cmd>lua require('telescope.builtin').help_tags()<CR>",
-  "Search vim help tags"
-)
-nnoremap(
-  "<leader>vch",
-  "<cmd>lua require('telescope.builtin').command_history()<CR>",
-  "Search command history"
-)
-nnoremap("<leader>vcl", "<cmd>lua require('telescope.builtin').commands()<CR>", "Search commands")
-nnoremap("<leader>vr", "<cmd>lua require('telescope.builtin').registers()<CR>", "Search registers")
-nnoremap("<leader>vk", "<cmd>lua require('telescope.builtin').keymaps()<CR>", "Search keymaps")
+nnoremap("<leader>vh", "<cmd>lua Snacks.picker.help()<CR>", "Search vim help tags")
+nnoremap("<leader>vch", "<cmd>lua Snacks.picker.command_history()<CR>", "Search command history")
+nnoremap("<leader>vcl", "<cmd>lua Snacks.picker.commands()<CR>", "Search commands")
+nnoremap("<leader>vr", "<cmd>lua Snacks.picker.registers()<CR>", "Search registers")
+nnoremap("<leader>vk", "<cmd>lua Snacks.picker.keymaps()<CR>", "Search keymaps")
 nnoremap("<leader>vd", "<cmd>Telescope neoclip<CR>", "Search default register history")
 
 nnoremap(
@@ -69,11 +61,7 @@ nnoremap(
   "Search buffer git commits"
 )
 
-nnoremap(
-  "<leader>bl",
-  "<cmd>lua require('ld.telescope.functions').buffers()<CR>",
-  "List open buffers"
-)
+nnoremap("<leader>bl", "<cmd>lua Snacks.picker.buffers()<CR>", "List open buffers")
 
 nnoremap(
   "<leader>fo",

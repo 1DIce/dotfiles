@@ -67,10 +67,15 @@ function M.set_default(client, bufnr)
     --   "<cmd>lua require('ld.telescope.functions').lsp_document_symbols()<CR>",
     --   "Search document symbols"
     -- )
-    vim.keymap.set("n", "<leader>bs", ":Namu symbols<cr>", {
-      desc = "Jump to LSP symbol",
-      silent = true,
-    })
+    vim.keymap.set(
+      "n",
+      "<leader>bs",
+      "<cmd>lua require('ld.snacks-picker').lsp_buffer_symbols()<cr>",
+      {
+        desc = "Jump to LSP symbol",
+        silent = true,
+      }
+    )
   end
 
   -- if cap.workspaceSymbolProvider then

@@ -22,7 +22,7 @@ return {
   {
     "mrcjkb/rustaceanvim",
     version = "^6", -- Recommended
-    lazy = false,   -- This plugin is already lazy
+    lazy = false, -- This plugin is already lazy
   },
   {
     "mfussenegger/nvim-jdtls",
@@ -83,34 +83,6 @@ return {
     },
     config = function(_, opts)
       require("litee.calltree").setup(opts)
-    end,
-  },
-  {
-    "bassamsdata/namu.nvim",
-    config = function()
-      require("namu").setup({
-
-        namu_symbols = {
-          options = {
-            AllowKinds = {
-              rust = {
-                "Function",
-                "Method",
-                "Module",
-                "Property",
-                "Variable",
-                -- "Constant",
-                "Enum",
-                "Interface",
-                -- "Field",
-                "Struct",
-              },
-              python = { "Function", "Class", "Method", "Constant", "Enum" },
-            },
-            focus_current_symbol = false,
-          },
-        },
-      })
     end,
   },
 }
