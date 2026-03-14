@@ -130,49 +130,6 @@ M.find_files_angular_material = function()
   }))
 end
 
-local escape_rg_text = function(text)
-  text = text:gsub("%(", "\\%(")
-  text = text:gsub("%)", "\\%)")
-  text = text:gsub("%[", "\\%[")
-  text = text:gsub("%]", "\\%]")
-  text = text:gsub('"', '\\"')
-
-  return text
-end
-
-M.live_grep_raw = function(opts, mode)
-  local defaults = {
-    vimgrep_arguments = {
-      "rg",
-      "--color=never",
-      "--no-heading",
-      "--with-filename",
-      "--line-number",
-      "--column",
-      "--smart-case",
-      "--hidden",
-      "--trim",
-    },
-    auto_quoting = false,
-    mappings = {
-      i = {
-        ["<C-k>"] = require("telescope.actions").move_selection_previous,
-      },
-    },
-  }
-  opts = vim.tbl_extend("force", defaults, opts or {})
-  opts.prompt_title = 'Live Grep Args (-t[ty] include, -T exclude -g"[!] [glob])"'
-  if not opts.default_text then
-    if mode == "v" then
-      opts.default_text = '"' .. escape_rg_text(utils.get_visual_text()) .. '"'
-    else
-      -- opts.default_text = "\""
-    end
-  end
-
-  require("telescope").extensions.live_grep_args.live_grep_raw(opts)
-end
-
 M.git_files = function()
   if utils.is_windows() then
     builtins.git_files()

@@ -6,7 +6,6 @@ return {
       { "nvim-lua/plenary.nvim" },
       -- on windows make and gcc need to be installed via scoop
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-      "nvim-telescope/telescope-live-grep-args.nvim",
       "ThePrimeagen/harpoon",
       "AckslD/nvim-neoclip.lua",
     },
