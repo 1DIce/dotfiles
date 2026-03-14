@@ -42,3 +42,39 @@ end, {})
 vim.api.nvim_create_user_command("Notifications", function()
   Snacks.notifier.show_history()
 end, {})
+
+vim.api.nvim_create_user_command("CompareToClipboard", function()
+  local get_register_lines = function(reg_name)
+    local lines = {}
+    for line in vim.fn.getreg(reg_name):gmatch("[^\n]+") do
+      table.insert(lines, line)
+    end
+    return lines
+  end
+  local setup_current_buffer = function(name, lines)
+    vim.cmd.edit(name)
+    vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
+    vim.bo.buftype = "nofile"
+    vim.bo.buflisted = false
+    vim.cmd.diffthis()
+  end
+  local current_buf_lines = vim.api.nvim_buf_get_lines(0, 0, -1, false) -- Get all lines in the current buffer
+  vim.cmd.tabnew()
+  setup_current_buffer("original", current_buf_lines)
+
+  -- open vertial split
+  local register_name = "+"
+  vim.cmd.vnew()
+  local register_lines = {}
+  for line in vim.fn.getreg(register_name):gmatch("[^\n]+") do
+    table.insert(register_lines, line)
+  end
+  setup_current_buffer("clipboard_content", register_lines)
+end, {})
+
+vim.api.nvim_create_user_command("PytonFormatBuf", function()
+  local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false) -- Get all lines in the current buffer
+  local single_line = table.concat(lines, "") -- Join all lines
+  vim.api.nvim_buf_set_lines(0, 0, -1, false, { single_line }) -- Replace buffer content with the single line
+  vim.cmd("%! ruff format -")
+end, {})
