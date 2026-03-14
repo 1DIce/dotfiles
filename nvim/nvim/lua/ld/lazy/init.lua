@@ -7,11 +7,4 @@ return {
   "AndrewRadev/bufferize.vim",
   -- color theme
   "folke/tokyonight.nvim",
-  {
-    -- visualize hexcode color defintions in code
-    "norcalli/nvim-colorizer.lua",
-    config = function()
-      require("colorizer").setup({ "less", "css", "scss" })
-    end,
-  },
 }
