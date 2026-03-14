@@ -72,11 +72,12 @@ local function angular_config()
     default_node_modules,
   }
   return {
-    -- cmd = ngls_cmd,
-    -- on_new_config = function(new_config)
-    --   new_config.cmd = ngls_cmd
-    -- end,
+    cmd = ngls_cmd,
+    on_new_config = function(new_config)
+      new_config.cmd = ngls_cmd
+    end,
     filetypes = { "typescript", "angular.html", "typescriptreact", "typescript.tsx" },
+    root_markers = { "angular.json" },
   }
 end
 
@@ -137,10 +138,22 @@ local servers = {
   cmake = {},
   astro = {},
   terraformls = {},
-  ruff = { cmd = { "uvx", "ruff", "server" } }, -- python formatter
-  basedpyright = {
+  ruff = {
+    -- python formatter
+    cmd = { "uvx", "ruff", "server" },
     root_markers = { ".git" },
   },
+  basedpyright = {
+    capabilities = capabilities,
+    root_markers = { ".git" },
+  },
+  -- pyrefly = {
+  --   root_markers = { ".git" },
+  --   capabilities = capabilities,
+  -- },
+  -- kotlin_language_server = {
+  --   capabilities = capabilities,
+  -- },
   just = {},
 }
 
