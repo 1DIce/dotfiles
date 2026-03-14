@@ -10,7 +10,7 @@
   "go.nvim": { "branch": "master", "commit": "0d426e87227dd14584881ecc595c173121456111" },
   "grug-far.nvim": { "branch": "main", "commit": "3e72397465f774b01aa38e4fe8e6eecf23d766d9" },
   "harpoon": { "branch": "harpoon2", "commit": "ed1f853847ffd04b2b61c314865665e1dadf22c7" },
-  "kulala.nvim": { "branch": "main", "commit": "ffdfd428018fd00a1d17bdccebbc70ba5cf48778" },
+  "kulala.nvim": { "branch": "main", "commit": "6656c9d332735ca6a27725e0fb45a1715c4372d9" },
   "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
   "lazydev.nvim": { "branch": "main", "commit": "2367a6c0a01eb9edb0464731cc0fb61ed9ab9d2c" },
   "leap.nvim": { "branch": "main", "commit": "1fc7f38b69cc4644505e3ff74ba69b1682a85dd9" },

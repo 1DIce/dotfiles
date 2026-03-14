@@ -53,7 +53,6 @@ nnoremap("<leader>vch", "<cmd>lua Snacks.picker.command_history()<CR>", "Search 
 nnoremap("<leader>vcl", "<cmd>lua Snacks.picker.commands()<CR>", "Search commands")
 nnoremap("<leader>vr", "<cmd>lua Snacks.picker.registers()<CR>", "Search registers")
 nnoremap("<leader>vk", "<cmd>lua Snacks.picker.keymaps()<CR>", "Search keymaps")
-nnoremap("<leader>vd", "<cmd>Telescope neoclip<CR>", "Search default register history")
 
 nnoremap(
   "<leader>bf",
