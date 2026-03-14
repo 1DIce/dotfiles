@@ -1,18 +1,25 @@
 let mapleader=" "
 
+
 """ Plugins  --------------------------------
-"set surround
+""" See https://github.com/JetBrains/ideavim/wiki/IdeaVim-Plugins for more infos about plugins
 ""set multiple-cursors
-"set commentary
-"set which-key
+set which-key
+"" add support for text objectes like "if" = inner function and "af" = around function
+set functiontextobj
 "set argtextobj
 ""set easymotion
 ""set textobj-entire
 "set ReplaceWithRegister
 ""set exchange
+"" add addtional text objects https://github.com/JetBrains/ideavim/wiki/IdeaVim-Plugins#miniai-extend-and-create-ai-textobjects-important-the-plugin-is-not-related-with-artificial-intelligence
+set mini-ai
+set NERDTree
 "" Trying the new syntax
-"Plug 'machakann/vim-highlightedyank'
 Plug 'justinmk/vim-sneak'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'machakann/vim-highlightedyank'
 
 """ Plugin settings -------------------------
 let g:argtextobj_pairs="[:],(:),<:>"
@@ -46,9 +53,8 @@ nmap <leader>lr <Action>(RenameElement)
 "map <leader>h <Action>(Vcs.ShowTabbedFileHistory)
 "map <S-Space> <Action>(GotoNextError)
 
-" Reformat the current line only
-"map <leader>lof V<Action>(ReformatCode)
-
+nmap <leader>t :NERDTreeToggle<CR>
+nmap <leader>lof <Action>(ReformatCode)
 "map <leader>b <Action>(ToggleLineBreakpoint)
 map <leader>bs <Action>(FileStructurePopup)
 nmap <leader>bl <Action>(Switcher)
@@ -57,9 +63,11 @@ map <leader>fl <Action>(TextSearchAction)
 map <leader>la <Action>(ShowIntentionActions)
 map <leader>lor <Action>(Refactorings.QuickListPopupAction)
 nmap <leader>lt <Action>(GotoClass)
-nmap <leader>lu <Action>(FindUsages)
+nmap <leader>lu <Action>(ShowUsages)
 nmap <leader>li <Action>(GotoImplementation)
 nmap <leader>lc <Action>(CallHierarchy)
+nmap <leader>eh <Action>(ShowErrorDescription)
+nmap <leader>el <Action>(ActivateProblemsViewToolWindow)
 
 " map register operation
 nnoremap <space>p "+p
