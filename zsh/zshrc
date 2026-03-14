@@ -38,6 +38,11 @@ autoload -Uz compinit
 compinit -u
 # End of lines added by compinstall
 
+# add keybind ctrl-x ctrl-e to open EDITOR to editor the current command
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line
+
 # aliases
 alias l="eza -l --icons"       # List in long format, exclude dotfiles
 alias la="l -a"      # List in long format, include dotfiles
