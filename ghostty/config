@@ -1,4 +1,4 @@
-theme = tokyonight_night
+theme = TokyoNight Night
 
 # disable programming ligatures
 font-feature = -calt
