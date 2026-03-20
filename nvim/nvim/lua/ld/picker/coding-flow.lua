@@ -16,40 +16,37 @@ local function workspace_coding_flow_symbols(language, coding_flow_symbole_type,
 
   local find_symbols = function(opts, ctx)
     local cwd = vim.fs.normalize(opts and opts.cwd or vim.uv.cwd() or ".")
-    return require("snacks.picker.source.proc").proc({
-      opts,
-      {
-        cmd = "coding-flow",
-        args = {
-          "workspace-symbols",
-          "--language",
-          language,
-          "--type",
-          coding_flow_symbole_type,
-        },
-        transform = function(item)
-          -- each item is a line of output from coding-flow
-          -- expected format: "symbol_name<TAB>file_path<TAB>line_number<TAB>column_number"
-          local parts = vim.split(item.text, "\t")
-
-          local symbol_name = parts[1]
-          local file_path_parts = vim.split(parts[2], ":")
-          local file_path = file_path_parts[1]
-          local line_number = file_path_parts[2]
-          local column_number = file_path_parts[3]
-
-          item.name = symbol_name
-          item.lsp_kind = symbol_types_to_lsp_kinds[coding_flow_symbole_type] or "Unknown"
-          item.kind = item.lsp_kind
-          item.cwd = cwd
-          item.file = file_path
-          item.line = line_number
-          item.col = column_number + 1
-          -- item.pos is used for preview highlighting
-          item.pos = { tonumber(line_number), column_number + 1 }
-        end,
+    return require("snacks.picker.source.proc").proc(vim.tbl_extend("force", opts, {
+      cmd = "coding-flow",
+      args = {
+        "workspace-symbols",
+        "--language",
+        language,
+        "--type",
+        coding_flow_symbole_type,
       },
-    }, ctx)
+      transform = function(item)
+        -- each item is a line of output from coding-flow
+        -- expected format: "symbol_name<TAB>file_path<TAB>line_number<TAB>column_number"
+        local parts = vim.split(item.text, "\t")
+
+        local symbol_name = parts[1]
+        local file_path_parts = vim.split(parts[2], ":")
+        local file_path = file_path_parts[1]
+        local line_number = file_path_parts[2]
+        local column_number = file_path_parts[3]
+
+        item.name = symbol_name
+        item.lsp_kind = symbol_types_to_lsp_kinds[coding_flow_symbole_type] or "Unknown"
+        item.kind = item.lsp_kind
+        item.cwd = cwd
+        item.file = file_path
+        item.line = line_number
+        item.col = column_number + 1
+        -- item.pos is used for preview highlighting
+        item.pos = { tonumber(line_number), column_number + 1 }
+      end,
+    }), ctx)
   end
 
   local select_file = function(picker)
