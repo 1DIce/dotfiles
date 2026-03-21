@@ -3,3 +3,11 @@
 - crossplatform-link:
     - ~/.config/ghostty/config:
         path: ghostty/config
+    - ~/.config/ghostty/platform.conf:
+        platform: linux
+        path: ghostty/linux-platform.conf
+        force: true
+    - ~/.config/ghostty/platform.conf:
+        platform: darwin
+        path: ghostty/mac-platform.conf
+        force: true

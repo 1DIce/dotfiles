@@ -5,3 +5,6 @@ font-feature = -calt
 
 macos-option-as-alt = left
 
+# platform specific settings
+config-file = ?platform.conf
+
