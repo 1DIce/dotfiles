@@ -1,4 +1,3 @@
-local util_functions = require("ld.utils.functions")
 local M = {}
 
 M.show_diagnostics = function(opts)
@@ -15,12 +14,25 @@ end
 M.is_typescript_workspace = function()
   local cwd = vim.fn.getcwd()
   return vim.loop.fs_stat(cwd .. "/tsconfig.json") ~= nil
-    or vim.loop.fs_stat(cwd .. "/package.json") ~= nil
+      or vim.loop.fs_stat(cwd .. "/package.json") ~= nil
 end
 
 function M.is_python_workspace()
   local cwd = vim.fn.getcwd()
   return vim.loop.fs_stat(cwd .. "/pyproject.toml") ~= nil
+end
+
+M.is_lua_workspace = function()
+  local cwd = vim.fn.getcwd()
+  return vim.loop.fs_stat(cwd .. "/.lua-format") ~= nil
+      or vim.loop.fs_stat(cwd .. "/init.lua") ~= nil
+      or vim.loop.fs_stat(cwd .. "/.stylua.lua") ~= nil
+end
+
+function M.is_kotlin_workspace()
+  local cwd = vim.fn.getcwd()
+  return vim.loop.fs_stat(cwd .. "/build.gradle.kts") ~= nil
+      or vim.loop.fs_stat(cwd .. "/build.gradle") ~= nil
 end
 
 M.is_lsp_client_active = function(client_name)
