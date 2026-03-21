@@ -73,3 +73,19 @@ nnoremap(
   "<cmd>lua require('ld.telescope.functions').file_browser_home()<CR>",
   "Open file browser in $HOME"
 )
+
+nnoremap(
+  "<leader>lt",
+  "<cmd>lua require('ld.picker.coding-flow').workspace_public_types()<CR>",
+  "Workspace type defintions"
+)
+nnoremap(
+  "<leader>lv",
+  "<cmd>lua require('ld.picker.coding-flow').workspace_public_variables()<CR>",
+  "Workspace variable defintions"
+)
+nnoremap(
+  "<leader>lf",
+  "<cmd>lua require('ld.picker.coding-flow').workspace_public_functions()<CR>",
+  "Workspace function defintions"
+)

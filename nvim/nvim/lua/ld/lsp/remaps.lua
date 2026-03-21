@@ -34,12 +34,12 @@ function M.set_default(client, bufnr)
   end
 
   if cap.documentSymbolProvider then
-    buf_set_keymap(
-      "n",
-      "<leader>lt",
-      "<cmd>lua require('ld.picker.coding-flow').workspace_public_types()<CR>",
-      "Workspace type defintions"
-    )
+    -- buf_set_keymap(
+    --   "n",
+    --   "<leader>lt",
+    --   "<cmd>lua require('ld.picker.coding-flow').workspace_public_types()<CR>",
+    --   "Workspace type defintions"
+    -- )
     -- search for all kinds of workspace symbols
     -- buf_set_keymap(
     --   "n",
@@ -47,18 +47,18 @@ function M.set_default(client, bufnr)
     --   '<cmd>lua require(\'telescope.builtin\').lsp_dynamic_workspace_symbols({symbols={"class","interface"}, file_ignore_patterns={"%.spec.ts","node_modules"}})<CR>',
     --   "Workspace type defintions"
     -- )
-    buf_set_keymap(
-      "n",
-      "<leader>lv",
-      "<cmd>lua require('ld.picker.coding-flow').workspace_public_variables()<CR>",
-      "Workspace variable defintions"
-    )
-    buf_set_keymap(
-      "n",
-      "<leader>lf",
-      "<cmd>lua require('ld.picker.coding-flow').workspace_public_functions()<CR>",
-      "Workspace function defintions"
-    )
+    -- buf_set_keymap(
+    --   "n",
+    --   "<leader>lv",
+    --   "<cmd>lua require('ld.picker.coding-flow').workspace_public_variables()<CR>",
+    --   "Workspace variable defintions"
+    -- )
+    -- buf_set_keymap(
+    --   "n",
+    --   "<leader>lf",
+    --   "<cmd>lua require('ld.picker.coding-flow').workspace_public_functions()<CR>",
+    --   "Workspace function defintions"
+    -- )
 
     -- search for symbols in current buffer via lsp
     -- buf_set_keymap(
@@ -116,4 +116,5 @@ function M.set_typescript(client, bufnr)
   -- buf_set_keymap("n", "gr", ":TSLspRenameFile<CR>", 'lsp', 'lsp_', '')
   buf_set_keymap("n", "<leader>loa", "<cmd>VtsExec add_missing_imports<CR>", "Import all")
 end
+
 return M
