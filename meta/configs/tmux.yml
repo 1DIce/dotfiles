@@ -6,3 +6,4 @@
       platform: linux
     - command: brew install tmux
       platform: darwin
+    - command: cargo install --git https://github.com/1DIce/tmux-sessioneer.git
