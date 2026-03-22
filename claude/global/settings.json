@@ -1,0 +1,17 @@
+{
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "permissions": {
+    "deny": ["Read(.envrc)", "Read(.env)"]
+  },
+  "sandbox": {
+    "enabled": false,
+    "excludedCommands": ["git", "docker"]
+  },
+  "enabledPlugins": {
+    "context7@claude-plugins-official": true,
+    "kotlin-lsp@claude-plugins-official": true
+  }
+}

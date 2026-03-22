@@ -1,0 +1,9 @@
+- create:
+    - ~/.claude
+
+- crossplatform-link:
+    - ~/.claude/settings.json:
+        path: claude/global/settings.json
+- crossplatform-link:
+    - ~/.claude/CLAUDE.md:
+        path: claude/global/CLAUDE.md
