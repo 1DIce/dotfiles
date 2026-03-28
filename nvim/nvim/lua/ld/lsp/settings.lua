@@ -151,75 +151,6 @@ local servers = {
   --   root_markers = { ".git" },
   --   capabilities = capabilities,
   -- },
-  -- kotlin_language_server = {
-  --   capabilities = capabilities,
-  -- },
-  kotlin_lsp = {
-    capabilities = capabilities,
-    cmd = { "kotlin-lsp", "--stdio" },
-    filetypes = { "kotlin" },
-    root_markers = {
-      "settings.gradle",
-      "settings.gradle.kts",
-      "pom.xml",
-      "build.gradle",
-      "build.gradle.kts",
-      "workspace.json",
-    },
-    -- Workaround for cursor landing one char too far left after completion
-    -- at end of line. See kotlin-lsp-completion-cursor-bug.md for full details.
-    --
-    -- The Kotlin LSP completes via a command rather than a textEdit:
-    --   1. textEdit is a no-op (newText = "")
-    --   2. command "jetbrains.kotlin.completion.apply" fires
-    --   3. LSP sends workspace/applyEdit to insert the actual text
-    --   4. LSP sends window/showDocument to position the cursor
-    --
-    -- Neovim's showDocument handler uses nvim_win_set_cursor which operates
-    -- in normal-mode terms: it places cursor ON a character and clamps to the
-    -- last char when the target is past EOL. In insert mode the cursor should
-    -- be AFTER the last char (the append position), so clamping causes it to
-    -- land one position too far left. This only manifests when completing at
-    -- the end of a line with no trailing text.
-    on_init = function(client)
-      local orig = client.handlers["window/showDocument"]
-        or vim.lsp.handlers["window/showDocument"]
-
-      client.handlers["window/showDocument"] = function(err, result, ctx, config)
-        -- Run the default handler first (opens file, sets cursor, etc)
-        local resp = orig(err, result, ctx, config)
-
-        local mode = vim.api.nvim_get_mode().mode
-        if (mode == "i" or mode == "ic") and result and result.selection then
-          local row = result.selection.start.line
-          local col = result.selection.start.character
-
-          -- Schedule so the buffer state reflects the workspace/applyEdit
-          vim.schedule(function()
-            -- Re-check mode since it may have changed between handler and schedule
-            if vim.api.nvim_get_mode().mode:sub(1, 1) ~= "i" then
-              return
-            end
-
-            local line = vim.api.nvim_buf_get_lines(0, row, row + 1, false)[1] or ""
-            local cur = vim.api.nvim_win_get_cursor(0)
-
-            -- If the LSP requested a position at/past EOL but nvim_win_set_cursor
-            -- clamped the cursor short, nudge it to the actual end of line
-            if col >= #line and cur[2] < #line then
-              vim.api.nvim_feedkeys(
-                vim.api.nvim_replace_termcodes("<End>", true, false, true),
-                "n",
-                false
-              )
-            end
-          end)
-        end
-
-        return resp
-      end
-    end,
-  },
   just = {},
 }
 
@@ -233,6 +164,7 @@ else
 end
 
 require("ld.lsp.servers.rust-lsp").setup()
+require("ld.lsp.servers.kotlin-lsp").setup()
 
 for serverName, config in pairs(servers) do
   vim.lsp.config(serverName, config)
