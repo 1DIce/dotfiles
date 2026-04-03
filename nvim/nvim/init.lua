@@ -7,6 +7,7 @@ require("ld.init-lazy")
 require("ld.utils")
 
 require("ld.theme")
+require("ld.statusline")
 
 require("ld.lsp")
 require("ld.remaps")
