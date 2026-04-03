@@ -102,6 +102,7 @@ vim.o.sessionoptions =
 
 -- setting global border style for all floating windows
 vim.o.winborder = "rounded"
+vim.o.pumborder = "rounded"
 
 -- shows spaces
 vim.o.list = false
