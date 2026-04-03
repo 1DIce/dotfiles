@@ -59,4 +59,62 @@ return {
   "b0o/SchemaStore.nvim",
   "williamboman/mason.nvim",
   "williamboman/mason-lspconfig.nvim",
+  {
+    "stevearc/conform.nvim",
+    event = "BufWritePre",
+    cmd = { "ConformInfo" },
+    opts = {
+      formatters_by_ft = {
+        lua = { "stylua" },
+        javascript = { "prettierd" },
+        javascriptreact = { "prettierd" },
+        typescript = { "prettierd" },
+        typescriptreact = { "prettierd" },
+        html = { "prettierd" },
+        css = { "prettierd" },
+        scss = { "prettierd" },
+        less = { "prettierd" },
+        json = { "prettierd" },
+        jsonc = { "prettierd" },
+        yaml = { "prettierd" },
+        astro = { "prettierd" },
+        sh = { "shfmt" },
+      },
+      format_on_save = function(bufnr)
+        local ft = vim.bo[bufnr].filetype
+        local functions = require("ld.lsp.functions")
+
+        if ft == "typescript" or ft == "typescriptreact" then
+          functions.format_organize_typescript(bufnr)
+        elseif ft == "python" then
+          local client = vim.lsp.get_clients({ bufnr = bufnr, name = "ruff" })[1]
+          if client then
+            functions.run_code_action_sync("source.fixAll", bufnr, client)
+          end
+        end
+
+        return { timeout_ms = 3000, lsp_format = "fallback" }
+      end,
+    },
+  },
+  {
+    "mfussenegger/nvim-lint",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require("lint").linters_by_ft = {
+        yaml = { "yamllint" },
+        sh = { "shellcheck" },
+      }
+
+      vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+        group = vim.api.nvim_create_augroup("ld-nvim-lint", { clear = true }),
+        callback = function(event)
+          if vim.bo[event.buf].filetype == "helm" then
+            return
+          end
+          require("lint").try_lint()
+        end,
+      })
+    end,
+  },
 }

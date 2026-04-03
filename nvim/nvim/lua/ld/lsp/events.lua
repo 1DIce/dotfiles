@@ -36,39 +36,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
--- The following autocommands setup formating on save
-local format_on_save_augroup = vim.api.nvim_create_augroup("ld-format_on_save", { clear = true })
--- using special organize imports + formatting with prettier for typescript files
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  pattern = "*.ts,*.tsx",
-  group = format_on_save_augroup,
-  callback = function(event_data)
-    require("ld.lsp.functions").format_organize_typescript(event_data.buf)
-  end,
-})
-
--- using ruff to organize imports + formatt for python files
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  pattern = "*.py",
-  group = format_on_save_augroup,
-  callback = function(event_data)
-    local client = vim.lsp.get_clients({ bufnr = bufnr, name = "ruff" })[1]
-    if client ~= nil then
-      require("ld.lsp.functions").run_code_action_sync("source.fixAll", event_data.buf, client)
-    end
-    vim.lsp.buf.format({ async = false, bufnr = event_data.buf })
-  end,
-})
-
--- using prettierd from null-ls or native lsp client for formatting on save on all those file types
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  pattern = "*.html,*.js,*.yml,*.yaml,*.less,*.json,*.jsonc,*.scss,*.css,*.lua,*.cpp,*.h,*.rs,*.astro,*.go,*.py",
-  group = format_on_save_augroup,
-  callback = function(event_data)
-    vim.lsp.buf.format({ async = false, bufnr = event_data.buf })
-  end,
-})
-
 vim.api.nvim_create_autocmd("LspProgress", {
   callback = function(ev)
     local value = ev.data.params.value or {}

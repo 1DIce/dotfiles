@@ -7,7 +7,7 @@ function M.setup()
   local config = {
     on_attach = function(client, bufnr)
       local cap = client.server_capabilities
-      cap.documentFormattingProvider = false -- null-ls handles the formatting
+      cap.documentFormattingProvider = false -- conform.nvim handles the formatting
       remaps.set_typescript(client, bufnr)
     end,
 

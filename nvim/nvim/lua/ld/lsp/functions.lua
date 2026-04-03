@@ -61,17 +61,10 @@ function M.typescript_organize_imports_sync(bufnr, timeout)
 end
 
 function M.format_organize_typescript(bufnr)
-  if M.is_deno_workspace() then
-    vim.lsp.buf.format({
-      filter = function(client)
-        return client.name == "denols"
-      end,
-      async = false,
-    })
-  else
+  if not M.is_deno_workspace() then
     M.typescript_organize_imports_sync(bufnr)
-    vim.lsp.buf.format({ async = false, bufnr = bufnr })
   end
+  -- conform.nvim handles the actual formatting
 end
 
 function M.format_organize_golang(bufnr)

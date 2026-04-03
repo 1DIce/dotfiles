@@ -6,12 +6,6 @@ require("mason-nvim-dap").setup({
   handlers = {}, -- sets up dap in the predefined manner
 })
 
-require("mason-null-ls").setup(
-  ---@diagnostic disable-next-line: missing-fields
-  {
-    ensure_installed = { "stylua", "shfmt", "shellcheck", "prettierd" },
-  }
-)
 require("mason-lspconfig").setup({
   automatic_enable = false,
   ensure_installed = {
@@ -129,7 +123,7 @@ local servers = {
     settings = {
       Lua = {
         format = {
-          enable = false, -- null-ls handles the formatting
+          enable = false, -- conform.nvim handles the formatting
         },
       },
     },
