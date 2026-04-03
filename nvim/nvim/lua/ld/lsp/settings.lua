@@ -128,7 +128,7 @@ local servers = {
       },
     },
   },
-  ltex_plus = require("ld.lsp.servers.ltex").setup(),
+  harper_ls = require("ld.lsp.servers.harper").setup(),
   cmake = {},
   astro = {},
   terraformls = {},
