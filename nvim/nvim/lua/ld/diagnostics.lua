@@ -1,5 +1,5 @@
 local default_config = {
-  virtual_text = false, -- disable virtual_text because i use "tiny-inline-diagnostic" plugin
+  virtual_text = { current_line = true },
   virtual_lines = false,
   underline = true,
   update_in_insert = false,
@@ -38,12 +38,11 @@ vim.keymap.set("n", "<leader>eh", function()
 end, { desc = "Show line diagnostics" })
 
 vim.keymap.set("n", "<leader>ev", function()
-  if vim.diagnostic.config().virtual_lines == false then
-    require("tiny-inline-diagnostic").disable()
-    vim.diagnostic.config({ virtual_lines = true, virtual_text = false })
+  local vl = vim.diagnostic.config().virtual_lines
+  if vl and vl ~= false then
+    vim.diagnostic.config({ virtual_lines = false, virtual_text = { current_line = true } })
   else
-    require("tiny-inline-diagnostic").enable()
-    vim.diagnostic.config(default_config)
+    vim.diagnostic.config({ virtual_lines = true, virtual_text = false })
   end
 end, { desc = "Toggle virtual lines diagnostics" })
 
