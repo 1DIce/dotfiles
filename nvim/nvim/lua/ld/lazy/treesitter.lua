@@ -132,15 +132,6 @@ local function treesitter_textobjects_config()
         goto_previous_end = { ["[M"] = "@function.outer", ["[]"] = "@class.outer" },
       },
     },
-    incremental_selection = {
-      enable = true,
-      keymaps = {
-        init_selection = "zi",
-        node_incremental = "zi",
-        scope_incremental = "zo",
-        node_decremental = "zd",
-      },
-    },
     highlight = { enable = true },
   })
 
@@ -171,9 +162,6 @@ local function treesitter_textobjects_config()
       { "ik", desc = "Json key inner motion" },
       { "iv", desc = "Json value inner motion" },
       { "ix", desc = "Attribute (html, xml) inner motion" },
-      { "zI", desc = "Decrement scope (selection)" },
-      { "zi", desc = "Init treesitter selection" },
-      { "zo", desc = "Expand scope (selection)" },
     },
   })
 end
