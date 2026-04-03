@@ -73,31 +73,39 @@ vim.o.statusline = table.concat({
   " %y ",
 })
 
--- Winbar: show filename in all windows
-vim.o.winbar = " %f"
+-- Winbar: show filename per window, disabled for specific filetypes
+local winbar_disabled = {
+  ["nvim-dap-view"] = true,
+  ["dap-view-term"] = true,
+  ["dap-view"] = true,
+  ["NvimTree"] = true,
+  ["fugitive"] = true,
+  ["fugitiveblame"] = true,
+  ["gitcommit"] = true,
+  ["alpha"] = true,
+  ["neoterm"] = true,
+  ["snacks_dashboard"] = true,
+  ["toggleterm"] = true,
+}
 
--- Disable winbar for specific filetypes
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = {
-    "nvim-dap-view",
-    "dap-view-term",
-    "dap-view",
-    "NvimTree",
-    "fugitive",
-    "gitcommit",
-    "alpha",
-    "neoterm",
-    "snacks_dashboard",
-    "toggleterm",
-  },
+local winbar_group = vim.api.nvim_create_augroup("ld_statusline_winbar", { clear = true })
+vim.api.nvim_create_autocmd("BufEnter", {
+  group = winbar_group,
   callback = function()
-    vim.wo.winbar = nil
+    if winbar_disabled[vim.bo.filetype] then
+      vim.wo.winbar = ""
+    else
+      vim.wo.winbar = " %f"
+    end
   end,
 })
 
 -- Set up highlights now and on colorscheme change
 setup_highlights()
+
+local highlight_group = vim.api.nvim_create_augroup("ld_statusline_highlights", { clear = true })
 vim.api.nvim_create_autocmd("ColorScheme", {
+  group = highlight_group,
   callback = setup_highlights,
 })
 
