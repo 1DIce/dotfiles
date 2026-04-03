@@ -215,10 +215,6 @@ return {
     end,
   },
   {
-    "hiphish/rainbow-delimiters.nvim",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-  },
-  {
     "andymass/vim-matchup",
     config = function(_, opts)
       local ok, cmp = pcall(require, "cmp")
