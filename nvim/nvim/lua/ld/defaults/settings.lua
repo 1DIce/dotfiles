@@ -13,6 +13,8 @@ if vim.fn.isdirectory(cachePath .. "/undo-dir") == false then
 end
 vim.o.undodir = cachePath .. "/undo-dir"
 vim.o.undofile = true
+
+vim.cmd.packadd("nvim.undotree")
 -- vim.o.showmatch = true
 -- vim.o.nohlsearch
 vim.o.hidden = true
