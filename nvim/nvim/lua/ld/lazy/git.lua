@@ -6,6 +6,10 @@ return {
     dependencies = "aymericbeaumet/vim-symlink",
   },
   {
+    "esmuellert/codediff.nvim",
+    cmd = "CodeDiff",
+  },
+  {
     -- Adds commands :DiffviewFileHistory and :DiffviewOpen [git ref]
     "sindrets/diffview.nvim",
     dependencies = "nvim-lua/plenary.nvim",

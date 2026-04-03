@@ -3,3 +3,4 @@ nvim/nvim/.netrwhist
 .zshrc.swp
 tmux-client-*.log
 /kitty/kitty.conf.bak
+.DS_Store
