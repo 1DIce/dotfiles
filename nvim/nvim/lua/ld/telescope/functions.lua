@@ -34,12 +34,8 @@ M.lsp_unique_references = function(opts)
   local params = vim.lsp.util.make_position_params(nil, "utf-8")
   params.context = { includeDeclaration = true }
 
-  local results_lsp, err =
-    vim.lsp.buf_request_sync(0, "textDocument/references", params, opts.timeout or 10000)
-  if err then
-    vim.api.nvim_err_writeln("Error when finding references: " .. err)
-    return
-  end
+  local timeout = opts.timeout or 10000
+  local clients = vim.lsp.get_clients({ bufnr = 0 })
 
   local lnum = vim.api.nvim_win_get_cursor(vim.api.nvim_get_current_win())[1]
   local include_current_line = opts.include_current_line == true
@@ -47,26 +43,28 @@ M.lsp_unique_references = function(opts)
   local locations = {}
   local hashSet = {}
 
-  for client_id, server_results in pairs(results_lsp) do
-    if server_results.result then
-      local filtered_results = {}
-      for _, result_entry in pairs(server_results.result) do
-        if result_entry then
-          local unique_key = lsp_location_result_to_key(result_entry)
-          if hashSet[unique_key] ~= nil then
-          -- Duplicate
-          else
-            table.insert(filtered_results, result_entry)
-            hashSet[unique_key] = true
+  for _, client in ipairs(clients) do
+    if client:supports_method("textDocument/references") then
+      local response = client:request_sync("textDocument/references", params, timeout, 0)
+      if response and response.result then
+        local filtered_results = {}
+        for _, result_entry in pairs(response.result) do
+          if result_entry then
+            local unique_key = lsp_location_result_to_key(result_entry)
+            if hashSet[unique_key] ~= nil then
+            -- Duplicate
+            else
+              table.insert(filtered_results, result_entry)
+              hashSet[unique_key] = true
+            end
           end
         end
-      end
 
-      local offset_encoding = vim.lsp.get_client_by_id(client_id).offset_encoding
-      vim.list_extend(
-        locations,
-        vim.lsp.util.locations_to_items(filtered_results, offset_encoding) or {}
-      )
+        vim.list_extend(
+          locations,
+          vim.lsp.util.locations_to_items(filtered_results, client.offset_encoding) or {}
+        )
+      end
     end
   end
 

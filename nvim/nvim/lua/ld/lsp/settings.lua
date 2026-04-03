@@ -48,7 +48,7 @@ M.capabilities = capabilities
 local function get_node_modules(root_dir)
   -- util.find_node_modules_ancestor()
   local root_node = root_dir .. "/node_modules"
-  local stats = vim.loop.fs_stat(root_node)
+  local stats = vim.uv.fs_stat(root_node)
   if stats == nil then
     return nil
   else

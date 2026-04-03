@@ -2,37 +2,37 @@ local M = {}
 
 M.show_diagnostics = function(opts)
   opts = opts or {}
-  vim.lsp.diagnostic.set_loclist({ open_loclist = false })
+  vim.diagnostic.setloclist({ open = false })
   require("telescope.builtin").loclist(opts)
 end
 
 M.is_deno_workspace = function()
   local cwd = vim.fn.getcwd()
-  return vim.loop.fs_stat(cwd .. "/deno.json") ~= nil
+  return vim.uv.fs_stat(cwd .. "/deno.json") ~= nil
 end
 
 M.is_typescript_workspace = function()
   local cwd = vim.fn.getcwd()
-  return vim.loop.fs_stat(cwd .. "/tsconfig.json") ~= nil
-      or vim.loop.fs_stat(cwd .. "/package.json") ~= nil
+  return vim.uv.fs_stat(cwd .. "/tsconfig.json") ~= nil
+      or vim.uv.fs_stat(cwd .. "/package.json") ~= nil
 end
 
 function M.is_python_workspace()
   local cwd = vim.fn.getcwd()
-  return vim.loop.fs_stat(cwd .. "/pyproject.toml") ~= nil
+  return vim.uv.fs_stat(cwd .. "/pyproject.toml") ~= nil
 end
 
 M.is_lua_workspace = function()
   local cwd = vim.fn.getcwd()
-  return vim.loop.fs_stat(cwd .. "/.lua-format") ~= nil
-      or vim.loop.fs_stat(cwd .. "/init.lua") ~= nil
-      or vim.loop.fs_stat(cwd .. "/.stylua.lua") ~= nil
+  return vim.uv.fs_stat(cwd .. "/.lua-format") ~= nil
+      or vim.uv.fs_stat(cwd .. "/init.lua") ~= nil
+      or vim.uv.fs_stat(cwd .. "/.stylua.lua") ~= nil
 end
 
 function M.is_kotlin_workspace()
   local cwd = vim.fn.getcwd()
-  return vim.loop.fs_stat(cwd .. "/build.gradle.kts") ~= nil
-      or vim.loop.fs_stat(cwd .. "/build.gradle") ~= nil
+  return vim.uv.fs_stat(cwd .. "/build.gradle.kts") ~= nil
+      or vim.uv.fs_stat(cwd .. "/build.gradle") ~= nil
 end
 
 M.is_lsp_client_active = function(client_name)
