@@ -34,7 +34,7 @@ M = {}
 
 -- for debugging lsp
 -- Levels by name: 'trace', 'debug', 'info', 'warn', 'error'
-vim.lsp.set_log_level("error")
+vim.lsp.log.set_level("error")
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities =
