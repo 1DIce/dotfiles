@@ -93,10 +93,6 @@ vim.o.showmode = false
 vim.wo.foldcolumn = "0" -- defines 1 col at window left, to indicate folding
 vim.o.foldlevelstart = 99 -- start file with all folds opened
 
--- using treesitter for folding
-vim.wo.foldmethod = "expr"
-vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-
 vim.cmd("let g:vim_json_syntax_conceal = 0")
 
 vim.o.sessionoptions =

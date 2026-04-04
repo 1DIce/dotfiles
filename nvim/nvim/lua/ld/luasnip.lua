@@ -15,10 +15,10 @@ for _, ft_path in ipairs(vim.api.nvim_get_runtime_file("lua/ld/snippets/*.lua", 
   loadfile(ft_path)()
 end
 
--- Loading snippets from go.nvim directory
-for _, ft_path in ipairs(vim.api.nvim_get_runtime_file("lua/snips/go.lua", false)) do
-  loadfile(ft_path)()
-end
+-- -- Loading snippets from go.nvim directory
+-- for _, ft_path in ipairs(vim.api.nvim_get_runtime_file("lua/snips/go.lua", false)) do
+--   loadfile(ft_path)()
+-- end
 
 vim.keymap.set({ "i", "s" }, "<c-J>", function()
   if ls.expand_or_jumpable() then

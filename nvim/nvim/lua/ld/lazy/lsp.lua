@@ -39,7 +39,6 @@ return {
         lsp_cfg = false,
         lsp_keymaps = false,
         lsp_codelens = false,
-        null_ls = false,
         lsp_inlay_hints = {
           enable = false,
         },

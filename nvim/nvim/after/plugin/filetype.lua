@@ -22,6 +22,9 @@ vim.filetype.add({
     [".*%.docker-compose%.yml"] = "yaml.docker-compose",
     [".*%.docker-compose%.yaml"] = "yaml.docker-compose",
     [".?env.?.*"] = "dotenv",
+
+    -- Sets the filetype to `angular.html` if it matches the pattern
+    [".*%.component%.html"] = "angular.html",
   },
 })
 
