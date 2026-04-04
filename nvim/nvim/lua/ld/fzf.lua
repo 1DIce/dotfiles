@@ -187,13 +187,14 @@ require("fzf-lua").setup({
     -- cmd               = "rg --vimgrep",
     rg_opts = "--hidden --column --line-number --no-heading "
       .. "--color=always --smart-case -g '!{.git,node_modules}/*'",
-    git_icons = true, -- show git icons?
+    git_icons = false, -- show git icons?
     file_icons = true, -- show file icons?
     color_icons = true, -- colorize file|git icons
     -- 'true' enables file and git icons in 'live_grep'
     -- degrades performance in large datasets, YMMV
     experimental = false,
     -- live_grep_glob options
+    rg_glob = true,
     glob_flag = "--iglob", -- for case sensitive globs use '--glob'
     glob_separator = "%s%-%-", -- query separator pattern (lua): ' --'
   },

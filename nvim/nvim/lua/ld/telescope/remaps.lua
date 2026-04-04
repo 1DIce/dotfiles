@@ -10,12 +10,10 @@ nnoremap("<leader>fp", "<cmd>Telescope projects<CR>", "Projects")
 --   "<cmd>lua require('ld.telescope.functions').live_grep_raw({},'v')<CR>",
 --   "Live grep visual"
 -- )
-nnoremap("<leader>fl", "<cmd>lua require('grug-far').open()<CR>", "Live grep")
-vnoremap(
-  "<leader>fl",
-  "<cmd>lua require('grug-far').with_visual_selection()<CR>",
-  "Live grep visual"
-)
+nnoremap("<leader>fl", "<cmd>lua require('fzf-lua').live_grep()<CR>", "Live grep")
+vnoremap("<leader>fl", "<cmd>lua require('fzf-lua').grep_visual()<CR>", "Live grep visual")
+nnoremap("<leader>fr", "<cmd>lua require('grug-far').open()<CR>", "Find and replace")
+vnoremap("<leader>fr", "<cmd>lua require('grug-far').with_visual_selection()<CR>", "Find and replace visual")
 nnoremap("<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<CR>", "Find files")
 nnoremap("<C-p>", "<cmd>lua require('ld.fzf').files()<CR>", "Find files")
 vnoremap("<leader>fv", "<cmd>lua require('fzf-lua').grep_visual()<CR>", "Find visual selection")
