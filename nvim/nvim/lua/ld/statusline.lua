@@ -92,6 +92,11 @@ local winbar_group = vim.api.nvim_create_augroup("ld_statusline_winbar", { clear
 vim.api.nvim_create_autocmd("BufEnter", {
   group = winbar_group,
   callback = function()
+    -- skip floating windows: setting winbar on a 1-row float (e.g. snacks picker panes)
+    -- triggers E36 "not enough room" via BufEnter autocommands
+    if vim.api.nvim_win_get_config(0).relative ~= "" then
+      return
+    end
     if winbar_disabled[vim.bo.filetype] then
       vim.wo.winbar = ""
     else
