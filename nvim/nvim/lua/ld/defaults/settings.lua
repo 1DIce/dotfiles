@@ -65,11 +65,6 @@ vim.o.complete = ".,w,t"
 vim.o.grepprg = "rg --vimgrep --no-heading --smart-case --hidden"
 vim.o.grepformat = "%f:%l:%c:%m"
 
-if vim.version.ge(vim.version(), "11.1.0") then
-  -- adding inline character diff option
-  vim.o.diffopt = "internal,filler,closeoff,linematch:40:inline:char"
-end
-
 -- Don't show the dumb matching stuff.
 vim.cmd([[set shortmess+=c]])
 
