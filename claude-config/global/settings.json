@@ -4,13 +4,18 @@
     "pr": ""
   },
   "permissions": {
-    "deny": ["Read(.envrc)", "Read(.env)"]
+    "deny": [
+      "Read(.envrc)",
+      "Read(.env)",
+      "Bash(gh issue list:*)",
+      "Bash(gh search issues:*)"
+    ]
+  },
+  "enabledPlugins": {
+    "context7@claude-plugins-official": true
   },
   "sandbox": {
     "enabled": false,
     "excludedCommands": ["git", "docker"]
   },
-  "enabledPlugins": {
-    "context7@claude-plugins-official": true
-  }
 }
