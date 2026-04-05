@@ -48,7 +48,7 @@
   "quicker.nvim": { "branch": "master", "commit": "063cc44da1eef8681bbd653b29d3bc961780886a" },
   "refactoring.nvim": { "branch": "master", "commit": "6784b54587e6d8a6b9ea199318512170ffb9e418" },
   "rgflow.nvim": { "branch": "master", "commit": "c97daadc871aad548cb717b04bbaa948dd2f0fea" },
-  "rustaceanvim": { "branch": "master", "commit": "88575b98bb9937fb9983ddec5e532b67e75ce677" },
+  "rustaceanvim": { "branch": "main", "commit": "88575b98bb9937fb9983ddec5e532b67e75ce677" },
   "sidekick.nvim": { "branch": "main", "commit": "17447a05f9385e5f8372b61530f6f9329cb82421" },
   "snacks.nvim": { "branch": "main", "commit": "ad9ede6a9cddf16cedbd31b8932d6dcdee9b716e" },
   "targets.vim": { "branch": "master", "commit": "6325416da8f89992b005db3e4517aaef0242602e" },
