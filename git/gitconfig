@@ -54,7 +54,11 @@
 
 [diff]
   guitool = kdiff3
-  tool = vscode
+  tool = nvim_difftool
+
+[difftool "nvim_difftool"]
+  # use with directory diff: "git difftool -d main"
+  cmd = nvim -c \"packadd nvim.difftool\" -c \"DiffTool $LOCAL $REMOTE\"
 
 [difftool "vscode"]
   cmd = code --wait --diff $LOCAL $REMOTE
