@@ -100,7 +100,7 @@ local function treesitter_context_config()
       -- If a pattern is missing, *open a PR* so everyone can benefit.
       --   rust = {
       --       'impl_item',
-      --   },
+      --   }
     },
   })
 end

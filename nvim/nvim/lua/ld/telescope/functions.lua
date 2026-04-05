@@ -79,7 +79,7 @@ M.lsp_unique_references = function(opts)
   end
 
   pickers
-    .new(opts, {
+    .new(vim.tbl_extend("force", opts, { border = true }), {
       prompt_title = "LSP Unique References",
       finder = finders.new_table({
         results = locations,
