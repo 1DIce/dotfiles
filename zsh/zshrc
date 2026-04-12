@@ -62,6 +62,7 @@ alias fm="vicd ./"
 alias marktext="marktext.AppImage"
 alias j="just"
 alias wt="worktree-tools"
+alias c="claude"
 
 
 # Make Tab autocomplete regardless of filename case
