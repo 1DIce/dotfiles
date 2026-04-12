@@ -61,13 +61,6 @@ vim.api.nvim_create_user_command("Notifications", function()
 end, {})
 
 vim.api.nvim_create_user_command("CompareToClipboard", function()
-  local get_register_lines = function(reg_name)
-    local lines = {}
-    for line in vim.fn.getreg(reg_name):gmatch("[^\n]+") do
-      table.insert(lines, line)
-    end
-    return lines
-  end
   local setup_current_buffer = function(name, lines)
     vim.cmd.edit(name)
     vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
@@ -88,6 +81,72 @@ vim.api.nvim_create_user_command("CompareToClipboard", function()
   end
   setup_current_buffer("clipboard_content", register_lines)
 end, {})
+
+vim.api.nvim_create_user_command("ClaudeCommit", function(args)
+  local diff = vim.fn.system({ "git", "diff", "--staged" })
+  if diff == "" then
+    vim.notify("No staged changes", vim.log.levels.WARN)
+    return
+  end
+
+  local prompt = table.concat({
+    "Write a git commit message following Conventional Commits format:",
+    "",
+    "  <type>(optional scope): <description>",
+    "",
+    "  [optional body]",
+    "",
+    "Rules:",
+    "- Subject line: imperative mood, present tense, active voice, max 72 chars",
+    "- Type: feat|fix|refactor|docs|test|build|ci|chore",
+    "- Body: wrap at 72 chars; explain what the change accomplishes and why, not how",
+    "- Body lines: bullet points starting with '- '",
+    "- Be succinct but not terse; don't assume implicit context",
+    "- Focus on the most important changes",
+    "- Output only the commit message, no commentary",
+  }, "\n")
+
+  local wip_context = ""
+  if args.range == 2 then
+    local selected = vim.api.nvim_buf_get_lines(0, args.line1 - 1, args.line2, false)
+    wip_context = table.concat(selected, "\n")
+  elseif args.args and args.args ~= "" then
+    wip_context = args.args
+  end
+  if wip_context ~= "" then
+    prompt = prompt .. "\n\nWIP context:\n" .. wip_context
+  end
+  prompt = prompt .. "\n\nStaged diff:\n" .. diff
+
+  local output = {}
+  local row = vim.api.nvim_win_get_cursor(0)[1]
+  local buf = vim.api.nvim_get_current_buf()
+  vim.fn.jobstart({ "claude", "--model", "haiku", "--print", prompt }, {
+    stdout_buffered = true,
+    on_stdout = function(_, data)
+      if data then
+        vim.list_extend(output, data)
+      end
+    end,
+    on_exit = function()
+      vim.schedule(function()
+        while #output > 0 and output[#output] == "" do
+          table.remove(output)
+        end
+        if #output == 0 then
+          vim.notify("ClaudeCommit: no output from claude", vim.log.levels.ERROR)
+          return
+        end
+        vim.api.nvim_buf_set_lines(buf, row - 1, row - 1, false, output)
+      end)
+    end,
+  })
+  vim.notify("ClaudeCommit: generating...", vim.log.levels.INFO)
+end, {
+  nargs = "?",
+  range = true,
+  desc = "Generate commit message via Claude Haiku from staged diff",
+})
 
 vim.api.nvim_create_user_command("PytonFormatBuf", function()
   local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false) -- Get all lines in the current buffer
