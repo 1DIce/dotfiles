@@ -13,7 +13,7 @@ end
 
 -- stylua: ignore
 local INLAY_HINT_DEFAULTS = {
-  enabled                    = true,  -- auto-enable inlay hints on attach
+  enabled                    = false,  -- auto-enable inlay hints on attach
   parameters                 = true,  -- parameter name hints
   parameters_compiled        = false, -- hints for compiled code
   parameters_excluded        = false, -- exclude certain parameter hints
