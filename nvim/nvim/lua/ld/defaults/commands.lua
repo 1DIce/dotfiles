@@ -121,6 +121,8 @@ vim.api.nvim_create_user_command("ClaudeCommit", function(args)
   local output = {}
   local row = vim.api.nvim_win_get_cursor(0)[1]
   local buf = vim.api.nvim_get_current_buf()
+  local progress = { kind = "progress", status = "running", title = "ClaudeCommit", source = "ClaudeCommit" }
+  progress.id = vim.api.nvim_echo({ { "generating..." } }, true, progress)
   vim.fn.jobstart({ "claude", "--model", "haiku", "--print", prompt }, {
     stdout_buffered = true,
     on_stdout = function(_, data)
@@ -134,14 +136,17 @@ vim.api.nvim_create_user_command("ClaudeCommit", function(args)
           table.remove(output)
         end
         if #output == 0 then
-          vim.notify("ClaudeCommit: no output from claude", vim.log.levels.ERROR)
+          progress.status = "error"
+          vim.api.nvim_echo({ { "no output from claude" } }, true, progress)
           return
         end
         vim.api.nvim_buf_set_lines(buf, row - 1, row - 1, false, output)
+        progress.status = "success"
+        progress.percent = 100
+        vim.api.nvim_echo({ { "done" } }, true, progress)
       end)
     end,
   })
-  vim.notify("ClaudeCommit: generating...", vim.log.levels.INFO)
 end, {
   nargs = "?",
   range = true,
