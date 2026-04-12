@@ -43,6 +43,13 @@ vim.filetype.add({
   },
 })
 
+-- ClickHouse SQL files in data-core
+vim.filetype.add({
+  pattern = {
+    [".*/work/data%-core/.*%.sql"] = "clickhouse_sql",
+  },
+})
+
 -- Go templates and helm charts
 vim.filetype.add({
   extension = {

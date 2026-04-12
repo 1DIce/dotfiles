@@ -29,6 +29,7 @@ local function treesitter_config()
     "http",
     "terraform",
     "hcl",
+    "kotlin",
   }
   local already_installed = require("nvim-treesitter.config").get_installed()
   local parsers_to_install = vim
@@ -42,6 +43,14 @@ local function treesitter_config()
   vim.treesitter.language.register("json5", { "json", "jsonc" })
   vim.treesitter.language.register("groovy", "Jenkinsfile")
   vim.treesitter.language.register("bash", "dotenv")
+  vim.treesitter.language.add(
+    "clickhouse_sql",
+    {
+      path = vim.fn.expand("~/personal/tree-sitter-clickhouse-sql/parser.so"),
+      symbol_name = "clickhouse_sql",
+    }
+  )
+  vim.treesitter.language.register("clickhouse_sql", "clickhouse_sql")
   vim.treesitter.language.register("angular", "angular.html") -- Register the filetype with treesitter for the `angular` language/parser
 
   local installed_parsers = require("nvim-treesitter.config").get_installed()
@@ -52,6 +61,7 @@ local function treesitter_config()
     end)
     :flatten()
     :totable()
+  table.insert(treesitter_filetypes, "clickhouse_sql")
 
   vim.api.nvim_create_autocmd("FileType", {
     group = vim.api.nvim_create_augroup("ld-treesitter-feature-enable", { clear = true }),
