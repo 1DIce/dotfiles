@@ -2,7 +2,11 @@
 - Do not use em-dashes (—) when writing
 
 
-## Git 
+## Shell
+
+- Prefer `jq` over `python3` for JSON processing in shell commands.
+
+## Git
 
 - when creating branches, prefix them with feature/lars/ to indicate that they came from me.
 
