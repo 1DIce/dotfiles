@@ -43,14 +43,15 @@ local function treesitter_config()
   vim.treesitter.language.register("json5", { "json", "jsonc" })
   vim.treesitter.language.register("groovy", "Jenkinsfile")
   vim.treesitter.language.register("bash", "dotenv")
-  vim.treesitter.language.add(
-    "clickhouse_sql",
-    {
+
+  if require("ld.utils.path").is_dir("~/personal/tree-sitter-clickhouse-sql") then
+    vim.treesitter.language.add("clickhouse_sql", {
       path = vim.fn.expand("~/personal/tree-sitter-clickhouse-sql/parser.so"),
       symbol_name = "clickhouse_sql",
-    }
-  )
-  vim.treesitter.language.register("clickhouse_sql", "clickhouse_sql")
+    })
+    vim.treesitter.language.register("clickhouse_sql", "clickhouse_sql")
+  end
+
   vim.treesitter.language.register("angular", "angular.html") -- Register the filetype with treesitter for the `angular` language/parser
 
   local installed_parsers = require("nvim-treesitter.config").get_installed()

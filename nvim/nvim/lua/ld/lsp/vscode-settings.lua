@@ -1,4 +1,3 @@
-local lsp = require("lspconfig")
 local json = require("ld.utils.json")
 local path_util = require("ld.utils.path")
 
