@@ -1,11 +1,14 @@
 local lsp = require("lspconfig")
 
 local M = {
-  is_dir = lsp.util.path.is_dir,
   is_file = lsp.util.path.is_file,
   join = lsp.util.path.join,
   sanitize = lsp.util.path.sanitize,
 }
+
+function M.is_dir(dir)
+  return vim.fn.isdirectory(vim.fn.expand(dir)) == 1
+end
 
 function M.to_os_path(unix_path)
   if require("ld.utils.functions").is_windows() then
