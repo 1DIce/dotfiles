@@ -47,7 +47,6 @@ local function treesitter_config()
   if require("ld.utils.path").is_dir("~/personal/tree-sitter-clickhouse-sql") then
     vim.treesitter.language.add("clickhouse_sql", {
       path = vim.fn.expand("~/personal/tree-sitter-clickhouse-sql/parser.so"),
-      symbol_name = "clickhouse_sql",
     })
     vim.treesitter.language.register("clickhouse_sql", "clickhouse_sql")
   end
