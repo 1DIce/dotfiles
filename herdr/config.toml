@@ -1,0 +1,85 @@
+# herdr config — workflow ported from ~/dotfiles/tmux/tmux.conf
+
+[terminal]
+# splits and new tabs open in the current pane's cwd
+# (tmux: split-window -c "#{pane_current_path}")
+new_cwd = "follow"
+
+
+[keys]
+prefix = "ctrl+a"
+
+# Copy mode is vi-style out of the box: h/j/k/l + w/b/e movement,
+# v or space begins selection, y or enter yanks, / ? n N search, q/esc exits.
+# tmux entered copy mode with prefix+Enter and Alt+Enter — keep both,
+# plus herdr's default prefix+[.
+copy_mode = ["prefix+enter", "alt+enter", "prefix+["]
+
+# pane navigation — matches tmux hjkl bindings (these are herdr defaults,
+# listed explicitly for clarity)
+focus_pane_left = "prefix+h"
+focus_pane_down = "prefix+j"
+focus_pane_up = "prefix+k"
+focus_pane_right = "prefix+l"
+
+# splits — tmux used prefix+" (pane below) and prefix+% (pane right), but
+# herdr has no documented key names for " and %, so herdr defaults stay:
+split_horizontal = "prefix+minus"  # new pane below
+split_vertical = "prefix+v"        # new pane right
+
+# tabs (tmux windows)
+new_tab = "prefix+c"
+
+# scratch popup (tmux: prefix+t → display-popup with scratch session)
+# NOTE: popups swallow all input until their command exits, so herdr can't
+# bind a close key itself. HERDR_POPUP=1 activates a ctrl+a d → exit binding
+# in zshrc (see zsh/zshrc), which closes the popup.
+[[keys.command]]
+key = "prefix+t"
+type = "popup"
+command = "env HERDR_POPUP=1 zsh"
+description = "scratch terminal"
+width = "80%"
+height = "80%"
+
+# fzf-run popup (tmux: prefix+Tab)
+[[keys.command]]
+key = "prefix+tab"
+type = "popup"
+command = "~/dotfiles/scripts/fzf-run/fzf-run.sh"
+description = "fzf-run"
+width = "80%"
+height = "80%"
+
+# reload config (tmux: prefix+r → source-file ~/.tmux.conf)
+[[keys.command]]
+key = "prefix+r"
+type = "shell"
+command = "herdr server reload-config"
+description = "reload herdr config"
+
+# session switcher (tmux: prefix+f → popup with tmux-sessioneer switch).
+# inside herdr the picker lists pane cwds from `herdr api snapshot`.
+[[keys.command]]
+key = "prefix+f"
+type = "popup"
+command = "tmux-sessioneer switch"
+description = "session switcher"
+width = "80%"
+height = "80%"
+
+[ui]
+tab_bar_position = "top"  # tmux: status-position top
+pane_gaps = false
+prompt_new_tab_name =false
+
+[theme]
+name = "tokyo-night"
+auto_switch = false
+
+[ui.sound]
+enabled = false
+
+[exprimental]
+kitty_graphics = true
+
