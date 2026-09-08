@@ -55,8 +55,6 @@ _NIX = [
     "ripgrep",
     "bat",
     "jq",
-    "imagemagick",
-    "graphviz",
     "thefuck",
     "just",
     "fzf",
@@ -87,19 +85,15 @@ PACKAGES = {
             "cmake",
             "fuse2",
             "sqlite",
-            "chafa",
             "git",
             "watchexec",
             "tree-sitter-cli",
             "kdiff3",
-            "zathura",
             "xclip",
         ],
         "yay": ["appimagelauncher"],
-        # watchexec comes from pacman here, not nix
-        "nix": _NIX,
-        "npm": _NPM + ["madge"],
-        "pipx": ["yamllint", "black"],
+        "npm": _NPM,
+        "pipx": ["yamllint"],
         "cargo": _CARGO,
     },
     Profile.UBUNTU: {
@@ -112,7 +106,6 @@ PACKAGES = {
             "libsqlite3-dev",
             "python-is-python3",
             "python3-venv",
-            "chafa",
             "git-gui",
             "luarocks",
             "direnv",
@@ -120,13 +113,12 @@ PACKAGES = {
         + (
             ["wl-clipboard", "xdg-utils"]
             if WSL
-            else ["kdiff3", "xclip", "zathura", "appimagelauncher"]
+            else ["kdiff3", "xclip", "appimagelauncher"]
         ),
         "nix": _NIX + ["watchexec"],
-        "npm": _NPM + ["madge", "git-format-staged", "tldr"],
-        "pipx": ["yamllint", "black"],
+        "npm": _NPM + ["git-format-staged", "tldr"],
+        "pipx": ["yamllint"],
         "cargo": _CARGO,
-        "gem": ["fyodor"],
     },
     Profile.MAC: {
         "brew": [
@@ -138,7 +130,6 @@ PACKAGES = {
             "fzf",
             "eza",
             "delta",
-            "chafa",
             "git-gui",
             "luarocks",
             "kdiff3",
@@ -156,7 +147,7 @@ PACKAGES = {
         ],
         "cask": ["nikitabobko/tap/aerospace", "git-credential-manager"],
         "npm": _NPM,
-        "pipx": ["yamllint", "black"],
+        "pipx": ["yamllint"],
         "cargo": _CARGO,
     },
     Profile.WINDOWS: {
@@ -290,33 +281,6 @@ def fish():
             "&& sudo apt update && sudo apt install fish -y",
             shell=True,
         )
-
-
-@step(Profile.UBUNTU)
-def cheat_sheets():
-    run(
-        "curl https://cht.sh/:cht.sh > ~/bin/cht.sh && chmod +x ~/bin/cht.sh",
-        shell=True,
-    )
-    run(
-        "bash <(curl -sL "
-        "https://raw.githubusercontent.com/denisidoro/navi/master/scripts/install)",
-        shell=True,
-    )
-
-
-@step(Profile.UBUNTU)
-def marktext():
-    if WSL:
-        return
-    # AppImage plus appimagelauncher integration
-    run(
-        "wget -O ~/bin/marktext.AppImage"
-        " https://github.com/marktext/marktext/releases/latest/download/marktext-x86_64.AppImage"
-        " && chmod +x ~/bin/marktext.AppImage"
-        " && ail-cli integrate ~/bin/marktext.AppImage",
-        shell=True,
-    )
 
 
 @step(Profile.UBUNTU)
