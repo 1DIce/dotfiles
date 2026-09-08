@@ -3,3 +3,7 @@
 **/.lastBuild.info
 **/.git/**
 .envrc
+
+**/.claude/settings.local.json
+
+**/.claude/.cc-writes/

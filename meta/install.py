@@ -48,19 +48,53 @@ PREFIXED = {"nix": "nixpkgs."}
 
 # --- package tables -------------------------------------------------------
 
-_NIX = ["fd", "unzip", "trash-cli", "ripgrep", "bat", "jq", "imagemagick",
-        "graphviz", "thefuck", "just", "fzf", "eza", "delta", "deno", "go",
-        "rustup", "volta", "tmux", "gitui", "pipx", "git-credential-oauth"]
+_NIX = [
+    "fd",
+    "unzip",
+    "trash-cli",
+    "ripgrep",
+    "bat",
+    "jq",
+    "imagemagick",
+    "graphviz",
+    "thefuck",
+    "just",
+    "fzf",
+    "eza",
+    "delta",
+    "deno",
+    "go",
+    "rustup",
+    "volta",
+    "tmux",
+    "gitui",
+    "pipx",
+    "git-credential-oauth",
+]
 
 _NPM = ["cspell", "prettier", "@angular/cli", "@vlabo/cspell-lsp"]
 
-_CARGO = ["--git https://github.com/1DIce/tmux-sessioneer.git",
-          "--git https://github.com/1DIce/coding-flow"]
+_CARGO = [
+    "--git https://github.com/1DIce/tmux-sessioneer.git",
+    "--git https://github.com/1DIce/coding-flow",
+]
 
 PACKAGES = {
     Profile.ARCH: {
-        "pacman": ["gcc", "make", "cmake", "fuse2", "sqlite", "chafa", "git",
-                   "watchexec", "tree-sitter-cli", "kdiff3", "zathura", "xclip"],
+        "pacman": [
+            "gcc",
+            "make",
+            "cmake",
+            "fuse2",
+            "sqlite",
+            "chafa",
+            "git",
+            "watchexec",
+            "tree-sitter-cli",
+            "kdiff3",
+            "zathura",
+            "xclip",
+        ],
         "yay": ["appimagelauncher"],
         # watchexec comes from pacman here, not nix
         "nix": _NIX,
@@ -69,11 +103,25 @@ PACKAGES = {
         "cargo": _CARGO,
     },
     Profile.UBUNTU: {
-        "apt": ["build-essential", "cmake", "rename", "libfuse2", "sqlite3",
-                "libsqlite3-dev", "python-is-python3", "python3-venv", "chafa",
-                "git-gui", "luarocks", "direnv"]
-               + (["wl-clipboard", "xdg-utils"] if WSL else
-                  ["kdiff3", "xclip", "zathura", "appimagelauncher"]),
+        "apt": [
+            "build-essential",
+            "cmake",
+            "rename",
+            "libfuse2",
+            "sqlite3",
+            "libsqlite3-dev",
+            "python-is-python3",
+            "python3-venv",
+            "chafa",
+            "git-gui",
+            "luarocks",
+            "direnv",
+        ]
+        + (
+            ["wl-clipboard", "xdg-utils"]
+            if WSL
+            else ["kdiff3", "xclip", "zathura", "appimagelauncher"]
+        ),
         "nix": _NIX + ["watchexec"],
         "npm": _NPM + ["madge", "git-format-staged", "tldr"],
         "pipx": ["yamllint", "black"],
@@ -81,19 +129,54 @@ PACKAGES = {
         "gem": ["fyodor"],
     },
     Profile.MAC: {
-        "brew": ["fd", "ripgrep", "bat", "jq", "thefuck", "fzf", "eza", "delta",
-                 "chafa", "git-gui", "luarocks", "kdiff3", "watchexec", "rustup",
-                 "ghostty", "docker", "docker-compose", "just", "direnv",
-                 "tree-sitter-cli", "gitui", "tmux", "pipx"],
+        "brew": [
+            "fd",
+            "ripgrep",
+            "bat",
+            "jq",
+            "thefuck",
+            "fzf",
+            "eza",
+            "delta",
+            "chafa",
+            "git-gui",
+            "luarocks",
+            "kdiff3",
+            "watchexec",
+            "rustup",
+            "ghostty",
+            "docker",
+            "docker-compose",
+            "just",
+            "direnv",
+            "tree-sitter-cli",
+            "gitui",
+            "tmux",
+            "pipx",
+        ],
         "cask": ["nikitabobko/tap/aerospace", "git-credential-manager"],
         "npm": _NPM,
         "pipx": ["yamllint", "black"],
         "cargo": _CARGO,
     },
     Profile.WINDOWS: {
-        "scoop": ["ripgrep", "fd", "sqlite", "deno", "gcc", "make", "gitui",
-                  "lazygit", "delta", "cmake", "fzf", "copyq", "carnac", "jq",
-                  "eza"],
+        "scoop": [
+            "ripgrep",
+            "fd",
+            "sqlite",
+            "deno",
+            "gcc",
+            "make",
+            "gitui",
+            "lazygit",
+            "delta",
+            "cmake",
+            "fzf",
+            "copyq",
+            "carnac",
+            "jq",
+            "eza",
+        ],
         "npm": _NPM,
         "cargo": ["--git https://github.com/1DIce/coding-flow"],
     },
@@ -117,18 +200,24 @@ def step(*profiles: Profile):
 # bootstrap: these have to run before `packages`
 
 
-@step(Profile.ARCH, Profile.UBUNTU)
+@step(Profile.UBUNTU)
 def nix():
     run("sh <(curl -L https://nixos.org/nix/install) --daemon", shell=True)
 
 
 @step(Profile.UBUNTU)
 def apt_ppas():
-    run("sudo add-apt-repository ppa:git-core/ppa -y "
-        "&& sudo apt update && sudo apt install git -y", shell=True)
+    run(
+        "sudo add-apt-repository ppa:git-core/ppa -y "
+        "&& sudo apt update && sudo apt install git -y",
+        shell=True,
+    )
     if not WSL:
-        run("sudo add-apt-repository ppa:appimagelauncher-team/stable -y "
-            "&& sudo apt update", shell=True)
+        run(
+            "sudo add-apt-repository ppa:appimagelauncher-team/stable -y "
+            "&& sudo apt update",
+            shell=True,
+        )
 
 
 @step(Profile.WINDOWS)
@@ -146,12 +235,15 @@ def pipx_path():
 
 @step(Profile.ARCH, Profile.UBUNTU)
 def fonts():
-    run("rm -f ~/Downloads/UbuntuMono.zip"
+    run(
+        "rm -f ~/Downloads/UbuntuMono.zip"
         " && wget -O ~/Downloads/UbuntuMono.zip"
         " https://github.com/ryanoasis/nerd-fonts/releases/latest/download/UbuntuMono.zip"
         " && unzip ~/Downloads/UbuntuMono.zip -d ~/.fonts"
         " && fc-cache -fv"
-        " && rm -v ~/Downloads/UbuntuMono.zip", shell=True)
+        " && rm -v ~/Downloads/UbuntuMono.zip",
+        shell=True,
+    )
 
 
 @step(Profile.ARCH, Profile.UBUNTU, Profile.MAC, Profile.WINDOWS)
@@ -161,10 +253,13 @@ def nvim():
     elif PROFILE is Profile.MAC:
         run("brew install neovim", shell=True)
     else:
-        run("rm -f ~/bin/nvim"
+        run(
+            "rm -f ~/bin/nvim"
             " && wget -O ~/bin/nvim"
             " https://github.com/neovim/neovim/releases/download/stable/nvim-linux-x86_64.appimage"
-            " && chmod +x ~/bin/nvim", shell=True)
+            " && chmod +x ~/bin/nvim",
+            shell=True,
+        )
 
 
 @step(Profile.ARCH, Profile.UBUNTU, Profile.MAC)
@@ -190,15 +285,24 @@ def fish():
     if PROFILE is Profile.MAC:
         run("brew install fish", shell=True)
     else:
-        run("sudo add-apt-repository ppa:fish-shell/release-4 -y "
-            "&& sudo apt update && sudo apt install fish -y", shell=True)
+        run(
+            "sudo add-apt-repository ppa:fish-shell/release-4 -y "
+            "&& sudo apt update && sudo apt install fish -y",
+            shell=True,
+        )
 
 
 @step(Profile.UBUNTU)
 def cheat_sheets():
-    run("curl https://cht.sh/:cht.sh > ~/bin/cht.sh && chmod +x ~/bin/cht.sh", shell=True)
-    run("bash <(curl -sL "
-        "https://raw.githubusercontent.com/denisidoro/navi/master/scripts/install)", shell=True)
+    run(
+        "curl https://cht.sh/:cht.sh > ~/bin/cht.sh && chmod +x ~/bin/cht.sh",
+        shell=True,
+    )
+    run(
+        "bash <(curl -sL "
+        "https://raw.githubusercontent.com/denisidoro/navi/master/scripts/install)",
+        shell=True,
+    )
 
 
 @step(Profile.UBUNTU)
@@ -206,17 +310,22 @@ def marktext():
     if WSL:
         return
     # AppImage plus appimagelauncher integration
-    run("wget -O ~/bin/marktext.AppImage"
+    run(
+        "wget -O ~/bin/marktext.AppImage"
         " https://github.com/marktext/marktext/releases/latest/download/marktext-x86_64.AppImage"
         " && chmod +x ~/bin/marktext.AppImage"
-        " && ail-cli integrate ~/bin/marktext.AppImage", shell=True)
+        " && ail-cli integrate ~/bin/marktext.AppImage",
+        shell=True,
+    )
 
 
 @step(Profile.UBUNTU)
 def locale():
     if not WSL:
         return
-    run("sudo locale-gen en_US.UTF-8 && sudo update-locale LANG=en_US.UTF-8", shell=True)
+    run(
+        "sudo locale-gen en_US.UTF-8 && sudo update-locale LANG=en_US.UTF-8", shell=True
+    )
 
 
 @step(Profile.UBUNTU)
@@ -236,16 +345,22 @@ def wsl():
 @step(Profile.MAC)
 def docker_compose():
     # expose docker compose as a docker cli plugin
-    run("mkdir -p ~/.docker/cli-plugins"
+    run(
+        "mkdir -p ~/.docker/cli-plugins"
         " && ln -sfn /opt/homebrew/opt/docker-compose/bin/docker-compose"
-        " ~/.docker/cli-plugins/docker-compose", shell=True)
+        " ~/.docker/cli-plugins/docker-compose",
+        shell=True,
+    )
 
 
 @step(Profile.WINDOWS)
 def gitlab_cli():
-    run("deno install --allow-run --allow-env --allow-net --allow-read"
+    run(
+        "deno install --allow-run --allow-env --allow-net --allow-read"
         " --unstable --no-check"
-        " https://raw.githubusercontent.com/1DIce/gitlab-cli/main/gitlab-cli.ts", shell=True)
+        " https://raw.githubusercontent.com/1DIce/gitlab-cli/main/gitlab-cli.ts",
+        shell=True,
+    )
 
 
 # --- driver ---------------------------------------------------------------
@@ -268,8 +383,10 @@ def do_packages(names: list[str]) -> int:
     table = PACKAGES[PROFILE]
     unknown = [n for n in names if n not in table]
     if unknown:
-        print(f"ERROR    no {PROFILE.value} packages for manager(s): "
-              f"{' '.join(unknown)}", file=sys.stderr)
+        print(
+            f"ERROR    no {PROFILE.value} packages for manager(s): {' '.join(unknown)}",
+            file=sys.stderr,
+        )
         return 1
     for name in names or list(table):
         print(f"\n--- {name}")
@@ -281,8 +398,10 @@ def do_steps(names: list[str]) -> int:
     available = [n for n, (profiles, _) in STEPS.items() if PROFILE in profiles]
     unknown = [n for n in names if n not in available]
     if unknown:
-        print(f"ERROR    step(s) do not apply on {PROFILE.value}: "
-              f"{' '.join(unknown)}", file=sys.stderr)
+        print(
+            f"ERROR    step(s) do not apply on {PROFILE.value}: {' '.join(unknown)}",
+            file=sys.stderr,
+        )
         return 1
     for name in names or available:
         print(f"\n--- {name}")
@@ -296,8 +415,9 @@ def do_list() -> int:
     for name, pkgs in PACKAGES[PROFILE].items():
         print(f"  {name}: {' '.join(pkgs)}")
     print("\nsteps:")
-    print("  " + " ".join(n for n, (profiles, _) in STEPS.items()
-                          if PROFILE in profiles))
+    print(
+        "  " + " ".join(n for n, (profiles, _) in STEPS.items() if PROFILE in profiles)
+    )
     return 0
 
 

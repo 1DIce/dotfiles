@@ -20,14 +20,13 @@ DOTFILES = Path(__file__).resolve().parent.parent
 HOME = Path.home()
 
 
-
 class Platform(enum.Enum):
     LINUX = "Linux"
     MAC = "Darwin"
     WINDOWS = "Windows"
 
     @classmethod
-    def current(cls) -> "Platform | None":
+    def current(cls) -> Platform | None:
         try:
             return cls(platform.system())
         except ValueError:
@@ -71,6 +70,7 @@ def set_flags(*flags: CliFlag) -> None:
 
 def flag(f: CliFlag) -> bool:
     return f in _flags
+
 
 _stats = {"ok": 0, "link": 0, "relink": 0, "conflict": 0, "error": 0, "skip": 0}
 _touched_dirs: set[Path] = set()
@@ -275,13 +275,34 @@ def resolve_profile(requested: str | None) -> str:
 
 def main(modules: dict, profiles: dict, description: str) -> int:
     parser = argparse.ArgumentParser(description=description)
-    parser.add_argument("modules", nargs="*", help="module names (default: active profile)")
-    parser.add_argument("-n", "--dry-run", action="store_true", help="report, change nothing")
-    parser.add_argument("-f", "--force", action="store_true", help="replace real files (backs up to .bak)")
-    parser.add_argument("-v", "--verbose", action="store_true", help="also report already-correct entries")
+    parser.add_argument(
+        "modules", nargs="*", help="module names (default: active profile)"
+    )
+    parser.add_argument(
+        "-n", "--dry-run", action="store_true", help="report, change nothing"
+    )
+    parser.add_argument(
+        "-f",
+        "--force",
+        action="store_true",
+        help="replace real files (backs up to .bak)",
+    )
+    parser.add_argument(
+        "-v",
+        "--verbose",
+        action="store_true",
+        help="also report already-correct entries",
+    )
     parser.add_argument("-p", "--profile", help="profile name, or comma separated list")
-    parser.add_argument("-l", "--list", action="store_true", help="list modules and profiles")
-    parser.add_argument("-c", "--clean", action="store_true", help="remove broken symlinks pointing into the repo")
+    parser.add_argument(
+        "-l", "--list", action="store_true", help="list modules and profiles"
+    )
+    parser.add_argument(
+        "-c",
+        "--clean",
+        action="store_true",
+        help="remove broken symlinks pointing into the repo",
+    )
     args = parser.parse_args()
 
     set_flags(*(f for f in CliFlag if getattr(args, f.value)))
@@ -338,6 +359,8 @@ def main(modules: dict, profiles: dict, description: str) -> int:
         clean()
 
     _say(
-        "\n{ok} ok, {link} new, {relink} changed, {conflict} conflict, {error} error".format(**_stats)
+        "\n{ok} ok, {link} new, {relink} changed, {conflict} conflict, {error} error".format(
+            **_stats
+        )
     )
     return 1 if (_stats["error"] or _stats["conflict"]) else 0

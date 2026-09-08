@@ -1,23 +1,22 @@
 #!/usr/bin/env python3
 """Symlinks only. Idempotent, safe to rerun as often as you like.
 
-  meta/link.py                              active profile
-  meta/link.py zsh git scripts              named modules
-  meta/link.py --dry-run --verbose
-  meta/link.py --profile windows --dry-run  check another profile from here
-  meta/link.py --clean                      drop broken symlinks into the repo
+meta/link.py                              active profile
+meta/link.py zsh git scripts              named modules
+meta/link.py --dry-run --verbose
+meta/link.py --profile windows --dry-run  check another profile from here
+meta/link.py --clean                      drop broken symlinks into the repo
 """
 
 from __future__ import annotations
 
 from dotlib import (
-    ARCH,
     DOTFILES,
     LINUX,
     MAC,
     WIN,
-    Profile,
     WSL,
+    Profile,
     copy_if_absent,
     link,
     main,
@@ -31,8 +30,15 @@ UNIX = not WIN
 
 
 def module_base_dirs():
-    for d in ("~/Downloads", "~/bin", "~/.fonts", "~/obsidian-vaults",
-              "~/work", "~/personal", "~/open-source"):
+    for d in (
+        "~/Downloads",
+        "~/bin",
+        "~/.fonts",
+        "~/obsidian-vaults",
+        "~/work",
+        "~/personal",
+        "~/open-source",
+    ):
         mkdir(d)
 
 
@@ -87,15 +93,21 @@ def module_alacritty():
     # alacritty.toml is deliberately not linked on Linux: the live file has
     # diverged from the repo copy and stays unversioned.
     if LINUX:
-        link("alacritty/alacritty_tokyonight_night.toml",
-             "~/.config/alacritty/alacritty_tokyonight_night.toml")
+        link(
+            "alacritty/alacritty_tokyonight_night.toml",
+            "~/.config/alacritty/alacritty_tokyonight_night.toml",
+        )
         link("alacritty/alacritty.yml", "~/.config/alacritty/alacritty.yml")
-        link("alacritty/alacritty_tokyonight_night.yml",
-             "~/.config/alacritty/alacritty_tokyonight_night.yml")
+        link(
+            "alacritty/alacritty_tokyonight_night.yml",
+            "~/.config/alacritty/alacritty_tokyonight_night.yml",
+        )
     elif MAC:
         link("alacritty/alacritty.toml", "~/.config/alacritty/alacritty.toml")
-        link("alacritty/alacritty_tokyonight_night.toml",
-             "~/.config/alacritty/alacritty_tokyonight_night.toml")
+        link(
+            "alacritty/alacritty_tokyonight_night.toml",
+            "~/.config/alacritty/alacritty_tokyonight_night.toml",
+        )
     elif WIN:
         link("alacritty/alacritty.yml", "~/AppData/Roaming/alacritty/alacritty.yml")
 
@@ -113,9 +125,11 @@ def module_wezterm():
 
 def module_windows_terminal():
     if WIN:
-        link("windows-terminal/settings.json",
-             "~/AppData/Local/packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe"
-             "/LocalState/settings.json")
+        link(
+            "windows-terminal/settings.json",
+            "~/AppData/Local/packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe"
+            "/LocalState/settings.json",
+        )
 
 
 # --- git ------------------------------------------------------------------
@@ -162,8 +176,10 @@ def module_ideavim():
 def module_vrapper():
     if WIN:
         link("vrapper/vrapperrc", "~/.vrapperrc")
-        link("vrapper/eclipse.user.setup",
-             "~/.eclipse/org.eclipse.oomph.setup/setups/user.setup")
+        link(
+            "vrapper/eclipse.user.setup",
+            "~/.eclipse/org.eclipse.oomph.setup/setups/user.setup",
+        )
 
 
 # --- tools ----------------------------------------------------------------
@@ -222,10 +238,14 @@ def module_powertoys():
     if WIN:
         root = "~/AppData/Local/Microsoft/PowerToys"
         link("powertoys/settings.json", f"{root}/settings.json")
-        link("powertoys/Keyboard_Manager/settings.json",
-             f"{root}/Keyboard Manager/settings.json")
-        link("powertoys/Keyboard_Manager/default.json",
-             f"{root}/Keyboard Manager/default.json")
+        link(
+            "powertoys/Keyboard_Manager/settings.json",
+            f"{root}/Keyboard Manager/settings.json",
+        )
+        link(
+            "powertoys/Keyboard_Manager/default.json",
+            f"{root}/Keyboard Manager/default.json",
+        )
 
 
 def module_wsl():
@@ -343,18 +363,68 @@ MODULES = {
 _SHELL = ["base", "local", "bash", "zsh", "spaceship", "less", "ghostty", "alacritty"]
 
 PROFILES = {
-    Profile.ARCH: ["base", "cspell", "git", "tmux", "scripts", "nvim", "gitui",
-                   "git-depgraph", "zathura", "bat", "yamllint"],
+    Profile.ARCH: [
+        "base",
+        "cspell",
+        "git",
+        "tmux",
+        "scripts",
+        "nvim",
+        "gitui",
+        "git-depgraph",
+        "zathura",
+        "bat",
+        "yamllint",
+    ],
     Profile.ARCH_SHELL: _SHELL,
-    Profile.UBUNTU: ["base", "cspell", "git", "tmux", "scripts", "nvim", "gitui",
-                     "git-depgraph", "zathura", "wsl", "bat", "yamllint"],
+    Profile.UBUNTU: [
+        "base",
+        "cspell",
+        "git",
+        "tmux",
+        "scripts",
+        "nvim",
+        "gitui",
+        "git-depgraph",
+        "zathura",
+        "wsl",
+        "bat",
+        "yamllint",
+    ],
     Profile.UBUNTU_SHELL: _SHELL,
-    Profile.MAC: ["base", "local", "zsh", "spaceship", "less", "ghostty",
-                  "alacritty", "aerospace", "cspell", "git", "tmux", "scripts",
-                  "nvim", "gitui", "bat", "yamllint"],
-    Profile.WINDOWS: ["base", "cspell", "local", "git", "bash", "nvim", "gitui",
-                      "wsl", "wezterm", "windows-terminal", "vrapper",
-                      "powertoys", "alacritty"],
+    Profile.MAC: [
+        "base",
+        "local",
+        "zsh",
+        "spaceship",
+        "less",
+        "ghostty",
+        "alacritty",
+        "aerospace",
+        "cspell",
+        "git",
+        "tmux",
+        "scripts",
+        "nvim",
+        "gitui",
+        "bat",
+        "yamllint",
+    ],
+    Profile.WINDOWS: [
+        "base",
+        "cspell",
+        "local",
+        "git",
+        "bash",
+        "nvim",
+        "gitui",
+        "wsl",
+        "wezterm",
+        "windows-terminal",
+        "vrapper",
+        "powertoys",
+        "alacritty",
+    ],
 }
 
 
