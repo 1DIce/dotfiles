@@ -34,6 +34,17 @@ class Platform(enum.Enum):
             return None
 
 
+class Profile(enum.Enum):
+    """A named target. Autodetect only ever yields one of the first four."""
+
+    ARCH = "arch"
+    UBUNTU = "ubuntu"
+    MAC = "mac"
+    WINDOWS = "windows"
+    ARCH_SHELL = "arch-shell"
+    UBUNTU_SHELL = "ubuntu-shell"
+
+
 class CliFlag(enum.Enum):
     DRY_RUN = "dry_run"
     FORCE = "force"
@@ -232,16 +243,16 @@ def clean() -> None:
 # --- profile resolution ---------------------------------------------------
 
 
-def autodetect_profile() -> str:
+def autodetect_profile() -> Profile | None:
     if WIN:
-        return "windows"
+        return Profile.WINDOWS
     if MAC:
-        return "mac"
+        return Profile.MAC
     if ARCH:
-        return "arch"
+        return Profile.ARCH
     if LINUX:
-        return "ubuntu"
-    return ""
+        return Profile.UBUNTU
+    return None
 
 
 def resolve_profile(requested: str | None) -> str:
@@ -255,7 +266,8 @@ def resolve_profile(requested: str | None) -> str:
         text = local.read_text().strip()
         if text:
             return ",".join(line.strip() for line in text.splitlines() if line.strip())
-    return autodetect_profile()
+    detected = autodetect_profile()
+    return detected.value if detected else ""
 
 
 # --- CLI ------------------------------------------------------------------
@@ -276,8 +288,8 @@ def main(modules: dict, profiles: dict, description: str) -> int:
 
     if args.list:
         _say("profiles:")
-        for name, mods in profiles.items():
-            _say(f"  {name}: {' '.join(mods)}")
+        for prof, mods in profiles.items():
+            _say(f"  {prof.value}: {' '.join(mods)}")
         _say("")
         _say("modules:")
         _say("  " + " ".join(sorted(modules)))
@@ -299,10 +311,12 @@ def main(modules: dict, profiles: dict, description: str) -> int:
         selected = []
         for name in profile.split(","):
             name = name.strip()
-            if name not in profiles:
+            try:
+                mods = profiles[Profile(name)]
+            except (ValueError, KeyError):
                 _warn(f"ERROR    unknown profile: {name}")
                 return 1
-            for mod in profiles[name]:
+            for mod in mods:
                 if mod not in selected:
                     selected.append(mod)
         source = f"profile {profile}"

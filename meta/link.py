@@ -16,6 +16,7 @@ from dotlib import (
     LINUX,
     MAC,
     WIN,
+    Profile,
     WSL,
     copy_if_absent,
     link,
@@ -342,18 +343,18 @@ MODULES = {
 _SHELL = ["base", "local", "bash", "zsh", "spaceship", "less", "ghostty", "alacritty"]
 
 PROFILES = {
-    "arch": ["base", "cspell", "git", "tmux", "scripts", "nvim", "gitui",
-             "git-depgraph", "zathura", "bat", "yamllint"],
-    "arch-shell": _SHELL,
-    "ubuntu": ["base", "cspell", "git", "tmux", "scripts", "nvim", "gitui",
-               "git-depgraph", "zathura", "wsl", "bat", "yamllint"],
-    "ubuntu-shell": _SHELL,
-    "mac": ["base", "local", "zsh", "spaceship", "less", "ghostty", "alacritty",
-            "aerospace", "cspell", "git", "tmux", "scripts", "nvim", "gitui",
-            "bat", "yamllint"],
-    "windows": ["base", "cspell", "local", "git", "bash", "nvim", "gitui", "wsl",
-                "wezterm", "windows-terminal", "vrapper", "powertoys",
-                "alacritty"],
+    Profile.ARCH: ["base", "cspell", "git", "tmux", "scripts", "nvim", "gitui",
+                   "git-depgraph", "zathura", "bat", "yamllint"],
+    Profile.ARCH_SHELL: _SHELL,
+    Profile.UBUNTU: ["base", "cspell", "git", "tmux", "scripts", "nvim", "gitui",
+                     "git-depgraph", "zathura", "wsl", "bat", "yamllint"],
+    Profile.UBUNTU_SHELL: _SHELL,
+    Profile.MAC: ["base", "local", "zsh", "spaceship", "less", "ghostty",
+                  "alacritty", "aerospace", "cspell", "git", "tmux", "scripts",
+                  "nvim", "gitui", "bat", "yamllint"],
+    Profile.WINDOWS: ["base", "cspell", "local", "git", "bash", "nvim", "gitui",
+                      "wsl", "wezterm", "windows-terminal", "vrapper",
+                      "powertoys", "alacritty"],
 }
 
 
