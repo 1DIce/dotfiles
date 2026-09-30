@@ -1,16 +1,5 @@
 local M = {}
 
-local function get_workspace_base_dir()
-  local is_windows = vim.fn.has("win32") == 1
-  if is_windows then
-    local localappdata = os.getenv("LOCALAPPDATA")
-      or (os.getenv("USERPROFILE") .. "\\AppData\\Local")
-    return localappdata .. "\\kotlin-lsp-my-workspaces"
-  else
-    return os.getenv("HOME") .. "/.cache/kotlin-lsp-my-workspaces"
-  end
-end
-
 -- stylua: ignore
 local INLAY_HINT_DEFAULTS = {
   enabled                    = false,  -- auto-enable inlay hints on attach
@@ -25,61 +14,6 @@ local INLAY_HINT_DEFAULTS = {
   lambda_receivers_parameters = false, -- lambda receiver/parameter hints
   value_ranges               = false, -- value range hints
   kotlin_time                = false, -- kotlin.time duration hints
-}
-
--- stylua: ignore
-local DEFAULT_JVM_ARGS = {
-  "--add-opens", "java.base/java.io=ALL-UNNAMED",
-  "--add-opens", "java.base/java.lang=ALL-UNNAMED",
-  "--add-opens", "java.base/java.lang.ref=ALL-UNNAMED",
-  "--add-opens", "java.base/java.lang.reflect=ALL-UNNAMED",
-  "--add-opens", "java.base/java.net=ALL-UNNAMED",
-  "--add-opens", "java.base/java.nio=ALL-UNNAMED",
-  "--add-opens", "java.base/java.nio.charset=ALL-UNNAMED",
-  "--add-opens", "java.base/java.text=ALL-UNNAMED",
-  "--add-opens", "java.base/java.time=ALL-UNNAMED",
-  "--add-opens", "java.base/java.util=ALL-UNNAMED",
-  "--add-opens", "java.base/java.util.concurrent=ALL-UNNAMED",
-  "--add-opens", "java.base/java.util.concurrent.atomic=ALL-UNNAMED",
-  "--add-opens", "java.base/java.util.concurrent.locks=ALL-UNNAMED",
-  "--add-opens", "java.base/jdk.internal.vm=ALL-UNNAMED",
-  "--add-opens", "java.base/sun.net.dns=ALL-UNNAMED",
-  "--add-opens", "java.base/sun.nio.ch=ALL-UNNAMED",
-  "--add-opens", "java.base/sun.nio.fs=ALL-UNNAMED",
-  "--add-opens", "java.base/sun.security.ssl=ALL-UNNAMED",
-  "--add-opens", "java.base/sun.security.util=ALL-UNNAMED",
-  "--add-opens", "java.desktop/com.apple.eawt=ALL-UNNAMED",
-  "--add-opens", "java.desktop/com.apple.eawt.event=ALL-UNNAMED",
-  "--add-opens", "java.desktop/com.apple.laf=ALL-UNNAMED",
-  "--add-opens", "java.desktop/com.sun.java.swing=ALL-UNNAMED",
-  "--add-opens", "java.desktop/com.sun.java.swing.plaf.gtk=ALL-UNNAMED",
-  "--add-opens", "java.desktop/java.awt=ALL-UNNAMED",
-  "--add-opens", "java.desktop/java.awt.dnd.peer=ALL-UNNAMED",
-  "--add-opens", "java.desktop/java.awt.event=ALL-UNNAMED",
-  "--add-opens", "java.desktop/java.awt.font=ALL-UNNAMED",
-  "--add-opens", "java.desktop/java.awt.image=ALL-UNNAMED",
-  "--add-opens", "java.desktop/java.awt.peer=ALL-UNNAMED",
-  "--add-opens", "java.desktop/javax.swing=ALL-UNNAMED",
-  "--add-opens", "java.desktop/javax.swing.plaf.basic=ALL-UNNAMED",
-  "--add-opens", "java.desktop/javax.swing.text=ALL-UNNAMED",
-  "--add-opens", "java.desktop/javax.swing.text.html=ALL-UNNAMED",
-  "--add-opens", "java.desktop/sun.awt=ALL-UNNAMED",
-  "--add-opens", "java.desktop/sun.awt.X11=ALL-UNNAMED",
-  "--add-opens", "java.desktop/sun.awt.datatransfer=ALL-UNNAMED",
-  "--add-opens", "java.desktop/sun.awt.image=ALL-UNNAMED",
-  "--add-opens", "java.desktop/sun.awt.windows=ALL-UNNAMED",
-  "--add-opens", "java.desktop/sun.font=ALL-UNNAMED",
-  "--add-opens", "java.desktop/sun.java2d=ALL-UNNAMED",
-  "--add-opens", "java.desktop/sun.lwawt=ALL-UNNAMED",
-  "--add-opens", "java.desktop/sun.lwawt.macosx=ALL-UNNAMED",
-  "--add-opens", "java.desktop/sun.swing=ALL-UNNAMED",
-  "--add-opens", "java.management/sun.management=ALL-UNNAMED",
-  "--add-opens", "jdk.attach/sun.tools.attach=ALL-UNNAMED",
-  "--add-opens", "jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED",
-  "--add-opens", "jdk.internal.jvmstat/sun.jvmstat.monitor=ALL-UNNAMED",
-  "--add-opens", "jdk.jdi/com.sun.tools.jdi=ALL-UNNAMED",
-  "--enable-native-access=ALL-UNNAMED",
-  "-Djdk.lang.Process.launchMechanism=FORK",
 }
 
 function M.setup(opts)
@@ -97,20 +31,14 @@ function M.setup(opts)
 end
 
 function M._configure(opts)
-  local is_windows = vim.fn.has("win32") == 1
-
-  -- Workspace directory
-  local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
-  local workspace_dir = get_workspace_base_dir() .. (is_windows and "\\" or "/") .. project_name
-  vim.fn.mkdir(workspace_dir, "p")
-
-  -- Build command
-  local cmd = { "kotlin-lsp" }
-  -- for _, arg in ipairs(DEFAULT_JVM_ARGS) do
-  --   cmd[#cmd + 1] = arg
-  -- end
-  cmd[#cmd + 1] = "--stdio"
-  cmd[#cmd + 1] = "--system-path=" .. workspace_dir
+  -- One kotlin-lsp --stdio process per Neovim instance. The launcher claims a
+  -- free per-workspace cache slot (--system-path), since kotlin-lsp locks its
+  -- index there; slots are reused so restarts start warm. Claude Code uses the
+  -- same launcher. Pass root_dir so launcher and client agree on the workspace.
+  local launcher = vim.fn.expand("~/dotfiles/scripts/kotlin-lsp-slot.sh")
+  local cmd = function(dispatchers, config)
+    return vim.lsp.rpc.start({ launcher, "run", config.root_dir }, dispatchers)
+  end
 
   -- Settings
   local hints = opts.inlay_hints or INLAY_HINT_DEFAULTS
@@ -133,7 +61,11 @@ function M._configure(opts)
   vim.lsp.config.kotlin_ls = {
     cmd = cmd,
     filetypes = { "kotlin" },
-    root_markers = { "build.gradle", "build.gradle.kts", "pom.xml", "mvnw" },
+    -- Settings files first so multi-module projects resolve to the top-level root.
+    root_markers = {
+      { "settings.gradle.kts", "settings.gradle" },
+      { "build.gradle.kts", "build.gradle", "pom.xml", "mvnw" },
+    },
     settings = settings,
     capabilities = {
       textDocument = {

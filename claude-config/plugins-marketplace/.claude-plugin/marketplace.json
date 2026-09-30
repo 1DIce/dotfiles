@@ -1,0 +1,24 @@
+{
+  "name": "lars-dotfiles",
+  "owner": {
+    "name": "Lars"
+  },
+  "plugins": [
+    {
+      "name": "kotlin-lsp-local",
+      "source": "./kotlin-lsp-local",
+      "description": "Kotlin LSP via kotlin-lsp --stdio with per-workspace cache slots",
+      "lspServers": {
+        "kotlin": {
+          "command": "/Users/lars/dotfiles/scripts/kotlin-lsp-slot.sh",
+          "extensionToLanguage": {
+            ".kt": "kotlin",
+            ".kts": "kotlin"
+          },
+          "startupTimeout": 120000,
+          "maxRestarts": 1
+        }
+      }
+    }
+  ]
+}
