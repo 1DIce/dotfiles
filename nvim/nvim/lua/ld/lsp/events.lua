@@ -36,39 +36,23 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
--- Forward LSP $/progress as native progress messages: nvim shows them in the
--- message UI / vim.ui.progress_status() and emits the OSC 9;4 terminal
--- progress bar itself (via nvim_ui_send).
-local progress_ids = {}
 vim.api.nvim_create_autocmd("LspProgress", {
-  group = vim.api.nvim_create_augroup("ld-lsp-progress", { clear = true }),
   callback = function(ev)
-    local value = ev.data.params.value
-    if type(value) ~= "table" or not value.kind then
+    local value = ev.data.params.value or {}
+    if not value.kind then
       return
     end
 
-    local key = ev.data.client_id .. ":" .. tostring(ev.data.params.token)
-    if value.kind == "begin" then
-      progress_ids[key] = { title = value.title }
-    end
-    local entry = progress_ids[key]
-    if not entry then
-      return
+    local status = value.kind == "end" and 0 or 1
+    local percent = value.percentage or 0
+
+    local osc_seq = string.format("\27]9;4;%d;%d\a", status, percent)
+
+    if os.getenv("TMUX") then
+      osc_seq = string.format("\27Ptmux;\27%s\27\\", osc_seq)
     end
 
-    local client = vim.lsp.get_client_by_id(ev.data.client_id)
-    local done = value.kind == "end"
-    entry.id = vim.api.nvim_echo({ { value.message or entry.title or "" } }, false, {
-      id = entry.id,
-      kind = "progress",
-      source = client and client.name or "lsp",
-      title = entry.title,
-      status = done and "success" or "running",
-      percent = done and 100 or value.percentage,
-    })
-    if done then
-      progress_ids[key] = nil
-    end
+    io.stdout:write(osc_seq)
+    io.stdout:flush()
   end,
 })
