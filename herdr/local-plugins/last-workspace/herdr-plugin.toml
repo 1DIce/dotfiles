@@ -1,0 +1,20 @@
+id = "lars.last-workspace"
+name = "Last Workspace"
+version = "0.1.0"
+min_herdr_version = "0.9.0"
+description = "Toggle to the previously focused workspace (tmux switch-client -l)"
+platforms = ["macos", "linux"]
+
+# seed the current workspace so the first toggle has history to work with
+[[startup]]
+command = ["sh", "last-workspace.sh", "track"]
+
+[[events]]
+on = "workspace.focused"
+command = ["sh", "last-workspace.sh", "track"]
+
+[[actions]]
+id = "toggle"
+title = "Focus last workspace"
+contexts = ["workspace"]
+command = ["sh", "last-workspace.sh", "toggle"]

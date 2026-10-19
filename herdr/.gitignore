@@ -2,3 +2,5 @@
 herdr-client.log
 herdr-server.log
 session.json
+plugins.json
+plugins/

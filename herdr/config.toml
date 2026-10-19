@@ -1,3 +1,4 @@
+onboarding = false
 # herdr config — workflow ported from ~/dotfiles/tmux/tmux.conf
 
 [terminal]
@@ -29,6 +30,15 @@ split_vertical = "prefix+v"        # new pane right
 
 # tabs (tmux windows)
 new_tab = "prefix+c"
+
+# alternate workspace (tmux: prefix+L → switch-client -l)
+# provided by local-plugins/last-workspace; link it once per machine with
+#   herdr plugin link ~/dotfiles/herdr/local-plugins/last-workspace
+[[keys.command]]
+key = "prefix+L"
+type = "plugin_action"
+command = "lars.last-workspace.toggle"
+description = "last workspace"
 
 # scratch popup (tmux: prefix+t → display-popup with scratch session)
 # NOTE: popups swallow all input until their command exits, so herdr can't
@@ -79,7 +89,3 @@ auto_switch = false
 
 [ui.sound]
 enabled = false
-
-[exprimental]
-kitty_graphics = true
-
