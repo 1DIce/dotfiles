@@ -16,6 +16,92 @@ local INLAY_HINT_DEFAULTS = {
   kotlin_time                = false, -- kotlin.time duration hints
 }
 
+-- Text of a single-line LSP range in bufnr, or nil.
+local function text_at(bufnr, range, encoding)
+  local s, e = range.start, range["end"]
+  if s.line ~= e.line then
+    return nil
+  end
+  local line = vim.api.nvim_buf_get_lines(bufnr, s.line, s.line + 1, false)[1]
+  if not line then
+    return nil
+  end
+  local ok_from, from = pcall(vim.str_byteindex, line, encoding, s.character, false)
+  local ok_to, to = pcall(vim.str_byteindex, line, encoding, e.character, false)
+  if not (ok_from and ok_to) then
+    return nil
+  end
+  return line:sub(from + 1, to)
+end
+
+-- Identifier ([%w_]+) at an LSP position in bufnr, or nil.
+local function identifier_at(bufnr, pos, encoding)
+  local line = vim.api.nvim_buf_get_lines(bufnr, pos.line, pos.line + 1, false)[1]
+  if not line then
+    return nil
+  end
+  local ok, col = pcall(vim.str_byteindex, line, encoding, pos.character, false)
+  if not ok then
+    return nil
+  end
+  local s, e = col + 1, col
+  while s > 1 and line:sub(s - 1, s - 1):match("[%w_]") do
+    s = s - 1
+  end
+  while e < #line and line:sub(e + 1, e + 1):match("[%w_]") do
+    e = e + 1
+  end
+  return e >= s and line:sub(s, e) or nil
+end
+
+-- kotlin-lsp sometimes stamps rename edits with an outdated document version.
+-- Neovim then skips the first file's edits ("Buffer ... newer than edits") but
+-- applies the rest, which leaves the symbol half-renamed. This handler clears
+-- the stale version when every edit range in that buffer still holds the old
+-- name. Otherwise it applies nothing, so a rename is never partial.
+local function rename_handler(err, result, ctx)
+  if err then
+    if err.code == vim.lsp.protocol.ErrorCodes.ContentModified then
+      vim.notify("kotlin-lsp: file changed during rename, try again", vim.log.levels.WARN)
+    else
+      vim.notify(
+        "kotlin-lsp: rename failed: " .. tostring(err.message or err.code),
+        vim.log.levels.ERROR
+      )
+    end
+    return
+  end
+  if not result then
+    vim.notify("kotlin-lsp: no rename result", vim.log.levels.INFO)
+    return
+  end
+
+  local client = assert(vim.lsp.get_client_by_id(ctx.client_id))
+  local encoding = client.offset_encoding
+  local old_name = identifier_at(ctx.bufnr, ctx.params.position, encoding)
+
+  for _, change in ipairs(result.documentChanges or {}) do
+    local doc = change.textDocument
+    if not change.kind and doc and type(doc.version) == "number" and doc.version > 0 then
+      local bufnr = vim.uri_to_bufnr(doc.uri)
+      if vim.lsp.util.buf_versions[bufnr] > doc.version then
+        for _, edit in ipairs(change.edits) do
+          if not old_name or text_at(bufnr, edit.range, encoding) ~= old_name then
+            vim.notify(
+              "kotlin-lsp: rename edits are out of date, nothing applied. Try again.",
+              vim.log.levels.WARN
+            )
+            return
+          end
+        end
+        doc.version = vim.NIL
+      end
+    end
+  end
+
+  vim.lsp.util.apply_workspace_edit(result, encoding)
+end
+
 function M.setup(opts)
   opts = opts or {}
 
@@ -75,6 +161,7 @@ function M._configure(opts)
       },
     },
     handlers = {
+      ["textDocument/rename"] = rename_handler,
       ["workspace/configuration"] = function(err, params, ctx)
         local result = {}
         for _, item in ipairs(params.items or {}) do
