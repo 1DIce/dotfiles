@@ -4,3 +4,7 @@ herdr-server.log
 session.json
 plugins.json
 plugins/
+*.sock
+*.sock.agent
+release-notes.json
+session-snapshots/
