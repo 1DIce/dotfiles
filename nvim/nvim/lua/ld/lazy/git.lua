@@ -8,6 +8,22 @@ return {
   {
     "esmuellert/codediff.nvim",
     cmd = "CodeDiff",
+    config = function()
+      require("codediff").setup({
+        highlights = {
+          -- Muted, low-saturation backgrounds so syntax-highlighted text
+          -- stays readable, instead of linking to the theme's saturated
+          -- green/red DiffAdd/DiffDelete groups.
+          line_insert = "#1d3042", -- muted blue-green
+          line_delete = "#351d2b", -- muted plum
+          char_brightness = 1.2, -- less contrast than the 1.4 dark-bg default
+        },
+        diff = {
+          ignore_trim_whitespace = true, -- ignore leading/trailing whitespace changes (like diffopt+=iwhite)
+          jump_to_first_change = true, -- auto-scroll to the first hunk when opening a diff
+        },
+      })
+    end,
   },
   {
     -- Adds commands :DiffviewFileHistory and :DiffviewOpen [git ref]
