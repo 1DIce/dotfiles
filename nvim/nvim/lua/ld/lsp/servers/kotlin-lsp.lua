@@ -105,14 +105,19 @@ end
 function M._configure(opts)
   track_rename_requests("kotlin_lsp_standalone")
 
-  -- One kotlin-lsp --stdio process per Neovim instance. The launcher claims a
-  -- free per-workspace cache slot (--system-path), since kotlin-lsp locks its
-  -- index there; slots are reused so restarts start warm. Claude Code uses the
-  -- same launcher. Pass root_dir so launcher and client agree on the workspace.
-  local launcher = vim.fn.expand("~/dotfiles/scripts/kotlin-lsp-slot.sh")
-  local cmd = function(dispatchers, config)
-    return vim.lsp.rpc.start({ launcher, "run", config.root_dir }, dispatchers)
-  end
+  -- One kotlin-lsp --stdio process per Neovim instance, each on its own
+  -- per-workspace cache slot (see ld.lsp.kotlin-slots).
+  local slots = require("ld.lsp.kotlin-slots")
+  local cmd = slots.start
+  vim.api.nvim_create_user_command("KotlinLspSlots", function(o)
+    slots.command(o.args)
+  end, {
+    nargs = "?",
+    complete = function()
+      return { "clean" }
+    end,
+    desc = "List kotlin-lsp cache slots, or clean stale ones",
+  })
 
   -- Settings
   local hints = opts.inlay_hints or INLAY_HINT_DEFAULTS
@@ -186,6 +191,12 @@ function M._configure(opts)
       end,
     },
   }
+
+  -- Each server holds ~1 GB, so stop idle ones; they restart on the next use
+  -- and reclaim their warm cache slot. `idle_stop_minutes = false` disables.
+  if opts.idle_stop_minutes ~= false then
+    require("ld.lsp.idle").watch("kotlin_ls", (opts.idle_stop_minutes or 20) * 60 * 1000)
+  end
 
   vim.lsp.enable("kotlin_ls")
 
