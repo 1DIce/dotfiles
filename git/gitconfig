@@ -9,7 +9,7 @@
 #	pager = less -E -X
   pager = delta
   excludesFile = ~/.gitignore
-  fsmonitor = true
+  fsmonitor = false
 
 [rerere]
 	enabled = true
@@ -108,5 +108,8 @@
 
 [includeIf "gitdir:~/work/"]
   path = ~/.gitconfig-work
+[credential]
+	helper =
+	helper = /usr/local/share/gcm-core/git-credential-manager
 [credential "https://dev.azure.com"]
 	useHttpPath = true

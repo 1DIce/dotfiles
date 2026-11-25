@@ -3,3 +3,5 @@
 **/.lastBuild.info
 **/.git/**
 .envrc
+
+**/.claude/settings.local.json
