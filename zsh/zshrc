@@ -43,6 +43,11 @@ autoload -z edit-command-line
 zle -N edit-command-line
 bindkey "^X^E" edit-command-line
 
+# inside a herdr popup shell, ctrl+a d closes the popup (exits the shell)
+if [[ -n "$HERDR_POPUP" ]]; then
+  bindkey -s '^Ad' '^Uexit\r'
+fi
+
 # aliases
 alias l="eza -l --icons"       # List in long format, exclude dotfiles
 alias la="l -a"      # List in long format, include dotfiles
