@@ -4,3 +4,5 @@ nvim/nvim/.netrwhist
 tmux-client-*.log
 /kitty/kitty.conf.bak
 .DS_Store
+__pycache__/
+*.pyc
