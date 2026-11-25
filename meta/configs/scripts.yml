@@ -76,3 +76,6 @@
         path: scripts/pasta.sh
     - ~/bin/pastas:
         path: scripts/pastas.sh
+    - ~/bin/devsecret:
+        path: scripts/devsecret.sh
+        platform: darwin
